@@ -16,10 +16,17 @@ Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
 Route::get('/membership', 'MembershipController@index');
+Route::get('/membership/new', 'MembershipController@createMembership');
+Route::get('/membership/archive', 'MembershipController@archive');
+
+Route::get('/contact/details', 'ContactController@view');
+
 Route::get('/leads', 'LeadsController@index');
 Route::get('/leads/new', 'LeadsController@newLead');
 Route::get('/leads/details', 'LeadsController@viewLead');
 Route::get('/leads/archive', 'LeadsController@archive');
+
+Route::post('/leads/new', 'LeadsController@storeLead')->name('leads.store');
 
 Route::get('/tours', 'ToursController@index');
 Route::get('/tours/new', 'ToursController@newTour');

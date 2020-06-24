@@ -138,6 +138,7 @@ return [
   "Tours" => "Tours",
   "Vouchers" => "Vouchers",
   "All" => "All",
-  "Archive" => "Archive"
+  "Archive" => "Archive",
+  "Contacts" => "Contacts",
 ];
 ?>

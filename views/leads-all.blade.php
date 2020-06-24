@@ -15,7 +15,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All Leads</h4>
+                    <h4 class="card-title">All Leads
+                    </h4>
+                    @foreach ($leads as $item)
+                        {{$item['name']}}
+                    @endforeach
                 </div>
                 <div class="card-content">
                     <div class="px-2">
@@ -29,7 +33,6 @@
                                     <tr>
                                         <th class="text-white">Lead ID</th>
                                         <th class="text-white">Name</th>
-                                        <th class="text-white">Creation Date</th>
                                         <th class="text-white">Creation Time</th>
                                         <th class="text-white">Telemarketer</th>
                                         <th class="text-white">Proceed</th>
@@ -37,12 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach ($lead as $leads)
-                                  {
-                                    
-                                  }
 
-                                  @endforeach
                                     <tr>
                                         <td>1000031</td>
                                         <td>Clementine</td>

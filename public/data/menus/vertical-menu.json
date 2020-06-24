@@ -26,7 +26,7 @@
       "url": "#",
       "name": "Membership",
       "i18n": "Membership",
-      "icon": "desktop",
+      "icon": "users",
       "submenu": [
         {
           "url": "membership",
@@ -44,9 +44,29 @@
     },
     {
       "url": "#",
+      "name": "Contacts",
+      "i18n": "Contacts",
+      "icon": "users",
+      "submenu": [
+        {
+          "url": "contacts",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "contacts/details",
+          "name": "Archive",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+    {
+      "url": "#",
       "name": "Leads",
       "i18n": "Leads",
-      "icon": "desktop",
+      "icon": "magnet",
       "submenu": [
         {
           "url": "leads",
@@ -55,7 +75,7 @@
           "icon": "bx bx-right-arrow-alt"
         },
         {
-          "url": "dashboard-analytics",
+          "url": "leads/archive",
           "name": "Archive",
           "i18n": "Archive",
           "icon": "bx bx-right-arrow-alt"
@@ -66,7 +86,7 @@
       "url": "#",
       "name": "Tours",
       "i18n": "Tours",
-      "icon": "desktop",
+      "icon": "calendar",
       "submenu": [
         {
           "url": "tours",
@@ -75,7 +95,27 @@
           "icon": "bx bx-right-arrow-alt"
         },
         {
-          "url": "dashboard-analytics",
+          "url": "tours/archive",
+          "name": "Archive",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "name": "Vouchers",
+      "i18n": "Vouchers",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "vouchers",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "vouchers/archive",
           "name": "Archive",
           "i18n": "Archive",
           "icon": "bx bx-right-arrow-alt"

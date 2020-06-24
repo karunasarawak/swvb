@@ -23,7 +23,7 @@
     <div class="col-12">
       <div class="card icon-tab">
         <div class="card-header">
-          <h4 class="card-title">New Membership</h4>
+          <h4 class="card-title">Create Membership</h4>
         </div>
         <div class="card-content mt-2">
           <div class="card-body">
@@ -39,7 +39,7 @@
                 <span>Basic Details</span>
               </h6>
               <!-- Step 1 end-->
-              @include('pages.contract-new')
+              @include('pages.contact2')
               <!-- Step 2-->
               <h6>
                 <i class="step-icon"></i>
@@ -51,7 +51,7 @@
               </h6>
               <!-- Step 2 end-->
               <!-- body content of step 2 -->
-              @include('pages.contract-new2')
+              @include('pages.contract-create')
               <!-- body content of step 2 end-->
               <!-- Step 3-->
               <h6>
@@ -304,7 +304,7 @@
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script>
-<script src="{{asset('assets/js/membership-new.js')}}"></script>
+<script src="{{asset('assets/js/membership.js')}}"></script>
 
 <script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 

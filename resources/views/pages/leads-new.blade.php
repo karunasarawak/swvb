@@ -19,25 +19,26 @@
             </div>
             <div class="card-content">
             <div class="card-body">
-                <form class="form-horizontal" novalidate>
+            <form class="form-horizontal" method="POST" action="{{route('leads.store')}}" novalidate>
+                @csrf
                 <div class="row">
                     <div class="col-sm-4">
                     <div class="form-group">
                         <div class="controls">
                         <label for="location">Salutation</label>
-                        <select class="custom-select form-control" id="salutation" name="salutation"
+                        <select class="custom-select form-control" id="salutation" name="salutation_id"
                         data-validation-required-message="Please select a salutation" required>
                             <option value="">--</option>
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Sir">Sir</option>
-                            <option value="Mdm">Mdm</option>
-                            <option value="Tuan Haji">Tuan Haji</option>
-                            <option value="Puan Hajjah">Puan Hajjah</option>
-                            <option value="Encik">Encik</option>
-                            <option value="Puan">Puan</option>
-                            <option value="Dato">Dato</option>
-                            <option value="Datu">Datu</option>
+                            <option value="1">Mr</option>
+                            <option value="2">Mrs</option>
+                            <option value="3">Sir</option>
+                            <option value="4">Mdm</option>
+                            <option value="5">Tuan Haji</option>
+                            <option value="6">Puan Hajjah</option>
+                            <option value="7">Encik</option>
+                            <option value="8">Puan</option>
+                            <option value="9">Dato</option>
+                            <option value="10">Datu</option>
                         </select>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                         <div class="controls">
                         <label>Mobile No.</label>
                         <div class="position-relative">
-                            <input type="text" class="form-control" placeholder="+60 12 345 6789" id="mobile" name="mobile"
+                            <input type="text" class="form-control" placeholder="+60 12 345 6789" id="mobile" name="mobile_no"
                             data-validation-required-message="This Mobile No. field is required" required>
                         </div>
                         </div>
@@ -67,7 +68,7 @@
                         <div class="controls">
                         <label>Whatsapp</label>
                         <div class="position-relative">
-                            <input type="text" class="form-control" placeholder="+60 12 345 6789" id="whatsapp" name="whatsapp"
+                            <input type="text" class="form-control" placeholder="+60 12 345 6789" id="whatsapp" name="whatsapp_no"
                             data-validation-required-message="This Whatsapp field is required" required>
                         </div>
                         </div>
@@ -78,7 +79,7 @@
                         <div class="controls">
                         <label>Credit Card Limit</label>
                         <div class="position-relative has-icon-left">
-                            <input type="text" class="form-control" placeholder="5000" id="card_limit" name="card_limit"
+                            <input type="text" class="form-control" placeholder="5000" id="card_limit" name="credit_card_limit"
                             data-validation-required-message="This Credit Card Limit field is required" required>
                             <div class="form-control-position">RM</div>
                         </div>
@@ -89,13 +90,13 @@
                     <div class="form-group">
                         <div class="controls">
                         <label for="location">Telemarkerter</label>
-                        <select class="custom-select form-control" id="telemarkerter" name="telemarkerter"
+                        <select class="custom-select form-control" id="telemarkerter" name="telemarketer_id"
                         data-validation-required-message="Please select a telemarketer." required>
                             <option value="">--</option>
-                            <option value="McClara">McClara</option>
-                            <option value="Mark">Mark</option>
-                            <option value="John">John</option>
-                            <option value="Son">Son</option>
+                            <option value="1">McClara</option>
+                            <option value="2">Mark</option>
+                            <option value="3">John</option>
+                            <option value="4">Son</option>
                         </select>
                         </div>
                     </div>

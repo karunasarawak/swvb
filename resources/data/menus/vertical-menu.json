@@ -44,6 +44,26 @@
     },
     {
       "url": "#",
+      "name": "Contacts",
+      "i18n": "Contacts",
+      "icon": "users",
+      "submenu": [
+        {
+          "url": "contacts",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "contacts/details",
+          "name": "Archive",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+    {
+      "url": "#",
       "name": "Leads",
       "i18n": "Leads",
       "icon": "magnet",

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\Controller;
+
+use App\Leads;
+
 class LeadsController extends Controller
 {
      // input forms
@@ -15,8 +21,13 @@ class LeadsController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Leads"],["name" => "All"]
     ];
 
-DB::select('select * from users where active = ?', [1])
-    // return view('pages.leads-all',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'leads' => $leads]);
+    $leads = Leads::all();
+
+    $payload = ['leads'=>$leads];
+
+    // dd($leads);
+
+    return view('pages.leads-all', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
   public function newLead(){
@@ -28,6 +39,13 @@ DB::select('select * from users where active = ?', [1])
     ];
 
     return view('pages.leads-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
+  public function storeLead(Request $request){
+
+    Leads::create($request->all());
+
+    return redirect('leads');
   }
 
   public function viewLead(){

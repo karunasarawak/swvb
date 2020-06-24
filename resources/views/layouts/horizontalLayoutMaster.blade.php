@@ -48,7 +48,8 @@ data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 				@yield('content')
 			</div>
 		</div>
-	@endif
+  @endif
+
   </div>
   <!-- END: Content-->
 @if($configData['isCustomizer'] === true && isset($configData['isCustomizer']))

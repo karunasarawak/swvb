@@ -15,9 +15,19 @@ class MembershipController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tour"],["name" => "Create membership"]
     ];
 
-    return view('pages.membership-create',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return view('pages.membership-show',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
+  public function archive(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tour"],["name" => "Create membership"]
+    ];
+
+    return view('pages.membership-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
 
     // input forms
   public function createMembership(){
@@ -30,6 +40,8 @@ class MembershipController extends Controller
 
     return view('pages.membership-create',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
+
+
   // Input Group forms
   public function inputGroupForm(){
 

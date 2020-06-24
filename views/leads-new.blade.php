@@ -19,7 +19,8 @@
             </div>
             <div class="card-content">
             <div class="card-body">
-                <form class="form-horizontal" novalidate>
+                <form class="form-horizontal" method="POST" novalidate>
+                @csrf
                 <div class="row">
                     <div class="col-sm-4">
                     <div class="form-group">
