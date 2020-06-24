@@ -15,7 +15,8 @@ class LeadsController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Leads"],["name" => "All"]
     ];
 
-    return view('pages.leads-all',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+DB::select('select * from users where active = ?', [1])
+    // return view('pages.leads-all',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'leads' => $leads]);
   }
 
   public function newLead(){
@@ -39,6 +40,18 @@ class LeadsController extends Controller
 
     return view('pages.leads-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
+
+  public function archive(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Leads"],["name" => "Leads Archive"]
+    ];
+
+    return view('pages.leads-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
   // Input Group forms
   public function inputGroupForm(){
 

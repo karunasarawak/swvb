@@ -16,16 +16,19 @@ Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
 Route::get('/membership', 'MembershipController@index');
-
-
 Route::get('/leads', 'LeadsController@index');
 Route::get('/leads/new', 'LeadsController@newLead');
 Route::get('/leads/details', 'LeadsController@viewLead');
+Route::get('/leads/archive', 'LeadsController@archive');
 
 Route::get('/tours', 'ToursController@index');
 Route::get('/tours/new', 'ToursController@newTour');
 Route::get('/tours/details', 'ToursController@viewTour');
 Route::get('/tours/attend', 'ToursController@attendTour');
+Route::get('/tours/archive', 'ToursController@archive');
+
+Route::get('/vouchers', 'VouchersController@index');
+Route::get('/vouchers/archive', 'VouchersController@archive');
 
 //Application Routes
 Route::get('/app-email','ApplicationController@emailApplication');

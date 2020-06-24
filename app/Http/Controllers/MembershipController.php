@@ -20,7 +20,7 @@ class MembershipController extends Controller
 
 
     // input forms
-  public function create(){
+  public function createMembership(){
 
     $pageConfigs = ['pageHeader' => true];
 

@@ -50,6 +50,18 @@ class ToursController extends Controller
 
     return view('pages.tours-attend',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
+
+  public function archive(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tours Archive"]
+    ];
+
+    return view('pages.tours-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
   // Input Group forms
   public function inputGroupForm(){
 

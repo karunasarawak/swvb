@@ -136,6 +136,7 @@ return [
   "Membership" => "Membership",
   "Leads" => "Leads",
   "Tours" => "Tours",
+  "Vouchers" => "Vouchers",
   "All" => "All",
   "Archive" => "Archive"
 ];
