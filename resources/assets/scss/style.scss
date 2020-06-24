@@ -1,0 +1,82 @@
+/*================================================================================
+	Item Name: Frest HTML Admin Template
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+//SWVB COLORS
+
+.bg-swvb-blue {
+    background-color: #2d2d86 !important;
+}
+
+.bg-swvb-cyan {
+    background-color: #3b86ff !important;
+}
+
+.bg-swvb-red {
+    background-color: #fc3434 !important;
+}
+
+.bg-swvb-green {
+    background-color: #009245 !important;
+}
+
+.bg-swvb-grey {
+    background-color: #e1e8f6 !important;
+}
+
+.bg-swvb-dark {
+    background-color: #333333 !important;
+}
+
+.bg-swvb-zorba {
+    background-color: #a5a48f !important;
+}
+
+.bg-swvb-white {
+    background-color: #ffffff !important;
+}
+
+.bg-swvb-dark-grey {
+    background-color: #43425d !important;
+}
+
+.swvb-blue {
+	color: #2d2d86 !important;
+}
+
+//DATATABLES
+
+.dataTables_length label select {
+	width: 50px !important;
+}
+
+.table.dataTable thead .sorting_asc::before {
+    color: #fff;
+}
+
+.table.dataTable thead .sorting_desc::after {
+    color: #fff;
+}
+
+//INPUTS
+
+textarea {
+resize: none;
+}
+
+button {
+    outline: none !important;
+}
+
+// .col-xl, .col-xl-auto, .col-xl-12, .col-xl-11, .col-xl-10, .col-xl-9, .col-xl-8, .col-xl-7, .col-xl-6, .col-xl-5, .col-xl-4, .col-xl-3, .col-xl-2, .col-xl-1, .col-lg, .col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md, .col-md-auto, .col-md-12, .col-md-11, .col-md-10, .col-md-9, .col-md-8, .col-md-7, .col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-sm, .col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1, .col, .col-auto, .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1{
+//   padding-right: 50px;
+//   padding-bottom: 25px;
+// }

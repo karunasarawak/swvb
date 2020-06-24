@@ -1,0 +1,72 @@
+/*================================================================================
+	Item Name: Frest HTML Admin Template
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.bg-swvb-blue {
+  background-color: #2d2d86 !important;
+}
+
+.bg-swvb-cyan {
+  background-color: #3b86ff !important;
+}
+
+.bg-swvb-red {
+  background-color: #fc3434 !important;
+}
+
+.bg-swvb-green {
+  background-color: #009245 !important;
+}
+
+.bg-swvb-grey {
+  background-color: #e1e8f6 !important;
+}
+
+.bg-swvb-dark {
+  background-color: #333333 !important;
+}
+
+.bg-swvb-zorba {
+  background-color: #a5a48f !important;
+}
+
+.bg-swvb-white {
+  background-color: #ffffff !important;
+}
+
+.bg-swvb-dark-grey {
+  background-color: #43425d !important;
+}
+
+.swvb-blue {
+  color: #2d2d86 !important;
+}
+
+.dataTables_length label select {
+  width: 50px !important;
+}
+
+.table.dataTable thead .sorting_asc::before {
+  color: #fff;
+}
+
+.table.dataTable thead .sorting_desc::after {
+  color: #fff;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  outline: none !important;
+}
+
