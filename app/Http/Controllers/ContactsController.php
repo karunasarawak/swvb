@@ -4,18 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MembershipController extends Controller
+class ContactsController extends Controller
 {
-
+     // input forms
   public function index(){
 
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "All"]
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Contacts"],["name" => "All"]
     ];
 
-    return view('pages.membership-show',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return view('pages.contacts',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
+  public function editContact(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Schedule Tour"]
+    ];
+
+    return view('pages.tours-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
+  public function editContract(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Detail Preview"]
+    ];
+
+    return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
+  public function updateStatus(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Detail Form"]
+    ];
+
+    return view('pages.tours-attend',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
   public function archive(){
@@ -23,24 +56,11 @@ class MembershipController extends Controller
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Archived"]
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tours Archive"]
     ];
 
-    return view('pages.membership-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return view('pages.tours-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
-
-    // input forms
-  public function createMembership(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tour"],["name" => "Create membership"]
-    ];
-
-    return view('pages.membership-create',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
 
   // Input Group forms
   public function inputGroupForm(){

@@ -38,11 +38,10 @@
                                 </thead>
                                 <tbody>
                                     @if(isset($payload))
-
                                         @foreach ($payload['leads'] as $lead)
                                         <tr>
-                                        <td>{{$lead->lead_id}}</td>
-                                        <td>{{$lead->salutation_id}} {{$lead->name}}</td>
+                                        <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
+                                        <td>{{$payload['salutations'][$lead->salutation_id]->salutation}} {{$lead->name}}</td>
                                         <td>{{$lead->created_at->format("d F Y")}}</td>
                                         <td>{{$lead->created_at->format("h:i A")}}</td>
                                         <td>{{$lead->telemarketer_id}}</td>

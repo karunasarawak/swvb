@@ -19,14 +19,17 @@ Route::get('/membership', 'MembershipController@index');
 Route::get('/membership/new', 'MembershipController@createMembership');
 Route::get('/membership/archive', 'MembershipController@archive');
 
-Route::get('/contact/details', 'ContactController@view');
+Route::get('/contacts/details', 'ContactsController@index');
 
 Route::get('/leads', 'LeadsController@index');
 Route::get('/leads/new', 'LeadsController@newLead');
-Route::get('/leads/details', 'LeadsController@viewLead');
+Route::get('/leads/{lead_id}/details', 'LeadsController@viewLead')->name('leads.details');
 Route::get('/leads/archive', 'LeadsController@archive');
 
 Route::post('/leads/new', 'LeadsController@storeLead')->name('leads.store');
+Route::post('/leads/{lead_id}/details', 'LeadsController@addCall')->name('leads.addCall');
+Route::patch('/leads/{lead_id}/details', 'LeadsController@editLead')->name('leads.edit');
+
 
 Route::get('/tours', 'ToursController@index');
 Route::get('/tours/new', 'ToursController@newTour');

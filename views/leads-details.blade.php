@@ -29,29 +29,29 @@
                         </div>
                         <div class="row">
                             <p class="col-sm-5">Name</p>
-                            <p class="col">John Doe</p>
+                        <p class="col">{{$payload['lead']->name}}</p>
                         </div>
                     </div>
                     <div class="col">
                         <h5 class="swvb-blue"><strong>Contact</strong></h5>
                         <div class="row">
                             <p class="col-sm-5">Mobile No.</p>
-                            <p class="col">+60 12 345 6789</p>
+                        <p class="col">{{$payload['lead']->mobile_no}}</p>
                         </div>
                         <div class="row">
                             <p class="col-sm-5">Whatsapp</p>
-                            <p class="col">+60 12 345 6789</p>
+                            <p class="col">{{$payload['lead']->whatsapp_no}}</p>
                         </div>
                     </div>
                     <div class="col">
                         <h5 class="swvb-blue"><strong>Others</strong></h5>
                         <div class="row">
                             <p class="col-sm-5">Credit Card Limit</p>
-                            <p class="col">RM 4000</p>
+                            <p class="col">RM {{$payload['lead']->credit_card_limit}}/p>
                         </div>
                         <div class="row">
                             <p class="col-sm-5">Telemarketer</p>
-                            <p class="col">Wilson</p>
+                            <p class="col">{{$payload['lead']->telemarketer_id}}</p>
                         </div>
                     </div>
                 </div>

@@ -14,4 +14,6 @@ class Leads extends Model
         'whatsapp_no',
         'credit_card_limit',
     ];
+
+    protected $guarded = ['lead_id'];
 }

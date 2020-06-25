@@ -35,7 +35,7 @@
           "icon": "bx bx-right-arrow-alt"
         },
         {
-          "url": "dashboard-analytics",
+          "url": "membership/archive",
           "name": "Archive",
           "i18n": "Archive",
           "icon": "bx bx-right-arrow-alt"
@@ -43,13 +43,13 @@
       ]
     },
     {
-      "url": "#",
+      "url": "contacts/details",
       "name": "Contacts",
       "i18n": "Contacts",
       "icon": "users",
       "submenu": [
         {
-          "url": "contacts",
+          "url": "contacts/details",
           "name": "All",
           "i18n": "All",
           "icon": "bx bx-right-arrow-alt"

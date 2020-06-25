@@ -631,7 +631,7 @@ class ComposerStaticInit5f87abc8ade4f081bed0cddc697eb9e3
         'App\\Http\\Controllers\\MiscellaneousController' => __DIR__ . '/../..' . '/app/Http/Controllers/MiscellaneousController.php',
         'App\\Http\\Controllers\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PageController.php',
         'App\\Http\\Controllers\\TableController' => __DIR__ . '/../..' . '/app/Http/Controllers/TableController.php',
-        'App\\Http\\Controllers\\ToursController' => __DIR__ . '/../..' . '/app/Http/Controllers/ToursController.php',
+        'App\\Http\\Controllers\\ToursController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactsController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Controllers\\VouchersController' => __DIR__ . '/../..' . '/app/Http/Controllers/VouchersController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

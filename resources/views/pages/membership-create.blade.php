@@ -36,7 +36,7 @@
                   <i class="livicon-evo"
                     data-options="name:user.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
                 </span>
-                <span>Basic Details</span>
+                <span>STEP 1 - CONTRACT</span>
               </h6>
               <!-- Step 1 end-->
               @include('pages.contract-new')
@@ -47,7 +47,7 @@
                   <i class="livicon-evo"
                     data-options="name:briefcase.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
                 </span>
-                <span>Contract Info</span>
+                <span>STEP 2 - MEMBERS</span>
               </h6>
               <!-- Step 2 end-->
               <!-- body content of step 2 -->

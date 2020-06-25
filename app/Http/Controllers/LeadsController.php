@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 
 use App\Leads;
 
+use App\Salutations;
+
 class LeadsController extends Controller
 {
      // input forms
@@ -23,7 +25,14 @@ class LeadsController extends Controller
 
     $leads = Leads::all();
 
-    $payload = ['leads'=>$leads];
+    $sallist = Salutations::all();
+
+    foreach($sallist as $row)
+    {
+      $salutations[$row['salutation_id']] = $row;
+    }
+
+    $payload = ['leads'=>$leads, 'salutations'=>$salutations];
 
     // dd($leads);
 
@@ -48,7 +57,21 @@ class LeadsController extends Controller
     return redirect('leads');
   }
 
-  public function viewLead(){
+  public function editLead(Request $request, $id){
+
+    Leads::where('lead_id', $id)->update([
+      'salutation_id' =>$request->salutation_id,
+      'name' =>$request->name,
+      'mobile_no' =>$request->mobile_no,
+      'whatsapp_no' =>$request->whatsapp_no,
+      'credit_card_limit' =>$request->credit_card_limit,
+      'telemarketer_id' =>$request->telemarketer_id
+    ]);
+
+    return redirect('leads/'.$id.'/details');
+  }
+
+  public function viewLead($id){
 
     $pageConfigs = ['pageHeader' => true];
 
@@ -56,7 +79,13 @@ class LeadsController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Leads"],["name" => "View Lead Details"]
     ];
 
-    return view('pages.leads-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    $lead = Leads::where('lead_id', $id)->get();
+
+    $payload = ['lead'=>$lead[0]];
+
+    // dd($payload);
+
+    return view('pages.leads-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
   public function archive(){

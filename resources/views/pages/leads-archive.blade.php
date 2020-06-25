@@ -15,16 +15,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All Leads
-                    </h4>
-                    @foreach ($leads as $item)
-                        {{$item['name']}}
-                    @endforeach
+                    <h4 class="card-title">All Leads</h4>
                 </div>
                 <div class="card-content">
                     <div class="px-2">
                         {{-- <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">New Lead</a>
-                        <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upad CSV</a> --}}
+                        <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a> --}}
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
@@ -33,6 +29,7 @@
                                     <tr>
                                         <th class="text-white">Lead ID</th>
                                         <th class="text-white">Name</th>
+                                        <th class="text-white">Creation Date</th>
                                         <th class="text-white">Creation Time</th>
                                         <th class="text-white">Telemarketer</th>
                                         <th class="text-white">Proceed</th>
@@ -40,21 +37,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <tr>
                                         <td>1000031</td>
                                         <td>Clementine</td>
                                         <td>03 June 2019</td>
                                         <td>03:10 AM</td>
                                         <td>Phelan Henson</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
+                                        <td></td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -170,8 +159,7 @@
 {{-- vendor scripts --}}
 @section('vendor-scripts')
 <script src="{{asset('vendors/js/extensions/moment.min.js')}}"></script>
-<script src="{{asset('vendors/js/tables/
-    /datatables.min.js')}}"></script>
+<script src="{{asset('vendors/js/tables/datatable/datatables.min.js')}}"></script>
 <script src="{{asset('vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('vendors/js/tables/datatable/dataTables.buttons.min.js')}}"></script>
 <script src="//cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>

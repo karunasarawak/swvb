@@ -37,6 +37,26 @@ $(document).ready(function() {
     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
   });
 
+  $('.membership-all').DataTable({
+    columns: [
+        { data: "id", class: "text-center" },
+        { data: "name", class: "text-center" },
+        { data: "createDate", class: "text-center" },
+        { data: "createTime", class: "text-center" },
+        { data: "telemarketer", class: "text-center" },
+        { data: "proceed", class: "text-center" },
+        { data: "action", class: "text-center" }
+    ],
+    columnDefs: [{
+        targets: 2,
+        render: $.fn.dataTable.render.moment('DD MMMM YYYY','Do MMM YYYY')
+    }],
+    "dom": '<"d-flex justify-content-between"<"d-flex"<"add_lead"><"upload_csv">><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
+    "displayLength": 10,
+    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+  });
+
+
   $('.call-log').DataTable({
     "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
     "displayLength": 10,
@@ -49,6 +69,13 @@ $(document).ready(function() {
     "displayLength": 10,
     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
   });
+
+//   $('.membership-all').DataTable({
+//     "scrollX": true,
+//     "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
+//     "displayLength": 10,
+//     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+//   });
 
     /********************************************
      *      js of DataTables custom toolbar      *

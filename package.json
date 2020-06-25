@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
+        "alpinejs": "^2.4.1",
         "datetime-moment": "^1.0.0",
         "save-dev": "0.0.1-security"
     }

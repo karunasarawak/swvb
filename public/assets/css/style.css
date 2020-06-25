@@ -99,3 +99,11 @@ h6 {
   color: #3b86ff;
 }
 
+.d-none-soft {
+  display: none;
+}
+
+[x-cloak] {
+  display: none;
+}
+

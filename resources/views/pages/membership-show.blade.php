@@ -4,8 +4,8 @@
 
 {{-- vendor style --}}
 @section('vendor-styles')
-<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
 @endsection
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
 {{-- page-styles --}}
 
 @section('content')
@@ -15,14 +15,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-
-                    {{-- Mark: i will delete this later --}}
-                    <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary">Easy access to Create membership</a>
+                <h4 class="card-title">All Membership</h4>
+                </br>
+                <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary">Easy access to Create membership</a>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <table class="table leads-all">
+                            <table class="table membership-all">
                                 <thead class="bg-swvb-cyan">
                                     <tr>
                                         <th class="text-white">Membership No.</th>
@@ -52,7 +52,7 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Pending</td>
-                                        <td><img src=""/></td>
+
                                         <td>
                                             <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
                                                 <i class="bx bx-hotel bx-md m-0 danger"></i>
@@ -72,9 +72,11 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
+                                        <td>
+                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-x-hotel bx-md m-0 danger"></i>
                                             </button>
+                                        </td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060880000 </a></td>
@@ -88,7 +90,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Withdrawal</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060890000</a></td>
@@ -102,7 +106,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Suspended</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060900000</a></td>
@@ -116,7 +122,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Pending</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060910000</a></td>
@@ -130,7 +138,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060920000</a></td>
@@ -145,7 +155,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Withdrawal</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060930000 </a></td>
@@ -160,7 +172,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Suspended</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060940000</a></td>
@@ -175,7 +189,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Pending</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060950000</a></td>
@@ -190,7 +206,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060960000</a></td>
@@ -204,7 +222,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Withdrawal</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060970000</a></td>
@@ -218,7 +238,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Suspended</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
 
                                     <tr>
@@ -233,7 +255,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Pending</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060900000</a></td>
@@ -247,7 +271,9 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <td><img src=""></img></td>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                            </button></td>
                                     </tr>
                                 </tbody>
                             </table>
