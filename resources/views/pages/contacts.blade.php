@@ -48,14 +48,14 @@
                             <div class="row" >
                                 <div class="col ml-5">
                                     <div class="row">
-                                        <p class="col">Saluation</p>
+                                        <p class="col">Salutation</p>
                                         <p class="col font-weight-bold black" x-show="original">{{$payload['leads']->salutation}}</p>
                                         <p class="col" x-cloak x-show="edit">
                                         <select class="custom-select form-control required" id="salutation_id" name="salutation_id" required>
                                             
                                         @foreach($payload['salutation'] as $salutation)
                                             @if($salutation->salutation == $payload['leads']->salutation)
-                                            <option value="{{$payload['leads']->salutation}}" selected>{{$salutation->salutation}}</option>
+                                            <option value="{{$payload['leads']->salutation_id}}" selected>{{$salutation->salutation}}</option>
                                             @else
                                             <option value="{{$salutation->salutation_id}}">{{$salutation->salutation}}</option>
                                             @endif
@@ -343,7 +343,7 @@
                                         <select class="custom-select form-control required" id="state_name" name="state_name" required>
                                             
                                         @foreach($payload['city'] as $city)
-                                            @if($city->city_id == $payload['altAddress']->city_name)
+                                            @if($city->city_id == $payload['altAddress']->city_id)
                                             <option value="{{$payload['altAddress']->city_name}}">{{$city->city_name}}</option>
                                             @else
                                             <option value="{{$city->city_id}}">{{$city->city_name}}</option>

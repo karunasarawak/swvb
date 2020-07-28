@@ -14,7 +14,7 @@ class CreateSalutationsTable extends Migration
     public function up()
     {
         Schema::create('salutations', function (Blueprint $table) {
-            $table->id('salutation_id')->length(2);
+            $table->id('salutation_id');
             $table->string('salutation', 20);
             $table->timestamps();
         });

@@ -57,13 +57,12 @@ class ContactsController extends Controller
     ->join('salutations', 'salutations.salutation_id','leads.salutation_id')
     ->join('maritial_status', 'maritial_status.maritial_id','leads.marital_status')
     ->join('race', 'race.race_id','leads.ethnicity_id')
-     ->join('religions', 'religions.religion_id','leads.religion_id')
+    ->join('religions', 'religions.religion_id','leads.religion_id')
     ->join('nationalities', 'nationalities.nation_id','leads.nationality')
     ->join('memberships', 'memberships.lead_id1','leads.lead_id')
     // ->join('addresses', 'addresses.leads_id','leads.lead_id')
     ->join('gender', 'gender.gender_id','leads.gender')
     ->join('packages', 'packages.package_id','memberships.package_id')
-    
     ->select('leads.lead_id','salutations.salutation','leads.name','gender.gender_name','leads.nric',
     'leads.dob','maritial_status.maritial_name','race.race_name','religions.religion',
     'nationalities.nation','leads.occupation','leads.company','leads.home_no',
@@ -81,7 +80,6 @@ class ContactsController extends Controller
             // dd($leads);
     $primaryAddress = DB::table('addresses')
     // ->where('leads_id', $id)
-    
       ->join('cities', 'cities.city_id','addresses.city_id')
       ->join('countries', 'countries.id','addresses.country_id')
       ->join('states', 'states.id','addresses.state_id')
@@ -90,12 +88,14 @@ class ContactsController extends Controller
         ])
       // ->where('is_primary', 1)
       ->select('cities.city_name', 'countries.country_name','addresses.addr_1', 'addresses.addr_2', 'addresses.postcode', 'addresses.state_id', 'states.state_name')
-      ->first();
+      ->get();
       
       // $primaryAddress = Addresses::where([ 
       //   ['leads_id', '=' ,$id], ['is_primary', '=', 1]
       //   ])->get();
-      
+
+       dd($leads);
+     
         
     $altAddress = DB::table('addresses')
       ->join('cities', 'cities.city_id','addresses.city_id')
@@ -103,18 +103,9 @@ class ContactsController extends Controller
       ->join('states', 'states.id','addresses.state_id')
       ->where([['leads_id', '=', $id], ['is_primary', '=', '0']])
       ->select('cities.city_name', 'countries.country_name','addresses.addr_1', 'addresses.addr_2', 'addresses.postcode', 'addresses.state_id','states.state_name')
-      ->first();
+      ->get();
         
-        
-        
-        
-      // dd($primaryAddress);
-      // $altAddress = Addresses::where([
-      //   ['leads_id', '=' ,$id], ['is_primary', '=' ,0]
-      //   ])->get();
-        // dd($altAddress);
-    // $membership = Membership::where('leads_id', $id)->get();
-    // dd($primaryAddress);
+      
     
 //for dropdown select and display all exisitin data from databases
     $salutation = Salutation::all();
@@ -136,8 +127,8 @@ class ContactsController extends Controller
     $country = DB::table('countries')->get(); 
    
     $payload = ['leads' => $leads,
-                'primaryAddress' => $primaryAddress,
-                'altAddress' => $altAddress,
+                'primaryAddress' => $primaryAddress[0],
+                'altAddress' => $altAddress[0],
                 
                 'maritial' =>$maritial,
                 'salutation'=>$salutation, 
@@ -150,17 +141,17 @@ class ContactsController extends Controller
                 'state'=>$state,
                 'country'=>$country,
                 ];
-    
-                 
+   
     return view('pages.contacts',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
  
   
-  public function editContact(Request $request, $id){
+  public function editContact(Request $request, $id)
+  {
     
     Leads::where('lead_id', $id)->update([
-        'salutation_id' =>$request->salutation_id,
+        'salutation_id' =>$request->salutation,
         'Name' =>$request->name,
         'Gender' =>$request->gender,
         'NRIC' =>$request->nric,
@@ -200,9 +191,10 @@ class ContactsController extends Controller
       'state_id' =>$request->state_name,
       'country_id' =>$request->country,
     ]);
-    
+
    
-    return redirect('leads/'.$id.'/payload');
+   
+    return redirect('/contacts/'.$id.'/details');
   }
 
   public function archive(){

@@ -17,7 +17,6 @@
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
                         <h4 class="col card-title text-white">Manage Entitlement - Advanced</h4>
-                           
                     </div>
                 </div>
                 <div class="card-content">

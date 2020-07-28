@@ -18,13 +18,9 @@ class CreateLeadsTable extends Migration
             $table->id('lead_id')->length(11);
             $table->bigInteger('salutation_id')->length(11)->unsigned()->nullable();
             $table->foreign('salutation_id')->references('salutation_id')->on('salutations');
-            // $table->integer('tour_id')->length(11)->nullable();
             $table->integer('ethnicity_id')->length(11)->nullable();
             $table->integer('religion_id')->length(11)->nullable();
-            // $table->integer('sales_personnel_id')->length(11)->nullable();
             $table->integer('telemarketer_id')->length(11)->nullable();
-            //$table->integer('primary_addr_id')->length(11)->nullable();
-            //$table->integer('secondary_addr_id')->length(11)->nullable();
             $table->integer('venue_id')->length(11)->nullable();
             $table->string('name',255)->nullable();
             $table->integer('gender')->length(11)->nullable();
@@ -44,12 +40,12 @@ class CreateLeadsTable extends Migration
             $table->string('alt_email',100)->nullable();
 
             $table->integer('credit_card_limit')->length(11)->nullable();
-            $table->tinyInteger('is_mbr')->length(1)->nullable();
             $table->tinyInteger('is_pri_mbr')->length(1)->nullable();
+            $table->tinyInteger('is_sec_mbr')->length(1)->nullable();
+
             $table->string('relationship_to_pri_mbr',30)->nullable();
 
-            // $table->string('mbr_remarks',255)->nullable();
-             $table->string('preferred_lang',80)->nullable();
+             $table->string('prefer_lang',80)->nullable();
 
             $table->tinyInteger('status')->length(1)->nullable();
             $table->timestamp('created_at')->nullable();

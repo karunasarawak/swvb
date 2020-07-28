@@ -124,38 +124,53 @@ class MembershipController extends Controller
     $lead_id = $request->lead_id;
     $lead_id2 = $request->lead_id2;
     $tour_id = $request->tour_id;
-    
+
+    //Update Primary Member basic information
+    // $updateM = DB::table('leads')->where()->update([
+    //   'salutation_id'=>$request->sec_salute,
+    //   'name'=>$request->sec_name,
+    //   'gender'=> $request->sec_gender,
+    //   'nric'=>$request->sec_nric,
+    //   'dob'=>$request->sec_dob,
+    //   'marital_status'=>$request->sec_maritual,
+    //   'ethnicity_id' => $request->sec_race,
+    //   'religion_id'=>$request->religion2,
+    //   'venue_id'=>null,
+    //   'nationality' =>$request->sec_nation,
+    //   'occupation' =>$request->sec_occup,
+    //   'company' =>$request->sec_company,
+    //   'mobile_no' =>$request->sec_mobile,
+    //   'whatsapp_no' =>$request->sec_whatsapp,
+    //   'home_no'=>$request->sec_home,
+    //   'office_no'=>$request->sec_office,
+    //   'primary_email'=>$request->sec_pemail,
+    //   'alt_email' =>$request->sec_aemail,
+    //   'prefer' =>$request->sec_lang
+    //   ]);
+
     //PM - Primary Addresses
-    $addr = DB::table('addresses')->insert([]);
+    $addr = DB::table('addresses')->insert([
+            'leads_id'=>$lead_id,
+            'addr_1'=>$request->pri_addr1,
+            'addr_2'=>$request->pri_addr2,
+            'postcode'=>$request->pri_code,
+            'city_id'=>$request->pri_city,    
+            'state_id'=>$request->pri_state,
+            'country_id'=>$request->pri_country,
+        ]);
+    $pri_addr_id1 = DB::getPDO()->lastInsertId();
 
     //PM - Alternative Addresses
-
-    //SM = Primary Addresses
-
-    //SM - Alternative Addresses
-
-    //Primary Addresses
     $addr = DB::table('addresses')->insert([
-        'leads_id'=>$request->lead_id, 'addr_1'=>$request->pri_addr1, 'addr_2'=>$request->pri_addr2,
-        'postcode'=>$request->pri_code, 'city_id'=>$request->pri_city, 'state_id'=>$request->pri_state, 'country_id'=>$request->pri_country, 
-        'is_primary'=>1
-    ]);
-
-    $pri_addr_id = DB::getPDO()->lastInsertId();
-
-    //Alternate Addresses
-    $addr2 = DB::table('addresses')->insert([
-        'leads_id'=>$request->lead_id,
-        'addr_1'=>$request->alt_addr1,
-        'addr_2'=>$request->alt_addr2,
-        'postcode'=>$request->alt_code,
-        'city_id'=>$request->alt_city,
-        'state_id'=>$request->alt_state,
-        'country_id'=>$request->alt_country,
-        'is_primary'=>0
-    ]);
-
-    $alt_addr_id = DB::getPDO()->lastInsertId();
+            'leads_id'=>$lead_id,
+            'addr_1'=>$request->pri_alt_addr1,
+            'addr_2'=>$request->pri_alt_addr2,
+            'postcode'=>$request->pri_alt_code,
+            'city_id'=>$request->pri_alt_city,    
+            'state_id'=>$request->pri_alt_state,
+            'country_id'=>$request->pri_alt_country,
+        ]);
+    $pri_addr_id2 = DB::getPDO()->lastInsertId();
 
     //Coporate Info
     if($request->contract_type == 1)
@@ -172,9 +187,7 @@ class MembershipController extends Controller
           'comp_country'=>$request->company_country,
           'comp_email'=>$request->company_email,
           'comp_contact'=>$request->company_contact,
-          'comp_fax'=>$request->company_fax
-      ]);
-
+          'comp_fax'=>$request->company_fax]);
       $company_id = DB::getPDO()->lastInsertId();
     }
 
@@ -188,9 +201,7 @@ class MembershipController extends Controller
         'net_price'=>$request->npt,
         'downpayment'=>$request->dpp,
         'admin_charges'=>$request->charges,
-        'outstanding'=>$request->osd
-    ]);
-
+        'outstanding'=>$request->osd]);
     $install_id = DB::getPDO()->lastInsertId();
 
     //AMF Credit Card
@@ -200,9 +211,7 @@ class MembershipController extends Controller
           'cc_no'=>$request->amf_cc_no,
           'cc_name'=>$request->amf_cc_name,
           'cc_exp_date'=>$request->amf_cc_exp,
-          'cc_cvv'=>$request->amf_cc_ccv,
-        ]);
-
+          'cc_cvv'=>$request->amf_cc_ccv]);
         $amf_cc_id = DB::getPDO()->lastInsertId();
         $amf_auto = 1;
     }
@@ -214,139 +223,105 @@ class MembershipController extends Controller
           'cc_no'=>$request->install_cc_no,
           'cc_name'=>$request->install_cc_name,
           'cc_exp_date'=>$request->install_cc_exp,
-          'cc_cvv'=>$request->install_cc_ccv,
-        ]);
-
+          'cc_cvv'=>$request->install_cc_ccv]);
         $inst_cc_id = DB::getPDO()->lastInsertId();
         $inst_auto = 1;
     }
    
-    if($request->member_type == 1)
+    //Create Primary Membership
+    $create1 = DB:: table('memberships')->insert([
+      'lead_id1'=>$lead_id,
+      'lead_id2'=>null,
+      'lang'=>$request->pri_lang,
+      'mbrship_status'=>$request->pri_status,
+      'pri_addr_id'=>$pri_addr_id1, 
+      'alt_addr_id'=>$pri_addr_id2,
+      'remarks'=>$request->pri_remarks,
+      'comp_id'=>$company_id,
+      'application_no'=>$request->appno,
+      'application_date'=>$request->app_date,
+      'agreement_no'=>$request->agree_no,
+      'agreement_date'=>$request->agree_date,
+      'package_id'=>$request->package_id,
+      'mbrship_no'=>$request->mbr_no,
+      'install_schedule_id'=>$install_id,
+      'overpayment'=>$request->opm,
+      'cc_id_amf'=>$amf_cc_id,
+      'cc_id_install'=>$inst_cc_id,
+      'declaration_no'=>$request->declare_no,
+      'mro'=>$request->mro,
+      'cco'=>$request->cco
+      ]);
+      
+    $mbr_id = DB::getPDO()->lastInsertId();
+
+    //Update lead is_pri_mbr
+    $updatePri = DB::table('leads')->where('lead_id', $lead_id)
+              ->update(['is_pri_mbr'=>1,'is_sec_mbr'=>0]);
+
+    //Create Secondary Member
+    //If Existing Lead
+    if($request->has('exist_lead'))
     {
-        $create1 = DB:: table('memberships')->insert([
-          'lead_id'=>$request->lead_id,
-          'lang'=>$request->lang1,
-          // 'relationship'=>null,
-          'mbrship_status'=>$request->status1,
-          'pri_addr_id'=>$pri_addr_id, 
-          'alt_addr_id'=>$alt_addr_id,
-          'remarks'=>$request->remarks,
-          'comp_id'=>$request->$company_id,
-          'application_no'=>$request->appno,
-          'application_date'=>$request->app_date,
-          'agreement_no'=>$request->agree_no,
-          'agreement_date'=>$request->agree_date,
-          'package_id'=>$request->package_id,
-          'mbrship_no'=>$request->mbr_no,
-          'install_schedule_id'=>$install_id,
-          'overpayment'=>$request->opm,
-          'cc_id_amf'=>$amf_cc_id,
-          'cc_id_install'=>$inst_cc_id,
-          'declaration_no'=>$request->declare_no,
-          'mro'=>$request->mro,
-          'cco'=>$request->cco
-        ]);
+        $sec_lead_id = DB::table('leads')->where('lead_id', $request->exist_lead)->pluck('lead_id');
+        //Update Existing Lead Basic Information
     }
-    else if ($request->member_type ==2)
+    //If New Lead
+    else if($request->lead_status == 2)
     {
         $create2 = DB::table('leads')->insert([
-          'salutation_id'=>$request->salute2,
-          'name'=>$request->name2,
-          'gender'=> $request->gender2,
-          'nric'=>$request->nric2,
-          'dob'=>$request->dob2,
-          'marital_status'=>$request->marital1,
-          'ethnicity_id' => $request->race2,
+          'salutation_id'=>$request->sec_salute,
+          'name'=>$request->sec_name,
+          'gender'=> $request->sec_gender,
+          'nric'=>$request->sec_nric,
+          'dob'=>$request->sec_dob,
+          'marital_status'=>$request->sec_maritual,
+          'ethnicity_id' => $request->sec_race,
           'religion_id'=>$request->religion2,
           'venue_id'=>null,
-          'nationality' =>$request->nation2,
-          'occupation' =>$request->occupation2,
-          'company' =>$request->company2,
-          'mobile_no' =>$request->mobile_no2,
-          'whatsapp_no' =>$request->whatsapp_no2,
-          'home_no'=>$request->home_no2,
-          'office_no'=>$request->office_no2,
-          'primary_email'=>$request->pemail2,
-          'alt_email' =>$request->aemail2
+          'nationality' =>$request->sec_nation,
+          'occupation' =>$request->sec_occup,
+          'company' =>$request->sec_company,
+          'mobile_no' =>$request->sec_mobile,
+          'whatsapp_no' =>$request->sec_whatsapp,
+          'home_no'=>$request->sec_home,
+          'office_no'=>$request->sec_office,
+          'primary_email'=>$request->sec_pemail,
+          'alt_email' =>$request->sec_aemail,
+          'prefer' =>$request->sec_lang
           ]);
 
-        $second_id = DB::getPDO()->lastInsertId();
+        $sec_lead_id = DB::getPDO()->lastInsertId();
     }
 
-    //Create Primary Membership 
-    
-
-    $mbr_id1 = DB::getPDO()->lastInsertId();
-
-    //Create Secondary Membership 
-    //Lead not exist
-    if($request->name2 == null && $request->lang2 == null)
-    {
-      //Create Lead
-      
-    }
-    //Lead exists
-    else if ($request->name2 != null && $request->lang2 == null)
-    {
-      $second_id = $request->lead_id;
-    }
-
-    // dd($second_lead_id);
-
+    //Update Membership second lead id
+    $updatelead2= DB::table('memberships')->where('mbrship_id', $mbr_id)
+                ->update(['lead_id2', $sec_lead_id]);
+                
     //Second Primary Address
-    $second_addr1 = DB::table('addresses')->insert([
-        'leads_id'=>$second_id,
-        'addr_1'=>$request->pri2_addr1,
-        'addr_2'=>$request->pri2_addr2,
-        'postcode'=>$request->pri_code2,
-        'city_id'=>$request->pri_city2,
-        'state_id'=>$request->pri_state2,
-        'country_id'=>$request->pri_country2,
-        'is_primary'=>0
-    ]);
-
-    $second_pri_addr_id = DB::getPDO()->lastInsertId();
+    $sec_addr_id1 = DB::table('addresses')->insert([
+        'leads_id'=>$sec_lead_id,
+        'addr_1'=>$request->sec_addr1,
+        'addr_2'=>$request->sec_addr2,
+        'postcode'=>$request->sec_code,
+        'city_id'=>$request->sec_city,
+        'state_id'=>$request->sec_state,
+        'country_id'=>$request->sec_country,
+        'is_primary'=>1]);
+    $sec_addr_id1 = DB::getPDO()->lastInsertId();
 
     //Second Alternative Address
     $second_addr2 = DB::table('addresses')->insert([
-        'leads_id'=>$second_lead_id,
-        'addr_1'=>$request->alt2_addr1,
-        'addr_2'=>$request->alt2_addr2,
-        'postcode'=>$request->alt_code2,
-        'city_id'=>$request->alt_city2,
-        'state_id'=>$request->alt_state2,
-        'country_id'=>$request->alt_country2,
-        'is_primary'=>0
-    ]);
-
+        'leads_id'=>$sec_lead_id,
+        'addr_1'=>$request->sec_alt_addr1,
+        'addr_2'=>$request->sec_alt_addr2,
+        'postcode'=>$request->sec_alt_code,
+        'city_id'=>$request->sec_alt_city,
+        'state_id'=>$request->sec_alt_state,
+        'country_id'=>$request->sec_alt_country,
+        'is_primary'=>0]);
     $second_alt_addr_id = DB::getPDO()->lastInsertId();
     
-    $create2 = DB:: table('memberships')->insert([
-        'lead_id'=>null,
-        'lang'=>$request->lang2,
-        // 'relationship'=>$request->relation2,
-        'mbrship_status'=>$request->status2,
-        'pri_addr_id'=>$request->$second_pri_addr_id,
-        'alt_addr_id'=>$request->$second_alt_addr_id,
-        'remarks'=>$request->remarks,
-        'comp_id'=>$request->$company_id,
-        'application_no'=>$request->appno,
-        'application_date'=>$request->app_date,
-        'agreement_no'=>$request->agree_no,
-        'agreement_date'=>$request->agree_date,
-        'package_id'=>$request->package_id,
-        'mbrship_no'=>$request->mbr_no,
-        'install_schedule_id'=>$install_id,
-        'overpayment'=>$request->opm,
-        'cc_id_amf'=>$amf_cc_id,
-        'cc_id_install'=>$inst_cc_id,
-        'declaration_no'=>$request->declare_no,
-        'mro'=>$request->mro,
-        'cco'=>$request->cco
-    ]);
-
-    $mbr_id2 = DB::getPDO()->lastInsertId();
-
     //Update installment mbr_id
     $a = DB::table('installment_schedule')
         ->where('install_schedule_id', $install_id)
