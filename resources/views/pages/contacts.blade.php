@@ -266,7 +266,7 @@
                                             
                                             @foreach($payload['city'] as $city)
                                                 @if($payload['primaryAddress']->city_name == $city->city_name)
-                                                <option value="{{$payload['primaryAddress']->city_name}}">{{$city->city_name}}</option>
+                                                <option value="{{$payload['primaryAddress']->city_id}}">{{$city->city_name}}</option>
                                                 @else
                                                 <option value="{{$city->city_id}}">{{$city->city_name}}</option>
                                                 @endif
@@ -295,7 +295,7 @@
                                             
                                         @foreach($payload['country'] as $country)
                                             @if($country->id == $payload['primaryAddress']->country_name)
-                                            <option value="{{$country->country_name}}">{{$country->country_name}}</option>
+                                            <option value="{{$payload['primaryAddress']->id}}">{{$country->country_name}}</option>
                                             @else
                                             <option value="{{$country->id}}">{{$country->country_name}}</option>
                                             @endif
@@ -344,7 +344,7 @@
                                             
                                         @foreach($payload['city'] as $city)
                                             @if($city->city_id == $payload['altAddress']->city_id)
-                                            <option value="{{$payload['altAddress']->city_name}}">{{$city->city_name}}</option>
+                                            <option value="{{$payload['altAddress']->city_id}}">{{$city->city_name}}</option>
                                             @else
                                             <option value="{{$city->city_id}}">{{$city->city_name}}</option>
                                             @endif
@@ -372,7 +372,7 @@
                                             
                                         @foreach($payload['country'] as $country)
                                              @if($country->country_name == $payload['altAddress']->addr_1)
-                                            <option value="{{$payload['altAddress']->addr_1}}">{{$country->country_name}}</option>
+                                            <option value="{{$payload['altAddress']->id}}">{{$country->country_name}}</option>
                                             @else
                                             <option value="{{$country->id}}">{{$country->country_name}}</option>
                                             @endif
@@ -405,19 +405,19 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if(isset($payload))
-                                                
+                                        @if(isset($payload))   
+                                            @foreach($payload['memberships'] as $contacts)    
                                                     
                                                 <tr>
-                                                    <td>{{$payload['leads']->mbrship_no}}</td>
-                                                    <td>{{$payload['leads']->agreement_date}}</td>
-                                                    <td>{{$payload['leads']->package_name}}</td>
-                                                    <td>{{$payload['leads']->mbrship_status}}</td>
+                                                    <td>{{$contacts->mbrship_no}}</td>
+                                                    <td>{{$contacts->agreement_date}}</td>
+                                                    <td>{{$contacts->package_name}}</td>
+                                                    <td>{{$contacts->mbrship_status}}</td>
                                                     
                                                 </tr>
                                                     
-
-                                            @endif
+                                            @endforeach
+                                        @endif  
                                             
                                             </tbody>
                                         </table>

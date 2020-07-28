@@ -235,7 +235,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
-
+                        
                         <div class="row pt-1">
                                 <div class="col">
                                     <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Basic</p>

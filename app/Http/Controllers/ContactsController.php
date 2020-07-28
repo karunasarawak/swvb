@@ -60,24 +60,27 @@ class ContactsController extends Controller
     ->join('religions', 'religions.religion_id','leads.religion_id')
     ->join('nationalities', 'nationalities.nation_id','leads.nationality')
     ->join('memberships', 'memberships.lead_id1','leads.lead_id')
+    
     // ->join('addresses', 'addresses.leads_id','leads.lead_id')
     ->join('gender', 'gender.gender_id','leads.gender')
     ->join('packages', 'packages.package_id','memberships.package_id')
     ->select('leads.lead_id','salutations.salutation','leads.name','gender.gender_name','leads.nric',
     'leads.dob','maritial_status.maritial_name','race.race_name','religions.religion',
     'nationalities.nation','leads.occupation','leads.company','leads.home_no',
-    'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email', 'memberships.mbrship_no', 
-    'memberships.agreement_date', 'packages.package_name', 'memberships.mbrship_status')
+    'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email', )
     ->first();  
 
     // $leads = Leads::where('lead_id', $id)->get();
     
-
+    $memberships = DB::table('memberships')
+    ->where('lead_id1', $id)
+    ->join('packages','packages.package_id','memberships.package_id')
+    ->get();
     // $membership = Membership::where('lead_id', $id)->get();
     
             // (target table, tt.link column, original table.link column)
     // var_dump(property_exists('lead_id'));
-            // dd($leads);
+           
     $primaryAddress = DB::table('addresses')
     // ->where('leads_id', $id)
       ->join('cities', 'cities.city_id','addresses.city_id')
@@ -94,8 +97,7 @@ class ContactsController extends Controller
       //   ['leads_id', '=' ,$id], ['is_primary', '=', 1]
       //   ])->get();
 
-       dd($leads);
-     
+      
         
     $altAddress = DB::table('addresses')
       ->join('cities', 'cities.city_id','addresses.city_id')
@@ -106,6 +108,7 @@ class ContactsController extends Controller
       ->get();
         
       
+      // dd($memberships);
     
 //for dropdown select and display all exisitin data from databases
     $salutation = Salutation::all();
@@ -129,7 +132,7 @@ class ContactsController extends Controller
     $payload = ['leads' => $leads,
                 'primaryAddress' => $primaryAddress[0],
                 'altAddress' => $altAddress[0],
-                
+                'memberships' =>$memberships,
                 'maritial' =>$maritial,
                 'salutation'=>$salutation, 
                 'gender'=>$gender, 

@@ -115,10 +115,10 @@ class MembershipController extends Controller
   {
     // dd($request);
     $company_id = null;
-    $second_lead_id = null;
+    $sec_lead_id = null;
     $amf_cc_id = null;
     $inst_cc_id = null;
-    $install_auto = null;
+    $inst_auto = null;
     $amf_auto = null;
 
     $lead_id = $request->lead_id;
@@ -149,7 +149,7 @@ class MembershipController extends Controller
     //   ]);
 
     //PM - Primary Addresses
-    $addr = DB::table('addresses')->insert([
+    $addr1 = DB::table('addresses')->insert([
             'leads_id'=>$lead_id,
             'addr_1'=>$request->pri_addr1,
             'addr_2'=>$request->pri_addr2,
@@ -161,7 +161,7 @@ class MembershipController extends Controller
     $pri_addr_id1 = DB::getPDO()->lastInsertId();
 
     //PM - Alternative Addresses
-    $addr = DB::table('addresses')->insert([
+    $addr2 = DB::table('addresses')->insert([
             'leads_id'=>$lead_id,
             'addr_1'=>$request->pri_alt_addr1,
             'addr_2'=>$request->pri_alt_addr2,
@@ -237,6 +237,7 @@ class MembershipController extends Controller
       'pri_addr_id'=>$pri_addr_id1, 
       'alt_addr_id'=>$pri_addr_id2,
       'remarks'=>$request->pri_remarks,
+      'contract_type'=>$request->contract_type,
       'comp_id'=>$company_id,
       'application_no'=>$request->appno,
       'application_date'=>$request->app_date,
@@ -250,7 +251,9 @@ class MembershipController extends Controller
       'cc_id_install'=>$inst_cc_id,
       'declaration_no'=>$request->declare_no,
       'mro'=>$request->mro,
-      'cco'=>$request->cco
+      'cco'=>$request->cco,
+      'install_auto'=>$inst_auto,
+      'amf_auto'=>$amf_auto
       ]);
       
     $mbr_id = DB::getPDO()->lastInsertId();
@@ -261,7 +264,7 @@ class MembershipController extends Controller
 
     //Create Secondary Member
     //If Existing Lead
-    if($request->has('exist_lead'))
+    if($request->exist_lead != null)
     {
         $sec_lead_id = DB::table('leads')->where('lead_id', $request->exist_lead)->pluck('lead_id');
         //Update Existing Lead Basic Information
@@ -269,6 +272,9 @@ class MembershipController extends Controller
     //If New Lead
     else if($request->lead_status == 2)
     {
+        $telem = DB::table('leads')->where('lead_id',$lead_id)->pluck('telemarketer_id');
+        $venue = DB::table('leads')->where('lead_id', $lead_id)->pluck('venue_id');
+
         $create2 = DB::table('leads')->insert([
           'salutation_id'=>$request->sec_salute,
           'name'=>$request->sec_name,
@@ -278,7 +284,8 @@ class MembershipController extends Controller
           'marital_status'=>$request->sec_maritual,
           'ethnicity_id' => $request->sec_race,
           'religion_id'=>$request->religion2,
-          'venue_id'=>null,
+          'telemarketer_id'=>$telem[0],
+          'venue_id'=>$venue[0],
           'nationality' =>$request->sec_nation,
           'occupation' =>$request->sec_occup,
           'company' =>$request->sec_company,
@@ -286,20 +293,25 @@ class MembershipController extends Controller
           'whatsapp_no' =>$request->sec_whatsapp,
           'home_no'=>$request->sec_home,
           'office_no'=>$request->sec_office,
+          'is_pri_mbr'=>0,
+          'is_sec_mbr'=>1,
+          'relationship_to_pri_mbr'=>$request->sec_relation,
           'primary_email'=>$request->sec_pemail,
           'alt_email' =>$request->sec_aemail,
-          'prefer' =>$request->sec_lang
+          'prefer_lang' =>$request->sec_lang,
+          'status'=>1
           ]);
 
         $sec_lead_id = DB::getPDO()->lastInsertId();
     }
-
+    // dd($sec_lead_id);
     //Update Membership second lead id
-    $updatelead2= DB::table('memberships')->where('mbrship_id', $mbr_id)
-                ->update(['lead_id2', $sec_lead_id]);
-                
+    // print("Second Lead ID: ".$sec_lead_id." Membership ID: ".$mbr_id);
+    // $updatelead2= DB::table('memberships')->where('mbrship_id', $mbr_id)
+    //             ->update(['lead_id2', $sec_lead_id]);
+
     //Second Primary Address
-    $sec_addr_id1 = DB::table('addresses')->insert([
+    $saddr1 = DB::table('addresses')->insert([
         'leads_id'=>$sec_lead_id,
         'addr_1'=>$request->sec_addr1,
         'addr_2'=>$request->sec_addr2,
@@ -308,10 +320,11 @@ class MembershipController extends Controller
         'state_id'=>$request->sec_state,
         'country_id'=>$request->sec_country,
         'is_primary'=>1]);
+
     $sec_addr_id1 = DB::getPDO()->lastInsertId();
 
     //Second Alternative Address
-    $second_addr2 = DB::table('addresses')->insert([
+    $saddr2 = DB::table('addresses')->insert([
         'leads_id'=>$sec_lead_id,
         'addr_1'=>$request->sec_alt_addr1,
         'addr_2'=>$request->sec_alt_addr2,
