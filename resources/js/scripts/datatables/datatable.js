@@ -37,7 +37,26 @@ $(document).ready(function() {
     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
   });
 
-  $('.membership-all').DataTable({
+  $('.leads-archive').DataTable({
+    columns: [
+        { data: "id", class: "text-center" },
+        { data: "name", class: "text-center" },
+        { data: "createDate", class: "text-center" },
+        { data: "createTime", class: "text-center" },
+        { data: "telemarketer", class: "text-center" },
+        { data: "proceed", class: "text-center" },
+        { data: "action", class: "text-center" }
+    ],
+    columnDefs: [{
+        targets: 2,
+        render: $.fn.dataTable.render.moment('DD MMMM YYYY','Do MMM YYYY')
+    }],
+    "dom": '<"d-flex justify-content-between"<"d-flex"<><>><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
+    "displayLength": 10,
+    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+  });
+
+  $('.membership-show').DataTable({
     columns: [
         { data: "id", class: "text-center" },
         { data: "name", class: "text-center" },
@@ -70,19 +89,19 @@ $(document).ready(function() {
     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
   });
 
-//   $('.membership-all').DataTable({
-//     "scrollX": true,
-//     "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
-//     "displayLength": 10,
-//     "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-//   });
+  $('.membership-show').DataTable({
+    "scrollX": true,
+    "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
+    "displayLength": 10,
+    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+  });
 
     /********************************************
      *      js of DataTables custom toolbar      *
      ********************************************/
 
-    $("div.add_lead").html('<a href="leads/new" class="btn btn-outline-primary round my-1 mr-1">New Lead</a>');
-    $("div.upload_csv").html('<a href="" class="btn btn-outline-primary round my-1 mr-1">Upload CSV</a>');
+    $("div.add_lead").html('<a href="new" class="btn btn-outline-primary my-1 mr-1">New Lead</a>');
+    $("div.upload_csv").html('<button class="btn btn-outline-primary my-1 mr-1" data-toggle="modal" data-target="#csvUpload">Upload CSV</button>');
 
     /********************************************
      *        js of Order by the grouping        *

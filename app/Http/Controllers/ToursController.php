@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Leads;
+use App\Salutation;
+use App\Tours;
+use App\SalesVenue;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+
 
 class ToursController extends Controller
 {
-     // input forms
-  public function index(){
+  //Input Forms
+  public function index()
+  {
 
     $pageConfigs = ['pageHeader' => true];
 
@@ -15,195 +24,348 @@ class ToursController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tours"],["name" => "All"]
     ];
 
-    return view('pages.tours-all',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    $leads = Leads::all();
+    $sallist = Salutation::all();
+    $tours = Tours::all();  
+    $salesVenues = SalesVenue::all();
+
+    $venue = DB::table('sales_venues')->where('venue_status',1)->get();
+
+    $tours_s = DB::table('tours')
+                ->join('leads','leads.lead_id','tours.lead_id1')
+                ->join('salutations','salutations.salutation_id','leads.salutation_id')
+                ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+                ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+                ->where('tours.tour_status', 1)
+                ->select('salutations.salutation','tours.tour_id','tours.lead_id1','leads.name',
+                'tours.tour_date','tours.tour_initial_time','tours.tour_time_in','tours.tour_time_out',
+                'tours.tour_attend','sales_teams.sales_team_id','sales_venues.venue_name','sales_venues.sales_venue_id','sales_teams.sales_name')
+                ->orderBy('tours.tour_id')
+                ->get();
+    // dd($tours_s);
+
+    $payload = ['tours_s'=> $tours_s];
+
+    return view('pages.tours-all',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'payload'=>$payload, 'venues'=> $venue]);
   }
 
-  public function newTour(){
-
+  public function newTour($lead_id)
+  {
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Schedule Tour"]
     ];
 
-    return view('pages.tours-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+
+    $leads = DB::table('leads')
+            ->where('lead_id',$lead_id)
+            ->join('salutations','salutations.salutation_id','leads.salutation_id')
+            ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+            ->select('leads.name','leads.lead_id','salutations.salutation','leads.mobile_no','leads.whatsapp_no','leads.credit_card_limit','sales_teams.sales_name')
+            ->get();
+
+    // dd($leads);
+
+    $countries = DB::table('countries')->get();
+    $states = DB::table('states')->get();
+    $cities = DB::table('cities')->get();
+    $venues = DB::table('sales_venues')->where('venue_status',1)->get();
+    $salesp = DB::table('sales_teams')->where('sales_role_id',2)->get();
+
+    $payload = ['leads'=> $leads[0], 'countries'=>$countries, 'states'=>$states, 'cities'=>$cities,'venues'=>$venues, 'salesp'=>$salesp];
+
+    return view('pages.tours-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function viewTour(){
+  //Attend Tour Details
+  //DONE
+  public function attendTour(Request $request, $tour_id)
+  {
+    if($request->notAttend == 2)
+    {
+      Tours::where('tour_id',$tour_id)->update(['tour_attend'=>$request->notAttend]);
+      return redirect('/tours');
+    }
+    else
+    {
+      $pageConfigs = ['pageHeader' => true];
 
-    $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Attend Details"]];
+  
+      $attend = DB::table('tours')
+        ->join('leads','leads.lead_id','tours.lead_id1')
+        ->where('tours.tour_id', $tour_id)
+        ->select('leads.name','leads.lead_id','tours.sales_personnel_id','leads.mobile_no','leads.whatsapp_no','leads.salutation_id','tours.tour_month_income','tours.sales_venue_id','tours.tour_id')
+        ->get();
+        // dd($attend);
+  
+      $venue = DB::table('sales_venues')->where('venue_status',1)->get();
+      $nation = DB::table('nationalities')->get();
+      $gender = DB::table('gender')->get();
+      $maritial = DB::table('maritial_status')->get();
+      $country = DB::table('countries')->get();
+      $religion = DB::table('religions')->get();
+      $race = DB::table('race')->get();
+      
+      $salesp = DB::table('sales_teams')->where('sales_role_id', 2)->get();
+      // dd($salesp);
+      $salesm = DB::table('sales_teams')->where('sales_role_id', 3)->get();
+      $ma = DB::table('sales_marketing_agency')->get();
+      
+      // dd($nation);
+      $payload = ['attend'=>$attend[0], 
+                  'venue'=>$venue, 
+                  'gender'=>$gender, 
+                  'maritial'=>$maritial,
+                  'nation'=>$nation, 
+                  'country'=>$country, 
+                  'religion'=>$religion, 
+                  'race'=>$race,
+                  'salesp'=>$salesp,
+                  'salesm'=>$salesm,
+                  'ma'=>$ma];
 
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Detail Preview"]
-    ];
-
-    return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+      return view('pages.tours-attend',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+    }
+    
   }
 
-  public function attendTour(){
+  //Update/EditTime
+  //DONE
+  public function editTime(Request $request)
+  {
+    Tours::where('tour_id', $request->tourid)
+      ->update(['tour_date'=>$request->date, 'tour_initial_time'=>$request->time,'sales_venue_id'=>$request->venue]);
 
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Detail Form"]
-    ];
-
-    return view('pages.tours-attend',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return redirect('tours');
   }
 
-  public function archive(){
+  public function viewDetails(Request $request, $tour_id)
+  {
+      // dd($request);
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Schedule Tour"]
+      ];
+
+      $telem = Leads::where('lead_id', $request->leadid)->pluck('telemarketer_id');
+
+      // Update Lead
+     $updateLead = Leads::where('lead_id', $request->leadid)
+     ->update([
+       'salutation_id'=>$request->salutation1,
+       'name'=>$request->name1,
+       'gender'=> $request->gender1,
+       'nric'=>$request->nric1,
+       'dob'=>$request->dob1,
+       'marital_status'=>$request->status1,
+       'ethnicity_id' => $request->race1,
+       'religion_id'=>$request->religion1,
+       'venue_id'=>$request->venue1,
+       'nationality' =>$request->nationality1,
+       'occupation' =>$request->occupation1,
+       'company' =>$request->company1,
+       'mobile_no' =>$request->mobileno1,
+       'whatsapp_no' =>$request->whatsapp1,
+       'home_no'=>$request->homeno1,
+       'office_no'=>$request->officeno1,
+       'primary_email'=>$request->pemail1,
+       'alt_email' =>$request->aemail1
+       ]);
+
+      //Update Tour
+      $updateTour = Tours::where('tour_id', $request->tourid)
+      ->update([
+        'sales_venue_id'=>$request->venue1,
+        'tour_time_in'=>$request->timeIn1,
+        'tour_time_out'=>$request->timeOut1,
+        'tour_month_income'=>$request->income1,
+        'tour_no_of_children'=>$request->no_child1,
+        'tour_outcome'=>$request->tourOutcome1,
+        'tour_remarks'=>$request->remark,
+        'sales_personnel_id'=>$request->salesp1,
+        'sales_manager_id'=>$request->salesm1,
+        'tour_marketing_agency'=>$request->ma1,
+        'tour_proceed_contract'=>$request->contract,
+        'tour_attend'=>1
+      ]);
+      
+      //Existing
+      if($request->exist_lead != null)
+      {
+        $update = Tours::where('tour_id', $request->tourid)->update(['lead_id2'=>$request->exist_lead]);
+      }
+      //NewLead
+      else if($request->exist_lead == null)
+      {
+        if($request->name2 != null || $request->gender != null)
+        {
+          $current = date('Y-m-d H:i:s');
+          $createLead = DB:: table('leads')->insert([
+            'salutation_id'=>$request->salutation2,
+            'name'=>$request->name2,
+            'gender'=> $request->gender2,
+            'nric'=>$request->nric2,
+            'dob'=>$request->dob2,
+            'venue_id'=>$request->venue1,
+            'marital_status'=>$request->status2,
+            'ethnicity_id' => $request->race2,
+            'telemarketer_id'=>$telem[0],
+            'religion_id'=>$request->religion2,
+            'nationality' =>$request->nationality2,
+            'occupation' =>$request->occupation2,
+            'company' =>$request->company2,
+            'mobile_no' =>$request->mobileno2,
+            'whatsapp_no' =>$request->whatsapp2,
+            'home_no'=>$request->homeno2,
+            'office_no'=>$request->officeno2,
+            'primary_email'=>$request->pemail2,
+            'alt_email' =>$request->aemail2,
+            'status'=>1,
+            'created_at'=>$current,
+            'updated_at'=>$current
+            
+          ]);
+
+          $second_lead_id = DB::getPDO()->lastInsertId();
+          
+          $update = Tours::where('tour_id', $request->tourid)->update(['lead_id2'=>$second_lead_id]);
+        }
+        else
+        {
+          $update = Tours::where('tour_id', $request->tourid)->update(['lead_id2'=>null]);
+        }
+      }
+
+      // Generate voucher number
+      $voucher = rand(0,99999);
+      $newVoucher = "CV".$voucher;
+
+      //Check if want to apply vouchers
+      // if Yes
+      if($request->acv == 1)
+      {
+          //Create Vouchers
+          $createVoucher = DB::table('vouchers')
+           ->insert([
+             'accom_id'=>$request->accom1,
+             'voucher_no'=>$newVoucher,
+             'no_occupancy'=>$request->occup1,
+             'night'=>$request->stay1,
+             'cv_start_date'=>$request->cv_start1,
+             'cv_exp_date'=>$request->cv_exp1,
+             'start_day'=>1,
+             'end_day'=>4,
+             'has_used'=>0,
+             'voucher_status'=>1,
+           ]);
+
+          //Get last voucher id
+          $last_voucher_id = DB::getPDO()->lastInsertId(); 
+
+          //Update tour voucher id
+          $update = Tours::where('tour_id', $request->tourid)->update(['voucher_id'=>$last_voucher_id]);
+
+      }   
+
+    $details = DB::table('tours')
+          ->join('leads','leads.lead_id','tours.lead_id1')
+          ->join('gender','gender.gender_id','leads.gender')
+          ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
+          ->join('religions', 'religions.religion_id','leads.religion_id')
+          ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+          ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+          ->join('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
+          ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
+          ->where('tour_id', $tour_id)
+          ->get();
+
+    $sp = DB::table('tours')
+          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+          ->where('tour_id', $tour_id)
+          ->get();
+
+    $sm = DB::table('tours')
+          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
+          ->where('tour_id', $tour_id)
+          ->get();
+                    
+    $lead_id2 = DB::table('tours')
+                ->where('tour_id', $tour_id)->get('tours.lead_id2');
+
+    $payload = ['details'=> $details[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
+
+
+    return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+  }
+
+  public function showDetails(Request $request, $tour_id)
+  {
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Details Preview"]];
+
+    $details = DB::table('tours')
+            ->join('leads','leads.lead_id','tours.lead_id1')
+            ->join('gender','gender.gender_id','leads.gender')
+            ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
+            ->join('religions', 'religions.religion_id','leads.religion_id')
+            ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+            ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+            ->join('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
+            ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
+            ->where('tour_id', $tour_id)
+            ->get();
+
+    $sp = DB::table('tours')
+          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+          ->get();
+    $sm = DB::table('tours')
+          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
+          ->get();
+
+
+    $payload = ['details'=>$details[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
+
+    return view('pages.tours-details', ['payload'=>$payload]);
+  }
+
+
+  //DONE
+  public function storeTour(Request $request, $lead_id)
+  {
 
     $pageConfigs = ['pageHeader' => true];
+        
+    $insert = Tours::insert(
+      ['lead_id1'=>$lead_id,
+      'sales_personnel_id'=>$request->salesp,
+      'sales_venue_id'=>$request->venue,
+      'tour_date'=>$request->date,
+      'tour_initial_time'=>$request->time,
+      'sales_venue_id'=>$request->venue,
+      'tour_status'=>1
+      // 'tour_countries'=>$request->country,
+      // 'tour_states'=>$request->state,
+      // 'tour_cities'=>$request->city,
+      ]);
+
+      // dd($request);
 
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tours Archive"]
     ];
 
-    return view('pages.tours-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return redirect('/tours');
   }
 
-  // Input Group forms
-  public function inputGroupForm(){
+  public function archiveTour($tour_id)
+  {
+    DB::table('tours')->where('tour_id', $tour_id)->update(['tour_status', 3]);
 
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Input Groups"]
-    ];
-    return view('pages.form-input-groups',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return redirect("tours/arhive");
   }
-  // Input number forms
-  public function numberInputForm(){
 
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Number Input"]
-    ];
-    return view('pages.form-number-input',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //select forms
-  public function selectForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Select"]
-    ];
-    return view('pages.form-select',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Radio forms
-   public function radioForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Radio"]
-    ];
-    return view('pages.form-radio',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //checkbox forms
-   public function checkboxForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Checkbox"]
-    ];
-    return view('pages.form-checkbox',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //switch forms
-   public function switchForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Switch"]
-    ];
-    return view('pages.form-switch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //textarea forms
-   public function textareaForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Textarea"]
-    ];
-    return view('pages.form-textarea',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //Quill Editor forms
-  public function quillEditorForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Quill Editor"]
-    ];
-    return view('pages.form-quill-editor',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //File Uploader forms
-   public function fileUploaderForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "File Uploader"]
-    ];
-    return view('pages.form-file-uploader',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //date time Picker forms
-   public function datePickerForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Date & Time Picker"]
-    ];
-    return view('pages.form-date-time-picker',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Form Layout
-   public function formLayout(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Layouts"]
-    ];
-
-    return view('pages.form-layout',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-    //Form Wizard
-    public function formWizard(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Wizard"]
-      ];
-
-      return view('pages.form-wizard',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-    //Form validation
-    public function formValidation(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Validation"]
-      ];
-
-      return view('pages.form-validation',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-    //Form repeater
-    public function formRepeater(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Repeater"]
-      ];
-
-      return view('pages.form-repeater',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
 }

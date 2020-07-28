@@ -8,6 +8,32 @@
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
+Dropzone.options.leadsUpload = {
+  paramName: "csvfile", // The name that will be used to transfer the file
+  maxFiles: 1,
+  acceptedFiles: ".csv, application/vnd.ms-excel, text/csv",
+  addRemoveLinks: true,
+  autoProcessQueue: false,
+  init: function () {
+
+    var submitButton = document.getElementById("submit-leads-csv");
+    myDropzone = this;
+
+    submitButton.addEventListener('click', function(){
+      myDropzone.processQueue();
+    });
+
+    this.on("maxfilesexceeded", function (file) {
+      this.removeAllFiles();
+      this.addFile(file);
+    });
+  },
+  success: function ()
+  {
+    location.reload();
+  }
+};
+
 Dropzone.options.dpzSingleFile = {
   paramName: "file", // The name that will be used to transfer the file
   maxFiles: 1,

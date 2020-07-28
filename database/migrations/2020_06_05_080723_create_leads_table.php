@@ -13,37 +13,64 @@ class CreateLeadsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('leads', function (Blueprint $table) {
             $table->id('lead_id')->length(11);
-            $table->integer('salutation_id')->length(11)->nullable();
-            $table->integer('tour_id')->length(11)->nullable();
-            $table->integer('ethnicity')->length(11)->nullable();
+            $table->bigInteger('salutation_id')->length(11)->unsigned()->nullable();
+            $table->foreign('salutation_id')->references('salutation_id')->on('salutations');
+            // $table->integer('tour_id')->length(11)->nullable();
+            $table->integer('ethnicity_id')->length(11)->nullable();
             $table->integer('religion_id')->length(11)->nullable();
-            $table->integer('sales_personnel_id')->length(11)->nullable();
+            // $table->integer('sales_personnel_id')->length(11)->nullable();
             $table->integer('telemarketer_id')->length(11)->nullable();
-            $table->integer('primary_addr_id')->length(11)->nullable();
-            $table->integer('secondary_addr_id')->length(11)->nullable();
-            $table->string('voucher_no',11)->nullable();
-            $table->string('name',70)->nullable();
-            $table->tinyInteger('gender')->length(1)->nullable();
-            $table->integer('nric')->length(11)->nullable();
+            //$table->integer('primary_addr_id')->length(11)->nullable();
+            //$table->integer('secondary_addr_id')->length(11)->nullable();
+            $table->integer('venue_id')->length(11)->nullable();
+            $table->string('name',255)->nullable();
+            $table->integer('gender')->length(11)->nullable();
+            $table->string('nric')->length(20)->nullable();
+            $table->date('dob')->length(11)->nullable();
             $table->tinyInteger('marital_status')->length(1)->nullable();
-            $table->decimal('credit_card_limit',9,2)->nullable();
+
+            $table->integer('nationality')->length(100)->nullable();
+            $table->string('occupation', 50)->nullable();
+            $table->string('company', 60)->nullable();
+
             $table->string('mobile_no',14)->nullable();
             $table->string('whatsapp_no',14)->nullable();
+            $table->string('home_no',14)->nullable();
+            $table->string('office_no',14)->nullable();
             $table->string('primary_email',100)->nullable();
             $table->string('alt_email',100)->nullable();
-            $table->string('nationality',100)->nullable();
-            $table->string('preferred_lang',80)->nullable();
-            $table->string('occupation',55)->nullable();
-            $table->string('company',60)->nullable();
+
+            $table->integer('credit_card_limit')->length(11)->nullable();
+            $table->tinyInteger('is_mbr')->length(1)->nullable();
             $table->tinyInteger('is_pri_mbr')->length(1)->nullable();
-            $table->string('relationship_to_pri',30)->nullable();
-            $table->string('mbr_remarks',30)->nullable();
-            $table->tinyInteger('lead_type')->length(1)->nullable();
+            $table->string('relationship_to_pri_mbr',30)->nullable();
+
+            // $table->string('mbr_remarks',255)->nullable();
+             $table->string('preferred_lang',80)->nullable();
+
+            $table->tinyInteger('status')->length(1)->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+           
+            
+            
+            
+           
+
+            
         });
+
+        // DB::table('leads')->insert(
+        //     array(
+        //         ['salutation_id' => 1, 'name' => 'John Doe', 'mobile_no' => '01234567890', 'whatsapp_no' => '01234567890', 'credit_card_limit'=> 1000, 'telemarketer_id'=> 1],
+        //         ['salutation_id' => 2, 'name' => 'Mary Jane', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2],
+        //         ['salutation_id' => 3, 'name' => 'Arthur', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 1],
+        //         ['salutation_id' => 4, 'name' => 'Morgan', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2],
+        //     )
+        // );
     }
 
     /**

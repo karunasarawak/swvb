@@ -23,6 +23,14 @@ class CreatePackagesTable extends Migration
             $table->integer('pts')->length(6);
             $table->timestamps();
         });
+
+        DB::table('packages')->insert(
+            array(
+                ['package_name' => 'AAA', 'amf' => 10, 'package_desc' => 'N/A', 'wd' => 3, 'we'=>2, 'pts'=>100],
+                ['package_name' => 'BBB', 'amf' => 20, 'package_desc' => 'N/A', 'wd' => 3, 'we'=>4, 'pts'=>200],
+                ['package_name' => 'CCC', 'amf' => 30, 'package_desc' => 'N/A', 'wd' => 4, 'we'=>5, 'pts'=>300],
+            )
+        );
     }
 
     /**

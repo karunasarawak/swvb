@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Controllers\Controller;
-
 use App\Leads;
-
-use App\Salutations;
+use App\Tours;
+use App\Salutation;
+use App\Staffs;
+use App\EventLogs;
+use App\EventLogsCategory;
+use App\EventLogsType;
+use App\CallLogs;
+use App\Address;
+use Carbon\Carbon;
+use App\Imports\LeadsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LeadsController extends Controller
 {
-     // input forms
   public function index(){
 
     $pageConfigs = ['pageHeader' => true];
@@ -23,46 +28,72 @@ class LeadsController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Leads"],["name" => "All"]
     ];
 
-    $leads = Leads::all();
-
-    $sallist = Salutations::all();
-
-    foreach($sallist as $row)
-    {
-      $salutations[$row['salutation_id']] = $row;
-    }
-
-    $payload = ['leads'=>$leads, 'salutations'=>$salutations];
-
-    // dd($leads);
+    $leads = DB::table('leads')
+            ->join('salutations','salutations.salutation_id','leads.salutation_id')
+            ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+            ->where('leads.status','!=',3)
+            ->select('leads.lead_id','leads.created_at','leads.name','salutations.salutation','sales_teams.sales_name')
+            ->orderBy('leads.lead_id')
+            ->get();
+    $payload = ['leads'=>$leads];
 
     return view('pages.leads-all', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function newLead(){
-
+  public function newLead()
+  {
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Leads"],["name" => "New Lead"]
+      ["link" => "/", "name" => "Home"],["link" => "/leads/all", "name" => "Leads"],["name" => "New Lead"]
     ];
 
-    return view('pages.leads-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    $salut = Salutation::all();
+
+    $telem = DB::table('sales_teams')->where('sales_role_id',1)->get();
+
+    $payload = ['salutations'=>$salut, 'telemarketers'=>$telem];
+
+    return view('pages.leads-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function storeLead(Request $request){
+  public function storeLead(Request $request){   
+      // dd($request);
 
     Leads::create($request->all());
 
-    return redirect('leads');
+    return redirect('leads/all');
   }
 
-  public function editLead(Request $request, $id){
+  public function createEvent(Request $request, $lead_id)
+  {
+    $current = date('Y-m-d H:i:s');
+
+    DB::table('event_logs')->insert([
+        'el_type_id'=>$request->type,
+        'el_cat_id'=>$request->cat,
+        'lead_id'=>$request->leadid,
+        'customer_type'=>1,
+        'title'=>$request->title,
+        'last_updated_by'=>"N/A",
+        'created_by'=>"N/A",
+        'created_at'=> $current,
+        'updated_at'=> $current
+      ]);
+
+    return redirect('leads/'.$lead_id.'/details');
+  }
+
+  public function editLead(Request $request, $id)
+  {
 
     Leads::where('lead_id', $id)->update([
-      'salutation_id' =>$request->salutation_id,
+      'salutation_id' =>$request->salutation,
       'name' =>$request->name,
       'mobile_no' =>$request->mobile_no,
+      'whatsapp_no' =>$request->whatsapp_no,
+      'credit_card_limit' =>$request->credit_card_limit,
+      'telemarketer_id' =>$request->telemarketer_id,
       'whatsapp_no' =>$request->whatsapp_no,
       'credit_card_limit' =>$request->credit_card_limit,
       'telemarketer_id' =>$request->telemarketer_id
@@ -71,176 +102,146 @@ class LeadsController extends Controller
     return redirect('leads/'.$id.'/details');
   }
 
-  public function viewLead($id){
+  public function viewLead($lead_id)
+  {
 
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Leads"],["name" => "View Lead Details"]
+      ["link" => "/", "name" => "Home"],["link" => "/leads/all", "name" => "Leads"],["name" => "View Lead Details"]
     ];
 
-    $lead = Leads::where('lead_id', $id)->get();
+    $details = DB::table('leads')
+              ->join('salutations','salutations.salutation_id','leads.salutation_id')
+              ->join('sales_teams','sales_team_id','leads.telemarketer_id')
+              ->where('lead_id', $lead_id)
+              ->select('salutations.salutation','salutations.salutation_id','leads.lead_id','leads.name','leads.telemarketer_id',
+              'leads.mobile_no','leads.whatsapp_no','leads.credit_card_limit','leads.status','sales_teams.sales_name')
+              ->get();
 
-    $payload = ['lead'=>$lead[0]];
+    $salutations = DB::table('salutations')->get();
+    $telemarketer = DB::table('sales_teams')->where('sales_role_id',1)->get();
 
-    // dd($payload);
+    $event_type = DB::table('event_logs_type')->get();
+    $event_cat = DB::table('event_logs_category')->get();
 
-    return view('pages.leads-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+    $event_logs = DB::table('event_logs')
+                  ->join('leads','leads.lead_id','event_logs.lead_id')
+                  ->join('event_logs_type','event_logs_type.el_type_id','event_logs.el_type_id')
+                  ->join('event_logs_category','event_logs_category.el_cat_id','event_logs.el_cat_id')
+                  ->select('event_logs.el_id','leads.lead_id','leads.name','event_logs_type.el_type_name','event_logs_category.el_cat_name',
+                          'event_logs.title','event_logs.last_updated_by','event_logs.created_by', 'event_logs.created_at','event_logs.updated_at')
+                  ->get();
+
+    $events = EventLogs::with('eventLogsCategory', 'eventLogsType')->where('lead_id', $lead_id)->get();
+
+    $payload = ['details'=>$details[0], 'salutations'=>$salutations, 'telemarketer'=>$telemarketer, 'events'=>$events];
+    $event = ['event_type'=>$event_type, 'event_cat'=>$event_cat, 'event_logs'=>$event_logs];
+
+    return view('pages.leads-details',
+                ['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload, 'event'=>$event]
+              );
   }
 
-  public function archive(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Leads"],["name" => "Leads Archive"]
-    ];
-
-    return view('pages.leads-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  // Input Group forms
-  public function inputGroupForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Input Groups"]
-    ];
-    return view('pages.form-input-groups',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  // Input number forms
-  public function numberInputForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Number Input"]
-    ];
-    return view('pages.form-number-input',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //select forms
-  public function selectForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Select"]
-    ];
-    return view('pages.form-select',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Radio forms
-   public function radioForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Radio"]
-    ];
-    return view('pages.form-radio',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //checkbox forms
-   public function checkboxForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Checkbox"]
-    ];
-    return view('pages.form-checkbox',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //switch forms
-   public function switchForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Switch"]
-    ];
-    return view('pages.form-switch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //textarea forms
-   public function textareaForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Textarea"]
-    ];
-    return view('pages.form-textarea',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //Quill Editor forms
-  public function quillEditorForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Quill Editor"]
-    ];
-    return view('pages.form-quill-editor',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //File Uploader forms
-   public function fileUploaderForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "File Uploader"]
-    ];
-    return view('pages.form-file-uploader',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //date time Picker forms
-   public function datePickerForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Date & Time Picker"]
-    ];
-    return view('pages.form-date-time-picker',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Form Layout
-   public function formLayout(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Layouts"]
-    ];
-
-    return view('pages.form-layout',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-    //Form Wizard
-    public function formWizard(){
-
+  public function addCall(Request $request)
+  {
       $pageConfigs = ['pageHeader' => true];
 
       $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Wizard"]
+        ["link" => "/", "name" => "Home"],["link" => "/leads/all", "name" => "Leads"],["name" => "View Lead Details"]
       ];
 
-      return view('pages.form-wizard',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+      $current = date('Y-m-d H:i:s');
+
+      DB::table('call_logs')->insert([
+        'el_id'=>$request->event_id,
+        'lead_id'=>$request->lead_id,
+        'init_date'=>$request->date,
+        'init_time'=>$request->time,
+        'com_channel'=>1,
+        'created_at'=>$current,
+        'updated_at'=>$current
+      ]);
+
+      return redirect('leads/'. $request->lead_id . "/details");
+  }
+
+  public function updateCall(Request $request)
+  {
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/leads/all", "name" => "Leads"],["name" => "View Lead Details"]
+      ];
+
+      $current = date('Y-m-d H:i:s');
+      $call_id = $request->call_id2;
+
+      $s = Carbon::parse($request->start);
+      $e = Carbon::parse($request->end);
+      $diff = $e->diffInMinutes($s);
+
+      CallLogs::where('cl_id',$request->call_id2)->update([
+        'call_length'=>$diff,
+        'start_time'=>$request->start,
+        'end_time'=>$request->end,
+        'outcome'=>$request->outcome,
+        'reason'=>$request->reason,
+        'remarks'=>$request->remarks,
+        'com_channel'=>1,
+        'updated_at'=>$current
+      ]);
+      
+      
+
+      return redirect('leads/'. $request->lead_id2 . "/details");
+  }
+
+
+  public function uploadCSV(Request $request)
+  {
+    // echo "something";
+    // dd($request->file('csvfile'));
+    Excel::import(new LeadsImport, $request->file('csvfile'));
+    // return redirect('leads');
+  }
+
+  public function archiveLeads($lead_id)
+  {
+    $result = DB::table('leads')->where('lead_id', $lead_id)->select('leads.status')->get();
+
+    if($result[0]->status == 1)
+    {
+      Leads::where('lead_id', $lead_id)->update(['status'=>3]);
     }
-    //Form validation
-    public function formValidation(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Validation"]
-      ];
-
-      return view('pages.form-validation',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    else if($result[0]->status == 3)
+    {
+      Leads::where('lead_id', $lead_id)->update(['status'=>1]);
     }
-    //Form repeater
-    public function formRepeater(){
 
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Repeater"]
-      ];
-
-      return view('pages.form-repeater',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return redirect('leads/all');
   }
+
+  public function archive()
+  {
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/leads/all", "name" => "Leads"],["name" => "Archive"]
+    ];
+
+    $leads = DB::table('leads')
+        ->join('salutations','salutations.salutation_id','leads.salutation_id')
+        ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+        ->where('leads.status','=',3)
+        ->select('leads.lead_id','leads.created_at','leads.name','salutations.salutation','sales_teams.sales_name')
+        ->orderBy('leads.lead_id')
+        ->get();
+
+    $payload = ['leads'=>$leads];
+
+    return view('pages.leads-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+  }
+
+ 
 }

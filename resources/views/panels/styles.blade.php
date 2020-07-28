@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/themes/dark-layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/themes/semi-dark-layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/navbar.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/invoice-style.css')}}">
     @if($configData['direction'] === 'rtl')
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom-rtl.css')}}">
     @endif

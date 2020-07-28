@@ -18,6 +18,13 @@ class CreateSalutationsTable extends Migration
             $table->string('salutation', 20);
             $table->timestamps();
         });
+        
+        DB::table('salutations')->insert(
+            array(
+                ['salutation' => 'Mr'],
+                ['salutation' => 'Mrs'],
+            )
+        );
     }
 
     /**

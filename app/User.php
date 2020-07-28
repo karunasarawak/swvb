@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable,HasApiTokens,HasRoles;
+    use Notifiable,HasApiTokens,HasRoles, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +21,18 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected static $logAttributes = ['name', 'email', 'password'];
+
+    //protected static $ignoreChangedAttributes = ['password', 'updated_at'];
+
+    protected static $recordEvents = ['created', 'updated'];
+
+    protected static $logName = 'user';
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "You have {$eventName} user";
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

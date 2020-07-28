@@ -14,16 +14,14 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-
-                    {{-- Mark: i will delete this later --}}
-                    <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary">Archived Membership</a>
+                <div class="card-header bg-swvb-cyan">
+                    <h4 class="card-title text-white">Archived Membership</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <table class="table leads-all">
-                                <thead class="bg-swvb-cyan">
+                            <table class="table tours-all">
+                                <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Membership No.</th>
                                         <th class="text-white">Name</th>
@@ -41,46 +39,10 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="">2060860000</a></td>
-                                        <td>Mr John Doe</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Pending</td>
-
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060870000</a></td>
-                                        <td>Mrs Jane Lee</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Active</td>
-                                        <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                    </tr>
-                                    <tr>
                                     <td><a href="">2060880000 </a></td>
                                         <td>Mr Adam</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
+                                        <td class="expanded">123456-13-1234</td>
+                                        <td class="expanded">+6012 345 6789</td>
                                         <td>abc@gmail.com</td>
                                         <td>01 April 2020 </td>
                                         <td>01 April 2020 </td>
@@ -88,8 +50,8 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Withdrawal</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -104,29 +66,13 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Suspended</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
                                     <td><a href="">2060900000</a></td>
-                                        <td>Mr John Doe</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Pending</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060910000</a></td>
-                                        <td>Mrs Jane Lee</td>
+                                    <td>Mrs Jane Lee</td>
                                         <td>123456-13-1234</td>
                                         <td>+6012 345 6789</td>
                                         <td>abc@gmail.com</td>
@@ -136,25 +82,8 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060920000</a></td>
-                                        <td>Mr Adam</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Withdrawal</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -166,12 +95,11 @@
                                         <td>01 April 2020 </td>
                                         <td>01 April 2020 </td>
                                         <td>08 April 2020</td>
-
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Suspended</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -183,12 +111,11 @@
                                         <td>01 April 2020 </td>
                                         <td>01 April 2020 </td>
                                         <td>08 April 2020</td>
-
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Pending</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -204,8 +131,8 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -220,8 +147,8 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Withdrawal</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -236,11 +163,10 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Suspended</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
-
                                     <tr>
                                     <td><a href="">2060980000</a></td>
                                         <td>Mr John Doe</td>
@@ -253,8 +179,8 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Pending</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
                                     <tr>
@@ -269,10 +195,11 @@
                                         <td>Ruby - premium</td>
                                         <td>RM10,000</td>
                                         <td>Active</td>
-                                        <td> <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button></td>
                                     </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -301,4 +228,6 @@
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/datatables/datatable.js')}}"></script>
+<script src="{{asset('js/scripts/forms/validation/form-validation.js')}}"></script>
+<script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 @endsection

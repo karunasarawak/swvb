@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+
+use App\Leads;
+use App\Salutation;
+use App\Addresses;
+use App\Membership;
+use App\Maritial;
+
+
 
 class ContactsController extends Controller
 {
@@ -15,40 +24,185 @@ class ContactsController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Contacts"],["name" => "All"]
     ];
 
-    return view('pages.contacts',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    $leads=Leads::all();
+    // dd($addresses);
+    $salutation=Salutation::all();
+    $addresses=Addresses::all();
+    // not need call satulation as ady link in lead model
+
+    $contacts = DB::table('leads')
+              ->join('salutations', 'salutations.salutation_id','leads.salutation_id')
+              ->join('addresses', 'addresses.leads_id','leads.lead_id')
+              ->select('salutations.salutation','leads.name','leads.gender','leads.home_no','leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email')
+              ->get();
+
+    $payload = ['leads'=>$leads];
+
+    return view('pages.contacts-all',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function editContact(){
+  public function viewDetails($id){
 
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Schedule Tour"]
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Contacts"],["name" => "All"]
     ];
 
-    return view('pages.tours-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    // $salutation = Salutation::where('lead_id', $id)->get();
+
+    $leads = DB::table('leads')
+    ->where('lead_id', $id)
+
+    ->join('salutations', 'salutations.salutation_id','leads.salutation_id')
+    ->join('maritial_status', 'maritial_status.maritial_id','leads.marital_status')
+    ->join('race', 'race.race_id','leads.ethnicity_id')
+     ->join('religions', 'religions.religion_id','leads.religion_id')
+    ->join('nationalities', 'nationalities.nation_id','leads.nationality')
+    ->join('memberships', 'memberships.lead_id1','leads.lead_id')
+    // ->join('addresses', 'addresses.leads_id','leads.lead_id')
+    ->join('gender', 'gender.gender_id','leads.gender')
+    ->join('packages', 'packages.package_id','memberships.package_id')
+    
+    ->select('leads.lead_id','salutations.salutation','leads.name','gender.gender_name','leads.nric',
+    'leads.dob','maritial_status.maritial_name','race.race_name','religions.religion',
+    'nationalities.nation','leads.occupation','leads.company','leads.home_no',
+    'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email', 'memberships.mbrship_no', 
+    'memberships.agreement_date', 'packages.package_name', 'memberships.mbrship_status')
+    ->first();  
+
+    // $leads = Leads::where('lead_id', $id)->get();
+    
+
+    // $membership = Membership::where('lead_id', $id)->get();
+    
+            // (target table, tt.link column, original table.link column)
+    // var_dump(property_exists('lead_id'));
+            // dd($leads);
+    $primaryAddress = DB::table('addresses')
+    // ->where('leads_id', $id)
+    
+      ->join('cities', 'cities.city_id','addresses.city_id')
+      ->join('countries', 'countries.id','addresses.country_id')
+      ->join('states', 'states.id','addresses.state_id')
+      ->where([
+        ['leads_id', '=', $id], ['is_primary', '=', '1']
+        ])
+      // ->where('is_primary', 1)
+      ->select('cities.city_name', 'countries.country_name','addresses.addr_1', 'addresses.addr_2', 'addresses.postcode', 'addresses.state_id', 'states.state_name')
+      ->first();
+      
+      // $primaryAddress = Addresses::where([ 
+      //   ['leads_id', '=' ,$id], ['is_primary', '=', 1]
+      //   ])->get();
+      
+        
+    $altAddress = DB::table('addresses')
+      ->join('cities', 'cities.city_id','addresses.city_id')
+      ->join('countries', 'countries.id','addresses.country_id')
+      ->join('states', 'states.id','addresses.state_id')
+      ->where([['leads_id', '=', $id], ['is_primary', '=', '0']])
+      ->select('cities.city_name', 'countries.country_name','addresses.addr_1', 'addresses.addr_2', 'addresses.postcode', 'addresses.state_id','states.state_name')
+      ->first();
+        
+        
+        
+        
+      // dd($primaryAddress);
+      // $altAddress = Addresses::where([
+      //   ['leads_id', '=' ,$id], ['is_primary', '=' ,0]
+      //   ])->get();
+        // dd($altAddress);
+    // $membership = Membership::where('leads_id', $id)->get();
+    // dd($primaryAddress);
+    
+//for dropdown select and display all exisitin data from databases
+    $salutation = Salutation::all();
+
+    $gender = DB::table('gender')->get();
+
+    $maritial = DB::table('maritial_status')->get();
+
+    $religion = DB::table('religions')->get();
+    
+    $race = DB::table('race')->get();
+
+    $nation = DB::table('nationalities')->get();
+
+    $city = DB::table('cities')->get();
+
+    $state = DB::table('states')->get();
+
+    $country = DB::table('countries')->get(); 
+   
+    $payload = ['leads' => $leads,
+                'primaryAddress' => $primaryAddress,
+                'altAddress' => $altAddress,
+                
+                'maritial' =>$maritial,
+                'salutation'=>$salutation, 
+                'gender'=>$gender, 
+                'marital'=>$maritial,
+                'religion'=>$religion,
+                'race'=>$race,
+                'nation'=>$nation,
+                'city'=>$city,
+                'state'=>$state,
+                'country'=>$country,
+                ];
+    
+                 
+    return view('pages.contacts',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function editContract(){
+ 
+  
+  public function editContact(Request $request, $id){
+    
+    Leads::where('lead_id', $id)->update([
+        'salutation_id' =>$request->salutation_id,
+        'Name' =>$request->name,
+        'Gender' =>$request->gender,
+        'NRIC' =>$request->nric,
+        'dob' =>$request->dob,
+        'marital_status' =>$request->marital_status,
+        'occupation' =>$request->occupation,
+        'company' =>$request->company,
+        'home_no' =>$request->home_no,
+        'office_no' =>$request->office_no,
+        'whatsapp_no' =>$request->whatsapp_no,
+        'primary_email' =>$request->primary_email,
+        'alt_email' =>$request->alt_email,
+        'ethnicity_id' =>$request->race_name,
+        'religion_id' =>$request->religion,
+        'nationality' =>$request->nationalities,
+        
+      //   'nationalities' =>$request->nationality,
+      //   'religion' =>$request->religion,
+      //   'addr_1' =>$request->addr_1,
+      // 'addr_2' =>$request->addr_2,
+      // 'postcode' =>$request->postcode,
+      // 'city' =>$request->city,
+      // 'state' =>$request->state,
+      // 'country' =>$request->country,
+      // 'race_name' =>$request->race_name,
+        //alt adress de havent enterrrrrrr
+        // 'preferred_lang' =>$request->nationality,
+    ]);
 
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Detail Preview"]
-    ];
-
-    return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  public function updateStatus(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Detail Form"]
-    ];
-
-    return view('pages.tours-attend',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    // dd($request->salutation);
+  
+    Addresses::where('leads_id', $id)->update([
+      'addr_1' =>$request->addr_1,
+      'addr_2' =>$request->addr_2,
+      'postcode' =>$request->postcode,
+      'city_id' =>$request->city,
+      'state_id' =>$request->state_name,
+      'country_id' =>$request->country,
+    ]);
+    
+   
+    return redirect('leads/'.$id.'/payload');
   }
 
   public function archive(){
@@ -60,150 +214,5 @@ class ContactsController extends Controller
     ];
 
     return view('pages.tours-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  // Input Group forms
-  public function inputGroupForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Input Groups"]
-    ];
-    return view('pages.form-input-groups',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  // Input number forms
-  public function numberInputForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Number Input"]
-    ];
-    return view('pages.form-number-input',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //select forms
-  public function selectForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Select"]
-    ];
-    return view('pages.form-select',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Radio forms
-   public function radioForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Radio"]
-    ];
-    return view('pages.form-radio',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //checkbox forms
-   public function checkboxForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Checkbox"]
-    ];
-    return view('pages.form-checkbox',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //switch forms
-   public function switchForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Switch"]
-    ];
-    return view('pages.form-switch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //textarea forms
-   public function textareaForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Textarea"]
-    ];
-    return view('pages.form-textarea',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //Quill Editor forms
-  public function quillEditorForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Quill Editor"]
-    ];
-    return view('pages.form-quill-editor',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //File Uploader forms
-   public function fileUploaderForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "File Uploader"]
-    ];
-    return view('pages.form-file-uploader',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //date time Picker forms
-   public function datePickerForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Date & Time Picker"]
-    ];
-    return view('pages.form-date-time-picker',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Form Layout
-   public function formLayout(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Layouts"]
-    ];
-
-    return view('pages.form-layout',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-    //Form Wizard
-    public function formWizard(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Wizard"]
-      ];
-
-      return view('pages.form-wizard',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-    //Form validation
-    public function formValidation(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Validation"]
-      ];
-
-      return view('pages.form-validation',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-    //Form repeater
-    public function formRepeater(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Repeater"]
-      ];
-
-      return view('pages.form-repeater',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 }

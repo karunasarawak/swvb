@@ -14,16 +14,17 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id('addr_id')->length(11);
-            $table->string('addr_1',100);
-            $table->string('addr_2',100);
-            $table->string('addr_3',100);
-            $table->string('addr_4',100);
-            $table->string('state',100);
-            $table->string('city',100);
-            $table->tinyInteger('is_pri')->length(1);
-            $table->string('country',60);
-            $table->timestamps();
+            $table->id('addr_id')->length(11)->nullable();
+            $table->integer('leads_id')->length(11)->nullable();
+            $table->string('addr_1',100)->nullable();
+            $table->string('addr_2',100)->nullable();
+            $table->string('postcode',10)->nullable();
+            $table->integer('city_id')->length(11)->nullable();
+            $table->integer('state_id')->length(11)->nullable();
+            $table->integer('country_id')->length(11)->nullable();
+            $table->tinyInteger('is_primary')->length(1)->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

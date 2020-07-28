@@ -1,0 +1,9 @@
+.text-white {
+    color: #fff;
+}
+
+.btn-clear {
+    background-color: transparent;
+    color: #5A8DEE;
+    border: 1px solid #DFE3E7!important;
+}

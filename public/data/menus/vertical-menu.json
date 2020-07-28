@@ -22,6 +22,14 @@
         }
       ]
     },
+
+    {
+      "url": "reservations",
+      "name": "Reservation",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
     {
       "url": "#",
       "name": "Membership",
@@ -42,6 +50,41 @@
         }
       ]
     },
+
+    {
+      "url": "inventory",
+      "name": "Inventory",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
+    {
+      "url": "extmembership",
+      "name": "Ext Membership",
+      "i18n": "Contacts",
+      "icon": "users",
+      "submenu": [
+        {
+          "url": "extmembership",
+          "name": "RCI/II Enrollment",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "extmembership/rcibb",
+          "name": "RCI:BB",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "extmembership/details",
+          "name": "II Dep",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+    
     {
       "url": "contacts/details",
       "name": "Contacts",
@@ -49,7 +92,7 @@
       "icon": "users",
       "submenu": [
         {
-          "url": "contacts/details",
+          "url": "contacts",
           "name": "All",
           "i18n": "All",
           "icon": "bx bx-right-arrow-alt"
@@ -62,6 +105,7 @@
         }
       ]
     },
+
     {
       "url": "#",
       "name": "Leads",
@@ -69,7 +113,7 @@
       "icon": "magnet",
       "submenu": [
         {
-          "url": "leads",
+          "url": "leads/all",
           "name": "All",
           "i18n": "All",
           "icon": "bx bx-right-arrow-alt"
@@ -122,6 +166,228 @@
         }
       ]
     },
+    {
+      "url": "#",
+      "name": "Invoice",
+      "i18n": "Invoice",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "/invoice",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "vouchers/archive",
+          "name": "Archive",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "#",
+      "name": "Receipt",
+      "i18n": "Receipt",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "/receipt",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        
+        {
+          "url": "receipt/details",
+          "name": "Receipt Details",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "refund",
+      "name": "Refund",
+      "i18n": "Refund",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "/refund",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        
+        {
+          "url": "/refund/details",
+          "name": "Refund Details",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "creditnote",
+      "name": "Credit Note",
+      "i18n": "Credit Note",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "/creditnote",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "/creditnote/new",
+          "name": "Create New",
+          "i18n": "Create New",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "debitnote",
+      "name": "Debit Note",
+      "i18n": "Debit Note",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "/debitnote",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "/debitnote/new",
+          "name": "Create New",
+          "i18n": "Create New",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "contra",
+      "name": "Contra",
+      "i18n": "Contra",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "/contra",
+          "name": "All",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "/contra/new",
+          "name": "Create New",
+          "i18n": "Create New",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "communicationlog",
+      "name": "Call Management",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
+    {
+      "url": "taskassign",
+      "name": "Task Assignment",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
+
+    {
+      "url": "aging",
+      "name": "Aging Reminder",
+      "i18n": "Refund",
+      "icon": "envelope-pull"
+    },
+
+    {
+      "url": "ictrequest",
+      "name": "ICT Request",
+      "i18n": "Refund",
+      "icon": "envelope-pull"
+    },
+
+
+    {
+      "url": "#",
+      "name": "Payment Schedule",
+      "i18n": "Receipt",
+      "icon": "envelope-pull",
+      "submenu": [
+        {
+          "url": "installment",
+          "name": "Installment Schedule",
+          "i18n": "All",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "installment/calculator",
+          "name": "Installment Schedule Calculator",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "installment/amfall",
+          "name": "AMF Schedule",
+          "i18n": "Archive",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+
+    {
+      "url": "eventlogs",
+      "name": "Event Logs",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
+    {
+      "url": "report/activitylog",
+      "name": "Reservation Activity Logs",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
+    {
+      "url": "report/stampingfee",
+      "name": "Stamping Fee Listing",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+    
+  {
+      "url": "membershipdeckdispatch/supplier",
+      "name": "Card Printing List",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
+
+    {
+      "url": "approval",
+      "name": "Approval",
+      "i18n": "Event Logs",
+      "icon": "Calendar"
+    },
+
     {
       "navheader": "Apps"
     },

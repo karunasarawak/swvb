@@ -71,7 +71,7 @@
 		&.bg-overlay{
       background: rgba($black,0.50);
     }
-  //text color 
+  //text color
    p,
    .card-text,
    .card-title{
@@ -83,7 +83,8 @@
 	.card-header {
     // card title
 	  .card-title{
-	  	margin-bottom: 0;
+      margin-bottom: 0;
+
     }
     ~.card-content{
       .card-body{
@@ -92,7 +93,7 @@
       }
     }
   }
-  // card action css   
+  // card action css
   .heading-elements,
   .heading-elements-toggle{
     background-color: inherit;

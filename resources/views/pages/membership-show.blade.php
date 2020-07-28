@@ -14,16 +14,31 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                <h4 class="card-title">All Membership</h4>
-                </br>
-                <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary">Easy access to Create membership</a>
+                <div class="card-header bg-swvb-cyan">
+                    <h4 class="card-title text-white">All Membership</h4>
                 </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group pt-1">
+                            <label >Filter</label>
+                            <select name="membershipfilter" class="select2 form-control" required>
+                            <option value="membershipfilter1">Pending</option>
+                            <option value="membershipfilter2">Active</option>
+                            <option value="membershipfilter3">Withdrawal</option>
+                            <option value="membershipfilter4">Suspended</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary ">Easy access to Create membership</a>
+                    </div>
+
+                <br>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
-                        <div class="table-responsive">
-                            <table class="table membership-all">
-                                <thead class="bg-swvb-cyan">
+                        <div class="table table-responsive">
+                            <table class="table tours-all">
+                                <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Membership No.</th>
                                         <th class="text-white">Name</th>
@@ -40,241 +55,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><a href="">2060860000</a></td>
-                                        <td>Mr John Doe</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Pending</td>
 
-                                        <td>
+                                    <!-- @foreach ($membership as $row)
+                                    <tr>
+                                        <td><a href="/contacts/details">{{$row->mbrship_id}}</a></td>
+                                        <td>{{$row->name}}</td>
+                                        <td>{{$row->NRIC}}</td>
+                                        <td>{{$row->mobile_no}}</td>
+                                        <td>{{$row->primary_email}}</td>
+                                        <td>{{$row->application_date}}</td>
+                                        <td>{{$row->agreement_date}}</td>
+                                        <td>{{$row->mbrship_exp}}</td>
+                                        <td>{{$row->package_id}}</td>
+                                        <td>RM10,000</td>
+                                        <td>{{$row->mbrship_exp}}g</td>
+
+                                @endforeach -->
+
+                                        <!-- <td>
                                             <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
+                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
                                             </button>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060870000</a></td>
-                                        <td>Mrs Jane Lee</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-hotel bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060880000 </a></td>
-                                        <td>Mr Adam</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Withdrawal</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060890000</a></td>
-                                        <td>Mrs Catherine</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Suspended</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060900000</a></td>
-                                        <td>Mr John Doe</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Pending</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060910000</a></td>
-                                        <td>Mrs Jane Lee</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Active</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060920000</a></td>
-                                        <td>Mr Adam</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
+                                        </td> -->
 
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Withdrawal</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060930000 </a></td>
-                                        <td>Mrs Catherine</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
+                                    <!-- </tr> -->
 
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Suspended</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060940000</a></td>
-                                        <td>Mr John Doe</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
 
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Pending</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060950000</a></td>
-                                        <td>Mrs Jane Lee</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Active</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060960000</a></td>
-                                        <td>Mr Adam</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Withdrawal</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060970000</a></td>
-                                        <td>Mrs Catherine</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Suspended</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-
-                                    <tr>
-                                    <td><a href="">2060980000</a></td>
-                                        <td>Mr John Doe</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Pending</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="">2060900000</a></td>
-                                        <td>Mrs Jane Lee</td>
-                                        <td>123456-13-1234</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>01 April 2020 </td>
-                                        <td>01 April 2020 </td>
-                                        <td>08 April 2020</td>
-                                        <td>Ruby - premium</td>
-                                        <td>RM10,000</td>
-                                        <td>Active</td>
-                                        <td><button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-hotel bx-md m-0 danger"></i>
-                                            </button></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -303,4 +109,6 @@
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/datatables/datatable.js')}}"></script>
+<script src="{{asset('js/scripts/forms/validation/form-validation.js')}}"></script>
+<script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 @endsection

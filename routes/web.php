@@ -16,29 +16,132 @@ Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
 Route::get('/membership', 'MembershipController@index');
-Route::get('/membership/new', 'MembershipController@createMembership');
+
+Route::get('/membership/{lead_id}/{tour_id}/new', 'MembershipController@createMembership')->name('members.createPage');
+
+Route::post('/membership/new', 'MembershipController@storeMembers')->name('members.store');//name only for posting
+
+
 Route::get('/membership/archive', 'MembershipController@archive');
+Route::get('/membership/{tour_id}/details', 'MembershipController@showMembers');
+Route::get('/membership/details', 'MembershipController@redirect')->name('members.redirect');
+Route::get('/membership/transfer', 'MembershipController@transfer')->name('members.transfer');    
+Route::get('/membership/withdraw', 'MembershipController@withdrawMembership');
+Route::get('/membership/updowngrade', 'MembershipController@updowngrade')->name('members.updowngrade');
+Route::get('/membership/repurchase', 'MembershipController@repurchase');
+Route::get('/membership/pthistory', 'MembershipController@pthistory');
+Route::get('/membership/em', 'MembershipController@entitlementm');
+Route::get('/membership/eh', 'MembershipController@entitlementh');
+Route::get('/membership/advance', 'MembershipController@advanceent');
+Route::get('/membership/offset', 'MembershipController@offset');
 
-Route::get('/contacts/details', 'ContactsController@index');
+Route::get('/contacts', 'ContactsController@index');
+Route::get('/contacts/{lead_id}/details', 'ContactsController@viewDetails')->name('contacts.details');
+Route::patch('/contacts/{lead_id}/details', 'ContactsController@editContact')->name('contacts.edit');
 
-Route::get('/leads', 'LeadsController@index');
-Route::get('/leads/new', 'LeadsController@newLead');
+Route::get('/leads/all', 'LeadsController@index')->name('leads.all');   
+Route::get('/leads/new', 'LeadsController@newLead')->name('leads.new');
 Route::get('/leads/{lead_id}/details', 'LeadsController@viewLead')->name('leads.details');
 Route::get('/leads/archive', 'LeadsController@archive');
-
 Route::post('/leads/new', 'LeadsController@storeLead')->name('leads.store');
-Route::post('/leads/{lead_id}/details', 'LeadsController@addCall')->name('leads.addCall');
+Route::post('/leads/all', 'LeadsController@uploadCSV')->name('leads.csvUpload');
+Route::post('/leads/{lead_id}/details', 'LeadsController@createEvent')->name('leads.createEvent');
 Route::patch('/leads/{lead_id}/details', 'LeadsController@editLead')->name('leads.edit');
-
+Route::patch('/leads/archive', 'LeadsController@archiveLeads')->name('leads.archive');
+Route::post('/leads/details', 'LeadsController@addCall')->name('leads.addCall');
+Route::patch('/leads/details', 'LeadsController@updateCall')->name('leads.updateCall');
 
 Route::get('/tours', 'ToursController@index');
-Route::get('/tours/new', 'ToursController@newTour');
-Route::get('/tours/details', 'ToursController@viewTour');
-Route::get('/tours/attend', 'ToursController@attendTour');
-Route::get('/tours/archive', 'ToursController@archive');
+Route::get('/tours/{lead_id}/new', 'ToursController@newTour')->name('tours.new');
+Route::patch('/tours/{tour_id}/details', 'ToursController@viewDetails')->name('tours.viewDetails');
+Route::get('/tours/{tour_id}/details', 'ToursController@showDetails')->name('tours.showDetails');
+Route::get('/tours/{tour_id}/attend', 'ToursController@attendTour')->name('tours.attendTour');
+Route::patch('/tours','ToursController@editTime')->name('tours.edit');
+Route::patch('/{lead_id}/tours','ToursController@storeTour')->name('tours.store');
+Route::get('/tours/{tour_id}/archive', 'ToursController@archive');
 
 Route::get('/vouchers', 'VouchersController@index');
-Route::get('/vouchers/archive', 'VouchersController@archive');
+Route::patch('/vouchers', 'VouchersController@editVoucher')->name('vouchers.edit');
+Route::patch('/vouchers/{voucher_id}/archive', 'VouchersController@archiveVoucher')->name('vouchers.archive');
+
+Route::get('/invoice', 'InvoicesController@index');
+Route::get('/invoice/new', 'InvoicesController@newInvoice');
+Route::post('/invoice/new', 'InvoicesController@storeInvoice')->name('invoice.store');
+Route::get('/invoice/{inv_id}/details', 'InvoicesController@viewInvoice')->name('invoice.details');
+
+Route::get('/receipt', 'ReceiptController@index');  
+Route::get('/receipt/new', 'ReceiptController@newReceipt');
+Route::get('/receipt/details', 'ReceiptController@Receiptdetails');
+
+Route::get('/refund', 'RefundController@index');  
+Route::get('/refund/new', 'RefundController@newRefund');
+Route::get('/refund/details', 'RefundController@details');
+
+Route::get('/creditnote', 'CreditNotesController@index');
+Route::get('/creditnote/new', 'CreditNotesController@newCreditNote');
+Route::get('/creditnote/search', 'CreditNotesController@search');
+Route::post('/creditnote/new', 'CreditNotesController@storeCreditNote')->name('creditnote.store');
+Route::get('/creditnote/{inv_id}/details', 'CreditNotesController@viewCreditNote')->name('creditnote.details');
+
+Route::get('/installment', 'InstallmentController@index');  
+Route::get('/installment/new', 'InstallmentController@newRefund');
+Route::get('/installment/details', 'InstallmentController@details');
+Route::get('/installment/calculator', 'InstallmentController@calculator');
+Route::get('/installment/amfall', 'InstallmentController@amfall');
+Route::get('/installment/amfdetails', 'InstallmentController@amfdetails');
+
+Route::get('/report/stampingfee', 'ReportController@stampingfee');  
+Route::get('/report/activitylog', 'ReportController@activitylog');
+Route::get('/report/stampingfeedetails', 'ReportController@stampingfeedetails');
+Route::get('/report/calculator', 'ReportController@calculator');
+Route::get('/report/stampingfeedprintdownload', 'ReportController@download');
+
+Route::get('/eventlogs', 'EventLogsController@index');
+Route::get('/eventlogs/details', 'EventLogsController@details');
+
+Route::get('/membershipdeckdispatch/supplier', 'MembershipDeckDispatchController@showsupplier');
+Route::get('/membershipdeckdispatch/supplierdetails', 'MembershipDeckDispatchController@supplierdetails');
+
+Route::get('/reservations', 'ReservationController@index');
+Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');
+Route::get('/reservations/new', 'ReservationController@addnew');
+Route::get('/reservations/fdetails', 'ReservationController@facilitydetails');
+Route::get('/reservations', 'ReservationController@reservationredirect')->name('rsvn.bring');
+
+
+Route::get('/communicationlog', 'CommunicationLogController@index');
+Route::get('/communicationlog/new', 'CommunicationLogController@newLog');
+
+Route::get('/ictrequest', 'IctRequestController@index');
+
+Route::get('/inventory', 'InventoryController@index');
+
+Route::get('/taskassign', 'TaskAssignmentController@index');
+Route::post('/taskassign', 'TaskAssignmentController@uploadcsv')->name('task.upload');
+
+Route::get('/approval', 'ApprovalController@index');
+
+Route::get('/extmembership', 'ExtMembershipController@index');
+Route::get('/extmembership/rcibb', 'ExtMembershipController@rcibball');
+Route::get('/extmembership/new', 'ExtMembershipController@newBatch');
+Route::get('/extmembership/details', 'ExtMembershipController@IIdetails');
+
+Route::get('/extmembership/rcinew', 'ExtMembershipController@rcinew');
+Route::get('/extmembership/rcibbdetails', 'ExtMembershipController@rcibbdetails');
+Route::get('/extmembership/rcienrollment', 'ExtMembershipController@rcienrollment');
+Route::get('/extmembership/rcinewenroll', 'ExtMembershipController@rcinewenroll');
+Route::get('/extmembership/IInewenroll', 'ExtMembershipController@IInewenroll');
+
+Route::get('/aging', 'AgingReminderController@index');
+
+Route::get('/ictrequest', 'UsersRolesController@ictrequest');
+Route::get('/userroles', 'UsersRolesController@userroles');
+Route::get('/roledetails', 'UsersRolesController@roledetails');
+Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');
+Route::get('/admin/approvals', 'UsersRolesController@approvals');
+// Route::get('/countries', 'Countries@list');
+// Route::get('/add-to-logs', 'HomeController@myTestAddToLog');
+// Route::get('/logActivity', 'HomeController@logActivity');
 
 //Application Routes
 Route::get('/app-email','ApplicationController@emailApplication');
@@ -161,4 +264,3 @@ Route::get('/access-control/{roles}', 'AccessController@roles');
 Route::get('/ecommerce', 'AccessController@home')->middleware('role:Admin');
 
 Auth::routes();
-

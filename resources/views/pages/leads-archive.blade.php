@@ -5,8 +5,14 @@
 {{-- vendor style --}}
 @section('vendor-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/ui/prism.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/file-uploaders/dropzone.min.css')}}">
 @endsection
 {{-- page-styles --}}
+
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/file-uploaders/dropzone.css')}}">
+@endsection
 
 @section('content')
 <!-- Zero configuration table -->
@@ -14,8 +20,8 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">All Leads</h4>
+                <div class="card-header bg-swvb-cyan">
+                    <h4 class="card-title text-white">All Leads</h4>
                 </div>
                 <div class="card-content">
                     <div class="px-2">
@@ -24,127 +30,39 @@
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <table class="table leads-all">
-                                <thead class="bg-swvb-cyan">
+                            <table class="table leads-archive">
+                                <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Lead ID</th>
                                         <th class="text-white">Name</th>
                                         <th class="text-white">Creation Date</th>
                                         <th class="text-white">Creation Time</th>
                                         <th class="text-white">Telemarketer</th>
-                                        <th class="text-white">Proceed</th>
                                         <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1000031</td>
-                                        <td>Clementine</td>
-                                        <td>03 June 2019</td>
-                                        <td>03:10 AM</td>
-                                        <td>Phelan Henson</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000032</td>
-                                        <td>Elizabeth</td>
-                                        <td>27 April 2019</td>
-                                        <td>03:05 AM</td>
-                                        <td>Charles Dean</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000033</td>
-                                        <td>Todd</td>
-                                        <td>06 January 2020</td>
-                                        <td>05:19 AM</td>
-                                        <td>Travis Mckinney</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000034</td>
-                                        <td>Iola</td>
-                                        <td>06 November 2019</td>
-                                        <td>08:31 PM</td>
-                                        <td>Jameson Knight</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000035</td>
-                                        <td>Zorita</td>
-                                        <td>11 June 2018</td>
-                                        <td>07:18 PM</td>
-                                        <td>Reed Meyer</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000036</td>
-                                        <td>Denton</td>
-                                        <td>13 March 2020</td>
-                                        <td>09:30 PM</td>
-                                        <td>Joseph Sanford</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000037</td>
-                                        <td>Maris</td>
-                                        <td>21 January 2020</td>
-                                        <td>11:09 AM</td>
-                                        <td>Daniel Matthews</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000038</td>
-                                        <td>Cecilia</td>
-                                        <td>26 November 2019</td>
-                                        <td>03:37 AM</td>
-                                        <td>Tyler Washington</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000039</td>
-                                        <td>Buckminster</td>
-                                        <td>10 March 2020</td>
-                                        <td>05:35 PM</td>
-                                        <td>Salvador Heath</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000040</td>
-                                        <td>Hadley</td>
-                                        <td>28 October 2018</td>
-                                        <td>12:43 PM</td>
-                                        <td>Hamish Klein</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000041</td>
-                                        <td>Malachi</td>
-                                        <td>22 January 2020</td>
-                                        <td>03:29 PM</td>
-                                        <td>Kennan Chase</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000042</td>
-                                        <td>Yael</td>
-                                        <td>04 September 2019</td>
-                                        <td>07:31 PM</td>
-                                        <td>Joel Allen</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @if(isset($payload))
+                                        @foreach ($payload['leads'] as $lead)
+                                        <tr>
+                                            <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
+                                            <td>{{$lead->salutation}} {{$lead->name}}</td>
+                                            <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('d-m-Y')}}</td>
+                                            <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('H:i A')}}</td>
+                                            <td>{{$lead->sales_name}}</td>
+                                            <td>
+                                                <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <button class="btn btn-outline-primary round mb-1 pl-3 pr-3" data-toggle="modal" data-target="#addCall">
+                                                       Restore
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
+
                                 </tbody>
                             </table>
                         </div>
@@ -153,6 +71,35 @@
             </div>
         </div>
     </div>
+    {{-- Modal Start --}}
+
+    {{-- Upload CSV Modal --}}
+        <div class="modal fade" id="csvUpload" tabindex="-1" role="dialog" aria-labelledby="#csvUploadTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-swvb-blue">
+                        <h5 class="modal-title white" id="csvUploadTitle">Upload Leads (CSV){{URL::current()}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="bx bx-x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <form action="{{route('leads.csvUpload')}}" class="dropzone dropzone-area" id="leads-upload" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="dz-message">Click Here or Drop File to Upload</div>
+                            </form>
+                        </div>
+                        <button class="btn btn-outline-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+                        <button type="button" class="btn btn-outline-primary" id="submit-leads-csv" >
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Upload</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{-- Modal End --}}
 </section>
 <!--/ Zero configuration table -->
 @endsection
@@ -169,8 +116,12 @@
 <script src="{{asset('vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
 <script src="{{asset('vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
 <script src="{{asset('vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('vendors/js/extensions/dropzone.min.js')}}"></script>
+<script src="{{asset('vendors/js/ui/prism.min.js')}}"></script>
 @endsection
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/datatables/datatable.js')}}"></script>
+<script src="{{asset('js/scripts/extensions/dropzone.js')}}"></script>
+{{-- <script src="{{asset('assets/js/uploads.js')}}"></script> --}}
 @endsection

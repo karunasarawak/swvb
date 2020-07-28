@@ -17,9 +17,11 @@ $(".wizard-horizontal").steps({
   labels: {
     finish: 'Submit'
   },
-  onFinished: function (event, currentIndex) {
-    alert("Form submitted.");
-  }
+  //onFinished: function (event, currentIndex) {
+    // alert("Form submitted.");
+    //return redirect(route('pages.membership-create'));
+    //return view('pages.membership-create');
+  //}
 });
 //        vertical Wizard       //
 // ------------------------------
@@ -50,7 +52,7 @@ stepsValidation.steps({
   transitionEffect: "fade",
   titleTemplate: '<span class="step">#index#</span> #title#',
   labels: {
-    finish: 'Submit'
+    finish: 'Save'
   },
   onStepChanging: function (event, currentIndex, newIndex) {
     // Allways allow previous action even if the current form is not valid!
@@ -65,7 +67,8 @@ stepsValidation.steps({
     return form.valid();
   },
   onFinished: function (event, currentIndex) {
-    alert("Submitted!");
+    form.submit();
+    $("#toursattend").submit();
   }
 });
 
@@ -120,10 +123,10 @@ $(".actions [href='#previous']").click(function () {
 });
 // if click on  submit   button icon change
 $(".actions [href='#finish']").click(function () {
-  $(".done").find(".step-icon").removeClass("bx-time-five").addClass("bx bx-check-circle");
-  $(".last.current.done").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
-    strokeColor: '#39DA8A'
-  });
+  
+
+    $("#steps-uid-0").submit();
+
 });
 // add primary btn class
 $('.actions a[role="menuitem"]').addClass("btn btn-primary");

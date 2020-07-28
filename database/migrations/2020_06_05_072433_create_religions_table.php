@@ -18,6 +18,19 @@ class CreateReligionsTable extends Migration
             $table->string('religion', 50);
             $table->timestamps();
         });
+        
+
+        DB::table('religions')->insert(
+            array(
+                ['religion' => 'Islam'],
+                ['religion' => 'Christian'],
+                ['religion' => 'Hindu'],
+                ['religion' => 'Buddha'],
+                ['religion' => 'Catholic'],
+                ['religion' => 'Others']
+            )
+        );
+
     }
 
     /**

@@ -14,33 +14,47 @@ class CreateMembershipsTable extends Migration
     public function up()
     {
         Schema::create('memberships', function (Blueprint $table) {
-            $table->id('contract_id')->length(11);
-            $table->integer('mbrship_no')->length(11);
-            $table->integer('lead_id')->length(11);
-            $table->integer('tour_id')->length(11);
-            $table->integer('package_id')->length(11);
-            $table->integer('cc_id_amf')->length(11)->nullable();
-            $table->integer('cc_id_installment')->length(11)->nullable();
-            $table->integer('application_no')->length(11);
-            $table->date('application_date');
-            $table->integer('agreement_no')->length(11);
-            $table->date('agreement_date');
-            $table->integer('maturity')->length(2);
-            $table->integer('installment_duration')->length(2);
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->decimal('package_price', 8, 2);
-            $table->decimal('addition', 8, 2)->nullable();
-            $table->decimal('discount', 8, 2)->nullable();
-            $table->integer('declaration_no')->length(11);
-            $table->integer('mro')->length(11);
-            $table->integer('cco')->length(11);
-            $table->tinyInteger('have_mbrcard')->length(1)->nullable();
-            $table->tinyInteger('auto_accrue_amf')->length(1)->nullable();
-            $table->tinyInteger('auto_accrue_installment')->length(1)->nullable();
+            $table->id('mbrship_id');
+            $table->integer('mbrship_no')->length(11)->nullable();
 
-            $table->timestamp('contract_created_at')->nullable();
-            $table->timestamp('contract_updated_at')->nullable();
+            $table->foreignId('lead_id1')->length(11)->nullable();
+            $table->foreign('lead_id1')->references('lead_id')->on('leads');
+            $table->integer('lead_id2')->nullable();
+
+            $table->string('lang', 20)->nullable();
+            $table->string('relationship', 20)->nullable();
+
+            $table->integer('pri_addr_id')->length(11)->nullable();
+            $table->integer('alt_addr_id')->length(11)->nullable();
+
+            $table->string('remarks', 255)->nullable();
+
+            $table->tinyInteger('contract_type')->nullable();
+            $table->integer('comp_id')->length(11)->nullable();
+
+            $table->integer('application_no')->length(11)->nullable();
+            $table->date('application_date')->nullable();
+            $table->integer('agreement_no')->length(11)->nullable();
+            $table->date('agreement_date')->nullable();
+            
+            $table->integer('package_id')->length(11)->nullable();
+
+            $table->integer('install_schedule_id')->length(11)->nullable();
+
+            $table->integer('overpayment')->length(11)->nullable();
+            
+            $table->integer('cc_id_amf')->length(11)->nullable();
+            $table->integer('cc_id_install')->length(11)->nullable();
+            
+            $table->integer('declaration_no')->length(11)->nullable();
+            $table->string('mro', 8)->nullable();
+            $table->string('cco', 8)->nullable();
+            
+            $table->tinyInteger('install_auto')->length(1)->nullable();
+            $table->tinyInteger('amf_auto')->length(1)->nullable();
+            $table->string('mbrship_status', 255)->default('pending');
+
+            $table->timestamps();
         });
     }
 

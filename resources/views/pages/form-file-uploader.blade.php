@@ -52,7 +52,7 @@
               <code>maxfilesexceeded</code> will be called, with the exceeding file in the first parameter. Now only 1
               file can be selected and it will be replaced with another one instead of adding it to the preview.</p>
             <form action="#" class="dropzone dropzone-area" id="dpz-single-file">
-              <div class="dz-message">Drop Files Here To Upload</div>
+              <div class="dz-message">Click Here or Drop File to Upload</div>
             </form>
           </div>
         </div>
