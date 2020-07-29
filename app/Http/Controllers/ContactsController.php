@@ -75,6 +75,7 @@ class ContactsController extends Controller
     $memberships = DB::table('memberships')
     ->where('lead_id1', $id)
     ->join('packages','packages.package_id','memberships.package_id')
+    ->select('memberships.mbrship_no','memberships.agreement_date','packages.package_name','memberships.mbrship_status')
     ->get();
     // $membership = Membership::where('lead_id', $id)->get();
     
@@ -97,7 +98,7 @@ class ContactsController extends Controller
       //   ['leads_id', '=' ,$id], ['is_primary', '=', 1]
       //   ])->get();
 
-      
+      // dd($leads);
         
     $altAddress = DB::table('addresses')
       ->join('cities', 'cities.city_id','addresses.city_id')
@@ -145,6 +146,7 @@ class ContactsController extends Controller
                 'country'=>$country,
                 ];
    
+                // dd($payload);
     return view('pages.contacts',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
@@ -197,7 +199,7 @@ class ContactsController extends Controller
 
    
    
-    return redirect('/contacts/'.$id.'/details');
+    return redirect('/contacts/{lead_id}/details');
   }
 
   public function archive(){

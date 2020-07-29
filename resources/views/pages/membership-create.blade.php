@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Membership')
+@section('title','Membership Details')
 
 {{-- page style --}}
 @section('page-styles')
@@ -92,8 +92,6 @@
             'sec_addr1','sec_alt_addr1','sec_addr2','sec_alt_addr2','sec_code','sec_city','sec_alt_code',
             'sec_alt_city','sec_state','sec_alt_state','sec_country','sec_alt_country','sec_remarks'];
             
-
-
   function switchInfo()
   {
     for(var i = 0; i < 100; i++)

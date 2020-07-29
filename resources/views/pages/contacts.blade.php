@@ -405,20 +405,22 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                        @if(isset($payload))   
-                                            @foreach($payload['memberships'] as $contacts)    
-                                                    
+                                                 
+                                                     
+                                    
                                                 <tr>
-                                                    <td>{{$contacts->mbrship_no}}</td>
-                                                    <td>{{$contacts->agreement_date}}</td>
-                                                    <td>{{$contacts->package_name}}</td>
-                                                    <td>{{$contacts->mbrship_status}}</td>
                                                     
+                                                    <!-- <td>{{$contacts->salutation['salutation']}}</td>
+                                                    <td>{{$contacts -> name}}</td>
+                                                    <td>{{$contacts -> genders['gender_name']}}</td>
+                                                    <td>{{$contacts -> home_no}}</td> -->
+                                                    <td>{{$payload['$membership'] -> mbrship_no}}</td>
+                                                    <td>{{$payload['$membership'] -> agreement_date}}</td>
+                                                    <td>{{$payload['$membership'] -> package_name}}</td>
+                                                    <td>{{$payload['$membership'] -> mbrship_status}}</td>
                                                 </tr>
-                                                    
-                                            @endforeach
-                                        @endif  
-                                            
+                                                     
+                                                
                                             </tbody>
                                         </table>
                                     </div>   

@@ -15,7 +15,6 @@ class CreateMemberCompanyAddressesTable extends Migration
     {
         Schema::create('member_companies', function (Blueprint $table) {
             $table->id('comp_id');
-            $table->integer('mbrship_id')->nullable();
             $table->string('comp_name')->nullable();
             $table->string('comp_nob', 10)->nullable();
             $table->string('comp_no',10)->nullable();

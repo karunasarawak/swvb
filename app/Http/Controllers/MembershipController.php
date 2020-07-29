@@ -173,10 +173,10 @@ class MembershipController extends Controller
     $pri_addr_id2 = DB::getPDO()->lastInsertId();
 
     //Coporate Info
-    if($request->contract_type == 1)
+    if($request->contract_type == 2)
     {
       $company = DB::table('member_companies')->insert([
-          'nob'=>$request->company_nob,
+          'comp_nob'=>$request->company_nob,
           'comp_name'=>$request->company_name,
           'comp_no'=>$request->company_no,
           'comp_addr1'=>$request->company_addr1,
