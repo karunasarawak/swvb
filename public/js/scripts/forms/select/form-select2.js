@@ -38,7 +38,6 @@
       return $icon;
   }
 
-
   // Limiting the number of selections
   $(".max-length").select2({
     dropdownAutoWidth: true,

@@ -27,7 +27,7 @@
       "url": "reservations",
       "name": "Reservation",
       "i18n": "Event Logs",
-      "icon": "Calendar"
+      "icon": "bx-book-open"
     },
 
     {
@@ -55,14 +55,14 @@
       "url": "inventory",
       "name": "Inventory",
       "i18n": "Event Logs",
-      "icon": "Calendar"
+      "icon": "box"
     },
 
     {
       "url": "extmembership",
       "name": "Ext Membership",
       "i18n": "Contacts",
-      "icon": "users",
+      "icon": "phone",
       "submenu": [
         {
           "url": "extmembership",
@@ -110,7 +110,7 @@
       "url": "#",
       "name": "Leads",
       "i18n": "Leads",
-      "icon": "magnet",
+      "icon": "briefcase",
       "submenu": [
         {
           "url": "leads/all",
@@ -150,7 +150,7 @@
       "url": "#",
       "name": "Vouchers",
       "i18n": "Vouchers",
-      "icon": "envelope-pull",
+      "icon": "gift",
       "submenu": [
         {
           "url": "vouchers",
@@ -235,7 +235,7 @@
       "url": "creditnote",
       "name": "Credit Note",
       "i18n": "Credit Note",
-      "icon": "envelope-pull",
+      "icon": "credit-card-out",
       "submenu": [
         {
           "url": "/creditnote",
@@ -256,7 +256,7 @@
       "url": "debitnote",
       "name": "Debit Note",
       "i18n": "Debit Note",
-      "icon": "envelope-pull",
+      "icon": "credit-card-in",
       "submenu": [
         {
           "url": "/debitnote",
@@ -313,7 +313,7 @@
       "url": "aging",
       "name": "Aging Reminder",
       "i18n": "Refund",
-      "icon": "envelope-pull"
+      "icon": "alarm"
     },
 
     {
@@ -328,7 +328,7 @@
       "url": "#",
       "name": "Payment Schedule",
       "i18n": "Receipt",
-      "icon": "envelope-pull",
+      "icon": "calculator",
       "submenu": [
         {
           "url": "installment",

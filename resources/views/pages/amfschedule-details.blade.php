@@ -55,8 +55,6 @@
                                         <input  type="text" name="salutation" class="form-control" placeholder="Name" data-validation-required-message="Please write the company name"  required>
                                     </p>
                                 </div>
-                                
-
                             </div>
                             <div class="col">
                                 <div class="row">
@@ -74,20 +72,12 @@
                                     </p>
                                 </div>
                                 <div class="row">
-                                    <p class="col">Down Payment 1</p>
-                                    <p class="col font-weight-bold black" x-show="original">36 Month</p>
-                                    <p class="col" x-cloak x-show="edit">
-                                        <input  type="text" name="salutation" class="form-control" placeholder="salutation" data-validation-required-message="Please write the company name"  required>
-                                    </p>
-                                </div>
-                                <div class="row">
                                     <p class="col">AMF Price</p>
                                     <p class="col font-weight-bold black" x-show="original">RM 200</p>
                                     <p class="col" x-cloak x-show="edit">
                                         <input  type="text" name="salutation" class="form-control" placeholder="AMF Price" data-validation-required-message="Please write the company name"  required>
                                     </p>
                                 </div>
-                                
                             </div>
                             
                         </div>

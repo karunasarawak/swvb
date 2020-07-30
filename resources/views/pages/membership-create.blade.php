@@ -91,7 +91,9 @@
             'sec_occup','sec_company','sec_mobile','sec_whatsapp','sec_home','sec_office','sec_pemail','sec_aemail',
             'sec_addr1','sec_alt_addr1','sec_addr2','sec_alt_addr2','sec_code','sec_city','sec_alt_code',
             'sec_alt_city','sec_state','sec_alt_state','sec_country','sec_alt_country','sec_remarks'];
-            
+  
+  var leads = {!! json_encode($payload['lead2']->name) !!};
+
   function switchInfo()
   {
     for(var i = 0; i < 100; i++)
@@ -111,6 +113,11 @@
     en.innerHTML = sample.className;
 
     alert(sample.className);
+  }
+
+  function showExists()
+  {
+    
   }
 
 </script>

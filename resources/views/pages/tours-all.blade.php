@@ -86,21 +86,34 @@
                                                                 </form>
                                                             </td>
                                                             <td>
+                                                                <div class="dropdown">
+                                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                                    </span>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#inlineForm"  
+                                                                        onclick="tokenModal({{$tours->tour_id}},'{{$tours->tour_date}}', '{{$tours->tour_initial_time}}','{{$tours->sales_venue_id}}')">
+                                                                            <a class="dropdown-item"><i class="bx bx-edit-alt mr-1"></i> Edit</a>
+                                                                        </button>
+                                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
+                                                                            <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> Archive</a>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
 
-                                                            <!-- DELETE THIS -->
-                                                                <div class="row">
+                                                                <!-- <div class="row">
                                                                     <button class="btn btn-outline-primary round mr-1 mb-1 " data-toggle="modal" data-target="#inlineForm" 
                                                                     onclick="tokenModal({{$tours->tour_id}},'{{$tours->tour_date}}', '{{$tours->tour_initial_time}}','{{$tours->sales_venue_id}}')">Edit</button>
                                                                 </div>
                                                                 <div class="row">
-                                                                <button class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#addCall">Archive</button>
-                                                            </div>
+                                                                    <button class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#addCall">Archive</button>
+                                                                </div>
                                                                 <div class="dropdown">
                                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                                     data-toggle="dropdown" aria-haspopup="f" aria-expanded="false" role="menu">
                                                                     </span>
                                                                    
-                                                                </div>
+                                                                </div> -->
                                                             </td>
                                                         <!-- Attend the Tour -->
                                                         @elseif($tours->tour_attend == 1)

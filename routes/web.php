@@ -134,7 +134,7 @@ Route::get('/extmembership/IInewenroll', 'ExtMembershipController@IInewenroll');
 
 Route::get('/aging', 'AgingReminderController@index');
 
-Route::get('/ictrequest', 'UsersRolesController@ictrequest');
+Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest');
 Route::get('/userroles', 'UsersRolesController@userroles');
 Route::get('/roledetails', 'UsersRolesController@roledetails');
 Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');

@@ -11,11 +11,11 @@
       <div class="form-group controls">
         <div class="custom-control-inline">
           <div class="radio mr-1">
-            <input type="radio" name="lead_status" value="1" id="celead"  @click="edit=true, original=true" required selected>
+            <input type="radio" name="lead_status" value="1" id="celead"  onclick="showExists()" click="edit=true, original=true" required selected>
             <label for="celead">Existing Lead</label>
           </div>
           <div class="radio">
-            <input type="radio" name="lead_status" value="2" id="cnlead"  @click="edit=false, original=false">
+            <input type="radio" name="lead_status" value="2" id="cnlead" onclick="" @click="edit=false, original=false">
             <label for="cnlead">New Lead</label>
           </div>
         </div>

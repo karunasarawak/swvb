@@ -67,7 +67,8 @@ class ContactsController extends Controller
     ->select('leads.lead_id','salutations.salutation','leads.name','gender.gender_name','leads.nric',
     'leads.dob','maritial_status.maritial_name','race.race_name','religions.religion',
     'nationalities.nation','leads.occupation','leads.company','leads.home_no',
-    'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email', )
+    'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email','salutations.salutation_id', 
+    'leads.prefer_lang')
     ->first();  
 
     // $leads = Leads::where('lead_id', $id)->get();
@@ -91,7 +92,8 @@ class ContactsController extends Controller
         ['leads_id', '=', $id], ['is_primary', '=', '1']
         ])
       // ->where('is_primary', 1)
-      ->select('cities.city_name', 'countries.country_name','addresses.addr_1', 'addresses.addr_2', 'addresses.postcode', 'addresses.state_id', 'states.state_name')
+      ->select('cities.city_name', 'addresses.city_id', 'addresses.country_id','countries.country_name','addresses.addr_1', 
+      'addresses.addr_2', 'addresses.postcode', 'addresses.state_id', 'states.state_name')
       ->get();
       
       // $primaryAddress = Addresses::where([ 
@@ -105,11 +107,12 @@ class ContactsController extends Controller
       ->join('countries', 'countries.id','addresses.country_id')
       ->join('states', 'states.id','addresses.state_id')
       ->where([['leads_id', '=', $id], ['is_primary', '=', '0']])
-      ->select('cities.city_name', 'countries.country_name','addresses.addr_1', 'addresses.addr_2', 'addresses.postcode', 'addresses.state_id','states.state_name')
+      ->select('cities.city_name', 'addresses.city_id','addresses.country_id','countries.country_name','addresses.addr_1', 
+      'addresses.addr_2', 'addresses.postcode', 'addresses.state_id','states.state_name')
       ->get();
         
       
-      // dd($memberships);
+      
     
 //for dropdown select and display all exisitin data from databases
     $salutation = Salutation::all();
@@ -146,7 +149,7 @@ class ContactsController extends Controller
                 'country'=>$country,
                 ];
    
-                // dd($payload);
+                // dd($state);
     return view('pages.contacts',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
@@ -154,7 +157,7 @@ class ContactsController extends Controller
   
   public function editContact(Request $request, $id)
   {
-    
+ 
     Leads::where('lead_id', $id)->update([
         'salutation_id' =>$request->salutation,
         'Name' =>$request->name,
@@ -172,7 +175,7 @@ class ContactsController extends Controller
         'ethnicity_id' =>$request->race_name,
         'religion_id' =>$request->religion,
         'nationality' =>$request->nationalities,
-        
+        'prefer_lang' =>$request->preferlang
       //   'nationalities' =>$request->nationality,
       //   'religion' =>$request->religion,
       //   'addr_1' =>$request->addr_1,
@@ -197,19 +200,9 @@ class ContactsController extends Controller
       'country_id' =>$request->country,
     ]);
 
-   
-   
-    return redirect('/contacts/{lead_id}/details');
+    
+    return redirect('contacts/'.$id.'/details');
   }
 
-  public function archive(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tours Archive"]
-    ];
-
-    return view('pages.tours-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
+ 
 }

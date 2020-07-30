@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ICTRequestAdmin;
+use DB;
+
+
 
 class UsersRolesController extends Controller
 {
@@ -11,13 +15,24 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Receipt"],["name" => "All"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "All"]
         ];
     
+        // $ict = DB::table('ict_requests')
+        //   ->join('')
+        // ;
+
+        
+
+
+        // dd($ict);
+
+        // $payload = ['ict'=>$ict];
     
-    
-        return view('pages.ictrequest', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs,]);
+        return view('pages.ictrequest', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
       }
+
+      
     
       public function userroles(){
     

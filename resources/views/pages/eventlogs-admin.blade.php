@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Users & Roles')
+@section('title','Event Logs')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -11,30 +11,26 @@
 @section('content')
 <!-- Zero configuration table -->
 <section>
-<div class="row">
+    <div class="row">
         <div class="col-12">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header bg-swvb-cyan">
-                            <div class="row">
-                                <h4 class="card-title text-white ml-2">Basic Permissions</h4>
-                            </div>    
-                        </div>
-                        <div class="card-content">
-                            
-                            <div class="card-body card-dashboard">
+            <div class="card">
+                <div class="card-header bg-swvb-cyan">
+                    <div class="row">
+                        <h4 class="card-title text-white ml-2">Event Log</h4>
+                    </div>  
+                </div>
+                <div class="card-content">
+                   
+                    <div class="card-body card-dashboard">
                                 <div class="table-responsive">
 
                                     <table class="table tours-all">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white">Module</th>
-                                                <th class="text-white">N/A</th>
-                                                <th class="text-white">C</th>
-                                                <th class="text-white">V</th>
-                                                <th class="text-white">E</th>
-                                                <th class="text-white">EA</th>
+                                                <th class="text-white">Facility</th>
+                                                <th class="text-white">Required field</th>
+                                                <th class="text-white">Status</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -433,42 +429,11 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header bg-swvb-cyan">
-                    <div class="row">
-                        <h4 class="card-title text-white ml-2">Activity Logs</h4>
-                    </div>    
-                </div>
-                <div class="card-content">
-                    
-                    <div class="card-body card-dashboard">
-                        <div class="row pt-3">
-
-                                <div class="col radio">
-                                    <input type="radio" name="activitylogall" id="qt" value="1" checked="" required>
-                                    <label for="qt">All</label>
-                                </div>
-                            
-                                <div class="col radio">
-                                    <input type="radio" name="activitylogallown" id="nq"  value="2" checked="">
-                                    <label for="nq">Own Department</label>
-                                </div>
-                            
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </section>
-
-
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

@@ -50,7 +50,7 @@
             @if($payload['lead']->salutation_id == $salute->salutation_id)
               <option value="{{$salute->salutation_id}}" selected>{{$salute->salutation}}</option>
             @else
-            <option value="{{$salute->salutation_id}}"{{$salute->salutation}}</option>
+            <option value="{{$salute->salutation_id}}">{{$salute->salutation}}</option>
             @endif
           @endforeach
         </select>

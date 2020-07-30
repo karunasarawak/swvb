@@ -83,6 +83,7 @@ class MembershipController extends Controller
     else
     {
       $lead2 = DB::table('leads')->where('lead_id', $lead_id2)->get();
+      // dd($lead2);
     }
     
     // dd($lead2[0]);

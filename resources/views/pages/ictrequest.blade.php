@@ -37,239 +37,44 @@
                                         <th class="text-white">Resolved By</th>
                                         
                                         
-                                        <th class="text-white">ICT Remarks</th>
+                                        
                                         <th class="text-white">Status</th>
-                                        <th class="text-white">Attachment</th>
+                                        
                                         <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @if(isset($payload))
+                                        @foreach($payload['ict'] as $ict)     
+                                    <tr>
+                                        <td>{{$ict->ict_req_id}}</td>
+                                        <td>Hardcoded?</td>
+                                        <td></td>
+                                        <td>{{$ict->requested_by}}</td>
+                                        <td>{{$ict->ict_req_created_at}}</td>
+                                        <td>{{$ict->verified_by}}</td>
+                                        <td>{{$ict->approval_1_by}}</td>
+                                        <td>{{$ict->resolved_by}}</td>
+                                        <td>{{$ict->ict_req_status}}</td>
+                                        
+                                        
+                                        <td><div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    @endforeach
+                                @endif
                                     
-                                    <tr>
-                                        <td>1000034</td>
-                                        <td>1000034</td>
-                                        <td>Iola</td>
-                                        <td>Iola</td>
-                                        <td>06 November 2019</td>
-                                        <td>Attach01.jpg</td>
-                                        <td>Jameson Knight</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td><a data-toggle="modal" data-target="#attachment">attachment</a></td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000035</td>
-                                        <td>1000035</td>
-                                        <td>Zorita</td>
-                                        <td>Zorita</td>
-                                        <td>11 June 2018</td>
-                                        <td>07:18 PM</td>
-                                        <td>Reed Meyer</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000036</td>
-                                        <td>1000036</td>
-                                        <td>Denton</td>
-                                        <td>Denton</td>
-                                        <td>13 March 2020</td>
-                                        <td>09:30 PM</td>
-                                        <td>Joseph Sanford</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000037</td>
-                                        <td>1000037</td>
-                                        <td>Maris</td>
-                                        <td>Maris</td>
-                                        <td>21 January 2020</td>
-                                        <td>11:09 AM</td>
-                                        <td>Daniel Matthews</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000038</td>
-                                        <td>1000038</td>
-                                        <td>Cecilia</td>
-                                        <td>Cecilia</td>
-                                        <td>26 November 2019</td>
-                                        <td>03:37 AM</td>
-                                        <td>Tyler Washington</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000039</td>
-                                        <td>1000039</td>
-                                        <td>Buckminster</td>
-                                        <td>Buckminster</td>
-                                        <td>10 March 2020</td>
-                                        <td>05:35 PM</td>
-                                        <td>Salvador Heath</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000040</td>
-                                        <td>1000040</td>
-                                        <td>Hadley</td>
-                                        <td>Hadley</td>
-                                        <td>28 October 2018</td>
-                                        <td>12:43 PM</td>
-                                        <td>Hamish Klein</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000041</td>
-                                        <td>1000041</td>
-                                        <td>Malachi</td>
-                                        <td>Malachi</td>
-                                        <td>22 January 2020</td>
-                                        <td>03:29 PM</td>
-                                        <td>Kennan Chase</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000042</td>
-                                        <td>1000042</td>
-                                        <td>Yael</td>
-                                        <td>Yael</td>
-                                        <td>04 September 2019</td>
-                                        <td>07:31 PM</td>
-                                        <td>Joel Allen</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td><button class="bg-transparent border-0" data-toggle="modal" data-target="#exampleModalLong">Attachment 1</button></td>
-                                        <td><div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

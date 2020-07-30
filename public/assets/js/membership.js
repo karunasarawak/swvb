@@ -11,7 +11,7 @@ function showContact2(){
   }
 }
 
-function hideContact2(){
+function deleteContact2(){
   document.getElementById("btn_add1").style.display="block";
   document.getElementById("contact2").style.display="none";
   document.getElementById("btn_delete1").style.display="none";

@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Tax & Interests')
+@section('title','Accommodations')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -10,48 +10,84 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section>
-<div class="row">
+<section id="form-repeater-wrapper">
+    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">taxes</h4>
+                        <h4 class="card-title text-white ml-2">Unit Type Details<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
                     </div>    
                 </div>
                 <div class="card-content">
                     
                     <div class="card-body card-dashboard">
-                        <div class="row pt-1 pl-2" >
-                            <div class="col">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Table(Tax)<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></p>
+                        <div class="row pt-3 pl-2">
+                            <div class="col-sm-4">
+                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Room Informations</p>
+                            </div>
+                            <div class="col-sm-4">
+                                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Bed Types</p>
                             </div>
                         </div>
                         <div class="row pl-2">
                             <div class="col">
-                                <ul class="list-unstyled">
-                                    <li>Tax</li>
-                                    <li>Tax Code</li>
-                                    <li>Percentage</li>
-                                </ul>
+                                <div class="row">
+                                    <p class="col">Room Type</p>
+                                    <p class="col font-weight-bold black">234560000</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Min Pax</p>
+                                    <p class="col font-weight-bold black">John Doe</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Max Pax</p>
+                                    <p class="col font-weight-bold black">Kuching Branch</p>
+                                </div>
+                               
+                                <div class="row">
+                                    <p class="col">Status</p>
+                                    <p class="col font-weight-bold black">123412341234</p>
+                                </div>
                             </div>
-                            <button class="btn btn-outline-primary round mr-1 ml-1" data-toggle="modal" data-target="#addroles"><i class="bx bx-pen">Edit</i></button>
+                            <div class="col">
+                                <div class="row">
+                                    <form class="form repeater-default">
+                                        <div data-repeater-list="group-a">
+                                            <div data-repeater-item>
+                                                <div class="row justify-content-between">
+                                                    <div class="col-md-2 col-sm-12 form-group">
+                                                        <label for="Email">Bed Type </label>
+                                                        <input type="text" class="form-control" id="Email" placeholder="Enter email id">
+                                                    </div>
+                                                    
+                                                    <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                    <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                        class="bx bx-x"></i>
+                                                        Delete
+                                                    </button>
+                                                    </div>
+                                                </div>
+                                            <hr>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col p-0">
+                                            <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                                Add
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
                 </div>
             </div>
-           
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="col card-title text-white ml-2">Interests<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
-                        <button class="col btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-pen">Edit</i></button>
+                        <h4 class="card-title text-white ml-2">Unit Type Price<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
                     </div>    
                 </div>
                 <div class="card-content">
@@ -62,10 +98,13 @@
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white">Installment Duration</th>
-                                        
-                                        <th class="text-white">Interest Rate(%)</th>
-                                        
+                                        <th class="text-white">Start Date</th>
+                                        <th class="text-white">End Date</th>
+                                        <th class="text-white">Season</th>
+                                        <th class="text-white">Payable Unit</th>
+                                        <th class="text-white">Amount Payable WE</th>
+                                        <th class="text-white">Amount Payable WD</th>
+                                        <th class="text-white">Reservation Type</th>
                                         
                                     </tr>
                                 </thead>
@@ -233,7 +272,7 @@
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPDATE</a>
                                                     </button>
                                                 </div>
-                                            </div>
+                                            </div></td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -330,6 +369,41 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-swvb-cyan">
+                    <div class="row">
+                        <h4 class="card-title text-white ml-2">New Pricing<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
+                    </div>    
+                </div>
+                <div class="card-content">
+                    
+                    <div class="card-body card-dashboard">
+                        <div class="row pt-3 pl-2">
+                            <div class="col-sm-4">
+                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Season</p>
+                            </div>
+                            
+                        </div>
+                        <div class="row pl-2">
+                            <div class="col">
+                                <div class="row">
+                                    <p class="col">Amount Payable WD</p>
+                                    <p class="col font-weight-bold black">234560000</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Amount Payable WE</p>
+                                    <p class="col font-weight-bold black">John Doe</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Reservation Type</p>
+                                    <p class="col font-weight-bold black">Kuching Branch</p>
+                                </div>
+                               
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -342,7 +416,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-blue">
-                <h4 class="modal-title text-white" id="myModalLabel33">New Taxes</h4>
+                <h4 class="modal-title text-white" id="myModalLabel33">New Users</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>
@@ -351,12 +425,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="controls">
-                            <label >Tax</label>
+                            <label > Name</label>
                             <input  type="text" name="company_name" class="form-control" placeholder="--" data-validation-required-message="Please write the company name"  required>
                         </div>
                     </div>
                                 
-                    <label>Tax Code</label>
+                    <label>Role</label>
                     <div class="form-group">
                         <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
                             <option value="" disabled>Add Role</option>
@@ -373,7 +447,7 @@
                     </div>
                     <div class="form-group">
                         <div class="controls">
-                            <label > Percentage</label>
+                            <label > Email</label>
                             <input  type="text" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
                         </div>
                     </div>
@@ -399,7 +473,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-blue">
-                <h4 class="modal-title text-white" id="myModalLabel33">New Interests</h4>
+                <h4 class="modal-title text-white" id="myModalLabel33">New Roles</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>
@@ -408,7 +482,7 @@
                 <div class="modal-body">
                     
                                 
-                    <label>Installment Duration</label>
+                    <label>Role</label>
                     <div class="form-group">
                         <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
                             <option value="" disabled>Add Role</option>
@@ -425,8 +499,8 @@
                     </div>
                     <div class="form-group">
                         <div class="controls">
-                            <label > Interest Rate(%)</label>
-                            <input  type="number" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                            <label > Code</label>
+                            <input  type="text" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
                         </div>
                     </div>
 
