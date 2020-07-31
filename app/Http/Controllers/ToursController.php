@@ -147,7 +147,7 @@ class ToursController extends Controller
       $pageConfigs = ['pageHeader' => true];
 
       $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Schedule Tour"]
+        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Details"]
       ];
 
       $telem = Leads::where('lead_id', $request->leadid)->pluck('telemarketer_id');
@@ -305,7 +305,9 @@ class ToursController extends Controller
   {
     $pageConfigs = ['pageHeader' => true];
 
-    $breadcrumbs = [["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Details Preview"]];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Details Preview"]
+      ];
 
     $details = DB::table('tours')
             ->join('leads','leads.lead_id','tours.lead_id1')

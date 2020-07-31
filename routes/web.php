@@ -29,6 +29,7 @@ Route::get('/membership/transfer', 'MembershipController@transfer')->name('membe
 Route::get('/membership/withdraw', 'MembershipController@withdrawMembership');
 Route::get('/membership/updowngrade', 'MembershipController@updowngrade')->name('members.updowngrade');
 Route::get('/membership/repurchase', 'MembershipController@repurchase');
+Route::get('/membership/reinstate', 'MembershipController@reinstate');
 Route::get('/membership/pthistory', 'MembershipController@pthistory');
 Route::get('/membership/em', 'MembershipController@entitlementm');
 Route::get('/membership/eh', 'MembershipController@entitlementh');
@@ -135,6 +136,11 @@ Route::get('/extmembership/IInewenroll', 'ExtMembershipController@IInewenroll');
 Route::get('/aging', 'AgingReminderController@index');
 
 Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest');
+Route::get('/admin/{ict_id}/{ict_status}/ictrequest', 'UsersRolesController@changestatus')->name('ict.status');
+Route::get('/admin/newictrequestpoint', 'UsersRolesController@newictrequestpoint');
+Route::get('/admin/newictrequestacc', 'UsersRolesController@newictrequestacc');
+Route::get('/admin/ictaccdetails', 'UsersRolesController@ictrequestaccdetails');
+Route::get('/admin/ictptdetails', 'UsersRolesController@ictrequestptdetails');
 Route::get('/userroles', 'UsersRolesController@userroles');
 Route::get('/roledetails', 'UsersRolesController@roledetails');
 Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');

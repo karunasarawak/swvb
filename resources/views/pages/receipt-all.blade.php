@@ -14,647 +14,73 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header bg-swvb-cyan">
-                     <a href="{{ url('/receipt/new') }}" class="btn btn-outline-white round mr-1 mb-1 text-white">New</a>
-                        <a href="" class="btn btn-outline-white round mr-1 mb-1 text-white">Export Pre-payment</a> 
-                </div>
                 <div class="card-content">
-                    <!-- Nav Filled Starts -->
-                    <section id="nav-filled">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="card-body">
-                                            
-                                            <!-- Nav tabs -->
-                                            <ul class="nav nav-tabs " id="myTab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="all-tab-fill" data-toggle="tab" href="#all-fill" role="tab"
-                                                    aria-controls="all-fill" aria-selected="true">
-                                                    All
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="request-tab-fill" data-toggle="tab" href="#request-fill" role="tab"
-                                                    aria-controls="request-fill" aria-selected="false">
-                                                    Request
-                                                    </a>
-                                                </li>
-                                               
-                                            
-                                            </ul>
-
-                                            <!-- Tab panes -->
-                                            <div class="tab-content pt-1">
-                                                <div class="tab-pane active" id="all-fill" role="tabpanel" aria-labelledby="all-tab-fill">
-                                                    
-                                                    <div class="card-body card-dashboard">
-                                                        <div class="table-responsive">
-
-                                                            <table class="table tours-all">
-                                                                <thead class="bg-swvb-dark">
-                                                                    <tr>
-                                                                        <th class="text-white">Receipt No.</th>
-                                                                        <th class="text-white">Membership No.</th>
-                                                                        <th class="text-white">Name</th>
-                                                                        <th class="text-white">Amount</th>
-                                                                        <th class="text-white">Balance</th>
-                                                                        <th class="text-white">Issue Date</th>
-                                                                        <th class="text-white">Status</th>
-                                                                        <th class="text-white">Creator</th>
-                                                                        <th class="text-white">Request</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                            
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="row-link" onclick="location.href='{{ url('/receipt/details') }}'">
-                                                                        <td>1000032</td>
-                                                                        <td>1000032</td>
-                                                                        <td>Elizabeth</td>
-                                                                        <td>Elizabeth</td>
-                                                                        <td>27 April 2019</td>
-                                                                        <td>03:05 AM</td>
-                                                                        <td>Charles Dean</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000033</td>
-                                                                        <td>Todd</td>
-                                                                        <td>Todd</td>
-                                                                        <td>06 January 2020</td>
-                                                                        <td>05:19 AM</td>
-                                                                        <td>Travis Mckinney</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000034</td>
-                                                                        <td>Iola</td>
-                                                                        <td>Iola</td>
-                                                                        <td>06 November 2019</td>
-                                                                        <td>08:31 PM</td>
-                                                                        <td>Jameson Knight</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000035</td>
-                                                                        <td>Zorita</td>
-                                                                        <td>Zorita</td>
-                                                                        <td>11 June 2018</td>
-                                                                        <td>07:18 PM</td>
-                                                                        <td>Reed Meyer</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000036</td>
-                                                                        <td>Denton</td>
-                                                                        <td>Denton</td>
-                                                                        <td>13 March 2020</td>
-                                                                        <td>09:30 PM</td>
-                                                                        <td>Joseph Sanford</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000037</td>
-                                                                        <td>Maris</td>
-                                                                        <td>Maris</td>
-                                                                        <td>21 January 2020</td>
-                                                                        <td>11:09 AM</td>
-                                                                        <td>Daniel Matthews</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000038</td>
-                                                                        <td>Cecilia</td>
-                                                                        <td>Cecilia</td>
-                                                                        <td>26 November 2019</td>
-                                                                        <td>03:37 AM</td>
-                                                                        <td>Tyler Washington</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000039</td>
-                                                                        <td>Buckminster</td>
-                                                                        <td>Buckminster</td>
-                                                                        <td>10 March 2020</td>
-                                                                        <td>05:35 PM</td>
-                                                                        <td>Salvador Heath</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000040</td>
-                                                                        <td>Hadley</td>
-                                                                        <td>Hadley</td>
-                                                                        <td>28 October 2018</td>
-                                                                        <td>12:43 PM</td>
-                                                                        <td>Hamish Klein</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000041</td>
-                                                                        <td>Malachi</td>
-                                                                        <td>Malachi</td>
-                                                                        <td>22 January 2020</td>
-                                                                        <td>03:29 PM</td>
-                                                                        <td>Kennan Chase</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td><a href="{{ url('/receipt/details') }}">1000032</a></td>
-                                                                        <td>1000042</td>
-                                                                        <td>Yael</td>
-                                                                        <td>Yael</td>
-                                                                        <td>04 September 2019</td>
-                                                                        <td>07:31 PM</td>
-                                                                        <td>Joel Allen</td>
-                                                                        <td>ABC place</td>
-                                                                        
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="tab-pane" id="request-fill" role="tabpanel" aria-labelledby="request-tab-fill">
-                                                   
-                                                    <div class="card-body card-dashboard">
-                                                        <div class="table-responsive">
-
-                                                            <table class="table tours-all">
-                                                                <thead class="bg-swvb-dark">
-                                                                    <tr>
-                                                                        <th class="text-white">Refund Ref No.</th>
-                                                                        <th class="text-white">Item</th>
-                                                                        <th class="text-white">Requested</th>
-                                                                        <th class="text-white">Checked By</th>
-                                                                        <th class="text-white">Verified By</th>
-                                                                        <th class="text-white">Processed By</th>
-                                                                        <th class="text-white">Status</th>
-                                                                        <th class="text-white"></th>
-                                                                        
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        </td>
-                                                                        <td>
-                                                                        <fieldset class="form-group position-relative">
-                                                                            <input type="text" class="form-control" id="iconLeft2">
-                                                                            <div class="form-control-position">
-                                                                                <i class="bx bx-search"></i>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                        
-                                                                        </td>
-                                                                        <td>
-                                                                        
-                                                                        
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr class="row-link" onclick="location.href='{{url('/receipt/details')}}'">
-                                                                        <td>1000032</td>
-                                                                        <td>1000032</td>
-                                                                        <td>Elizabeth</td>
-                                                                        <td>Elizabeth</td>
-                                                                        <td>27 April 2019</td>
-                                                                        <td>03:05 AM</td>
-                                                                        <td>Charles Dean</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000033</td>
-                                                                        <td>1000033</td>
-                                                                        <td>Todd</td>
-                                                                        <td>Todd</td>
-                                                                        <td>06 January 2020</td>
-                                                                        <td>05:19 AM</td>
-                                                                        <td>Travis Mckinney</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000034</td>
-                                                                        <td>1000034</td>
-                                                                        <td>Iola</td>
-                                                                        <td>Iola</td>
-                                                                        <td>06 November 2019</td>
-                                                                        <td>08:31 PM</td>
-                                                                        <td>Jameson Knight</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000035</td>
-                                                                        <td>1000035</td>
-                                                                        <td>Zorita</td>
-                                                                        <td>Zorita</td>
-                                                                        <td>11 June 2018</td>
-                                                                        <td>07:18 PM</td>
-                                                                        <td>Reed Meyer</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000036</td>
-                                                                        <td>1000036</td>
-                                                                        <td>Denton</td>
-                                                                        <td>Denton</td>
-                                                                        <td>13 March 2020</td>
-                                                                        <td>09:30 PM</td>
-                                                                        <td>Joseph Sanford</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000037</td>
-                                                                        <td>1000037</td>
-                                                                        <td>Maris</td>
-                                                                        <td>Maris</td>
-                                                                        <td>21 January 2020</td>
-                                                                        <td>11:09 AM</td>
-                                                                        <td>Daniel Matthews</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000038</td>
-                                                                        <td>1000038</td>
-                                                                        <td>Cecilia</td>
-                                                                        <td>Cecilia</td>
-                                                                        <td>26 November 2019</td>
-                                                                        <td>03:37 AM</td>
-                                                                        <td>Tyler Washington</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000039</td>
-                                                                        <td>1000039</td>
-                                                                        <td>Buckminster</td>
-                                                                        <td>Buckminster</td>
-                                                                        <td>10 March 2020</td>
-                                                                        <td>05:35 PM</td>
-                                                                        <td>Salvador Heath</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000040</td>
-                                                                        <td>1000040</td>
-                                                                        <td>Hadley</td>
-                                                                        <td>Hadley</td>
-                                                                        <td>28 October 2018</td>
-                                                                        <td>12:43 PM</td>
-                                                                        <td>Hamish Klein</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000041</td>
-                                                                        <td>1000041</td>
-                                                                        <td>Malachi</td>
-                                                                        <td>Malachi</td>
-                                                                        <td>22 January 2020</td>
-                                                                        <td>03:29 PM</td>
-                                                                        <td>Kennan Chase</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1000042</td>
-                                                                        <td>1000042</td>
-                                                                        <td>Yael</td>
-                                                                        <td>Yael</td>
-                                                                        <td>04 September 2019</td>
-                                                                        <td>07:31 PM</td>
-                                                                        <td>Joel Allen</td>
-                                                                        <td> 
-                                                                            <div class="dropdown">
-                                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                                                </span>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    
-                                                                                    <button class="bg-transparent border-0 dropdown-item" >
-                                                                                        <i class="bx bx-plus mr-1"></i> NEW REQUEST
-                                                                                    </button>
-                                                                                    <!-- <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a> -->
-                                                                                
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                              
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Nav Filled Ends -->
+                    <div class="px-2 mt-1">
+                         <a href="{{asset('receipt/new')}}" class="btn btn-outline-primary round mr-1 mb-1">New </a>
+                        <!-- <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a>  -->
+                    </div>
                     
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <table class="table" id="tbl-acc">
+                                <thead class="bg-swvb-dark">
+                                    <tr>
+                                        <th class="text-white">Receipt No.</th>
+                                        <th class="text-white">Membership No.</th>
+                                        <th class="text-white">Name</th>
+                                        <th class="text-white">Amount</th>
+                                        <th class="text-white">Balance</th>
+                                        <th class="text-white">Issue Date</th>
+                                        <th class="text-white">Status</th>
+                                        <th class="text-white">Creator</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- @if(isset($payload))
+                                        @foreach ($payload['creditnotes'] as $creditnote)
+                                        <tr class="row-link" onclick="location.href='{{route('creditnote.details', $creditnote->credit_id)}}'">
+                                            <td>{{$creditnote->credit_no}}</td>
+                                            <td>{{$creditnote->membership->mbrship_no}}</td>
+                                            <td>{{$creditnote->membership->lead->name}}</td>
+                                            <td>
+                                            <?php
+                                            $totalAmount = 0;
+                                            ?>
+                                            @foreach ($creditnote->creditNoteSubjects as $cnSubjects)
+                                                <?php
+                                                $totalAmount = $totalAmount + $cnSubjects->amount;
+                                                ?>
+                                            @endforeach
+                                            {{$totalAmount}}
+                                            </td>
+                                            <td>{{$creditnote->creditNoteTypes->cn_type}}</td>
+                                            <td>{{$creditnote->issue_date}}</td>
+                                            <td>
+                                                <?php 
+                                                if($creditnote->status == "1") {
+                                                    echo 'Active';
+                                                } ?>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        @endforeach
+                                    @endif -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Receipt No.</th>
+                                        <th>Membership No.</th>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Balance</th>
+                                        <th>Issue Date</th>
+                                        <th>Status</th>
+                                        <th>Creator</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

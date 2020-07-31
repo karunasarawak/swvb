@@ -404,6 +404,17 @@ class MembershipController extends Controller
   return view('pages.membership-transfer',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
+  public function reinstate(){
+
+    $pageConfigs = ['pageHeader' => true];
+  
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Transfer"]
+    ];
+  
+    return view('pages.membership-reinstate',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+
 public function updowngrade(){
 
   $pageConfigs = ['pageHeader' => true];

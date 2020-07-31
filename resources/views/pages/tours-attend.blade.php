@@ -607,7 +607,7 @@
                           <select name="accom1" class="custom-select" required>
                             <option value="">--</option>
                             <option value="1">Grand Margherita Hotel</option>
-                            <option value="2">GDamai Beach Resort</option>
+                            <option value="2">Damai Beach Resort</option>
                           </select>
                         </div>
                       </div>

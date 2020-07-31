@@ -29,7 +29,8 @@ class Leads extends Model
     public function salutation() //Declare Relationship name to be used in Controller for querying results from database
     {                        
         return $this->belongsTo('App\Salutation', 'salutation_id', 'salutation_id'); // Relationhip from current Leads table to Salutation table.
-    }               //belongsTo('Model Name (Eg: App\Salutation)', 'Foreign Key column name in Leads Table', 'Primary Key column name in Salutation table');
+    }               
+    //belongsTo('Model Name (Eg: App\Salutation)', 'Foreign Key column name in Leads Table', 'Primary Key column name in Salutation table');
 
     public function telemarketer()
     {                        

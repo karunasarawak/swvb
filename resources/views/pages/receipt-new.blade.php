@@ -6,12 +6,13 @@
 @section('page-styles')
 {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/membership.css')}}"> --}}
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
+<link href="{{asset('assets/css/invoice-style.css') }}" rel="stylesheet" type="text/css" >
 @endsection
 
 @section('content')
 <!-- Form wizard with icon tabs section start -->
 <section class="simple-validation float-sm-left"  >
-    <div class="row">
+    <div class="row" x-data="{name: ''}">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
@@ -30,13 +31,15 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="controls">
-                                        <label for="location">Membership No.</label>
-                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                            <option value="1">2345600</option>
-                                            <option value="2">John</option>
-
+                                        <label for="mbrship_id">Membership No</label>
+                                        <select name="mbrship_id" id="mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
+                                            <option value="" disabled selected>Membership No</option>
+                                            @if(isset($payload))
+                                                @foreach($payload['memberships'] as $membership)
+                                            <option value="{{$membership->mbrship_id}}" data-name="{{$membership->lead->name}}">{{$membership->mbrship_no}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
-                            
                                     </div>
                                 </div>
                             </div>
@@ -44,17 +47,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" id="tax_note" name="tax_note" value="John" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- credit card option  -->
-                            <div class="col-sm-4" id="ccshow">
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <label>Select Terminal</label>
-                                            <input type="link" class="form-control" placeholder="810049" id="creditcard" name="name"
-                                            data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
+                                        <input type="text" class="form-control" placeholder="Name" id="name" x-bind:value="name" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -101,29 +94,13 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="controls">
-                                    <label>Banked in to</label>
-                                        <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                            
+                                        <label>Bank in to</label>
+                                        <select name="salutation1" class="custom-select form-control" data-validation-required-message="Please select a salutation." required>
                                             <option value="Mr.">RHB Bank</option>
                                             <option value="Ms.">May Bank</option>
                                             <option value="Dr.">Cimb Bank</option>
                                             <option value="Dr.">Public Bank</option>
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <label>Bank in to Account</label>
-                                            <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                                
-                                                <option value="Mr.">RHB Bank</option>
-                                                <option value="Ms.">May Bank</option>
-                                                <option value="Dr.">Cimb Bank</option>
-                                                <option value="Dr.">Public Bank</option>
-                                            </select>
                                     </div>
                                 </div>
                             </div>
@@ -138,76 +115,34 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="income">Amount</label>
-                                        <div class="position-relative has-icon-left">
-                                            <input type="number" class="form-control required" placeholder="Rm 5000" id="income" name="income">
-                                            <div class="form-control-position">RM</div>
-                                        </div>
-                                </div>
-                            </div>
-
-                            <!-- credit card option -->
-                            <div class="col-sm-4" id="ccshow">
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <label>Bank Charges</label>
-                                        <input type="text" class="form-control" id="tax_note" name="tax_note" value="RM 100" readonly>
+                                    <div class="position-relative has-icon-left">
+                                        <input type="number" class="form-control required" placeholder="5000" id="income" name="income">
+                                        <div class="form-control-position">RM</div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- credit card option -->
-                            <div class="col-md-4" id="ccshow">
-                                <div class="form-group">
-                                    <label for="income">Charge Date</label>
-                                       
-                                            <input type="text" class="form-control" id="tax_note" name="tax_note" value="01 May 2020" readonly>
-                                            
-                                        
-                                </div>
-                            </div>
-
-                            <!-- credit card option -->
-                            <div class="col-md-4" id="ccshow">
-                                <div class="form-group">
-                                    <label for="income">Batch No.</label>
-                                       
-                                            <input type="text" class="form-control" id="tax_note" name="tax_note" value="12340000" readonly>
-                                            
-                                      
-                                </div>
-                            </div>
-
-                            <!-- credit card option -->
-                            <div class="col-md-4" id="ccshow">
-                                <div class="form-group">
-                                    <label for="income">Clearance Date</label>
-                                        
-                                        <input type="text" class="form-control" id="tax_note" name="tax_note" value="30 May 2020" readonly>
-                                            
-                                      
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                                <div class="col-sm-8">
-                                    <div class="form-group controls">
-                                        <label class="d-block">Remarks</label>
-                                        <fieldset class="form-group">
-                                            <textarea class="form-control" id="basicTextarea" rows="3" placeholder="Textarea"></textarea>
-                                        </fieldset>
-                                    </div>
+                            <div class="col-sm-8">
+                                <div class="form-group controls">
+                                    <label class="d-block">Remarks</label>
+                                    <fieldset class="form-group">
+                                        <textarea class="form-control" id="basicTextarea" rows="3" placeholder=""></textarea>
+                                    </fieldset>
                                 </div>
                             </div>
+                        </div>
 
-                        <div class="row pt-1" id="creditcard">
+                        <div class="row pt-1" class="creditcard">
                             <div class="col-12">
                                 <h6 class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Credit Card Info</h6>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group controls">
-                                    <label class="d-block">Select Terminal</label>
-                                        <input type="link" name="name" class="form-control" placeholder="81004899" required>
+                                    <label>Select Terminal</label>
+                                    <input type="link" class="form-control" placeholder="810049" id="terminal" name="name"
+                                    data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -226,7 +161,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group controls">
                                     <label class="d-block">Card Isssuer Bank</label>
-                                    <select name="salutation1" class="custom-select" data-validation-required-message="Please select a card issuer bank." required>
+                                    <select name="salutation1" class="custom-select form-control" data-validation-required-message="Please select a card issuer bank." required>
           
                                         <option value="Mr.">RHB Bank</option>
                                         <option value="Ms.">Cimb Bank</option>
@@ -249,9 +184,33 @@
                                         <input type="number" name="name" class="form-control" placeholder="100" required>
                                 </div>
                             </div>
+
+                            <!-- credit card option -->
+                            <div class="col-sm-4" id="ccshow">
+                                <div class="form-group">
+                                    <label>Bank Charges</label>
+                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="RM 100" readonly>
+                                </div>
+                            </div>
+
+                            <!-- credit card option -->
+                            <div class="col-md-4" id="ccshow">
+                                <div class="form-group">
+                                    <label for="income">Charge Date</label>
+                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="01 May 2020" readonly>
+                                </div>
+                            </div>
+
+                            <!-- credit card option -->
+                            <div class="col-md-4" id="ccshow">
+                                <div class="form-group">
+                                    <label for="income">Clearance Date</label>
+                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="30 May 2020" readonly>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row pt-1">
+                        <div class="row pt-2 align-items-center">
                             <div class="col-sm-4">
                                 <div class="form-group controls">
                                     <label class="d-block">Subject to</label>
@@ -265,45 +224,29 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group controls">
-                                    
-                                        <div class="checkbox">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox1" checked>
-                                                <label for="checkbox1">Show Immature Invoice</label>
-                                        </div>
+                                    <div class="checkbox">
+                                        <input type="checkbox" class="checkbox-input" id="checkbox1" checked>
+                                        <label for="checkbox1">Show Immature Invoice</label>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="card-body card-dashboard pt-3">
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="data-table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
+                                                <th></th>
                                                 <th class="text-white">Invoice</th>
                                                 <th class="text-white">Date</th>
                                                 <th class="text-white">Description</th>
                                                 <th class="text-white">Amount</th>
                                                 <th class="text-white">Paid</th>
                                                 <th class="text-white">Balance</th>
+                                                <th class="text-white">Receipt Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>305066</td>
-                                                <td>01 May 2020</td>
-                                                <td>Yakub Instalment 12</td>
-                                                <td>200</td>
-                                                <td>50</td>
-                                                <td>150</td>
-                                            </tr>
-                                            <tr>
-                                                <td>305066</td>
-                                                <td>01 May 2020</td>
-                                                <td>Yakub Instalment 12</td>
-                                                <td>200</td>
-                                                <td>50</td>
-                                                <td>150</td>
-                                 
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -472,5 +415,6 @@
 @section('page-scripts')
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
+<script src="{{asset('assets/js/tbl_row_update.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 @endsection

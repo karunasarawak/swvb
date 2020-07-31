@@ -78,11 +78,7 @@
                     </div>
                   </div>
                 </div>
-                
-              
-
               </fieldset>
-
             
               <!-- Step 2 Booking Info -->   
               <h6>
@@ -246,46 +242,11 @@
                   
               </fieldset>
 
-
-        <!-- Step 5 -->
-        <h6>
-          <i class="step-icon"></i>
-          <span>STEP 5 - EXTRA CHARGES</span>
-        </h6>
-        <fieldset>
-          
-          <h4 class="card-title">Room Detail</h4>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="income">Additional Charges</label>
-                  <div class="row ml-2">
-                    <div class="checkbox">
-                      <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="latecheck" value="all"
-                        checked>
-                      <label for="latecheck">Late Check-in fee</label>
-                    </div>
-                    <div class="checkbox">
-                      <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="lateout" value="all"
-                        checked>
-                      <label for="lateout">Late Check-out fee</label>
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="income">Cost</label>
-                  <input type="number" class="form-control required" placeholder="Cost" id="income1" name="income1" value="">
-              </div>
-            </div>
-           
-        </fieldset> 
-
+              
          <!-- Step 2 FACILITIES INFO -->
          <h6>
           <i class="step-icon"></i>
-          <span>STEP 4 - FACILITIES INFO</span>
+          <span>STEP 2 - FACILITIES INFO</span>
         </h6>
         <fieldset > 
           <!-- hotel -->
@@ -378,15 +339,42 @@
             
 
          </div>
-       
-
         </fieldset>
 
+        <!-- Step 3 -->
+        <h6>
+          <i class="step-icon"></i>
+          <span>STEP 3 - EXTRA CHARGES</span>
+        </h6>
+        <fieldset>
+          
+          <h4 class="card-title">Room Detail</h4>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="income">Additional Charges</label>
+                  <div class="row ml-2">
+                    <div class="checkbox">
+                      <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="latecheck" value="all"
+                        checked>
+                      <label for="latecheck">Late Check-in fee</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="lateout" value="all"
+                        checked>
+                      <label for="lateout">Late Check-out fee</label>
+                    </div>
+                  </div>
+              </div>
+            </div>
 
-
-
-
-
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="income">Cost</label>
+                  <input type="number" class="form-control required" placeholder="Cost" id="income1" name="income1" value="">
+              </div>
+            </div>
+           
+        </fieldset> 
 
               <!-- Step 3 -->
               <h6>
@@ -549,7 +537,7 @@
               <!-- Step 4 -->
               <h6>
                 <i class="step-icon"></i>
-                <span>STEP 4 - GUEST INFO</span>
+                <span>STEP 4/STEP 3 - GUEST INFO</span>
               </h6>
               <fieldset>
               <section id="form-repeater-wrapper">
@@ -557,11 +545,6 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
-                      <div class="card-header">
-                        <h4 class="card-title">
-                          Check In Guest Info
-                        </h4>
-                      </div>
                       <div class="card-content">
                         <div class="card-body">
                           <form class="form repeater-default">
@@ -569,72 +552,14 @@
                               <div data-repeater-item>
                                 <div class="row justify-content-between">
                                   <div class="col-md-6 form-group">
-                                  <label for="income">Salutation</label>
-                                    
-                                      <select name="no_child1" class="custom-select" required>
-                                        <option value="0">Please select number of children</option>
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option value="3">03</option>
-                                        <option value="4">04</option>
-                                        <option value="5">05</option>
-                                      </select>
-                                   
+                                 
                                   </div>
-                                  <div class="col-md-6 form-group">
-                                    <label for="income">Name</label>
-                                    <input type="name" class="form-control required" placeholder="Your name" id="income1" name="income1" value="">
-                                  </div>
-                                  <div class="col-md-6 form-group">
-                                    <label for="salesvenue">Contact No.</label>
-                                      <input type="number" class="form-control required" placeholder="1221221" id="timeIn1" name="timeIn1">
-                                  </div>
-                                    <div class="col-md-6 form-group">
-                                      <label for="income">NRIC</label>
-                                        
-                                        <input type="number" class="form-control required" placeholder="012345678" id="timeOut2" name="timeOut1">
-                                      
-                                    </div>
-                                  
-                                  <div class="col-md-6 form-group">
-                                    <label for="income">Passport</label>
-                      
-                                      <input type="number" class="form-control required" placeholder="012345678" id="timeOut2" name="timeOut1">
-                                      
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                      <div class="form-group">
-                                        <label for="income">Nationality</label>
-                                        <div class="position-relative has-icon-left">
-                                          <select name="no_child1" class="custom-select" required>
-                                            <option value="" disabled>Please select your nationality</option>
-                                            <option value="1">Malaysian</option>
-                                            <option value="2">Non-Malaysian</option>
-                                          
-                                          </select>
-                                        </div>
-                                      </div>
-                                      
-                                    </div>
-                                  
-                                  <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                    <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                        class="bx bx-x"></i>
-                                      Delete
-                                    </button>
-                                  </div>
+                       
                                 </div>
-                                <hr>
+                               
                               </div>
                             </div>
-                            <div class="form-group">
-                              <div class="col p-0">
-                                <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
-                                  Add
-                                </button>
-                              </div>
-                            </div>
+                            
                           </form>
                         </div>
                       </div>
@@ -642,6 +567,73 @@
                   </div>
                 </div>
                 <!--/ form default repeater -->
+                 <div class="row">
+                    <div class="col">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4 class="card-title">
+                            Check In Guest Info
+                          </h4>
+                        </div>
+                        <div class="card-content">
+                          <div class="card-body">
+                                <form class="form repeater-default">
+                                    <div data-repeater-list="group-a">
+                                        <div data-repeater-item>
+                                            <div class="row justify-content-between">
+                                                <div class="col-md-4 form-group">
+                                                    <label for="Email">Salutation</label>
+                                                    <input type="number" name="use_yr" class="form-control" id="pt_use_yr" placeholder="Enter Salutation">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="password">Name</label>
+                                                    <input type="name" class="form-control" id="password" placeholder="Enter name">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="gender">Contact No.</label>
+                                                    <input type="number" class="form-control" id="password" placeholder="Enter contact no.">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="gender">NRIC</label>
+                                                    <input type="number" class="form-control" id="password" placeholder="Enter contact no.">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="gender">Passport</label>
+                                                    <input type="number" class="form-control" id="password" placeholder="Enter contact no.">
+                                                </div>
+                                                
+                                                <div class="col-md-4 form-group">
+                                                  <label for="Profession">Nationality</label>
+                                                  <select name="profession" id="Profession" class="form-control">
+                                                      <option value="FontEnd Developer">Malaysian</option>
+                                                      <option value="BackEnd Developer">Developer</option>
+                                                      <option value="Bussiness Analystic">Tester</option>
+                                                      <option value="Project Cordinator">Manager</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                  <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                      class="bx bx-x"></i>
+                                                      Delete
+                                                  </button>
+                                                </div>
+                                          </div>
+                                          <hr>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col p-0">
+                                        <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                            Add
+                                        </button>
+                                        </div>
+                                    </div>
+                                </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                 </div>
               </section>
                 <!-- hotel -->
                 <!-- <h4 class="card-title">Check In Guest Info</h4>

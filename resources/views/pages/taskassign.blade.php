@@ -30,7 +30,7 @@
                     <div class="card-body card-dashboard">
                         <div class="table-responsive-xl">
 
-                            <table class="table tours-all">
+                            <table class="table tours-all" style="width:100%;">
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         
@@ -43,95 +43,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>205420000</td>
-                                        <td>Yakub Sebastian</td>
-                                        
-                                        <td>Active</td>
-                                        <td>Melissa</td>
-                                        
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>

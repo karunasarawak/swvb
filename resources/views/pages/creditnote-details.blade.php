@@ -89,7 +89,7 @@
                                             {{$cnSubject->invoice->issue_date}}
                                             </td>
                                             <td class="align-middle tbl-cell-text">
-                                            <?php $i = 1; $len = count($cnSubject->$invoice->invoiceItem); ?>
+                                            <?php $i = 1; $len = count($cnSubject->invoice->invoiceItem); ?>
                                             @foreach ($cnSubject->invoice->invoiceItem as $invoiceItem)
                                                 {{$invoiceItem->item_name}}<?php if($i < $len){echo ', ';} $i++;?>
                                             @endforeach

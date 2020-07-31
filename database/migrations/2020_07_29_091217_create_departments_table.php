@@ -13,7 +13,7 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        
+        Schema::disableForeignKeyConstraints();
         Schema::create('departments', function (Blueprint $table) {
             $table->id('dept_id');
             $table->string('dept');
@@ -22,11 +22,11 @@ class CreateDepartmentsTable extends Migration
 
         DB::table('departments')->insert(
             array(
-                ['dept' => 'ICT', 'dept_id'=>1],
-                ['dept' => 'MSD', 'dept_id'=>1],
-                ['dept' => 'MRD', 'dept_id'=>1],
-                ['dept' => 'ACC', 'dept_id'=>1],
-                ['dept' => 'CCD', 'dept_id'=>1],
+                ['dept' => 'ICT'],
+                ['dept' => 'MSD'],
+                ['dept' => 'MRD'],
+                ['dept' => 'ACC'],
+                ['dept' => 'CCD'],
               
             )
         );
