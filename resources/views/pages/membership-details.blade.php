@@ -27,7 +27,7 @@
                                     Close
                                 </button>
                             </p>
-                    </div>
+                        </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">

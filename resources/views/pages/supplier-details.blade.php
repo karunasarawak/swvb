@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="col-md-10 card-title text-white ml-4">Membership Card Printing List</h4>
+                        <h4 class="col-md-10 card-title text-white ml-4">Membership Card Printing List<a href="" class="btn btn-outline-white round text-white ml-2" data-toggle="modal" data-target="#add">Add</a></h4>
                         <a href="{{ url('report/stampingfeedprintdownload') }}" class="btn btn-outline-white round text-white bx bx-download float-right"></a>
                     </div>
                 </div>
@@ -136,7 +136,12 @@
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th></th>
+                                                <th class="text-white">Select All<fieldset>
+                                                    <div class="checkbox">
+                                                    <input type="checkbox" class="checkbox-input" id="checkbox2000">
+                                                    <label for="checkbox2000"></label>
+                                                    </div>
+                                                    </fieldset></th>
                                                 <th class="text-white">Membership No.</th>
                                                 <th class="text-white">Members Name(Primary)</th>
                                                 <th class="text-white">members Name(Secondary)</th>
@@ -185,7 +190,9 @@
 
                         </div>
                         
-                </form>
+                        <button type="button" class="btn btn-primary m-3 float-right" >
+                        Create
+                        </button>
             </div>
             </div>
         </div>
@@ -194,130 +201,28 @@
 </section>
 
 <!-- pop out modal box for update status -->
-<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog"
-                aria-labelledby="myModalLabel33" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header bg-swvb-cyan">
-                      <h4 class="modal-title text-white" id="myModalLabel33">Choose Terminal</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="bx bx-x"></i>
-                      </button>
-                    </div>
-                    <form action="#">
-                      <div class="modal-body">
-                            <div class="form-group controls">
-                            <div class="card-body card-dashboard">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="bg-swvb-dark">
-                                            <tr>
-                                                <th class="text-white">TID</th>
-                                                <th class="text-white">TID</th>
-                                                <th class="text-white">MID</th>
-                                                <th class="text-white">ERP Term</th>
-                                                <th class="text-white">Charge Type</th>
-                                                <th class="text-white">Bank Charges</th>
-                                                <th class="text-white">Merchant Bank</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
-                                                    <label for="checkbox2"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB E-debit</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox3">
-                                                    <label for="checkbox3"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB Debit debit</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox4">
-                                                    <label for="checkbox4"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB Debit debit</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                                    <label for="checkbox5"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB Debit debit</td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                                    
-                            <div class="px-2">
-                                    <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Cancel</a>
-                                    <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Confirm</a>
-                                
-                            </div>
-                        </div>
+<div class="modal fade text-left" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-cyan">
+                <h4 class="modal-title text-white" id="myModalLabel33">Choose Terminal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <form action="#">
+                <div class="modal-body">
+                    <div class="form-group controls">
+                    
+                    <div class="px-2">
+                            <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Cancel</a>
+                            <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Confirm</a>
+                        
                     </div>
                 </div>
             </div>
-
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                          <i class="bx bx-x d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Save</span>
-                        </button>
-                    
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-
+    </div>
+</div>
 
 <!-- Form wizard with step validation section end -->
 @endsection

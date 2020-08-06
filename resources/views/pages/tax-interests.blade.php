@@ -16,27 +16,139 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">taxes</h4>
+                        <h4 class="card-title text-white ml-2">Taxes<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
                     </div>    
                 </div>
                 <div class="card-content">
                     
                     <div class="card-body card-dashboard">
-                        <div class="row pt-1 pl-2" >
-                            <div class="col">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Table(Tax)<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></p>
-                            </div>
+                        
+                        <div class="table-responsive">
+
+                            <table class="table tours-all">
+                                <thead class="bg-swvb-dark">
+                                    <tr>
+                                        <th class="text-white" style="width:50%">Tax</th>
+                                        <th class="text-white" style="width:50%">Tax Code</th>
+                                        <th class="text-white" style="width:30%">Percentage</th>
+                                        <th class="text-white" style="width:30%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>CC001</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>CC001</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>CC001</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>CC001</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>CC001</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>CC001</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div></td>
+                                       
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="row pl-2">
-                            <div class="col">
-                                <ul class="list-unstyled">
-                                    <li>Tax</li>
-                                    <li>Tax Code</li>
-                                    <li>Percentage</li>
-                                </ul>
-                            </div>
-                            <button class="btn btn-outline-primary round mr-1 ml-1" data-toggle="modal" data-target="#addroles"><i class="bx bx-pen">Edit</i></button>
-                        </div>
+                        
                     </div>
 
                 </div>
@@ -50,8 +162,8 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="col card-title text-white ml-2">Interests<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
-                        <button class="col btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-pen">Edit</i></button>
+                        <h4 class="col card-title text-white ml-2">Interests<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
+                        
                     </div>    
                 </div>
                 <div class="card-content">
@@ -62,11 +174,11 @@
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white">Installment Duration</th>
+                                        <th class="text-white" style="width:50%">Installment Duration</th>
                                         
-                                        <th class="text-white">Interest Rate(%)</th>
+                                        <th class="text-white" style="width:50%">Interest Rate(%)</th>
                                         
-                                        
+                                        <th class="text-white" style="width:30%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,13 +186,7 @@
                                     <tr>
                                         <td>Erman</td>
                                         <td>ICT</td>
-                                        <td>ICT01</td>
-                                        <td>erman@saraworldwide.com</td>
-                                        <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                            <option value="1">Enable</option>
-                                            <option value="2">Disable</option>
-                                            </select>
-                                        </td>
+                                        
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -88,60 +194,18 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPLOAD</a>
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
                                                 </div>
-                                            </div></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> DISABLE</a>
-                                                    </button>
-                                                </div>
                                             </div>
                                         </td>
+                                        
                                     </tr>
                                     <tr>
-                                        <td>Darween</td>
+                                        <td>Erman</td>
                                         <td>ICT</td>
-                                        <td>ICT02</td>
-                                        <td>darween@saraworldwide.com</td>
-                                        <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                            <option value="1">Enable</option>
-                                            <option value="2">Disable</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPDATE</a>
-                                                    </button>
-                                                </div>
-                                            </div></td>
+                                        
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -151,89 +215,16 @@
                                                     <button class="bg-transparent border-0" >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
-                                                   
+
                                                 </div>
                                             </div>
                                         </td>
+                                       
                                     </tr>
                                     <tr>
-                                        <td>Ali</td>
-                                        <td>CCO</td>
-                                        <td>CC001</td>
-                                        <td>ali@saraworldwide.com</td>
-                                        <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                            <option value="1">Enable</option>
-                                            <option value="2">Disable</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPLOAD</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
-                                                   
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Claudia</td>
+                                        <td>Erman</td>
                                         <td>ICT</td>
-                                        <td>ICT02</td>
-                                        <td>darween@saraworldwide.com</td>
-                                        <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                            <option value="1">Enable</option>
-                                            <option value="2">Disable</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPDATE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                        
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -243,96 +234,38 @@
                                                     <button class="bg-transparent border-0" >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
-                                                   
+
                                                 </div>
                                             </div>
                                         </td>
+                                       
                                     </tr>
                                     <tr>
-                                        <td>1000038</td>
-                                        <td>1000038</td>
-                                        <td>Cecilia</td>
-                                        <td>Cecilia</td>
-                                        <td>26 November 2019</td>
-                                        <td>03:37 AM</td>
-                                        <td>Tyler Washington</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                       
                                     </tr>
-                                    <tr>
-                                        <td>1000039</td>
-                                        <td>1000039</td>
-                                        <td>Buckminster</td>
-                                        <td>Buckminster</td>
-                                        <td>10 March 2020</td>
-                                        <td>05:35 PM</td>
-                                        <td>Salvador Heath</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000040</td>
-                                        <td>1000040</td>
-                                        <td>Hadley</td>
-                                        <td>Hadley</td>
-                                        <td>28 October 2018</td>
-                                        <td>12:43 PM</td>
-                                        <td>Hamish Klein</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000041</td>
-                                        <td>1000041</td>
-                                        <td>Malachi</td>
-                                        <td>Malachi</td>
-                                        <td>22 January 2020</td>
-                                        <td>03:29 PM</td>
-                                        <td>Kennan Chase</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000042</td>
-                                        <td>1000042</td>
-                                        <td>Yael</td>
-                                        <td>Yael</td>
-                                        <td>04 September 2019</td>
-                                        <td>07:31 PM</td>
-                                        <td>Joel Allen</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
 </section>
@@ -445,6 +378,8 @@
         </div>
     </div>
 </div>
+
+
 
 <!--/ Zero configuration table -->
 @endsection

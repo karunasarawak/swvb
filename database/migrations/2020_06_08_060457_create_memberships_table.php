@@ -15,7 +15,7 @@ class CreateMembershipsTable extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->id('mbrship_id');
-            $table->integer('mbrship_no')->length(11)->nullable();
+            $table->string('mbrship_no')->nullable();
 
             $table->foreignId('lead_id1')->length(11)->nullable();
             $table->foreign('lead_id1')->references('lead_id')->on('leads');
@@ -47,12 +47,12 @@ class CreateMembershipsTable extends Migration
             $table->integer('cc_id_install')->length(11)->nullable();
             
             $table->integer('declaration_no')->length(11)->nullable();
-            $table->string('mro', 8)->nullable();
-            $table->string('cco', 8)->nullable();
+            $table->integer('mro')->length(11)->nullable();
+            $table->integer('cco')->length(11)->nullable();
             
             $table->tinyInteger('install_auto')->length(1)->nullable();
             $table->tinyInteger('amf_auto')->length(1)->nullable();
-            $table->string('mbrship_status', 255)->default('pending');
+            $table->tinyInteger('mbrship_status')->length(1)->default(1);
 
             $table->timestamps();
         });

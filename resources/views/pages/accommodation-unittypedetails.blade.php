@@ -23,11 +23,11 @@
                     
                     <div class="card-body card-dashboard">
                         <div class="row pt-3 pl-2">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Room Informations</p>
                             </div>
                             <div class="col-sm-4">
-                                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Bed Types</p>
+                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Bed Types</p>
                             </div>
                         </div>
                         <div class="row pl-2">
@@ -56,9 +56,9 @@
                                         <div data-repeater-list="group-a">
                                             <div data-repeater-item>
                                                 <div class="row justify-content-between">
-                                                    <div class="col-md-2 col-sm-12 form-group">
+                                                    <div class="col-sm-12 form-group">
                                                         <label for="Email">Bed Type </label>
-                                                        <input type="text" class="form-control" id="Email" placeholder="Enter email id">
+                                                        <input type="text" class="form-control" id="Email" placeholder="Select bed types">
                                                     </div>
                                                     
                                                     <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
@@ -85,10 +85,10 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-swvb-cyan">
-                    <div class="row">
-                        <h4 class="card-title text-white ml-2">Unit Type Price<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
-                    </div>    
+                <div class="row pt-1 pl-2" >
+                    <div class="col">
+                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2 ml-2">Unit Type Price</p>
+                    </div>
                 </div>
                 <div class="card-content">
                     
@@ -296,90 +296,13 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>1000038</td>
-                                        <td>1000038</td>
-                                        <td>Cecilia</td>
-                                        <td>Cecilia</td>
-                                        <td>26 November 2019</td>
-                                        <td>03:37 AM</td>
-                                        <td>Tyler Washington</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000039</td>
-                                        <td>1000039</td>
-                                        <td>Buckminster</td>
-                                        <td>Buckminster</td>
-                                        <td>10 March 2020</td>
-                                        <td>05:35 PM</td>
-                                        <td>Salvador Heath</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000040</td>
-                                        <td>1000040</td>
-                                        <td>Hadley</td>
-                                        <td>Hadley</td>
-                                        <td>28 October 2018</td>
-                                        <td>12:43 PM</td>
-                                        <td>Hamish Klein</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000041</td>
-                                        <td>1000041</td>
-                                        <td>Malachi</td>
-                                        <td>Malachi</td>
-                                        <td>22 January 2020</td>
-                                        <td>03:29 PM</td>
-                                        <td>Kennan Chase</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000042</td>
-                                        <td>1000042</td>
-                                        <td>Yael</td>
-                                        <td>Yael</td>
-                                        <td>04 September 2019</td>
-                                        <td>07:31 PM</td>
-                                        <td>Joel Allen</td>
-                                        <td>ABC place</td>
-                                        <td>Chris</td>
-                                        <td>25 April 2020 1:00PM</td>
-                                        <td>-</td>
-                                        <td>PENDING</td>
-                                    </tr>
+                                   
+                                    
                                 </tbody>
                             </table>
                         </div>
                     </div> 
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header bg-swvb-cyan">
-                    <div class="row">
-                        <h4 class="card-title text-white ml-2">New Pricing<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
-                    </div>    
-                </div>
-                <div class="card-content">
-                    
+
                     <div class="card-body card-dashboard">
                         <div class="row pt-3 pl-2">
                             <div class="col-sm-4">
@@ -407,6 +330,7 @@
                     </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </section>

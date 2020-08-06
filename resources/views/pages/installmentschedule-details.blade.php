@@ -28,8 +28,6 @@
                         <form class="form-horizontal" method="" action="" novalidate>
                             @csrf
                             
-                            
-                
                             <div class="card-body card-dashboard">
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -127,7 +125,7 @@
                                     </div>
                                 </div>
                             <div class="row">
-                                <button type="button" class="col btn btn-primary m-1 ml-3" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button>
+                                <p class="col"><button type="button" class=" btn btn-primary m-1 ml-3" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button></p>
                                 <p class="col-sm-2 h7 ml-2  font-weight-bold my-auto pb-2">
                                         <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
                                             Save
@@ -145,11 +143,14 @@
                                             <thead class="bg-swvb-dark">
                                                 <tr>
                                                     <th class="text-white">No.</th>
+                                                    <th class="text-white">Invoice No.</th>
                                                     <th class="text-white">Projected Date</th>
                                                     <th class="text-white">Actual Date</th>
                                                     <th class="text-white">Invoice Date</th>
                                                     <th class="text-white">Item Name</th>
                                                     <th class="text-white">Amount</th>
+                                                    <th class="text-white">Down Payment 1</th>
+                                                    <th class="text-white">Down Payment 2</th>
                                                     <th class="text-white">Admin Charges</th>
                                                     <th class="text-white">Total</th>
                                                     <th class="text-white">Balance</th>
@@ -158,10 +159,13 @@
                                             <tbody>
                                                 <tr>
                                                     <td>01</td>
+                                                    <td></td>
                                                     <td>22 June 2020</td>
                                                     <td>22 June 2020</td>
                                                     <td>01 July 2020</td>
                                                     <td>Down Payment 1</td>
+                                                    <td>RM 300</td>
+                                                    <td>RM 1000</td>
                                                     <td>250</td>
                                                     <td>23.4</td>
                                                     <td>2325</td>
@@ -169,10 +173,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td>02</td>
+                                                    <td></td>
                                                     <td>22 June 2020</td>
                                                     <td>22 June 2020</td>
                                                     <td>01 July 2020</td>
                                                     <td>Down Payment 1</td>
+                                                    <td>RM 300</td>
+                                                    <td>RM 1000</td>
                                                     <td>250</td>
                                                     <td>23.4</td>
                                                     <td>2325</td>
@@ -180,10 +187,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td>03</td>
+                                                    <td></td>
                                                     <td>22 June 2020</td>
                                                     <td>22 June 2020</td>
                                                     <td>01 July 2020</td>
                                                     <td>Down Payment 1</td>
+                                                    <td>RM 300</td>
+                                                    <td>RM 1000</td>
                                                     <td>250</td>
                                                     <td>23.4</td>
                                                     <td>2325</td>
@@ -191,10 +201,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td>04</td>
+                                                    <td></td>
                                                     <td>22 June 2020</td>
                                                     <td>22 June 2020</td>
                                                     <td>01 July 2020</td>
                                                     <td>Down Payment 1</td>
+                                                    <td>RM 300</td>
+                                                    <td>RM 1000</td>
                                                     <td>250</td>
                                                     <td>23.4</td>
                                                     <td>2325</td>
@@ -202,10 +215,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td>05</td>
+                                                    <td></td>
                                                     <td>22 June 2020</td>
                                                     <td>22 June 2020</td>
                                                     <td>01 July 2020</td>
                                                     <td>Down Payment 1</td>
+                                                    <td>RM 300</td>
+                                                    <td>RM 1000</td>
                                                     <td>250</td>
                                                     <td>23.4</td>
                                                     <td>2325</td>
@@ -213,10 +229,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td>06</td>
+                                                    <td></td>
                                                     <td>22 June 2020</td>
                                                     <td>22 June 2020</td>
                                                     <td>01 July 2020</td>
                                                     <td>Down Payment 1</td>
+                                                    <td>RM 300</td>
+                                                    <td>RM 1000</td>
                                                     <td>250</td>
                                                     <td>23.4</td>
                                                     <td>2325</td>
@@ -252,7 +271,7 @@
 
                                 
                             
-                            <!-- <button type="button" class="btn btn-primary m-1 ml-3" id="btn_add1" onclick="showContact2()">Reschedule</button> -->
+                            <button type="button" class="btn btn-primary m-1 ml-3" id="btn_add1" onclick="showContact2()">Reschedule</button>
                         </form>
                     </div>
                 </div>

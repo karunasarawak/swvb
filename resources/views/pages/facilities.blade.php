@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-header bg-swvb-cyan">
                             <div class="row">
-                                <h4 class="card-title text-white ml-2">Faciities</h4>
+                                <h4 class="col card-title text-white ml-2">Facilities<button class="btn btn-outline-white round ml-1 text-white" data-toggle="modal" data-target="#newf">New</button></h4>
                             </div>    
                         </div>
                         <div class="card-content">
@@ -29,403 +29,234 @@
                                     <table class="table tours-all">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white">Facility</th>
-                                                <th class="text-white">Required field</th>
-                                                <th class="text-white">Status</th>
-                                               
+                                                <th class="text-white" style="width:30%">Facility</th>
+                                                <th class="text-white" style="width:30%">Required field</th>
+                                                <th class="text-white" style="width:30%">Status</th>
+                                                <th class="text-white" style="width:30%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             
                                             <tr>
                                                 <td>Credentials</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox2">
-                                                            <label for="checkbox2"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox3">
-                                                            <label for="checkbox3"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox4">
-                                                            <label for="checkbox4"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                                            <label for="checkbox5"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox6">
-                                                            <label for="checkbox6"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox7">
-                                                            <label for="checkbox7"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                           
                                             <tr>
-                                                <td>Tours</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox21">
-                                                            <label for="checkbox21"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox31">
-                                                            <label for="checkbox31"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox41">
-                                                            <label for="checkbox41"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox51">
-                                                            <label for="checkbox51"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox61">
-                                                            <label for="checkbox61"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox71">
-                                                            <label for="checkbox71"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                            
                                             <tr>
-                                                <td>Vouchers</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox22">
-                                                            <label for="checkbox22"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox32">
-                                                            <label for="checkbox32"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox42">
-                                                            <label for="checkbox42"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox52">
-                                                            <label for="checkbox52"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox62">
-                                                            <label for="checkbox62"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox72">
-                                                            <label for="checkbox72"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                           
                                             <tr>
-                                                <td>Stamping Fee Request</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox23">
-                                                            <label for="checkbox23"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox33">
-                                                            <label for="checkbox33"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox43">
-                                                            <label for="checkbox43"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox53">
-                                                            <label for="checkbox53"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox63">
-                                                            <label for="checkbox63"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox73">
-                                                            <label for="checkbox73"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                              
                                             <tr>
-                                                <td>Membership</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
+                                          
                                             <tr>
-                                                <td>Contract</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox24">
-                                                            <label for="checkbox24"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox34">
-                                                            <label for="checkbox34"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox44">
-                                                            <label for="checkbox44"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox54">
-                                                            <label for="checkbox54"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox64">
-                                                            <label for="checkbox64"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox74">
-                                                            <label for="checkbox74"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                             
                                             <tr>
-                                                <td>Contract</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox25">
-                                                            <label for="checkbox25"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox35">
-                                                            <label for="checkbox35"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox45">
-                                                            <label for="checkbox45"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox55">
-                                                            <label for="checkbox55"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox65">
-                                                            <label for="checkbox65"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox75">
-                                                            <label for="checkbox75"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                             
                                             <tr>
-                                                <td>Points/Entitlement</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox26">
-                                                            <label for="checkbox26"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox36">
-                                                            <label for="checkbox36"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox46">
-                                                            <label for="checkbox46"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox56">
-                                                            <label for="checkbox56"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox66">
-                                                            <label for="checkbox66"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox72">
-                                                            <label for="checkbox76"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                             
                                             <tr>
-                                                <td>External members hip</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
-                                                            <label for="checkbox27"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
-                                                            <label for="checkbox37"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
-                                                            <label for="checkbox47"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
-                                                            <label for="checkbox57"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
-                                                            <label for="checkbox67"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
-                                                            <label for="checkbox77"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
+                                             
                                             <tr>
-                                                <td>Payment details</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
+                                            
                                             <tr>
-                                                <td>Methodp</td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox28">
-                                                            <label for="checkbox28"></label>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td>Credentials</td>
+                                                <td><div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0" >
+                                                                <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> EDIT</a>
+                                                            </button>
+                                                            
+                                                            
                                                         </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox38">
-                                                            <label for="checkbox38"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox48">
-                                                            <label for="checkbox48"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox58">
-                                                            <label for="checkbox58"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox68">
-                                                            <label for="checkbox68"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox78">
-                                                            <label for="checkbox78"></label>
-                                                        </div>
-                                                    </fieldset></td>
-                                                
+                                                    </div>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                        <td>MSD</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
+                                           
                                     
                                         </tbody>
                                     </table>
@@ -442,7 +273,55 @@
     
 </section>
 
+<div class="modal fade text-left" id="newf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">New Facilities</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+                </button>
+            </div>  
+            <form action="#">
+                <div class="modal-body">
+                                
+                    <label>Status</label>
+                    <div class="form-group">
+                        <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
+                            <option value="" disabled>Add Role</option>
+                            <option value="d1">Admin</option>
+                            <option value="sibu">MSE</option>
+                            <option value="miri">MSO</option>
+                            <option value="miri">MRM</option>
+                            <option value="miri">MRE</option>
+                            <option value="miri">MRO</option>
+                            <option value="miri">FM</option>
+                            <option value="miri">CCE</option>
+                            <option value="miri">CCO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <label > Facility</label>
+                            <input  type="text" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

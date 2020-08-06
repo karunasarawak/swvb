@@ -15,7 +15,7 @@
     <div class="card-header bg-swvb-cyan">
       <div class="card-title">
             <div class="row">
-                <h4 class="text white col">Card Printing List</h4>
+                <h4 class="text white col">Card Printing List<a href="" class="btn btn-outline-white round text-white ml-2">Add</a></h4>
                 <a href="" class="btn btn-outline-white round text-white">Download</a>
             </div>
       </div>
@@ -109,8 +109,10 @@
                             
                         </tbody>
                     </table>
-                </div>  
             </div>
+            <button type="button" class="btn btn-primary m-3 float-right" >
+            Create
+            </button>
         </div>
    </div>
 </section>

@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Staffs extends Model
 {
     protected $fillable = [
-        'staff_name'
+        'staff_id',
+        'staff_name',
+        'staff_role_id',
+        'is_active'
     ];
 
     public function leads()

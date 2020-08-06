@@ -26,7 +26,7 @@
                         <div class="card-content">
                             <div class="card-body card-dashboard">
                                 <div class="row pt-3 pl-2">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Accommodation</p>
                                     </div>
                                     <div class="col-sm-4">
@@ -130,7 +130,7 @@
 
                                 
                                 
-                                <div class="row pt-1 pl-2">
+                                <div class="row pt-3 pl-2">
                                     <div class="col-sm-4">
                                         <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Check In/Check Out Time</p>
                                     </div>
@@ -207,12 +207,12 @@
                             
                             <div class="card">
                                 <div class="card-header bg-swvb-cyan">
-                                    <h4 class="card-title text-white ml-3">Unit Types<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
+                                    <h4 class="card-title text-white">Unit Types<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addunittype"><i class="bx bx-plus"></i></button></h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
                                         
-                                        <div class="table-responsive">
+                                        <div class="table-responsive pt-2">
                                             <table class="table">
                                                 <thead class="bg-swvb-dark">
                                                     <tr>
@@ -254,7 +254,8 @@
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white" colspan="2">Unit No</th>
-                                                            <th class="text-white" colspan="2">Status</th>
+                                                            <th class="text-white" >Status</th>
+                                                            <th class="text-white" ></th>
                                                         
                                                             
                                                         </tr>
@@ -280,22 +281,7 @@
                                                         </td>
                                                     </tr>
 
-                                                    <tr>
-                                                        <td>
-                                                        <fieldset>
-                                                            <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                                            <label for="checkbox5"></label>
-                                                            </div>
-                                                        </fieldset>
-                                                        </td>
-                                                        <td>81004899</td>
-                                                        <td>000001090105818</td>
-                                                        <td>0</td>
-                                                        <td>MAN</td>
-                                                        <td>0.80</td>
-                                                        <td>CIMB Debit debit</td>
-                                                    </tr>
+                                                    
                                                     
                                                 </tbody>
                                             </table>
@@ -310,12 +296,12 @@
                             
                             <div class="card">
                                 <div class="card-header bg-swvb-cyan">
-                                    <h4 class="card-title text-white ml-3">Admin Changes Waive<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
+                                    <h4 class="card-title text-white">Admin Changes Waive<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addunittype"><i class="bx bx-plus"></i></button></h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
                                         
-                                        <div class="table-responsive">
+                                        <div class="table-responsive pt-2">
                                             <table class="table">
                                                 <thead class="bg-swvb-dark">
                                                     <tr>
@@ -328,8 +314,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>Chalet</td>
-                                                        <td>Single, Double</td>
-                                                        <td>2-3</td>
+                                                        
                                                         <td>
                                                             <div class="dropdown">
                                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -382,22 +367,7 @@
                                                         </td>
                                                     </tr>
 
-                                                    <tr>
-                                                        <td>
-                                                        <fieldset>
-                                                            <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                                            <label for="checkbox5"></label>
-                                                            </div>
-                                                        </fieldset>
-                                                        </td>
-                                                        <td>81004899</td>
-                                                        <td>000001090105818</td>
-                                                        <td>0</td>
-                                                        <td>MAN</td>
-                                                        <td>0.80</td>
-                                                        <td>CIMB Debit debit</td>
-                                                    </tr>
+                                                   
                                                     
                                                 </tbody>
                                             </table>
@@ -416,7 +386,7 @@
 </section>
 
 <!-- pop out modal box for update status -->
-<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+<div class="modal fade text-left" id="addunittype" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-cyan">

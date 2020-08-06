@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-swvb-cyan">
-                            <div class="row">
+                            <div class="row">   
                                 <h4 class="card-title text-white ml-2">Basic Permissions</h4>
                             </div>    
                         </div>
@@ -29,7 +29,7 @@
                                     <table class="table tours-all">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white">Module</th>
+                                                <th class="text-white" style="width:50%">Module</th>
                                                 <th class="text-white">N/A</th>
                                                 <th class="text-white">C</th>
                                                 <th class="text-white">V</th>
@@ -71,12 +71,7 @@
                                                             <label for="checkbox6"></label>
                                                         </div>
                                                     </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox7">
-                                                            <label for="checkbox7"></label>
-                                                        </div>
-                                                    </fieldset></td>
+                                               
                                                 
                                             </tr>
                                             <tr>
@@ -111,12 +106,7 @@
                                                             <label for="checkbox61"></label>
                                                         </div>
                                                     </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox71">
-                                                            <label for="checkbox71"></label>
-                                                        </div>
-                                                    </fieldset></td>
+                                               
                                                 
                                             </tr>
                                             <tr>
@@ -151,12 +141,7 @@
                                                             <label for="checkbox62"></label>
                                                         </div>
                                                     </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox72">
-                                                            <label for="checkbox72"></label>
-                                                        </div>
-                                                    </fieldset></td>
+                                              
                                                 
                                             </tr>
                                             <tr>
@@ -191,12 +176,7 @@
                                                             <label for="checkbox63"></label>
                                                         </div>
                                                     </fieldset></td>
-                                                <td><fieldset>
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" class="checkbox-input" id="checkbox73">
-                                                            <label for="checkbox73"></label>
-                                                        </div>
-                                                    </fieldset></td>
+                                               
                                                 
                                             </tr>
                                             <tr>
@@ -450,12 +430,12 @@
                         <div class="row pt-3">
 
                                 <div class="col radio">
-                                    <input type="radio" name="activitylogall" id="qt" value="1" checked="" required>
+                                    <input type="radio" name="activitylogall" id="qt" value="1"  required>
                                     <label for="qt">All</label>
                                 </div>
                             
                                 <div class="col radio">
-                                    <input type="radio" name="activitylogallown" id="nq"  value="2" checked="">
+                                    <input type="radio" name="activitylogallown" id="nq"  value="2" >
                                     <label for="nq">Own Department</label>
                                 </div>
                             

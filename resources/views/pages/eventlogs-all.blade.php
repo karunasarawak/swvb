@@ -113,7 +113,7 @@
                         <div class="col-sm-6">
                             <label>Type</label>
                                 <select name="type" class="custom-select" required>
-                                    <option>--</option>
+                                    <option disabled selected>Select a type</option>
                                     <option value="complaint">Complaint</option>
                                     <option value="conservation">Conservation</option>
                                 </select>     
@@ -122,7 +122,7 @@
                             <div class="form-group controls">
                                 <label>Category</label>
                                 <select name="type" class="custom-select" required>
-                                    <option>--</option>
+                                    <option disabled selected>Select a category</option>
                                     <option value="complaint">RSVN</option>
                                     <option value="conservation">Conservation</option>
                                 </select> 
@@ -132,7 +132,7 @@
                             <div class="form-group controls">
                                 <label> Location</label>
                                 <select name="type" class="custom-select" required>
-                                    <option>--</option>
+                                    <option disabled selected>Select a location</option>
                                     <option value="complaint">Kuching</option>
                                     <option value="conservation">Conservation</option>
                                 </select> 
@@ -142,7 +142,7 @@
                             <div class="form-group controls">
                                 <label>Assigned to</label>
                                 <select name="type" class="custom-select" required>
-                                    <option>--</option>
+                                    <option disabled selected>Select a people assigned to</option>
                                     <option value="complaint">CC01</option>
                                     <option value="conservation">Conservation</option>
                                 </select> 
@@ -152,7 +152,7 @@
                             <div class="form-group controls">
                                 <label>Add Department</label>
                                 <select name="type" class="custom-select" required>
-                                    <option>--</option>
+                                    <option disabled selected>Select a department</option>
                                     <option value="complaint">CC01</option>
                                     <option value="conservation">Conservation</option>
                                 </select> 
@@ -162,7 +162,7 @@
                             <div class="form-group controls">
                                 <label>Communication Channel</label>
                                 <select name="type" class="custom-select" required>
-                                    <option>--</option>
+                                    <option disabled selected>Select a communication channel</option>
                                     <option value="complaint">Fax</option>
                                     <option value="conservation">Conservation</option>
                                 </select> 

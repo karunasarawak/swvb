@@ -16,4 +16,6 @@ class Tours extends Model
         'tour_time',
         'tour_time_in',
         'tour_time_out'];
+
+    public $timestamps = false;
 }

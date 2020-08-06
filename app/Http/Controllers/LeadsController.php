@@ -120,6 +120,7 @@ class LeadsController extends Controller
               ->get();
 
     $salutations = DB::table('salutations')->get();
+
     $telemarketer = DB::table('sales_teams')->where('sales_role_id',1)->get();
 
     $event_type = DB::table('event_logs_type')->get();
@@ -208,21 +209,12 @@ class LeadsController extends Controller
 
   public function archiveLeads($lead_id)
   {
-    $result = DB::table('leads')->where('lead_id', $lead_id)->select('leads.status')->get();
-
-    if($result[0]->status == 1)
-    {
-      Leads::where('lead_id', $lead_id)->update(['status'=>3]);
-    }
-    else if($result[0]->status == 3)
-    {
-      Leads::where('lead_id', $lead_id)->update(['status'=>1]);
-    }
+    Leads::where('lead_id', $lead_id)->update(['status'=>3]);
 
     return redirect('leads/all');
   }
 
-  public function archive()
+  public function showArchive()
   {
     $pageConfigs = ['pageHeader' => true];
 

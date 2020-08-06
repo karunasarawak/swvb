@@ -21,7 +21,7 @@
                     <div class="card-header bg-swvb-cyan">
                         <div class="row">
                             <h4 class="col card-title text-white ml-4">Member Info - John Doe</h4>
-                            <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
+                                <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
                                 <button type="submit" class="col btn btn-primary" x-show="e" x-cloak >                                                                   
                                     Save
                                 </button>

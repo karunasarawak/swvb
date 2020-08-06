@@ -48,8 +48,7 @@ class CreateLeadsTable extends Migration
              $table->string('prefer_lang',80)->nullable();
 
             $table->tinyInteger('status')->length(1)->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
            
             
             
@@ -76,6 +75,7 @@ class CreateLeadsTable extends Migration
      */
     public function down()
     {
+        // Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('leads');
     }
 }

@@ -21,7 +21,7 @@ class ToursController extends Controller
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tours"],["name" => "All"]
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tou rs"],["name" => "All"]
     ];
 
     $leads = Leads::all();
@@ -61,7 +61,7 @@ class ToursController extends Controller
     $leads = DB::table('leads')
             ->where('lead_id',$lead_id)
             ->join('salutations','salutations.salutation_id','leads.salutation_id')
-            ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+            // ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
             ->select('leads.name','leads.lead_id','salutations.salutation','leads.mobile_no','leads.whatsapp_no','leads.credit_card_limit','sales_teams.sales_name')
             ->get();
 
@@ -245,60 +245,53 @@ class ToursController extends Controller
 
       //Check if want to apply vouchers
       // if Yes
-      if($request->acv == 1)
-      {
-          //Create Vouchers
-          $createVoucher = DB::table('vouchers')
-           ->insert([
-             'accom_id'=>$request->accom1,
-             'voucher_no'=>$newVoucher,
-             'no_occupancy'=>$request->occup1,
-             'night'=>$request->stay1,
-             'cv_start_date'=>$request->cv_start1,
-             'cv_exp_date'=>$request->cv_exp1,
-             'start_day'=>1,
-             'end_day'=>4,
-             'has_used'=>0,
-             'voucher_status'=>1,
-           ]);
+      
+      $createVoucher = DB::table('vouchers')
+       ->insert([
+          'accom_id'=>$request->accom1,
+          'voucher_no'=>$newVoucher,
+          'no_occupancy'=>$request->occup1,
+          'night'=>$request->stay1,
+          'cv_start_date'=>$request->cv_start1,
+          'cv_exp_date'=>$request->cv_exp1,
+          'start_day'=>1,
+          'end_day'=>4,
+          'has_used'=>0,
+          'voucher_status'=>1]);
+          
+      //Get last voucher id
+      $last_voucher_id = DB::getPDO()->lastInsertId(); 
 
-          //Get last voucher id
-          $last_voucher_id = DB::getPDO()->lastInsertId(); 
-
-          //Update tour voucher id
-          $update = Tours::where('tour_id', $request->tourid)->update(['voucher_id'=>$last_voucher_id]);
-
-      }   
-
-    $details = DB::table('tours')
-          ->join('leads','leads.lead_id','tours.lead_id1')
-          ->join('gender','gender.gender_id','leads.gender')
-          ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
-          ->join('religions', 'religions.religion_id','leads.religion_id')
+      //Update tour voucher id
+      $update = Tours::where('tour_id', $request->tourid)->update(['voucher_id'=>$last_voucher_id]);
+      $details = DB::table('tours')
+          // ->join('gender','gender.gender_id','leads.gender')
+          // ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
+          // ->join('religions', 'religions.religion_id','leads.religion_id')
           ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
-          ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+          // ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
           ->join('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
           ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
           ->where('tour_id', $tour_id)
           ->get();
 
-    $sp = DB::table('tours')
-          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
-          ->where('tour_id', $tour_id)
-          ->get();
+      $sp = DB::table('tours')
+            ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+            ->where('tour_id', $tour_id)
+            ->get();
 
-    $sm = DB::table('tours')
-          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
-          ->where('tour_id', $tour_id)
-          ->get();
-                    
-    $lead_id2 = DB::table('tours')
-                ->where('tour_id', $tour_id)->get('tours.lead_id2');
+      $sm = DB::table('tours')
+            ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
+            ->where('tour_id', $tour_id)
+            ->get();
+                      
+      $lead_id2 = DB::table('tours')
+                  ->where('tour_id', $tour_id)->get('tours.lead_id2');
 
-    $payload = ['details'=> $details[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
+      $payload = ['details'=> $details[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
 
 
-    return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+      return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
   public function showDetails(Request $request, $tour_id)
@@ -308,18 +301,39 @@ class ToursController extends Controller
       $breadcrumbs = [
         ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Tours"],["name" => "Tour Details Preview"]
       ];
+    // dd($request);
 
     $details = DB::table('tours')
             ->join('leads','leads.lead_id','tours.lead_id1')
-            ->join('gender','gender.gender_id','leads.gender')
+            ->leftJoin('gender','gender.gender_id','leads.gender')
             ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
             ->join('religions', 'religions.religion_id','leads.religion_id')
             ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
             ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
-            ->join('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
-            ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
+            ->leftJoin('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
+            ->leftJoin('vouchers','vouchers.voucher_id','tours.voucher_id')
             ->where('tour_id', $tour_id)
             ->get();
+
+    //  dd($details);
+    $checkLead2 = DB::table('tours')->where('tours.tour_id',$tour_id)->pluck('lead_id2');
+    // dd($checkLead2);
+
+    // Call lead 2 information
+    if($checkLead2[0] != null)
+    {
+        $detail2 = DB::table('leads')
+              ->join('gender','gender.gender_id','leads.gender')
+              ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
+              ->join('religions', 'religions.religion_id','leads.religion_id')
+              ->where('lead_id', $checkLead2[0])
+              ->get();
+        // dd($detail2);
+    }
+    else
+    {
+      $detail2 = null;
+    }
 
     $sp = DB::table('tours')
           ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
@@ -328,12 +342,11 @@ class ToursController extends Controller
           ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
           ->get();
 
-
-    $payload = ['details'=>$details[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
+    $payload = ['details'=>$details[0],'detail2'=>$detail2[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
+    // dd($payload);
 
     return view('pages.tours-details', ['payload'=>$payload]);
   }
-
 
   //DONE
   public function storeTour(Request $request, $lead_id)
@@ -349,9 +362,6 @@ class ToursController extends Controller
       'tour_initial_time'=>$request->time,
       'sales_venue_id'=>$request->venue,
       'tour_status'=>1
-      // 'tour_countries'=>$request->country,
-      // 'tour_states'=>$request->state,
-      // 'tour_cities'=>$request->city,
       ]);
 
       // dd($request);
@@ -369,5 +379,16 @@ class ToursController extends Controller
 
     return redirect("tours/arhive");
   }
+
+  // public function test(){
+    
+  //   $pageConfigs = ['pageHeader' => true];
+
+  //   $breadcrumbs = [
+  //     ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+  //   ];
+
+  //   return view('pages.toursfailed-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  // }
 
 }

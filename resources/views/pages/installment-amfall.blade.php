@@ -25,7 +25,7 @@
                             <table class="table tours-all" >
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white">AMF Schedule No.</th>
+                                        <th class="text-white" style="width:10%">AMF Schedule No.</th>
                                         <th class="text-white">Membership No.</th>
                                         <th class="text-white">Name</th>
                                         <th class="text-white">Package</th>

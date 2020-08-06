@@ -56,16 +56,7 @@
                
                <!-- body content of step 2 -->
                @include('pages.contract-new2')
-               <!-- body content of step 2 end
-               Step 3 -->
-               <!-- <h6> 
-                <i class="step-icon"></i> 
-                 <span class="fonticon-wrap"> 
-                   <i class="livicon-evo"
-                    data-options="name:users.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i> 
-                 </span> 
-                 <span>Nominee</span> 
-               </h6>  -->
+
             </form>
           </div>
         </div>
@@ -92,7 +83,6 @@
             'sec_addr1','sec_alt_addr1','sec_addr2','sec_alt_addr2','sec_code','sec_city','sec_alt_code',
             'sec_alt_city','sec_state','sec_alt_state','sec_country','sec_alt_country','sec_remarks'];
   
-  var leads = {!! json_encode($payload['lead2']->name) !!};
 
   function switchInfo()
   {
@@ -115,8 +105,33 @@
     alert(sample.className);
   }
 
-  function showExists()
+  function chooseLead($condition)
   {
+    console.log($condition);
+
+    if($condition == 1)
+    {
+      var data = @json($payload['lead2']);
+
+      for(a in data)
+      {
+        if(data[a] == null)
+        {
+          document.getElementById(sec[i]).value = "";
+        }
+        else if (data[a] != null)
+        {
+          document.getElementById(sec[i]).value = data[a];
+        }
+      }
+    }
+    else if($condition == 0)
+    {
+      for(var i = 0; i < 100; i++)
+      {
+        document.getElementById(sec[i]).value = "";
+      }
+    }
     
   }
 

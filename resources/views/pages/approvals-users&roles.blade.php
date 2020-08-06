@@ -27,7 +27,7 @@
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white"></th>
+                                        <th class="text-white" style="width:50%"></th>
                                         <th class="text-white">Check</th>
                                         <th class="text-white">Check 2</th>
                                         <th class="text-white">Verify</th>
@@ -40,94 +40,393 @@
                                     
                                     <tr>
                                         <td>ICT requests</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="ictrequest" id="ictapp" checked=""   required></td>
-                                        <td><input type="radio" name="ictrequest" id="ictapp2"   required></td>
-                                        
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Special reservation requests</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="specialrr" id="srrapp" checked=""   required></td>
-                                        <td><input type="radio" name="specialrr" id="srrapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Expired voucher usage requests</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="evur" id="evurapp" checked=""   required></td>
-                                        <td><input type="radio" name="evur" id="evurapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>RCI Bulk Banking</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="rbb" id="rbbv"   required></td>
-                                        <td><input type="radio" name="rbb" id="rbbv2"   required></td>
-                                        <td><input type="radio" name="rbb" id="rbbapp" checked=""   required></td>
-                                        <td><input type="radio" name="rbb" id="rbbapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>II Reserved Units</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="iiru" id="iiruv"   required></td>
-                                        <td><input type="radio" name="iiru" id="iiruv2"   required></td>
-                                        <td><input type="radio" name="iiru" id="iiruapp" checked=""   required></td>
-                                        <td><input type="radio" name="iiru" id="iiruapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Edit reservations level 1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="erl1" id="erl1app" checked=""   required></td>
-                                        <td><input type="radio" name="erl1" id="erl1app2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Edit reservations level 2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="erl2" id="erl2app" checked=""   required></td>
-                                        <td><input type="radio" name="erl2" id="erl2app2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Point/entitlement advancement</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="pea" id="peaapp" checked=""   required></td>
-                                        <td><input type="radio" name="pea" id="peaapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Refund</td>
-                                        <td></td>
-                                        <td><input type="radio" name="refund" id="refundc2"   required></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="refund" id="refundapp" checked=""   required></td>
-                                        <td><input type="radio" name="refund" id="refundcapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                     <tr>
                                         <td>Suspend</td>
-                                        <td><input type="radio" name="suspend" id="suspendc"   required></td>
-                                        <td><input type="radio" name="suspend" id="suspendc2"   required></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="radio" name="suspend" id="suspendapp" checked=""   required></td>
-                                        <td><input type="radio" name="suspend" id="suspendapp2"   required></td>
+                                        <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox27">
+                                                            <label for="checkbox27"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox37">
+                                                            <label for="checkbox37"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox47">
+                                                            <label for="checkbox47"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox57">
+                                                            <label for="checkbox57"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox67">
+                                                            <label for="checkbox67"></label>
+                                                        </div>
+                                                    </fieldset></td>
+                                                <td><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox77">
+                                                            <label for="checkbox77"></label>
+                                                        </div>
+                                                    </fieldset></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -139,6 +438,7 @@
         </div>
     </div>
 </section>
+
 
 
 

@@ -28,7 +28,7 @@
                                     <label for="location">Salutation</label>
                                     <select class="custom-select form-control" id="salutation" name="salutation_id"
                                     data-validation-required-message="Please select a salutation" required>
-                                        <option value="">--</option>
+                                        <option value="" disabled selected>Select a salutation</option>
                                         @foreach ($payload['salutations'] as $salutation)
                                             <option value="{{$salutation->salutation_id}}">{{$salutation->salutation}}</option>
                                         @endforeach
@@ -85,7 +85,7 @@
                                         <label for="location">Telemarkerter</label>
                                         <select class="custom-select form-control" id="telemarkerter" name="telemarketer_id"
                                         data-validation-required-message="Please select a telemarketer." required>
-                                            <option value="">--</option>
+                                            <option value="" disabled selected>Select a telemarketer</option>
                                             @foreach ($payload['telemarketers'] as $telemarketer)
                                                 <option value="{{$telemarketer->sales_team_id}}">{{$telemarketer->sales_name}}</option>
                                             @endforeach

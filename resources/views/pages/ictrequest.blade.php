@@ -50,48 +50,48 @@
                                     <tr>
                                         <td>{{$ict->ict_req_id}}</td>
                                         <td>{{$ict->mbrship_no}}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{$ict->ict_req_created_at}}</td>
+                                        <td>{{$ict->dept}}</td>
+                                        <td>{{$ict->pict_req_by}}</td>
+                                        <td>{{$ict->pict_req_created_at}}</td>
                                         <td>{{$ict->staff_name}}</td>
                                         <td>{{$ict->staff_name}}</td>
                                         <td>{{$ict->staff_name}}</td>
-                                        @if ($ict->ict_req_status == "0")
+                                        @if ($ict->pict_req_status == "0")
                                             <?php $status = "Pending Verify"; ?>
-                                        @elseif ($ict->ict_req_status == "1")
+                                        @elseif ($ict->pict_req_status == "1")
                                             <?php $status = "Pending Approval"; ?>
-                                        @elseif ($ict->ict_req_status == "2")
+                                        @elseif ($ict->pict_req_status == "2")
                                             <?php $status = "Pending Resolve"; ?>
-                                        @elseif ($ict->ict_req_status == "3")
+                                        @elseif ($ict->pict_req_status == "3")
                                             <?php $status = "Resolved"; ?>
-                                        @elseif ($ict->ict_req_status == "4")
+                                        @elseif ($ict->pict_req_status == "4")
                                             <?php $status = "Rejected"; ?>
                                         @endif
                                         <td>{{$status}}</td>
                                         
-                                    @if($ict->ict_req_status==0)    
+                                    @if($ict->pict_req_status==0)    
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0"  >
+                                                    <!-- <button class="bg-transparent border-0"  >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
+                                                    </button> -->
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->ict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> REJECT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->ict_req_status])}}" ><i class="bx bx-pen mr-1"></i> VERIFY</a>
+                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> VERIFY</a>
                                                     </button>
                                                 </div>
                                             </div>
                                         </td>
-                                    @elseif($ict->ict_req_status==1)
+                                    @elseif($ict->pict_req_status==1)
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -99,15 +99,15 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->ict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> APPROVE</a>
+                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> APPROVE</a>
                                                     </button>
                                                 </div>
                                             </div>
                                         </td>  
-                                    @elseif($ict->ict_req_status==2)
+                                    @elseif($ict->pict_req_status==2)
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -115,20 +115,20 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->ict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> RESOLVE</a>
+                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> RESOLVE</a>
                                                     </button>
                                                 </div>
                                             </div>
                                         </td>  
-                                    @elseif($ict->ict_req_status==3)
+                                    @elseif($ict->pict_req_status==3)
                                         <td>
                                             
                                         </td>  
                                     </tr>
-                                    @elseif($ict->ict_req_status==4)
+                                    @elseif($ict->pict_req_status==4)
                                         <td>
                                             
                                         </td>  

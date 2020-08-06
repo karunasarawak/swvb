@@ -14,19 +14,23 @@ class CreateIctRequestsTable extends Migration
     public function up()
     {
         Schema::create('ict_requests', function (Blueprint $table) {
-            $table->id('ict_req_id')->length(11);
-            $table->integer('requested_by')->length(11)->nullable();
-            $table->integer('resolved_by')->length(11)->nullable();
-            $table->integer('dept_id')->length(11)->nullable();
-            $table->integer('mbrship_id')->length(11)->nullable();
-            $table->string('request', 11)->nullable();
-            $table->date('ict_req_created_at')->nullable();
-            $table->string('attachment_directory', 255)->nullable();
-            $table->integer('approval_by')->length(11)->nullable();
-            $table->integer('verified_by')->length(11)->nullable();
-            $table->date('resolved_dateline')->nullable();
-            $table->string('ict_remarks', 255)->nullable();
-            $table->tinyInteger('ict_req_status')->nullable();
+            $table->id('pict_req_id')->length(11);
+            $table->integer('pict_staff_id')->length(11)->nullable();
+            $table->integer('rsvn_id')->length(11)->nullable();
+            $table->integer('pict_mbrship_id')->length(11)->nullable();
+            $table->integer('pict_req_by')->length(11)->nullable();
+            $table->integer('pict_processed')->length(11)->nullable();
+            $table->integer('use_year')->length(4)->nullable();
+            $table->integer('wd_points')->length(6)->nullable();
+            $table->date('proposed_expdate')->nullable();
+            $table->date('pict_req_created_at')->nullable();
+            $table->integer('we')->length(2)->nullable();
+            $table->integer('poe')->length(11)->nullable();
+            $table->integer('pict_approval')->length(11)->nullable();
+            $table->integer('pict_verifier')->length(11)->nullable();
+            
+            
+            $table->tinyInteger('pict_req_status')->nullable();
             $table->timestamps();
         });
     }

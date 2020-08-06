@@ -16,18 +16,14 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">Facilities<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
+                        <h4 class="card-title text-white ml-2">Facilities Details<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles">New</button></h4>
                     </div>    
                 </div>
                 <div class="card-content">
                     
                     <div class="card-body card-dashboard">
                         <div class="card">
-                            <div class="card-header bg-swvb-cyan">
-                                <div class="row">
-                                    <h4 class="card-title text-white ml-2">Facilities Details<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
-                                </div>    
-                            </div>
+                            
                             <div class="card-content">
                                 
                                 <div class="card-body card-dashboard">
@@ -63,7 +59,7 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">Pricing<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
+                        <h4 class="card-title text-white ml-2">Pricing<button class="btn btn-outline-white round mr-1 ml-5 text-white" data-toggle="modal" data-target="#addusers">New</button></h4>
                     </div>    
                 </div>
                 <div class="card-content">

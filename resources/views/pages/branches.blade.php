@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">Collected By<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
+                        <h4 class="card-title text-white ml-2">Collected By<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
                     </div>    
                 </div>
                 <div class="card-content">
@@ -27,8 +27,9 @@
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white">Collected By</th>
-                                        <th class="text-white">Status</th>
+                                        <th class="text-white" style="width:50%">Collected By</th>
+                                        <th class="text-white" style="width:10%">Status</th>
+                                        <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,13 +37,7 @@
                                     <tr>
                                         <td>IT Admin</td>
                                         <td>ICT</td>
-                                        <td>
-                                            <select class="custom-select form-control required" id="itadmin" name="department" >
-                                                <option value="1">Mr</option>
-                                                <option value="2">Mrs</option>
-                                            </select>
-                                        </td>
-                                        <td>Status</td>
+                                        
                                         <td><div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -51,26 +46,15 @@
                                                     <button class="bg-transparent border-0" >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
+                                                    
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Finance Manager</td>
-                                        <td>FM</td>
-                                        <td>
-                                            <select class="custom-select form-control required" id="fm" name="department" >
-                                                <option value="1">Mr</option>
-                                                <option value="2">Mrs</option>
-                                            </select>
-                                        </td>
-                                        <td>Status</td>
+                                        <td>IT Admin</td>
+                                        <td>ICT</td>
+                                        
                                         <td><div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -79,31 +63,15 @@
                                                     <button class="bg-transparent border-0" >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
+                                                    
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Member Sales Manager</td>
-                                        <td>MSM</td>
-                                        <td>
-                                            <select class="custom-select form-control required" id="fm" name="department" >
-                                                <option value="1">Mr</option>
-                                                <option value="2">Mrs</option>
-                                            </select>
-                                        </td>
-                                        <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="Active">
-                                                <option value="1">Mr</option>
-                                                <option value="2">Mrs</option>
-                                                
-                                            </select>
-                                        </td>
+                                        <td>IT Admin</td>
+                                        <td>ICT</td>
+                                        
                                         <td><div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -112,12 +80,7 @@
                                                     <button class="bg-transparent border-0" >
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                    </button>
+                                                    
                                                 </div>
                                             </div>
                                         </td>
@@ -129,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
                         <h4 class="card-title text-white ml-2">Users<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
@@ -416,7 +379,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

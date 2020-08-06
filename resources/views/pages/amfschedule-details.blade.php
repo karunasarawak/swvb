@@ -83,7 +83,7 @@
                         </div>
 
                             <div class="row">
-                                <button type="button" class="col btn btn-primary m-1 ml-3" x-show="original" @click="edit=true, original=false">Edit Info</button>
+                                <p class="col"><button type="button" class="btn btn-primary m-1 ml-3" x-show="original" @click="edit=true, original=false">Edit Info</button></p>
                                 <p class="col h7 ml-2 font-weight-bold my-auto pb-2">
                                     <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
                                         Save
@@ -101,6 +101,7 @@
                                         <thead class="bg-swvb-dark">
                                             <tr>
                                                 <th class="text-white">No.</th>
+                                                <th class="text-white">Invoice No.</th>
                                                 <th class="text-white">Projected Date</th>
                                                 <th class="text-white">Actual Date</th>
                                                 <th class="text-white">Invoice No.</th>
@@ -113,6 +114,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>01</td>
+                                                <td></td>
                                                 <td>22 June 2020</td>
                                                 <td>22 June 2020</td>
                                                 <td>INV 123456</td>
@@ -122,6 +124,7 @@
                                             </tr>
                                             <tr>
                                                 <td>01</td>
+                                                <td></td>
                                                 <td>22 June 2020</td>
                                                 <td>22 June 2020</td>
                                                 <td>INV 123456</td>
@@ -131,6 +134,7 @@
                                             </tr>
                                             <tr>
                                                 <td>01</td>
+                                                <td></td>
                                                 <td>22 June 2020</td>
                                                 <td>22 June 2020</td>
                                                 <td>INV 123456</td>
@@ -140,6 +144,7 @@
                                             </tr>
                                             <tr>
                                                 <td>01</td>
+                                                <td></td>
                                                 <td>22 June 2020</td>
                                                 <td>22 June 2020</td>
                                                 <td>INV 123456</td>
@@ -149,6 +154,7 @@
                                             </tr>
                                             <tr>
                                                 <td>01</td>
+                                                <td></td>
                                                 <td>22 June 2020</td>
                                                 <td>22 June 2020</td>
                                                 <td>INV 123456</td>
@@ -158,6 +164,7 @@
                                             </tr>
                                             <tr>
                                                 <td>01</td>
+                                                <td></td>
                                                 <td>22 June 2020</td>
                                                 <td>22 June 2020</td>
                                                 <td>INV 123456</td>

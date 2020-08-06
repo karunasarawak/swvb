@@ -44,7 +44,7 @@
                                     @if(isset($payload))
                                         @foreach($payload['leads'] as $lead)
                                         <tr>
-                                            <td><a href="{{route('leads.details', $lead->lead_id)}}'">{{$lead->lead_id}}</a></td>
+                                            <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
                                             <td>{{$lead->salutation}} {{$lead->name}}</td>
                                             <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('d-m-Y')}}</td>
                                             <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('h:i A')}}</td>

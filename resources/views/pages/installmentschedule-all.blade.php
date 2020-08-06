@@ -34,8 +34,7 @@
                                         <th class="text-white">Membership No.</th>
                                         <th class="text-white">Name</th>
                                         <th class="text-white">Package</th>
-                                        <th class="text-white">Downpayment 1</th>
-                                        <th class="text-white">Downpayment 2</th>
+                                        
                                         <th class="text-white">Paid %</th>
                                         <th class="text-white">Status</th>
                                         <th class="text-white">Action</th>
@@ -49,8 +48,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                        
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -73,8 +71,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                       
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -97,8 +94,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                       
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -121,8 +117,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                       
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -145,8 +140,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                       
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -169,8 +163,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                        
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -193,8 +186,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                        
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -217,8 +209,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                       
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -241,8 +232,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                        
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -265,8 +255,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                        
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>
@@ -289,8 +278,7 @@
                                         <td>26541000</td>
                                         <td>John Doe</td>
                                         <td>Pearl-Full</td>
-                                        <td>RM 300</td>
-                                        <td>RM 1000</td>
+                                       
                                         <td>50</td>
                                         <td>Active</td>
                                         <td>

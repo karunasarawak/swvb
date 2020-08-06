@@ -239,7 +239,7 @@
 
 <!-- Nav Center Alignement Starts -->
 <section id="nav-tabs-centered">
-  <div class="row">
+  <div class="row">d
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">

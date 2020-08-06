@@ -25,10 +25,10 @@
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white">User</th>
-                                        <th class="text-white">Action</th>
-                                        <th class="text-white">Date</th>
-                                        <th class="text-white">Time</th>
+                                        <th class="text-white" style="width:10%">User</th>
+                                        <th class="text-white" style="width:10%">Action</th>
+                                        <th class="text-white" style="width:10%">Date</th>
+                                        <th class="text-white" style="width:10%">Time</th>
                                     </tr>
                                 </thead>
                                 <tbody>

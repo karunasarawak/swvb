@@ -89,7 +89,7 @@ class InvoicesController extends Controller
 
     $payload = ['invoice'=>$invoice[0]];
 
-    // dd($payload);
+     // dd($payload);
 
     return view('pages.invoice-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }

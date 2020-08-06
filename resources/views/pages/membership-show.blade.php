@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary ">Easy access to Create membership</a>
+                        <a href="{{ url('/membership/{lead_id}/{tour_id}/new') }}" type="button" class="btn btn-primary ">Create membership</a>
                     </div>
 
                 <br>

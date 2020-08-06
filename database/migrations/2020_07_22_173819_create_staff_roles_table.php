@@ -17,18 +17,18 @@ class CreateStaffRolesTable extends Migration
             $table->id('role_id');
             $table->string('role', 30)->nullable();
             $table->string('code', 20)->nullable();
-            $table->string('department', 20)->nullable();
+            $table->string('dept_id', 20)->nullable();
             $table->timestamps();
         });
 
         DB::table('staff_roles')->insert(
             array(
-                ['role' => 'FM', 'code'=>'FM', 'department'=>'FM'],
-                ['role' => 'CCE', 'code'=>'CCE', 'department'=>'CCE'],
-                ['role' => 'MRE', 'code'=>'MRE', 'department'=>'MRE'],
-                ['role' => 'MRM', 'code'=>'MRM', 'department'=>'MRM'],
-                ['role' => 'ICT', 'code'=>'ICT', 'department'=>'ICT'],
-                ['role' => 'MSE', 'code'=>'MSE', 'department'=>'MSE']
+                ['role' => 'ACC', 'code'=>'ACC', 'dept_id'=>'ACC'],
+                ['role' => 'CC', 'code'=>'CC', 'dept_id'=>'CC'],
+                ['role' => 'MRE', 'code'=>'MRE', 'dept_id'=>'MRE'],
+                ['role' => 'MRM', 'code'=>'MRM', 'dept_id'=>'MRM'],
+                ['role' => 'ICT', 'code'=>'ICT', 'dept_id'=>'ICT'],
+                ['role' => 'MSE', 'code'=>'MSE', 'dept_id'=>'MSE']
             )
         );
     }

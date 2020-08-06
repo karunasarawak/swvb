@@ -22,9 +22,6 @@ class CreateToursTable extends Migration
             $table->integer('sales_manager_id')->nullable();
             $table->integer('sales_venue_id')->nullable();
             $table->integer('voucher_id')->length(11)->nullable();
-            // $table->integer('telemarketer_id')->nullable();
-            // $table->integer('salutation_id')->nullable();;
-            // $table->integer('el_id')->nullable();
 
             $table->date('tour_date')->nullable();
             $table->time('tour_initial_time')->nullable();
@@ -40,9 +37,6 @@ class CreateToursTable extends Migration
             $table->tinyInteger('tour_proceed_contract')->nullable();
             $table->tinyInteger('tour_attend')->nullable();
             $table->integer('tour_status')->nullable();
-
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
         });
     }
 

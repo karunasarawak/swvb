@@ -56,12 +56,13 @@
                                             @elseif ($voucher == "2")
                                                 <?php $venue = "Damai Beach Resort";?> 
                                             @endif
-                                            <td>{{$venue}}</td>
+
+                                            <td><?php echo $venue;?></td>
 
                                             @if ($voucher->has_used == "0")
                                                 <?php $used = "Not Used";?>
                                             @elseif ($voucher->has_used == "1")
-                                                <?php $venue = "Used";?> 
+                                                <?php $used = "Used";?> 
                                             @endif
                                             <td>{{$used}}</td>
                                             <td>

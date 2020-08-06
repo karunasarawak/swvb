@@ -18,6 +18,7 @@ Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 Route::get('/membership', 'MembershipController@index');
 
 Route::get('/membership/{lead_id}/{tour_id}/new', 'MembershipController@createMembership')->name('members.createPage');
+Route::get('/membership/new', 'MembershipController@create2ndMembership');
 
 Route::post('/membership/new', 'MembershipController@storeMembers')->name('members.store');//name only for posting
 
@@ -43,12 +44,12 @@ Route::patch('/contacts/{lead_id}/details', 'ContactsController@editContact')->n
 Route::get('/leads/all', 'LeadsController@index')->name('leads.all');   
 Route::get('/leads/new', 'LeadsController@newLead')->name('leads.new');
 Route::get('/leads/{lead_id}/details', 'LeadsController@viewLead')->name('leads.details');
-Route::get('/leads/archive', 'LeadsController@archive');
+Route::get('/leads/archive', 'LeadsController@showArchive');
 Route::post('/leads/new', 'LeadsController@storeLead')->name('leads.store');
 Route::post('/leads/all', 'LeadsController@uploadCSV')->name('leads.csvUpload');
 Route::post('/leads/{lead_id}/details', 'LeadsController@createEvent')->name('leads.createEvent');
 Route::patch('/leads/{lead_id}/details', 'LeadsController@editLead')->name('leads.edit');
-Route::patch('/leads/archive', 'LeadsController@archiveLeads')->name('leads.archive');
+Route::patch('/leads/{lead_id}/archive', 'LeadsController@archiveLeads')->name('leads.archive');
 Route::post('/leads/details', 'LeadsController@addCall')->name('leads.addCall');
 Route::patch('/leads/details', 'LeadsController@updateCall')->name('leads.updateCall');
 
@@ -60,6 +61,7 @@ Route::get('/tours/{tour_id}/attend', 'ToursController@attendTour')->name('tours
 Route::patch('/tours','ToursController@editTime')->name('tours.edit');
 Route::patch('/{lead_id}/tours','ToursController@storeTour')->name('tours.store');
 Route::get('/tours/{tour_id}/archive', 'ToursController@archive');
+// Route::get('/tours/test', 'ToursController@test');
 
 Route::get('/vouchers', 'VouchersController@index');
 Route::patch('/vouchers', 'VouchersController@editVoucher')->name('vouchers.edit');
@@ -106,8 +108,10 @@ Route::get('/membershipdeckdispatch/supplierdetails', 'MembershipDeckDispatchCon
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');
 Route::get('/reservations/new', 'ReservationController@addnew');
+Route::patch('/reservations/new', 'ReservationController@savenew');
 Route::get('/reservations/fdetails', 'ReservationController@facilitydetails');
 Route::get('/reservations', 'ReservationController@reservationredirect')->name('rsvn.bring');
+Route::get('/rtest','ReservationController@test');
 
 
 Route::get('/communicationlog', 'CommunicationLogController@index');
@@ -117,18 +121,20 @@ Route::get('/ictrequest', 'IctRequestController@index');
 
 Route::get('/inventory', 'InventoryController@index');
 
+//Task Assignment
 Route::get('/taskassign', 'TaskAssignmentController@index');
-Route::post('/taskassign', 'TaskAssignmentController@uploadcsv')->name('task.upload');
+Route::post('/taskassign', 'TaskAssignmentController@uploadCSV');
 
 Route::get('/approval', 'ApprovalController@index');
 
 Route::get('/extmembership', 'ExtMembershipController@index');
 Route::get('/extmembership/rcibb', 'ExtMembershipController@rcibball');
+Route::get('/extmembership/rcinew', 'ExtMembershipController@rcinew');
+Route::get('/extmembership/rcibbdetails', 'ExtMembershipController@rcibbdetails');
+
 Route::get('/extmembership/new', 'ExtMembershipController@newBatch');
 Route::get('/extmembership/details', 'ExtMembershipController@IIdetails');
 
-Route::get('/extmembership/rcinew', 'ExtMembershipController@rcinew');
-Route::get('/extmembership/rcibbdetails', 'ExtMembershipController@rcibbdetails');
 Route::get('/extmembership/rcienrollment', 'ExtMembershipController@rcienrollment');
 Route::get('/extmembership/rcinewenroll', 'ExtMembershipController@rcinewenroll');
 Route::get('/extmembership/IInewenroll', 'ExtMembershipController@IInewenroll');
@@ -137,14 +143,43 @@ Route::get('/aging', 'AgingReminderController@index');
 
 Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest');
 Route::get('/admin/{ict_id}/{ict_status}/ictrequest', 'UsersRolesController@changestatus')->name('ict.status');
-Route::get('/admin/newictrequestpoint', 'UsersRolesController@newictrequestpoint');
+Route::get('/admin/{ict_req_id}/ictrequest', 'UsersRolesController@rejectstatus')->name('ict.reject');
+Route::get('/admin/newictrequestpoint', 'UsersRolesController@newictrequestpoint')->name('new.points');
+Route::post('/admin/newictrequestpoint', 'UsersRolesController@storeictrequestpoint')->name('store.points');
+
+
 Route::get('/admin/newictrequestacc', 'UsersRolesController@newictrequestacc');
 Route::get('/admin/ictaccdetails', 'UsersRolesController@ictrequestaccdetails');
 Route::get('/admin/ictptdetails', 'UsersRolesController@ictrequestptdetails');
-Route::get('/userroles', 'UsersRolesController@userroles');
+Route::get('/userroles', 'UsersRolesController@userroles')->name('new.roles');
+Route::get('/userroles/{role_id}/{is_active}', 'UsersRolesController@activation')->name('staff.status');
+
+
 Route::get('/roledetails', 'UsersRolesController@roledetails');
 Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');
+
+
 Route::get('/admin/approvals', 'UsersRolesController@approvals');
+Route::get('/admin/taxinterest', 'UsersRolesController@taxinterest');
+Route::get('/admin/branches', 'UsersRolesController@branches');
+Route::get('/admin/packages', 'UsersRolesController@packages');
+Route::get('/admin/pt-entitlement', 'UsersRolesController@ptentitlement');
+Route::get('/admin/attachments', 'UsersRolesController@attachments');
+Route::get('/admin/msd', 'UsersRolesController@selectionmsd');
+Route::get('/admin/mrd', 'UsersRolesController@selectionmrd');
+Route::get('/admin/accmd', 'UsersRolesController@accommodation');
+Route::get('/admin/accmdetails', 'UsersRolesController@accommodationdetails');
+Route::get('/admin/unitdetails', 'UsersRolesController@unitdetails');
+Route::get('/admin/facilities', 'UsersRolesController@facilities');
+Route::get('/admin/facilitiesd', 'UsersRolesController@facilitiesdetails');
+Route::get('/admin/eventlogs', 'UsersRolesController@eventlogs');
+Route::get('/admin/selectionaccccd', 'UsersRolesController@selectionaccccd');
+Route::get('/admin/selectionict', 'UsersRolesController@selectionict');
+Route::get('/admin/ct', 'UsersRolesController@cardterminal');
+Route::get('/admin/ctct', 'UsersRolesController@cardterminalchargetype');
+Route::get('/admin/acccc', 'UsersRolesController@acccc');
+Route::get('/admin/acc&cc', 'UsersRolesController@accccdn');
+
 // Route::get('/countries', 'Countries@list');
 // Route::get('/add-to-logs', 'HomeController@myTestAddToLog');
 // Route::get('/logActivity', 'HomeController@logActivity');

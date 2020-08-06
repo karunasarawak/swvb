@@ -14,15 +14,15 @@
     <div class="row">
         <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-            <h4 class="card-title">Points $ Entitlements</h4>
+            <div class="card-header bg-swvb-cyan">
+            <h4 class="card-title text-white">Points $ Entitlements</h4>
             </div>
             <div class="card-content">
             <div class="card-body">
                 <form class="form-horizontal" method="POST" novalidate>
                 @csrf
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="row pt-3">
+                    <div class="col-sm-6">
                     <div class="form-group">
                         <div class="controls">
                         <label for="location">Membership No.</label>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label>Name</label>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label>Current Points/Entitlements</label>
@@ -63,11 +63,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4" >
+                    <div class="col-sm-6" >
                         <div class="form-group controls">
 
-                            <div class="custom-control-inline">
-                                <div class="radio mr-1">
+                            
+                                
+                                <div class="radio mb-1">
                                     <input type="radio" name="contract_type" value="1" id="individual1"  @click="edit=true, original=false" checked required>
                                     <label for="individual1">Deduct</label>
                                 </div>
@@ -76,10 +77,10 @@
                                     <label for="corporate1">Add</label>
                                 </div>
                             
-                            </div>
+                            
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label>Whatsapp</label>
@@ -90,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label>Total Points/Entitlements</label>
@@ -99,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label>Term</label>
@@ -110,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label>Expiry Date</label>
@@ -121,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
                             <label for="location">Telemarkerter</label>
@@ -137,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary round mr-1 mb-1">Save</button>
+                <button type="submit" class="btn btn-outline-primary round m-2">Save</button>
                 </form>
             </div>
             </div>

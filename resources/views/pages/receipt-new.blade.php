@@ -7,6 +7,7 @@
 {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/membership.css')}}"> --}}
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
 <link href="{{asset('assets/css/invoice-style.css') }}" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
 @endsection
 
 @section('content')
@@ -32,7 +33,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label for="mbrship_id">Membership No</label>
-                                        <select name="mbrship_id" id="mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
+                                        <select name="mbrship_id" id="mbrship_id" class="select2 custom-select form-control" data-validation-required-message="Please select a member" onchange="setInputName()" required>
                                             <option value="" disabled selected>Membership No</option>
                                             @if(isset($payload))
                                                 @foreach($payload['memberships'] as $membership)
@@ -82,7 +83,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label>Method</label>
-                                        <select name="method" id="method" class="custom-select form-control" onchange="changemethod()" data-validation-required-message="Please select a package type" required>
+                                        <select name="method" id="method" class="custom-select form-control" onchange="creditCardSection()" data-validation-required-message="Please select a package type" required>
                                             <option value="internetbanking">Internet Banking</option>
                                             <option value="creditcard" >Credit Card</option>
                                             <option value="cheque">Cheque</option>
@@ -134,15 +135,14 @@
                             </div>
                         </div>
 
-                        <div class="row pt-1" class="creditcard">
+                        <div class="row pt-1" id="creditcard">
                             <div class="col-12">
                                 <h6 class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Credit Card Info</h6>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group controls">
                                     <label>Select Terminal</label>
-                                    <input type="link" class="form-control" placeholder="810049" id="terminal" name="name"
-                                    data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
+                                    <input type="link" class="form-control" placeholder="Please select Terminal" id="terminal_id" name="tid" data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -189,7 +189,7 @@
                             <div class="col-sm-4" id="ccshow">
                                 <div class="form-group">
                                     <label>Bank Charges</label>
-                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="RM 100" readonly>
+                                    <input type="text" class="form-control" id="bank_charges" name="bank_charges" placeholder="6.00 %" readonly>
                                 </div>
                             </div>
 
@@ -197,7 +197,7 @@
                             <div class="col-md-4" id="ccshow">
                                 <div class="form-group">
                                     <label for="income">Charge Date</label>
-                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="01 May 2020" readonly>
+                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="01 May 2020">
                                 </div>
                             </div>
 
@@ -205,7 +205,7 @@
                             <div class="col-md-4" id="ccshow">
                                 <div class="form-group">
                                     <label for="income">Clearance Date</label>
-                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="30 May 2020" readonly>
+                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="30 May 2020">
                                 </div>
                             </div>
                         </div>
@@ -281,92 +281,52 @@
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white">TID</th>
+                                                <th class="text-white"></th>
                                                 <th class="text-white">TID</th>
                                                 <th class="text-white">MID</th>
-                                                <th class="text-white">ERP Term</th>
+                                                <th class="text-white">EPP Term</th>
                                                 <th class="text-white">Charge Type</th>
                                                 <th class="text-white">Bank Charges</th>
                                                 <th class="text-white">Merchant Bank</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
-                                                    <label for="checkbox2"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB E-debit</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox3">
-                                                    <label for="checkbox3"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB Debit debit</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox4">
-                                                    <label for="checkbox4"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB Debit debit</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                <fieldset>
-                                                    <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                                    <label for="checkbox5"></label>
-                                                    </div>
-                                                </fieldset>
-                                                </td>
-                                                <td>81004899</td>
-                                                <td>000001090105818</td>
-                                                <td>0</td>
-                                                <td>MAN</td>
-                                                <td>0.80</td>
-                                                <td>CIMB Debit debit</td>
-                                            </tr>
+                                            @if(isset($payload))
+                                                @foreach($payload['terminals'] as $terminal)
+                                                <tr>
+                                                    <td>
+                                                    <fieldset>
+                                                        <div class="radio">
+                                                        <input type="radio" class="terminal-radio-button" name="terminal_id" id="radio{{$terminal->terminal_id}}" value="{{$terminal->terminal_id}}" onclick="terminalSelect('{{$terminal->tid}}', '{{$terminal->bank_charges}} %')">
+                                                        <label for="radio{{$terminal->terminal_id}}"></label>
+                                                        </div>
+                                                    </fieldset>
+                                                    </td>
+                                                    <td>{{$terminal->tid}}</td>
+                                                    <td>{{$terminal->mid}}</td>
+                                                    <td>{{$terminal->epp}}</td>
+                                                    <td>{{$terminal->charge_type}}</td>
+                                                    <td>{{$terminal->bank_charges}}</td>
+                                                    <td>{{$terminal->merchant_bank}}</td>
+                                                </tr>
+                                                @endforeach
+                                            @endif
                                             
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                                     
-                            <div class="px-2">
-                                    <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Cancel</a>
-                                    <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Confirm</a>
-                                
+                            <div class="px-2 text-center">
+                                <button type="button" class="btn btn-outline-primary round" data-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Close</span>
+                                </button>
+                                <button type="button" class="btn btn-outline-primary round" data-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Confirm</span>
+                                </button>
+                                <!-- <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round">Confirm</a> -->
                             </div>
                         </div>
                     </div>
@@ -386,7 +346,7 @@
 </div>
 </div>
 
-<script>
+<!-- <script>
  function changemethod() {
     var m = document.getElementById("method").value;    
     var s = document.getElementById("ccshow").value;
@@ -399,7 +359,7 @@
     }
  }
 
-</script>
+</script> -->
 
 <!-- Form wizard with step validation section end -->
 @endsection
@@ -409,6 +369,7 @@
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script> --}}
 <script src="{{asset('vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
+<script src="{{asset('vendors/js/forms/select/select2.full.min.js')}}"></script>
 @endsection
 
 {{-- page scripts --}}
@@ -416,5 +377,8 @@
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="{{asset('assets/js/tbl_row_update.js')}}"></script>
+<script src="{{asset('assets/js/select_onchange.js')}}"></script>
+<script src="{{asset('assets/js/terminal_modal.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script src="{{asset('js/scripts/forms/select/form-select2.js')}}"></script>
 @endsection

@@ -15,9 +15,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-content">
-                    <div class="px-2 mt-1">
-                         <a href="{{asset('receipt/new')}}" class="btn btn-outline-primary round mr-1 mb-1">New </a>
-                        <!-- <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a>  -->
+                    <div class="card-header bg-swvb-cyan">
+                        <div class="card-title">
+                            <a href="{{asset('receipt/new')}}" class="btn btn-outline-white round mr-1 ">New </a>
+                            <!-- <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a>  -->
+                        </div>
                     </div>
                     
                     <div class="card-body card-dashboard">

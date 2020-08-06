@@ -47,9 +47,9 @@
                               
                                                                                 <!-- coz many display list -->
                                                                         <!--  pass lead id to controller to choose   main table ->  link to other table  -> database column name-->
-                                        <tr>
+                                        <tr class="row-link" onclick="location.href='{{route('contacts.details', $contacts->lead_id)}}'">
                                             
-                                            <td><a href="{{ route('contacts.details', $contacts->lead_id) }}">{{$contacts->salutation['salutation']}}</a></td>
+                                            <td>{{$contacts->salutation['salutation']}}</td>
                                             <td>{{$contacts -> name}}</td>
                                             <td>{{$contacts -> genders['gender_name']}}</td>
                                             <td>{{$contacts -> home_no}}</td>

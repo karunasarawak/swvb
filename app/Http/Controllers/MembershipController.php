@@ -82,11 +82,17 @@ class MembershipController extends Controller
     }
     else
     {
-      $lead2 = DB::table('leads')->where('lead_id', $lead_id2)->get();
-      // dd($lead2);
+      $lead2 = DB::table('leads')->where('lead_id', $lead_id2)
+                  ->join('salutations','salutations.salutation_id', 'leads.salutation_id')
+                  ->join('gender','gender.gender_id', 'leads.gender')
+                  ->join('religions','religions.religion_id','leads.religion_id')
+                  ->join('maritial_status','maritial_status.maritial_id', 'leads.marital_status')
+                  ->join('nationalities','nationalities.nation_id','leads.nationality')
+                  ->join('race','race.race_id','leads.ethnicity_id')
+                  ->get();
+    //  dd($lead2);
+     
     }
-    
-    // dd($lead2[0]);
 
     $payload = [
               'lead'=>$lead[0],
@@ -107,8 +113,6 @@ class MembershipController extends Controller
               'venue'=>$venue
             ];
 
-    // dd($payload);
-
       return view('pages.membership-create',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);  
     }
 
@@ -125,29 +129,6 @@ class MembershipController extends Controller
     $lead_id = $request->lead_id;
     $lead_id2 = $request->lead_id2;
     $tour_id = $request->tour_id;
-
-    //Update Primary Member basic information
-    // $updateM = DB::table('leads')->where()->update([
-    //   'salutation_id'=>$request->sec_salute,
-    //   'name'=>$request->sec_name,
-    //   'gender'=> $request->sec_gender,
-    //   'nric'=>$request->sec_nric,
-    //   'dob'=>$request->sec_dob,
-    //   'marital_status'=>$request->sec_maritual,
-    //   'ethnicity_id' => $request->sec_race,
-    //   'religion_id'=>$request->religion2,
-    //   'venue_id'=>null,
-    //   'nationality' =>$request->sec_nation,
-    //   'occupation' =>$request->sec_occup,
-    //   'company' =>$request->sec_company,
-    //   'mobile_no' =>$request->sec_mobile,
-    //   'whatsapp_no' =>$request->sec_whatsapp,
-    //   'home_no'=>$request->sec_home,
-    //   'office_no'=>$request->sec_office,
-    //   'primary_email'=>$request->sec_pemail,
-    //   'alt_email' =>$request->sec_aemail,
-    //   'prefer' =>$request->sec_lang
-    //   ]);
 
     //PM - Primary Addresses
     $addr1 = DB::table('addresses')->insert([
@@ -251,8 +232,8 @@ class MembershipController extends Controller
       'cc_id_amf'=>$amf_cc_id,
       'cc_id_install'=>$inst_cc_id,
       'declaration_no'=>$request->declare_no,
-      'mro'=>$request->mro,
-      'cco'=>$request->cco,
+      // 'mro'=>$request->mro,
+      // 'cco'=>$request->cco,
       'install_auto'=>$inst_auto,
       'amf_auto'=>$amf_auto
       ]);
@@ -305,7 +286,7 @@ class MembershipController extends Controller
 
         $sec_lead_id = DB::getPDO()->lastInsertId();
     }
-    // dd($sec_lead_id);
+    // dd($sec_lead_id);{{  }}
     //Update Membership second lead id
     // print("Second Lead ID: ".$sec_lead_id." Membership ID: ".$mbr_id);
     // $updatelead2= DB::table('memberships')->where('mbrship_id', $mbr_id)
@@ -334,6 +315,7 @@ class MembershipController extends Controller
         'state_id'=>$request->sec_alt_state,
         'country_id'=>$request->sec_alt_country,
         'is_primary'=>0]);
+
     $second_alt_addr_id = DB::getPDO()->lastInsertId();
     
     //Update installment mbr_id
@@ -540,162 +522,17 @@ public function repurchase(){
     return view('pages.entitlementmanagement-advanced',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
-  public function offset(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
-    ];
-
-    return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  // Input Group forms
-  public function inputGroupForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Input Groups"]
-    ];
-    return view('pages.form-input-groups',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  // Input number forms
-  public function numberInputForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Number Input"]
-    ];
-    return view('pages.form-number-input',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  //select forms
-  public function selectForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Select"]
-    ];
-    return view('pages.form-select',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Radio forms
-   public function radioForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Radio"]
-    ];
-
-    return view('pages.form-radio',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //checkbox forms
-   public function checkboxForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Checkbox"]
-    ];
-    return view('pages.form-checkbox',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //switch forms
-   public function switchForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Switch"]
-    ];
-    return view('pages.form-switch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //textarea forms
-   public function textareaForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Textarea"]
-    ];
-    return view('pages.form-textarea',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-  //Quill Editor forms
-  public function quillEditorForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Quill Editor"]
-    ];
-    return view('pages.form-quill-editor',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //File Uploader forms
-   public function fileUploaderForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "File Uploader"]
-    ];
-    return view('pages.form-file-uploader',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //date time Picker forms
-   public function datePickerForm(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Form Elements"],["name" => "Date & Time Picker"]
-    ];
-    return view('pages.form-date-time-picker',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-   //Form Layout
-   public function formLayout(){
-
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Layouts"]
-    ];
-
-    return view('pages.form-layout',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-    //Form Wizard
-    public function formWizard(){
+    public function create2ndMembership(){
 
       $pageConfigs = ['pageHeader' => true];
-
+      
       $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Wizard"]
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "All"]
       ];
 
-      return view('pages.form-wizard',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+      // $membership = Membership::all();
+
+      return view('pages.membership-newSecMbr',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+
     }
-    //Form validation
-    public function formValidation(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Validation"]
-      ];
-
-      return view('pages.form-validation',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-    //Form repeater
-    public function formRepeater(){
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Forms"],["name" => "Form Repeater"]
-      ];
-
-      return view('pages.form-repeater',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
 }

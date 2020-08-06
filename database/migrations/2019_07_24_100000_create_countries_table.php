@@ -25,7 +25,12 @@ class CreateCountriesTable extends Migration
                 ['country_name' => 'Bangladesh', 'short_code'=>'BD'],
             )
         );
-
-
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('countries');
+    }
+
+
 }

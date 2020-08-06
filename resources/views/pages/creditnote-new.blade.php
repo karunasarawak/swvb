@@ -7,6 +7,7 @@
 {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/membership.css')}}"> --}}
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
 <link href="{{asset('assets/css/invoice-style.css') }}" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
 @endsection
 
 @section('content')
@@ -38,7 +39,7 @@
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="mbrship_id">Membership No</label>
-                                                <select name="mbrship_id" id="mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
+                                                <select name="mbrship_id" id="mbrship_id" class="select2 custom-select form-control" data-validation-required-message="Please select a member" onchange="setInputName()" required>
                                                     <option value="" disabled selected>Membership No</option>
                                                     @if(isset($payload))
                                                         @foreach($payload['memberships'] as $membership)
@@ -53,7 +54,7 @@
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control" placeholder="Name" id="name" x-bind:value="name" disabled>
+                                                <input type="text" class="form-control" placeholder="Name" id="name" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -137,6 +138,7 @@
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script> --}}
 <script src="{{asset('vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
+<script src="{{asset('vendors/js/forms/select/select2.full.min.js')}}"></script>
 @endsection
 
 {{-- page scripts --}}
@@ -144,5 +146,7 @@
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="{{asset('assets/js/tbl_row_update.js')}}"></script>
+<script src="{{asset('assets/js/select_onchange.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script src="{{asset('js/scripts/forms/select/form-select2.js')}}"></script>
 @endsection

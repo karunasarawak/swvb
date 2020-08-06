@@ -56,13 +56,13 @@
                                         <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
-                                                    <th class="text-white">Membership No.</th>
-                                                    <th class="text-white">II Membership No.</th>
-                                                    <th class="text-white">Status</th>
-                                                    <th class="text-white">Verified By</th>
+                                                    <th class="text-white">Year</th>
+                                                    <th class="text-white">Date Created</th>
+                                                    <th class="text-white">Prepared By</th>
+                                                    <th class="text-white">Verified</th>
                                                     <th class="text-white">Verified Date</th>
                                                     <th class="text-white">Approved By</th>
-                                                    <th class="text-white">Approved Date</th>
+                                                    <th class="text-white">Date Approved</th>
                                                     <th class="text-white">II:RU List</th>
                                                     <th class="text-white">Reservation Request</th>
                                                     
@@ -86,6 +86,7 @@
                                                             <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
                                                             <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -119,6 +120,7 @@
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
                                                         <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -147,8 +149,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                     </div>
                                                     </td>
@@ -177,8 +180,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                     </div>
                                                     </td>
@@ -187,8 +191,8 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
                                                         </div>
                                                     </div>
                                                     </td>
@@ -207,8 +211,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -238,8 +243,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -269,8 +275,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -299,8 +306,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -331,8 +339,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -363,8 +372,9 @@
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                         </div>
                                                         </div>
                                                     </td>
@@ -395,8 +405,9 @@
                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                             </span>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                                <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                                <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                                <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EMAIL</a>
                                                             </div>
                                                         </div>
                                                     </td>

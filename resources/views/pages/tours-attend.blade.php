@@ -70,7 +70,7 @@
                     <div class="form-group">
                       <label for="gender1">Gender</label>
                       <select class="custom-select form-control required" id="gender1" name="gender1">
-                        <option value="">--</option> 
+                        <option value="" disabled selected>Select a gender</option> 
                         @foreach($payload['gender'] as $gender)
                           <option value="{{$gender->gender_id}}">{{$gender->gender_name}}</option>
                         @endforeach
@@ -81,7 +81,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="nric1">NRIC PassPort No.</label>;
+                      <label for="nric1">NRIC PassPort No.</label>
                       <input type="number" class="form-control required" id="nric1" name="nric1" 
                         placeholder="--">
                     </div>
@@ -96,7 +96,7 @@
                     <div class="form-group">
                       <label for="status1">Marital Status</label>
                       <select class="custom-select form-control required" id="status1" name="status1">
-                        <option value="">--</option>
+                        <option value="" disabled selected>Select a marital status</option>
                         @foreach($payload['maritial'] as $maritial)
                           <option value="{{$maritial->maritial_id}}">{{$maritial->maritial_name}}</option>
                         @endforeach
@@ -109,7 +109,7 @@
                     <div class="form-group">
                       <label for="race1">Race</label>
                       <select class="custom-select form-control required" id="race1" name="race1">
-                        <option value="">--</option>  
+                        <option value=""disabled selected>Select a race</option>  
                         @foreach($payload['race'] as $race)
                           <option value="{{$race->race_id}}">{{$race->race_name}}</option>
                         @endforeach
@@ -120,7 +120,7 @@
                     <div class="form-group">
                       <label for="religion1">Religion</label>
                       <select class="custom-select form-control required" id="religion1" name="religion1">
-                        <option value="">--</option>
+                        <option value=""disabled selected>Select a religion</option>
                         @foreach($payload['religion'] as $religion)
                           <option value="{{$religion->religion_id}}">{{$religion->religion}}</option>
                         @endforeach
@@ -131,7 +131,7 @@
                     <div class="form-group">
                       <label for="nationality1">Nationality</label>
                       <select class="custom-select form-control required" id="nationality1" name="nationality1">
-                        <option value="">--</option>
+                        <option value=""disabled selected>Select a nationality</option>
                         @foreach($payload['nation'] as $nation)
                           <option value="{{$nation->nation_id}}">{{$nation->nation}}</option>
                         @endforeach
@@ -214,6 +214,7 @@
                 <div id="attendee2" class="d-none select2-advance" x-data="{ edit: false, original:true}">
                   <h4 class="card-title font-weight-bold">Attendee's 02 Information</h4>
                   <h4 class="card-title">Basic Information</h4>
+
                   <div class="row">
                     <div class="col-sm-4">
                       <div class="form-group controls">
@@ -232,28 +233,16 @@
 
                     <div class="col-sm-4">
                       <div class="form-group controls">
-                        <select class="select2 form-control" x-show="edit" id="exist_lead" name="exist_lead" readonly>
+                        <select class=" form-control" x-show="edit" id="exist_lead" name="exist_lead" readonly>
                           <option value="">--</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                         </select>
                       </div>
-                      
                     </div>
 
-                    <!-- <div class="col-sm-4">  
-                      <div class="form-group controls">
-                        
-                        <select name="exist_lead" class="select2 form-control" x-show="edit" id="exist_lead" readonly>
-                            <option>--</option>
-                          
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                      </div>
-                    </div> -->
+                    
                   </div>
 
                   <div class="row">
@@ -261,7 +250,7 @@
                       <div class="form-group">
                         <label for="salutation1">Salutation </label>
                         <select class="custom-select form-control required hid" id="salutation2" name="salutation2"  data-validation-required-message="This Primary Email field is required">
-                              <option value="0">--</option>
+                              <option value=""disabled selected>Select a salutation</option>
                               <option value="1">Mr</option>
                               <option value="2">Mrs</option>
                               <!-- <option value="Sir">Sir</option>
@@ -286,7 +275,7 @@
                       <div class="form-group">
                         <label for="gender1">Gender</label>
                         <select class="custom-select form-control required hid" id="gender2" name="gender2"  data-validation-required-message="This Primary Email field is required">
-                          <option value="">--</option>
+                          <option value=""disabled selected>Select a gender</option>
                           <option value="1">Male</option>
                           <option value="2">Female</option>
                         </select>
@@ -315,7 +304,7 @@
                       <label for="status1">Marital Status</label>
                       <select class="custom-select form-control required hid" id="status2" name="status2"  placeholder="--"
                       data-validation-required-message="This Primary Email field is required">
-                        <option value="">--</option>
+                        <option value=""disabled selected>Select a marital status</option>
                           @foreach($payload['maritial'] as $maritial)
                             <option value="{{$maritial->maritial_id}}">{{$maritial->maritial_name}}</option>
                           @endforeach
@@ -328,7 +317,7 @@
                     <div class="form-group">
                       <label for="race1">Race</label>
                       <select class="custom-select form-control required hid" id="race2" name="race2"  data-validation-required-message="This Primary Email field is required">
-                        <option value="">--</option>  
+                        <option value=""disabled selected>Select a race</option>  
                           @foreach($payload['race'] as $race)
                             <option value="{{$race->race_id}}">{{$race->race_name}}</option>
                           @endforeach
@@ -339,7 +328,7 @@
                     <div class="form-group">
                       <label for="religion1">Religion</label>
                       <select class="custom-select form-control required hid" id="religion2" name="religion2"  data-validation-required-message="This Primary Email field is required">
-                        <option value="">--</option>
+                        <option value=""disabled selected>Select a religion</option>
                           @foreach($payload['religion'] as $religion)
                             <option value="{{$religion->religion_id}}">{{$religion->religion}}</option>
                           @endforeach
@@ -350,7 +339,7 @@
                     <div class="form-group">
                       <label for="nationality1">Nationality</label>
                       <select class="custom-select form-control required hid" id="nationality2" name="nationality2"  data-validation-required-message="This Primary Email field is required">
-                        <option value="">--</option>
+                        <option value=""disabled selected>Select a nationality</option>
                           @foreach($payload['nation'] as $nation)
                             <option value="{{$nation->nation_id}}">{{$nation->nation}}</option>
                           @endforeach
@@ -524,9 +513,9 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="income">Remarks</label>
-                      <div class="position-relative has-icon-left">
+                      
                         <input type="text" class="form-control required" placeholder="" id="remark" name="remark" required>
-                      </div>
+                     
                     </div>
                   </div>
 
@@ -553,7 +542,7 @@
                     <div class="form-group">
                       <label>Sales Manager</label>
                         <select name="salesm1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                          <option value="">--</option>
+                          <option value=""disabled selected>Select a sales manager</option>
                           @foreach($payload['salesm'] as $salesm)
                             <option value="{{$salesm->sales_team_id}}">{{$salesm->sales_name}}</option>
                           @endforeach
@@ -565,7 +554,7 @@
                     <div class="form-group">
                     <label for="cvexpirydate">Marketing Agency</label>
                       <select name="ma1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                        <option value="">--</option>
+                        <option value=""disabled selected>Select a marketing agency</option>
                         @foreach($payload['ma'] as $ma)
                           <option value="{{$ma->ma_id}}">{{$ma->ma_name}}</option>
                         @endforeach
@@ -605,7 +594,7 @@
                         <div class="form-group controls">
                           <label>Accomodation</label>
                           <select name="accom1" class="custom-select" required>
-                            <option value="">--</option>
+                            <option value=""disabled selected>Select a accomodation</option>
                             <option value="1">Grand Margherita Hotel</option>
                             <option value="2">Damai Beach Resort</option>
                           </select>
@@ -615,7 +604,7 @@
                         <div class="form-group controls">
                           <label>No of Stay</label>
                           <select name="stay1" class="custom-select" required>
-                            <option value="">--</option>
+                            <option value=""disabled selected>Select number of stay</option>
                             <option value="2">3D2N</option>
                             <option value="1">2D1N</option>
                           </select>
@@ -625,7 +614,7 @@
                         <div class="form-group controls">
                           <label>No of Occupancy</label>
                           <select name="occup1" class="custom-select" required>
-                            <option value="">--</option>   
+                            <option value=""disabled selected>Select number of occupancy</option>   
                             <option value="2">2</option>
                             <option value="4">4</option>
                           </select>

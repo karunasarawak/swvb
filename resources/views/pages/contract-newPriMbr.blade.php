@@ -32,15 +32,6 @@
       </div>
     </div>
     
-    <!-- <div class="col-sm-4">
-      <div class="form-group controls">
-        <label>Member Type</label>
-        <select name="member_type" class="custom-select" required>
-          <option value="1">Primary Member</option>
-          <option value="2">Secondary Member</option>
-        </select>
-      </div>
-    </div> -->
 
     <div class="col-sm-4">
       <div class="form-group controls">
@@ -72,7 +63,7 @@
             @if($payload['lead']->salutation_id == $gender->gender_id)
               <option value="{{$gender->gender_id}}" selected>{{$gender->gender_name}}</option>
             @else
-              <option value="{{$gender->gender_id}}" {{$gender->gender_name}}</option>
+              <option value="{{$gender->gender_id}}"> {{$gender->gender_name}}</option>
             @endif
           @endforeach
         </select>
@@ -160,7 +151,7 @@
       <div class="form-group controls">
         <label>Preferred Language</label>
         <select name="pri_lang" id="pri_lang" class="custom-select" required>
-          <option value="">--</option>
+          <option value="" disabled selected>Select a preferred language</option>
           <option value="English">English</option>
           <option value="Malay">Malay</option>
           <option value="Chinese">Chinese</option>
@@ -173,9 +164,9 @@
       <div class="form-group controls">
         <label>Status</label>
         <select name="pri_status" id="pri_status" class="custom-select" required>
-          <option value="">--</option>
+          <option value="" disabled selected>Select a status</option>
           <option value="0">Pending</option>
-          <option value="1">Activate</option>
+          <option value="1">Be Back</option>
         </select>
       </div>
     </div>
@@ -309,7 +300,7 @@
         <div class="form-group controls">
           <label>Postcode</label>
           <select id="pri_code" name="pri_code" class="form-control" required>
-            <option value="">--</option>
+            <option value=""disabled selected>Select a postcode</option>
             <option value="1">98000</option>
             <option value="2">Sibu</option>
             <option value="3">Miri</option>
@@ -321,7 +312,7 @@
         <div class="form-group controls">
           <label>City</label>
           <select id="pri_city" name="pri_city" class="form-control" required>
-            <option value="">--</option>
+            <option value=""disabled selected>Select a city</option>
               @foreach($payload['city'] as $city)
                 <option value="{{$city->city_id}}">{{$city->city_name}}</option>
               @endforeach
@@ -333,7 +324,7 @@
         <div class="form-group controls">
           <label>Postcode</label>
           <select id="pri_alt_code" name="pri_alt_code" class="form-control" required>
-            <option value="">--</option>
+            <option value=""disabled selected>Select a postcode</option>
             <option value="1">98000</option>
             <option value="2">Sibu</option>
             <option value="3">Miri</option>
@@ -345,7 +336,7 @@
         <div class="form-group controls">
             <label>City</label>
             <select id="pri_alt_city" name="pri_alt_city" class="form-control" required>
-            <option  value="">--</option>
+            <option  value=""disabled selected>Select a city</option>
             @foreach($payload['city'] as $city)
               <option value="{{$city->city_id}}">{{$city->city_name}}</option>
             @endforeach
@@ -359,7 +350,7 @@
         <div class="form-group controls">
           <label>State</label>
           <select name="pri_state" id="pri_state" class="form-control">
-            <option value="">--</option>
+            <option value=""disabled selected>Select a state</option>
             @foreach($payload['state'] as $state)
               <option value="{{$state->id}}">{{$state->state_name}}</option>
             @endforeach
@@ -371,7 +362,7 @@
         <div class="form-group controls">
           <label>State</label>
           <select id="pri_alt_state" name="pri_alt_state" class="form-control">
-            <option value="">--</option>
+            <option value=""disabled selected>Select a state</option>
             @foreach($payload['state'] as $state)
               <option value="{{$state->id}}">{{$state->state_name}}</option>
             @endforeach
@@ -385,7 +376,7 @@
           <div class="form-group controls">
             <label>Country</label>
             <select name="pri_country" id="pri_country" class="form-control" required>
-            <option value="">--</option>
+            <option value=""disabled selected>Select a country</option>
               @foreach($payload['country'] as $country)
                 <option value="{{$country->id}}">{{$country->short_code}}-{{$country->country_name}}</option>
               @endforeach
@@ -397,7 +388,7 @@
           <div class="form-group controls">
             <label>Country</label>
             <select id="pri_alt_country" name="pri_alt_country" class="form-control" required>
-            <option value="">--</option>
+            <option value=""disabled selected>Select a country</option>
               @foreach($payload['country'] as $country)
                 <option value="{{$country->id}}">{{$country->short_code}}-{{$country->country_name}}</option>
               @endforeach
@@ -430,13 +421,7 @@
   
   <!-- remarks end -->
   <hr class="mx-n2">
-  <button type="button" class="btn btn-primary position-absolute" id="btn_add1" onclick="showContact2()">Add Secondary Member</button>
-  <button type="button" class="btn btn-danger form-2 position-absolute" id="btn_delete1" onclick="hideContact2()">Delete Secondary Member</button>
-  <!-- body content of step 1 first member end-->
-
-  <!-- body content of step 1 second member start -->
-   @include('pages.contract-newSecMbr') 
-  <!-- body content of step 1 second member end-->
+  
 </fieldset>
 {{-- @stop --}}
 

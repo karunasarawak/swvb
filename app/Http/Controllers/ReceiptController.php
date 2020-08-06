@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Membership;
 
+use App\Terminal;
+
 class ReceiptController extends Controller
 {
     public function index(){
@@ -27,7 +29,9 @@ class ReceiptController extends Controller
 
         $memberships = Membership::with('lead')->get();
 
-        $payload = ['memberships'=>$memberships];
+        $terminals = Terminal::all();
+
+        $payload = ['memberships'=>$memberships, 'terminals'=>$terminals];
     
         return view('pages.receipt-new',['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
       }

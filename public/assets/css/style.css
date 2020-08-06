@@ -182,3 +182,19 @@ td {
   white-space: nowrap;
 }
 
+#creditcard {
+  display: none;
+}
+
+#cai {
+  display: none;
+}
+
+#evc {
+  display: none;
+}
+
+.button-outline-white {
+  color: white;
+}
+
