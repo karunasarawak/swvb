@@ -113,7 +113,6 @@ class UsersRolesController extends Controller
           }
 
       
-
           foreach($request->group2 as $group2){
             $evcreinstate[] = [
                 'req_type'=>2,
@@ -150,7 +149,7 @@ class UsersRolesController extends Controller
           foreach($request->group5 as $group5){
             $evcaddmbr[] = [
                 'req_type'=>5,
-                
+                'mbrship_id'=>group5['mbrship_id'],
                 'wd'=>$group5['wd5'],
                 'we'=>$group5['we5'],
                 'expiry_date'=>$group5['expiry_date5'],
@@ -158,6 +157,7 @@ class UsersRolesController extends Controller
               ];
           }
              
+          
 
               PointsAdjustments::insert($cai); 
               PointsAdjustments::insert($evcreinstate); 
