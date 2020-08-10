@@ -30,7 +30,7 @@ class CreateIctRequestsTable extends Migration
             $table->integer('pict_verifier')->length(11)->nullable();
             
             
-            $table->tinyInteger('pict_req_status')->nullable();
+            $table->tinyInteger('pict_req_status')->default('0');
             $table->timestamps();
         });
     }

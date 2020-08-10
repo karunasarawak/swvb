@@ -32,7 +32,7 @@ public function up()
             $table->string('tax_note', 30)->nullable();
             $table->string('remark', 255)->nullable();
             $table->date('issue_date')->nullable();
-            $table->tinyInteger('inv_status')->length(1);
+            $table->tinyInteger('inv_status')->length(1)->default('1');
             $table->integer('inv_creator')->length(11)->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
@@ -46,6 +46,7 @@ public function up()
      */
     public function down()
     {
+        // Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('invoices');
     }
 }

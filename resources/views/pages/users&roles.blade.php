@@ -36,15 +36,14 @@
                         <div class="card-body card-dashboard">
                             <div class="table-responsive">
 
-                                <table class="table tours-all">
+                                <table class="table tabletours-all">
                                     <thead class="bg-swvb-dark">
-                                        <tr>
-                                            <th class="text-white" style="width:30%">Roles</th>
-                                            <th class="text-white" style="width:30%">Code</th>
+                                        <tsr>
+                                            <th class="text-white">Roles</th>
+                                            <th class="text-white" >Code</th>
                                             <th class="text-white">Department</th>
-                                           
                                             <th class="text-white">Status</th>
-                                            <th class="text-white" style="width:10%">Action</th>
+                                            <th class="text-white" >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -115,6 +114,7 @@
 
                         @endforeach
                     @endif
+                   
                                     </tbody>
                                 </table>
                             </div>
@@ -136,7 +136,7 @@
                                     <thead class="bg-swvb-dark">
                                         <tr>
                                             <th class="text-white">Staff</th>
-                                            <th class="text-white">Role Code</th>
+                                            <th class="text-white">Role</th>
                                             <th class="text-white">Code</th>
                                             <th class="text-white">Email</th>
                                             <th class="text-white">Status</th>
@@ -146,27 +146,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                            @if(isset($payload))
+                                @foreach($payload['roles'] as $staffs)
+                                    @if(isset($payload['roles']))         
                                         <tr>
-                                            <td>Erman</td>
-                                            <td>ICT</td>
-                                            <td>ICT01</td>
+                                            <td>{{$staffs->staff_name}}</td>
+                                            <td>{{$staffs->role}}</td>
+                                            <td>{{$staffs->role}}</td>
                                             <td>erman@saraworldwide.com</td>
-                                            <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                                <option value="1">Enable</option>
-                                                <option value="2">Disable</option>
-                                                </select>
-                                            </td>
+                                            <td>{{$staffs->is_active}}</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPLOAD</a>
+                                                        <button class="bg-transparent border-0" data-toggle="modal"
+                                                            data-target="#signature">
+                                                            <a class="dropdown-item"><i class="bx bx-pen mr-1"></i> UPLOAD</a>
                                                         </button>
-
                                                     </div>
                                                 </div></td>
                                             <td>
@@ -194,215 +192,10 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Darween</td>
-                                            <td>ICT</td>
-                                            <td>ICT02</td>
-                                            <td>darween@saraworldwide.com</td>
-                                            <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                                <option value="1">Enable</option>
-                                                <option value="2">Disable</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPDATE</a>
-                                                        </button>
-                                                    </div>
-                                                </div></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                        </button>
-                                                    
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ali</td>
-                                            <td>CCO</td>
-                                            <td>CC001</td>
-                                            <td>ali@saraworldwide.com</td>
-                                            <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                                <option value="1">Enable</option>
-                                                <option value="2">Disable</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPLOAD</a>
-                                                        </button>
-                                                        
-                                                    </div>
-                                                </div></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                        </button>
-                                                    
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Claudia</td>
-                                            <td>ICT</td>
-                                            <td>ICT02</td>
-                                            <td>darween@saraworldwide.com</td>
-                                            <td><select class="custom-select form-control required" id="salutation1" name="salutation1" value="">
-                                                <option value="1">Enable</option>
-                                                <option value="2">Disable</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> UPDATE</a>
-                                                        </button>
-                                                    </div>
-                                                </div></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                        </button>
-                                                    
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1000038</td>
-                                            <td>1000038</td>
-                                            <td>Cecilia</td>
-                                            <td>Cecilia</td>
-                                            <td>26 November 2019</td>
-                                            <td>03:37 AM</td>
-                                            <td>Tyler Washington</td>
-                                            <td>ABC place</td>
-                                            <td>Chris</td>
-                                            <td>25 April 2020 1:00PM</td>
-                                            <td>-</td>
-                                            <td>PENDING</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1000039</td>
-                                            <td>1000039</td>
-                                            <td>Buckminster</td>
-                                            <td>Buckminster</td>
-                                            <td>10 March 2020</td>
-                                            <td>05:35 PM</td>
-                                            <td>Salvador Heath</td>
-                                            <td>ABC place</td>
-                                            <td>Chris</td>
-                                            <td>25 April 2020 1:00PM</td>
-                                            <td>-</td>
-                                            <td>PENDING</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1000040</td>
-                                            <td>1000040</td>
-                                            <td>Hadley</td>
-                                            <td>Hadley</td>
-                                            <td>28 October 2018</td>
-                                            <td>12:43 PM</td>
-                                            <td>Hamish Klein</td>
-                                            <td>ABC place</td>
-                                            <td>Chris</td>
-                                            <td>25 April 2020 1:00PM</td>
-                                            <td>-</td>
-                                            <td>PENDING</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1000041</td>
-                                            <td>1000041</td>
-                                            <td>Malachi</td>
-                                            <td>Malachi</td>
-                                            <td>22 January 2020</td>
-                                            <td>03:29 PM</td>
-                                            <td>Kennan Chase</td>
-                                            <td>ABC place</td>
-                                            <td>Chris</td>
-                                            <td>25 April 2020 1:00PM</td>
-                                            <td>-</td>
-                                            <td>PENDING</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1000042</td>
-                                            <td>1000042</td>
-                                            <td>Yael</td>
-                                            <td>Yael</td>
-                                            <td>04 September 2019</td>
-                                            <td>07:31 PM</td>
-                                            <td>Joel Allen</td>
-                                            <td>ABC place</td>
-                                            <td>Chris</td>
-                                            <td>25 April 2020 1:00PM</td>
-                                            <td>-</td>
-                                            <td>PENDING</td>
-                                        </tr>
+                                    @endif
+                                
+                                @endforeach
+                            @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -424,7 +217,8 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="#">
+            <form action="{{route('new.staff')}}" method="POST" novalidate>
+                @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="controls">
@@ -444,7 +238,7 @@
                     <div class="form-group">
                         <div class="controls">
                             <label > Email</label>
-                            <input  type="text" name="email" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                            <input  type="text" name="email" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the email"  required>
                         </div>
                     </div>
 
@@ -454,7 +248,7 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                    <button type="submit" class="btn btn-primary ml-1">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Save</span>
                     </button>
@@ -474,7 +268,7 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{route('new.roles')}}" method="GET" >
+            <form action="{{route('new.roles')}}" method="POST" novalidate>
                 @csrf
                 
                 <div class="modal-body">    
@@ -496,7 +290,7 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="submit" class="btn btn-primary ml-1" data-dismiss="modal">
+                    <button type="submit" class="btn btn-primary ml-1">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Save</span>
                     </button>
@@ -506,6 +300,54 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Signature</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+                <div class="modal-body">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>{{$message}}</strong>
+                        </div>
+                    @endif
+                        <form method="POST" action="{{route('signature')}}" >
+                            @csrf
+                            <div class="col-md-12">
+                                <label class="" for="">Signature</label>
+                                <br/>
+                                <div id="sig"></div>
+                                <br/>
+                                <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
+                                <textarea id="signature64" name="signed" style="display:none"></textarea>
+                            </div>
+                            <br/>
+                            <button class="btn btn-success">Save</button>
+                        </form>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Accept</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

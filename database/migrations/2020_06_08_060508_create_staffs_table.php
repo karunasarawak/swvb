@@ -19,7 +19,8 @@ class CreateStaffsTable extends Migration
             $table->text('staff_name',50);
             $table->text('staff_fullname',50)->nullable();
             $table->string('staff_code', 50)->nullable();
-            $table->tinyInteger('is_active')->length(1);
+            $table->string('email', 50)->nullable();
+            $table->tinyInteger('is_active')->length(1)->default('0');
             $table->timestamps();
         });
 
@@ -43,6 +44,6 @@ class CreateStaffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staffs');
+        Schema::dropIfExists('staff');
     }
 }

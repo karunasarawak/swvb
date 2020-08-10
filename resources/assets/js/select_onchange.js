@@ -13,7 +13,7 @@ function creditCardSection() {
     } else {
         creditcard.style.display = "none";
     }
-    
+
 }
 
 function checkdigit() {

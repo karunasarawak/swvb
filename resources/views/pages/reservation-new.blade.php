@@ -7,14 +7,9 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/wizard.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/pickers/pickadate/pickadate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/pickers/daterange/daterangepicker.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
 @endsection
-@php
-  $salopt='';
-  foreach($salute as $s){
-    $salopt.='<option value="'.$s->salutation_id.'">'.$s->salutation.'</option>';
-  }
-  
-@endphp
+
 @section('content')
 
 <!-- Form wizard with step validation section start -->
@@ -41,19 +36,20 @@
               <!-- Step 1 -->
               <!-- body content of step 1 -->
               <fieldset>
-                <!-- hotel -->
+                <!-- hotel -->                
                 <h4 class="card-title pt-1">Member info</h4>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="salutation1">Membership No. </label>
-                        <input type="number" class="form-control required" id="mbrship_id" name="res[mbrship_id]" placeholder="23456 0000" required>
+                      <label for="mbrship_id">Membership No.</label>
+                      <select class="form-control select2 required" id="mbrship_id" name="res[mbrship_id]" required>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="name1">Name </label>
-                        <input type="text" class="form-control required" id="name1" name="name1" placeholder="John Doe" required>
+                        <input type="text" class="form-control required" id="lead_name" placeholder="John Doe" readonly="readonly">
                     </div>
                   </div>
                  
@@ -62,15 +58,11 @@
                     <div class="form-group">
                       <div class="controls">
                         <label>Communication Channel</label>
-                        <select name="res[communication_channel]" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
-                          <option>--</option>
-                          <option value="d1">Whatsapp</option>
-                          <option value="sibu">SMS</option>
-                          <option value="miri">Call</option>
-                          <option value="miri">Email</option>
-                          <option value="sibu">POS</option>
-                          <option value="miri">Online</option>
-                          <option value="miri">Walk In</option>
+                        <select name="res[communication_channel]" class="select2 form-control" data-validation-required-message="Please select a communication channel" required>
+                          @include('includes.option_from_array',['array'=>$payload['communication_channels']])
+                          <!--
+                          <option value="8">Call</option>
+                          -->
                         </select>
                       </div>
                     </div>
@@ -114,23 +106,23 @@
                                 <div class="col">
                                     <div class="row">
                                         <p class="col">Saluation</p>
-                                        <p class="col font-weight-bold black">Mr</p>
+                                        <p class="col font-weight-bold black mem_salutation">Mr</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Name</p>
-                                        <p class="col font-weight-bold black">John Doe</p>
+                                        <p class="col font-weight-bold black mem_name">John Doe</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Mobile Contact</p>
-                                        <p class="col font-weight-bold black">+6012 345 6798</p>
+                                        <p class="col font-weight-bold black mem_contact">+6012 345 6798</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Whatsapp</p>
-                                        <p class="col font-weight-bold black">+6012 345 6798</p>
+                                        <p class="col font-weight-bold black mem_whatsapp_no">+6012 345 6798</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Package</p>
-                                        <p class="col font-weight-bold black">Pearl Package</p>
+                                        <p class="col font-weight-bold black mem_package">Pearl Package</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Ext. Membership</p>
@@ -138,9 +130,8 @@
                                     </div>
                                     <div class="row">
                                         <p class="col">Status</p>
-                                        <p class="col font-weight-bold black">Active</p>
+                                        <p class="col font-weight-bold black mem_status">Active</p>
                                     </div>
-
                                 </div>
 
                                 <div class="col">
@@ -246,9 +237,9 @@
                       <div class="col-sm-6">
                         <div class="form-group controls">
                           
-                          <div class="custom-control-inline">
+                          <div class="custom-control-inline mbrship_status">
                             <div class="radio mr-1">
-                              <input type="radio" name="mbrship_status" id="reservation" checked="" @click="edit=false, original=true" required>
+                              <input type="radio" name="mbrship_status" id="reservation" checked="checked"  required>
                               <label for="reservation">Reservation</label>
                             </div>
                             <!--
@@ -258,7 +249,7 @@
                             </div> 
                             -->
                             <div class="radio">
-                              <input type="radio" name="mbrship_status" id="iideposit" checked=""  @click="edit=false, original=false">
+                              <input type="radio" name="mbrship_status" id="iideposit" >
                               <label for="iideposit">II Deposit</label>
                             </div>
                           </div>
@@ -295,7 +286,7 @@
                         <div class="form-group">
                           <label for="income">Hotel</label>
                           <div class="position-relative has-icon-left">
-                            <select name="res[accom_id']" class="custom-select" required>
+                            <select name="res[accom_id]" class="custom-select" required>
                               <option value="0">Please select the hotel</option>
                               <option value="1">DBR</option>
                               <option value="2">02</option>
@@ -575,115 +566,110 @@
                 <!-- hotel -->
                 <h4 class="card-title">Room Detail</h4>
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="salesvenue">Inventory</label>
-                       <div class="custom-control-inline">
-                          <div class="row">
-                            <div class="col radio mr-1">
-                              <input type="radio" name="Inventory" id="inyes" checked="" required>
-                              <label for="inyes">Yes</label>
+                    <div class="col">
+                      <div class="form repeater-default">
+                        <div data-repeater-list="group-a">
+                          <div data-repeater-item>
+                            <div class="row justify-content-between">
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                  <label for="salesvenue">Inventory</label>
+                                  <div class="custom-control-inline">
+                                      <div class="row">
+                                        <div class="col radio mr-1">
+                                          <input type="radio" name="Inventory" id="inyes" checked="" required>
+                                          <label for="inyes">Yes</label>
+                                        </div>
+                                        <div class="col radio">
+                                          <input type="radio" name="Inventory" id="inno" checked="">
+                                          <label for="inno">No</label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class=" col-sm-6 form-group">
+                                <label for="room_no">Room No. </label>
+                                <select name="room_no" id="room_no" class="form-control">
+                                  <option value="FontEnd Developer">--</option>
+                                  <option value="BackEnd Developer">321</option>
+                                  <option value="Bussiness Analystic">Tester</option>
+                                  <option value="Project Cordinator">Manager</option>
+                                </select>
+                              </div>
+                              <div class=" col-sm-6 form-group">
+                                <label for="Profession">Room Type</label>
+                                <select name="profession" id="Profession" class="form-control">
+                                  <option value="FontEnd Developer">Designer</option>
+                                  <option value="BackEnd Developer">Developer</option>
+                                  <option value="Bussiness Analystic">Tester</option>
+                                  <option value="Project Cordinator">Manager</option>
+                                </select>
+                              </div>
+                              <div class=" col-sm-6 form-group">
+                                <label for="Profession">Bed Type</label>
+                                <select name="profession" id="Profession" class="form-control">
+                                  <option value="FontEnd Developer">Designer</option>
+                                  <option value="BackEnd Developer">Developer</option>
+                                  <option value="Bussiness Analystic">Tester</option>
+                                  <option value="Project Cordinator">Manager</option>
+                                </select>
+                              </div>
+                              <div class=" col-sm-6 form-group">
+                                <label for="Profession">Reserve Using</label>
+                                <select name="profession" id="Profession" class="form-control">
+                                  <option value="FontEnd Developer">Designer</option>
+                                  <option value="BackEnd Developer">Developer</option>
+                                  <option value="Bussiness Analystic">Tester</option>
+                                  <option value="Project Cordinator">Manager</option>
+                                </select>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="income">Additional Charges</label>
+                                      <div class="row ml-2">
+                                        <div class="checkbox">
+                                          <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="latecheck" value="all"
+                                            checked>
+                                          <label for="latecheck">Late Check-in fee</label>
+                                        </div>
+                                        <div class="checkbox">
+                                          <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="lateout" value="all"
+                                            checked>
+                                          <label for="lateout">Late Check-out fee</label>
+                                        </div>
+                                      </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="income">Remark</label>
+                                      <fieldset class="form-group">
+                                          <textarea class="form-control" id="basicTextarea" rows="3" placeholder="Textarea" name="room[room_remark]"></textarea>
+                                      </fieldset>
+                                </div>
+                              </div>
+                            
+                              <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                    class="bx bx-x"></i>
+                                  Delete Room
+                                </button>
+                              </div>
                             </div>
-                            <div class="col radio">
-                              <input type="radio" name="Inventory" id="inno" checked="">
-                              <label for="inno">No</label>
-                            </div>
-                         </div>
-                       </div>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col p-0">
+                            <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                              Add Room
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-md-6 roomno">
-                      <div class="form-group">
-                        <label for="income">Room No.</label>
-                        <div class="position-relative has-icon-left">
-                          <select name="room[unit_no]" class="custom-select" required>
-                            <option value="0">Please select number of children</option>
-                            <option value="1">01</option>
-                            <option value="2">02</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="income">Room </label>
-                        <div class="position-relative has-icon-left">
-                          <select name="room[unit_type_id]" class="custom-select" required>
-                            <option value="0">Please select number of children</option>
-                            <option value="1">01</option>
-                            <option value="2">02</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="income">Bed Type</label>
-                        <div class="position-relative has-icon-left">
-                          <select name="room[bed_type_id]" class="custom-select" required>
-                            <option value="0">Please select number of children</option>
-                            <option value="1">01</option>
-                            <option value="2">02</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="income">Reserve Using</label>
-                          <select name="no_child1" class="custom-select" required>
-                            <option value="0">Please select number of children</option>
-                            <option value="1">Entitlement</option>
-                            <option value="2">Point Rate</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                          </select>
-                      </div>
-                    </div>
-            
-                     <div class="col-md-6">
-                       <div class="form-group">
-                          <label for="income">Additional Charges</label>
-                            <div class="row ml-2">
-                              <div class="checkbox">
-                                <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="latecheck" value="all"
-                                  checked>
-                                <label for="latecheck">Late Check-in fee</label>
-                              </div>
-                              <div class="checkbox">
-                                <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="lateout" value="all"
-                                  checked>
-                                <label for="lateout">Late Check-out fee</label>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="income">Remark</label>
-                            <fieldset class="form-group">
-                                <textarea class="form-control" id="basicTextarea" rows="3" placeholder="Textarea" name="room[room_remark]"></textarea>
-                            </fieldset>
-                      </div>
-                    </div>
-                    
-                    
-                  </div>
-                  
               </fieldset>
             @endif
               <!-- Step 4 -->
@@ -694,30 +680,7 @@
               <fieldset>
                 <section id="form-repeater-wrapper">
                 <!-- form default repeater -->
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="card">
-                        <div class="card-content">
-                          <div class="card-body">
-                            <form class="form repeater-default">
-                              <div data-repeater-list="group-a">
-                                <div data-repeater-item>
-                                  <div class="row justify-content-between">
-                                    <div class="col-md-6 form-group">
-                                  
-                                    </div>
-                        
-                                  </div>
-                                
-                                </div>
-                              </div>
-                              
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
                 <!--/ form default repeater -->
                  <div class="row">
                     <div class="col">
@@ -736,7 +699,7 @@
                                                 <div class="col-md-4 form-group">
                                                     <label for="salution_id">Salutation</label>
                                                     <select name="salution_id" id="salution_id" class="form-control">
-                                                      @php echo $salopt; @endphp
+                                                    @include('includes.option_from_data',['array'=>$payload['salute'],'key'=>'salutation_id','value'=>'salutation'])
                                                   </select>
                                                 </div>
                                                 <div class="col-md-4 form-group">
@@ -924,6 +887,11 @@
   </div>
 </div>
 <!-- Form wizard with step validation section end -->
+<style>
+  .wizard .steps ul li.current ~ li.last:after,.wizard .steps ul li.current.last:after {
+    background-color:transparent;
+  }
+</style>
 @endsection
 {{-- vendor scripts --}}
 @section('vendor-scripts')
@@ -936,6 +904,7 @@
 <script src="{{asset('vendors/js/pickers/pickadate/legacy.js')}}"></script>
 <script src="{{asset('vendors/js/pickers/daterange/daterangepicker.js')}}"></script>
 <script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
+<script src="{{asset('vendors/js/forms/select/select2.full.min.js')}}"></script>
 @endsection
 
 {{-- page scripts --}}
@@ -945,4 +914,73 @@
 <script src="{{asset('assets/js/appendform.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 <script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
+<script src="{{asset('js/scripts/forms/select/form-select2.js')}}"></script>
+<script>
+ 
+
+  $('#mbrship_id').change(function() {
+      alert('1');
+      //query lead and membership info
+      //if no ii. $('.mbrship_status').hide()
+      //fill allocation
+      //payment
+  });
+
+  $('.mbrship_status input').click(function() {
+
+    if ($('#iideposit').prop('checked')) {
+      $("#steps-uid-0-t-3").parent().hide();
+      $("#steps-uid-0-t-2").parent().addClass('last');
+      $('a[href="#next"]').click(function(){
+        setTimeout(function(){
+          if($('#steps-uid-0-p-2').hasClass('current')){
+            $('a[href="#finish"]').parent().attr("style", "display: block;")
+            $('a[href="#next"]').parent().attr("style", "display: none;");
+          }
+        },500);
+      });
+     
+    }else{
+      $("#steps-uid-0-t-3").parent().show();
+      $("#steps-uid-0-t-2").parent().removeClass('last');
+      $('a[href="#next"]').click(function(){
+        setTimeout(function(){
+          if($('#steps-uid-0-p-2').hasClass('current')){
+            $('a[href="#finish"]').parent().attr("style", "display: none;")
+            $('a[href="#next"]').parent().attr("style", "display: block;");
+          }
+        },500);
+      });
+
+  });
+
+  $('.mbrship_status input').click(function() {
+
+    if ($('#iideposit').prop('checked')) {
+      $("#steps-uid-0-t-3").parent().hide();
+      $("#steps-uid-0-t-2").parent().addClass('last');
+      $('a[href="#next"]').click(function(){
+        setTimeout(function(){
+          if($('#steps-uid-0-p-2').hasClass('current')){
+            $('a[href="#finish"]').parent().attr("style", "display: block;")
+            $('a[href="#next"]').parent().attr("style", "display: none;");
+          }
+        },500);
+      });
+     
+    }else{
+      $("#steps-uid-0-t-3").parent().show();
+      $("#steps-uid-0-t-2").parent().removeClass('last');
+      $('a[href="#next"]').click(function(){
+        setTimeout(function(){
+          if($('#steps-uid-0-p-2').hasClass('current')){
+            $('a[href="#finish"]').parent().attr("style", "display: none;")
+            $('a[href="#next"]').parent().attr("style", "display: block;");
+          }
+        },500);
+      });
+
+    }
+  });
+</script>
 @endsection

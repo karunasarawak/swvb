@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CreditNoteSubjects extends Model
+class CreditNoteSubject extends Model
 {
     protected $fillable = [
         'cn_subject_id',
@@ -19,6 +19,6 @@ class CreditNoteSubjects extends Model
 
     public function invoice()
     {
-        return $this->belongsTo('App\Invoices', 'inv_id', 'inv_id');
+        return $this->belongsTo('App\Invoice', 'inv_id', 'inv_id');
     }
 }

@@ -36,7 +36,9 @@ class CreateToursTable extends Migration
             $table->decimal('tour_month_income',9,2)->nullable();
             $table->tinyInteger('tour_proceed_contract')->nullable();
             $table->tinyInteger('tour_attend')->nullable();
-            $table->integer('tour_status')->nullable();
+            $table->integer('tour_status')->default('1')->nullable();
+
+            $table->timestamps();
         });
     }
 

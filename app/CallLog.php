@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CallLogs extends Model
+class CallLog extends Model
 {
     protected $fillable = [
         'cl_id',

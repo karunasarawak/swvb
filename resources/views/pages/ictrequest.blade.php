@@ -48,10 +48,10 @@
                         @foreach($payload['ict'] as $ict)     
                              @if(isset($payload['ict']))
                                     <tr>
-                                        <td>{{$ict->ict_req_id}}</td>
+                                        <td><a href="{{ route('pt.details', $ict->pict_req_id)}}">{{$ict->pict_req_id}}</a></td>
                                         <td>{{$ict->mbrship_no}}</td>
                                         <td>{{$ict->dept}}</td>
-                                        <td>{{$ict->pict_req_by}}</td>
+                                        <td>{{$ict->staff_name}}</td>
                                         <td>{{$ict->pict_req_created_at}}</td>
                                         <td>{{$ict->staff_name}}</td>
                                         <td>{{$ict->staff_name}}</td>
@@ -83,10 +83,10 @@
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
                                                     </button> -->
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->ict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> VERIFY</a>
+                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> VERIFY</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -99,10 +99,10 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->ict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> APPROVE</a>
+                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> APPROVE</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -115,10 +115,10 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->ict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
                                                     </button>
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->ict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> RESOLVE</a>
+                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> RESOLVE</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -159,22 +159,22 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="#">
+            <form action="{{route('ict.bring')}}" method="GET" novalidate>
+            @csrf
                 <div class="modal-body">
                     <label>Request</label>
-                    <div class="form-group">
-                        <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
-                            <option value="" disabled>Add Branch</option>
-                            <option value="d1">12 Month</option>
-                            <option value="sibu">Sibu</option>
-                            <option value="miri">Miri</option>
-                        </select>
-                    </div>
-                    <label>Remarks</label>
-                    <div class="form-group">
-                        <fieldset class="form-group">
-                            <textarea class="form-control" id="basicTextarea" rows="3" placeholder="Remarks"></textarea>
-                        </fieldset>
+                    <div class="form-group controls">
+                        <label class="d-block">Type</label>
+                        <div class="custom-control-inline">
+                        <div class="radio mr-1">
+                            <input type="radio" name="icttype" id="ht" value="point" checked="" required>
+                            <label for="ht">Points/Entitlement Adjustment</label>
+                        </div>  
+                        <div class="radio">
+                            <input type="radio" name="icttype" id="fc" value="acc" checked="">
+                            <label for="fc">Account</label>
+                        </div>
+                        </div>
                     </div>
 
                 </div>
@@ -183,9 +183,9 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                    <button type="submit" class="btn btn-primary ml-1" >
                         <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Save</span>
+                        <span class="d-none d-sm-block" >Next</span>
                     </button>
                 </div>
             </form>
@@ -193,85 +193,7 @@
     </div>
 </div>
 
-<!--scrollbar Modal -->
-<div class="modal fade" id="attachment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" id="form-repeater-wrapper" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Scrolling Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bx bx-x"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-            
-                <div class="card-content">
-                    <div class="card-body">
-                        <form class="form repeater-default">
-                        <div data-repeater-list="group-a">
-                            <div data-repeater-item>
-                            <div class="row justify-content-between">
-                                <div class="col-md-2 col-sm-12 form-group">
-                                <label for="Email">Email </label>
-                                <input type="email" class="form-control" id="Email" placeholder="Enter email id">
-                                </div>
-                                <div class="col-md-2 col-sm-12 form-group">
-                                <label for="password">password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter Password">
-                                </div>
-                                <div class="col-md-2 col-sm-12 form-group">
-                                <label for="gender">Gender</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">female</option>
-                                </select>
-                                </div>
-                                <div class="col-md-2 col-sm-12 form-group">
-                                <label for="Profession">Profession</label>
-                                <select name="profession" id="Profession" class="form-control">
-                                    <option value="FontEnd Developer">Designer</option>
-                                    <option value="BackEnd Developer">Developer</option>
-                                    <option value="Bussiness Analystic">Tester</option>
-                                    <option value="Project Cordinator">Manager</option>
-                                </select>
-                                </div>
-                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                    class="bx bx-x"></i>
-                                    Delete
-                                </button>
-                                </div>
-                            </div>
-                            <hr>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col p-0">
-                            <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
-                                Add
-                            </button>
-                            </div>
-                        </div>
-                        </form>
-                    </div>
-                </div>
 
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                </button>
-
-                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                    <i class="bx bx-check d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Accept</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

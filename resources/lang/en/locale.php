@@ -26,7 +26,7 @@ return [
   "RCI:BB" => "RCI:BB",
   "II Dep" => "II Dep",
   "Refund Details" => "Refund Details",
-  "Reservation Activity Logs" => "Reservation Activity Logs",
+  "Activity Logs" => "Activity Logs",
   "Call Management" => "Call Management",
   "Task Assignment" => "Task Assignment",
   "Create New" => "Create New",

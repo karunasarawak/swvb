@@ -15,8 +15,8 @@ class Tour extends Model
         'tour_date',
         'tour_time',
         'tour_time_in',
-        'tour_time_out',
-        'tour_status', 'created_at','updated_at'];
+        'tour_time_out', 
+        'tour_status', 'created_at', 'updated_at'];
 
     public $timestamps = false;
 }

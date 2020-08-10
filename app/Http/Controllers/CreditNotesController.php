@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 
-use App\CreditNotes;
+use App\CreditNote;
 
-use App\CreditNoteTypes;
+use App\CreditNoteType;
 
-use App\CreditNoteSubjects;
+use App\CreditNoteSubject;
 
 use App\Membership;
 
-use App\InvoiceItems;
+use App\InvoiceItem;
 
 class CreditNotesController extends Controller
 {
@@ -27,7 +27,7 @@ class CreditNotesController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "/creditnote", "name" => "Credit Note"],["name" => "All"]
         ];
 
-        $creditnotes = CreditNotes::all();
+        $creditnotes = CreditNote::all();
 
         $payload = ['creditnotes'=>$creditnotes];
 
@@ -46,7 +46,7 @@ class CreditNotesController extends Controller
   
       $memberships = Membership::all();
 
-      $creditNoteTypes = CreditNoteTypes::all();
+      $creditNoteTypes = CreditNoteType::all();
   
       $payload = ['memberships'=>$memberships, 'creditNoteTypes'=>$creditNoteTypes];
   
@@ -87,7 +87,7 @@ class CreditNotesController extends Controller
       //     ->where('inv_id', $invoice->inv_id)
       //     ->get();
       //     $amount = 0;
-      //   foreach($invoiceItems as $invoiceItem) {
+      //   foreach($invoiceItems as $invoiceItem) {5
       //     $amount = $amount + $invoiceItem->amount;
       //   }
       //   array_push($invoiceItemsAmount, $amount);
@@ -115,7 +115,9 @@ class CreditNotesController extends Controller
     }
 
     public function storeCreditNote(Request $request) {
-      $newCreditNote = CreditNotes::create($request->all());
+      // dd($request);
+      
+      $newCreditNote = CreditNote::create($request->all());
       $newCNId = $newCreditNote->id;
 
       for($i = 0; $i < count($request->amount); $i++){
@@ -127,7 +129,7 @@ class CreditNotesController extends Controller
         ];
       }
 
-      CreditNoteSubjects::insert($creditNoteSubjects);
+      CreditNoteSubject::insert($creditNoteSubjects);
 
       return redirect('creditnote');
     }
@@ -139,9 +141,7 @@ class CreditNotesController extends Controller
         ["link" => "/", "name" => "Home"],["link" => "/creditnote", "name" => "Credit Note"],["name" => "View Credit Note Details"]
       ];
 
-      $creditNote = CreditNotes::where('credit_id', $id)->get();
-
-      
+      $creditNote = CreditNote::where('credit_id', $id)->get();
 
       $payload = ['creditnote'=>$creditNote[0]];
 

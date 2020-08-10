@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EventLogs extends Model
+class EventLog extends Model
 {
     protected $fillable = [
         'el_id',
@@ -21,12 +21,12 @@ class EventLogs extends Model
 
     public function lead()
     {
-        return $this->belongsTo('App\Leads', 'lead_id', 'lead_id');
+        return $this->belongsTo('App\Lead', 'lead_id', 'lead_id');
     }
 
-    public function callLogs()
+    public function callLog()
     {
-        return $this->hasMany('App\CallLogs', 'el_id', 'el_id');
+        return $this->hasMany('App\CallLog', 'el_id', 'el_id');
     }
 
     public function eventLogsCategory()

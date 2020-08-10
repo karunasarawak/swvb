@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Staff_Roles extends Model
+class Staff_Role extends Model
 {
     protected $fillable = [
          'role_id',

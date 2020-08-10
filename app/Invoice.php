@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Invoices extends Model
+class Invoice extends Model
 {
     protected $fillable = [
         'inv_id',
@@ -22,7 +22,8 @@ class Invoices extends Model
         'tax_note',
         'remark',
         'issue_date',
-        'status',
+        'inv_status',
+        'inv_creator',
     ];
 
     // protected $guarded = ['inv_id'];
@@ -35,5 +36,5 @@ class Invoices extends Model
     public function invoiceItem()
     {
         return $this->hasMany('App\InvoiceItem', 'inv_id', 'inv_id');
-  }
+    }
 }

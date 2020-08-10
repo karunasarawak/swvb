@@ -210,14 +210,18 @@
                                         <div class="row">
                                             <p class="col">Voucher Apply</p>
                                             @if($payload['details']->voucher_no != null)
-                                                <p class="col font-weight-bold black">{{$payload['details']->voucher_no}}</p>
+                                                <p class="col font-weight-bold black">Yes</p>
                                             @else 
-                                                <p class="col font-weight-bold black"></p>
+                                                <p class="col font-weight-bold black">No</p>
                                             @endif
                                         </div>
                                         <div class="row">
                                             <p class="col">CV No.</p>
-                                            <p class="col font-weight-bold black"></p>
+                                            @if($payload['details']->voucher_no != null)
+                                                <p class="col font-weight-bold black">{{$payload['details']->voucher_no}}</p>
+                                            @else 
+                                                <p class="col font-weight-bold black"></p>
+                                            @endif
                                         </div>
                                         <div class="row">
                                             <p class="col">Accomodation</p>
@@ -267,16 +271,15 @@
                                         </div>
                                         <div class="row">
                                             <p class="col">Voucher Apply To</p>
-                                            @if($payload['details']->name != null)
-                                                <span class="col font-weight-bold black">{{$payload['details']->name}}</span>
-                                            @else 
-                                                <span class="col font-weight-bold black"></span>
+                                            @if($payload['details']->name != null && $payload['detail2'] != null)
+                                                <?php $attendees = $payload['details']->name.",".$payload['detail2']->name; ?>
+                                            @elseif($payload['details']->name != null && $payload['detail2'] == null)
+                                                <?php $attendees = $payload['details']->name; ?>
+                                            @elseif($payload['details']->name == null && $payload['detail2'] != null)
+                                                <?php $attendees = $payload['detail2']->name; ?>
                                             @endif
 
-                                            @if ($payload['detail2'] != null)
-                                                <span class="col font-weight-bold black">{{$payload['detail2']->name}}</span>
-                                            @endif
-                                            
+                                            <span class="col font-weight-bold black"><?php echo $attendees;?></span>
                                         </div>
                                     </div>
                                 </div>

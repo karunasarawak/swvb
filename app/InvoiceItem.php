@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InvoiceItems extends Model
+class InvoiceItem extends Model
 {
     protected $fillable = [
         'inv_itm_id',
@@ -16,13 +16,13 @@ class InvoiceItems extends Model
 
     // protected $guarded = ['inv_itm_id'];
 
-    public function invoiceItemTypes()
+    public function invoiceItemType()
     {
-        return $this->belongsTo('App\InvoiceItemTypes', 'inv_itm_type_id', 'inv_itm_type_id');
+        return $this->belongsTo('App\InvoiceItemType', 'inv_itm_type_id', 'inv_itm_type_id');
     }
 
     public function invoice()
     {
-        return $this->belongsTo('App\Invoices', 'inv_id', 'inv_id');
+        return $this->belongsTo('App\Invoice', 'inv_id', 'inv_id');
     }
 }

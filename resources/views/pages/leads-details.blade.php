@@ -44,7 +44,7 @@
                                         <div class="row">
                                             <p class="col-sm-5">Salutation</p>
                                             <p class="col" x-show="original">{{$payload['details']->salutation}}</p>
-                                            <p  x-cloak x-show="edit">
+                                            <p class="col" x-cloak x-show="edit">
                                                 <select name="salutation" class="form-control">
                                                     @foreach ($payload['salutations'] as $salut)
                                                         @if($salut->salutation_id == $payload['details']->salutation_id)
@@ -204,7 +204,7 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive pt-3">
-                            <table class="table call-log">
+                            <table class="table table call-log">
                                 <thead class="bg-swvb-cyan">
                                     <tr>
                                         <th class="text-white">ID</th>
@@ -222,22 +222,22 @@
                                 </thead>
                                 <tbody>
                                      @foreach($payload['events'] as $event)
-                                        <tr class="show_row">
-                                            <td>{{$event->el_id}}</td>
-                                            <!-- <td>{{$event->lead->name}}</td> -->
-                                            <td>{{$event->eventLogsType->el_type_name}}</td>
-                                            <td>{{$event->eventLogsCategory->el_cat_name}}</td>
-                                            <td>{{$event->title}}</td>
-                                            <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->created_at)->format('d-m-Y')}}</td>
-                                            <td>{{$event->created_by}}</td>
-                                            <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->updated_at)->format('d-m-Y')}}</td>
-                                            <td>{{$event->last_updated_by}}</td>
-                                           <td>
-                                                <button class="btn btn-outline-primary w-40" onclick="hiddenRow({{$loop->iteration}})">Show</button>
-                                                <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#leadsaddcall" 
-                                                onclick="getEventID({{$event->el_id}}, {{$event->lead_id}})">Add Call</button>
-                                            </td>
-                                        </tr>
+                                     <tr class="show_row">
+                                        <td>{{$event->el_id}}</td>
+                                        <!-- <td>{{$event->lead->name}}</td> -->
+                                        <td>{{$event->eventLogsType->el_type_name}}</td>
+                                        <td>{{$event->eventLogsCategory->el_cat_name}}</td>
+                                        <td>{{$event->title}}</td>
+                                        <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->created_at)->format('d-m-Y')}}</td>
+                                        <td>{{$event->created_by}}</td>
+                                        <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->updated_at)->format('d-m-Y')}}</td>
+                                        <td>{{$event->last_updated_by}}</td>
+                                        <td>
+                                            <button class="btn btn-outline-primary w-40" onclick="hiddenRow({{$loop->iteration}})">Show</button>
+                                            <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#leadsaddcall" 
+                                            onclick="getEventID({{$event->el_id}}, {{$event->lead_id}})">Add Call</button>
+                                        </td>
+                                    </tr>
                                             <tr class="hidden1_row{{$loop->iteration}}" style="display:none;">
                                                 <th>Call ID</th>
                                                 <th>Date</th>

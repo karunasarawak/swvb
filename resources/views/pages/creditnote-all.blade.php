@@ -46,14 +46,15 @@
                                             <?php
                                             $totalAmount = 0;
                                             ?>
-                                            @foreach ($creditnote->creditNoteSubjects as $cnSubjects)
+                                            
+                                            @foreach ($creditnote->creditNoteSubject as $cnSubjects)
                                                 <?php
                                                 $totalAmount = $totalAmount + $cnSubjects->amount;
                                                 ?>
                                             @endforeach
                                             {{$totalAmount}}
                                             </td>
-                                            <td>{{$creditnote->creditNoteTypes->cn_type}}</td>
+                                            <td>{{$creditnote->creditNoteType->cn_type}}</td>
                                             <td>{{$creditnote->issue_date}}</td>
                                             <td>
                                                 <?php 

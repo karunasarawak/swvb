@@ -48,14 +48,6 @@
                       <select class="custom-select form-control required" id="salutation1" name="salutation1" value="{{$payload['attend']->salutation_id}}">
                             <option value="1">Mr</option>
                             <option value="2">Mrs</option>
-                            <!-- <option value="3">Sir</option>
-                            <option value="4">Mdm</option>
-                            <option value="5">Tuan Haji</option>
-                            <option value="6">Puan Hajjah</option>
-                            <option value="7">Encik</option>
-                            <option value="8">Puan</option>
-                            <option value="9">Dato</option>
-                            <option value="10">Datu</option> -->
                         </select>
                     </div>
                   </div>
@@ -235,9 +227,11 @@
                       <div class="form-group controls">
                         <select class=" form-control" x-show="edit" id="exist_lead" name="exist_lead" readonly>
                           <option value="">--</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
+                          @foreach($payload['allLead'] as $allLead)
+                            @if($allLead->lead_id != $payload['attend']->lead_id)
+                              <option value="{{ $allLead->lead_id }}">{{ $allLead->lead_id }} - {{ $allLead->name }}</option>
+                            @endif
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -253,14 +247,6 @@
                               <option value=""disabled selected>Select a salutation</option>
                               <option value="1">Mr</option>
                               <option value="2">Mrs</option>
-                              <!-- <option value="Sir">Sir</option>
-                              <option value="Mdm">Mdm</option>
-                              <option value="Tuan Haji">Tuan Haji</option>
-                              <option value="Puan Hajjah">Puan Hajjah</option>
-                              <option value="Encik">Encik</option>
-                              <option value="Puan">Puan</option>
-                              <option value="Dato">Dato</option>
-                              <option value="Datu">Datu</option> -->
                           </select>
                       </div>
                     </div>

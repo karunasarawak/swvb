@@ -49,7 +49,17 @@
                                                     <tr> 
                                                         <td><a href="{{ route('tours.showDetails', $tours->tour_id)}}">{{$tours->tour_id}}</a></td>
                                                         <td>{{$tours->lead_id1}}</td>
-                                                        <td>{{$tours->salutation}} {{$tours->name}}</td>
+                                                        <td>{{ $tours->salutation }} {{ $tours->name }}</td>
+
+                                                        {{-- @if($tours->name != null && $tours->name2 != null)
+                                                            <td>
+                                                                <div>{{ $tours->salutation }} {{ $tours->name }},</div>
+                                                                <div>{{ $tours->salute2 }} {{ $tours->name2 }}</div>
+                                                            </td>
+                                                        @else
+                                                            <td>{{$tours->salutation}} {{$tours->name}}</td>
+                                                        @endif --}}
+
                                                         <td class="expanded">{{$tours->tour_date}}</td>
                                                         <td>{{Carbon\Carbon::createFromFormat('H:i:s', $tours->tour_initial_time)->format('h:i A')}}</td>
 
@@ -73,13 +83,13 @@
                                                         @if($tours->tour_attend == null)
                                                             <td>
                                                                 <button class="border-0 bg-transparent" data-toggle="modal" data-target="#addCall">                                                                    
-                                                                    <a href="{{route('tours.attendTour', $tours->tour_id, '1')}}">
+                                                                    <a href="{{route('tours.attendTour', $tours->tour_id)}}">
                                                                         <i class="bx bx-check-circle bx-md m-0 "></i>
                                                                     </a>
                                                                 </button>
                                                                 <form action="{{route('tours.attendTour', $tours->tour_id)}}" method="GET">
                                                                     @csrf
-                                                                    <input type="hidden" value="2" name="notAttend">
+                                                                    <input type="hidden" value="3" name="notAttend">
                                                                     <button type="submit" class="border-0 bg-transparent">
                                                                         <i class="bx bx-x-circle bx-md m-0 danger"></i>
                                                                     </button>
@@ -95,9 +105,14 @@
                                                                         onclick="tokenModal({{$tours->tour_id}},'{{$tours->tour_date}}', '{{$tours->tour_initial_time}}','{{$tours->sales_venue_id}}')">
                                                                             <a class="dropdown-item"><i class="bx bx-edit-alt mr-1"></i> Edit</a>
                                                                         </button>
-                                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                                            <a class="dropdown-item" href=" {{ route('leads.archive', $tours->tour_id) }}" ><i class="bx bx-trash mr-1"></i> Archive</a>
-                                                                        </button>
+                                                                        <form action="{{ route('tours.archive', $tours->tour_id) }}" method="POST">
+                                                                            @csrf
+                                                                            @method('patch')
+                                                                            <input type="hidden" value="0" name="archive">
+                                                                            <button class="bg-transparent border-0" type="submit" class="dropdown-item">
+                                                                                <i class="bx bx-trash mr-1"></i> Archive
+                                                                            </button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -113,9 +128,14 @@
                                                                         <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
                                                                             <a class="dropdown-item" href="{{route('members.createPage', ['lead_id'=>$tours->lead_id1, 'tour_id'=>$tours->tour_id])}}" ><i class="bx bx-edit-alt mr-1"></i> Create Membership</a>
                                                                         </button>
-                                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                                            <a class="dropdown-item" href="{{ route('leads.archive', $tours->tour_id) }}" ><i class="bx bx-trash mr-1"></i> Archive</a>
-                                                                        </button>
+                                                                        <form action="{{ route('tours.archive', $tours->tour_id) }}" method="POST">
+                                                                            @csrf
+                                                                            @method('patch')
+                                                                            <input type="hidden" value="0" name="archive">
+                                                                            <button class="bg-transparent border-0" type="submit" class="dropdown-item">
+                                                                                <i class="bx bx-trash mr-1"></i> Archive
+                                                                            </button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -131,9 +151,14 @@
                                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                                     </span>
                                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall"> 
-                                                                            <a class="dropdown-item" href="{{ route('leads.archive', $tours->tour_id) }}"><i class="bx bx-trash mr-1"></i> Archive</a>
-                                                                        </button>
+                                                                        <form action="{{ route('tours.archive', $tours->tour_id) }}" method="POST">
+                                                                            @csrf
+                                                                            @method('patch')
+                                                                            <input type="hidden" value="0" name="archive">
+                                                                            <button class="bg-transparent border-0" type="submit" class="dropdown-item">
+                                                                                <i class="bx bx-trash mr-1"></i> Archive
+                                                                            </button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </td>

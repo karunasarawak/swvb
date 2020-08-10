@@ -37,11 +37,11 @@ class Membership extends Model
 
     public function lead()
     {
-        return $this->belongsTo('App\Leads', 'lead_id1', 'lead_id');
+        return $this->belongsTo('App\Lead', 'lead_id1', 'lead_id');
     }
 
     public function address()
     {
-        return $this->belongsto('App\Addresses', 'addr_1', 'addr_1');
+        return $this->belongsto('App\Address', 'addr_1', 'addr_1');
     }
 }

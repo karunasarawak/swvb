@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CreditNotes extends Model
+class CreditNote extends Model
 {
     protected $fillable = [
         'credit_id',
@@ -18,9 +18,9 @@ class CreditNotes extends Model
 
     // protected $guarded = ['inv_id'];
 
-    public function creditNoteTypes()
+    public function creditNoteType()
     {
-        return $this->belongsTo('App\CreditNoteTypes', 'cn_type_id', 'cn_type_id');
+        return $this->belongsTo('App\CreditNoteType', 'cn_type_id', 'cn_type_id');
     }
 
     public function membership()
@@ -28,8 +28,8 @@ class CreditNotes extends Model
         return $this->belongsTo('App\Membership', 'mbrship_id', 'mbrship_id');
     }
 
-    public function creditNoteSubjects()
+    public function creditNoteSubject()
     {
-        return $this->hasMany('App\CreditNoteSubjects', 'credit_id', 'credit_id');
+        return $this->hasMany('App\CreditNoteSubject', 'credit_id', 'credit_id');
     }
 }

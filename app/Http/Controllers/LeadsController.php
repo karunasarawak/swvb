@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Leads;
-use App\Tours;
+use App\Lead;
+use App\Tour;
 use App\Salutation;
-use App\Staffs;
-use App\EventLogs;
+use App\Staff;
+use App\EventLog;
 use App\EventLogsCategory;
 use App\EventLogsType;
-use App\CallLogs;
+use App\CallLog;
 use App\Address;
 use Carbon\Carbon;
 use App\Imports\LeadsImport;
@@ -20,7 +20,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class LeadsController extends Controller
 {
-  public function index(){
+  public function index()
+  {
 
     $pageConfigs = ['pageHeader' => true];
 
@@ -31,10 +32,12 @@ class LeadsController extends Controller
     $leads = DB::table('leads')
             ->join('salutations','salutations.salutation_id','leads.salutation_id')
             ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
-            ->where('leads.status','!=',3)
+            ->where('leads.status','!=',0)
             ->select('leads.lead_id','leads.created_at','leads.name','salutations.salutation','sales_teams.sales_name')
             ->orderBy('leads.lead_id')
             ->get();
+
+    // dd($leads);
     $payload = ['leads'=>$leads];
 
     return view('pages.leads-all', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
@@ -57,10 +60,11 @@ class LeadsController extends Controller
     return view('pages.leads-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function storeLead(Request $request){   
+  public function storeLead(Request $request)
+  {   
       // dd($request);
 
-    Leads::create($request->all());
+    Lead::create($request->all());
 
     return redirect('leads/all');
   }
@@ -87,7 +91,7 @@ class LeadsController extends Controller
   public function editLead(Request $request, $id)
   {
 
-    Leads::where('lead_id', $id)->update([
+    Lead::where('lead_id', $id)->update([
       'salutation_id' =>$request->salutation,
       'name' =>$request->name,
       'mobile_no' =>$request->mobile_no,
@@ -134,7 +138,7 @@ class LeadsController extends Controller
                           'event_logs.title','event_logs.last_updated_by','event_logs.created_by', 'event_logs.created_at','event_logs.updated_at')
                   ->get();
 
-    $events = EventLogs::with('eventLogsCategory', 'eventLogsType')->where('lead_id', $lead_id)->get();
+    $events = EventLog::with('eventLogsCategory', 'eventLogsType')->where('lead_id', $lead_id)->get();
 
     $payload = ['details'=>$details[0], 'salutations'=>$salutations, 'telemarketer'=>$telemarketer, 'events'=>$events];
     $event = ['event_type'=>$event_type, 'event_cat'=>$event_cat, 'event_logs'=>$event_logs];
@@ -201,18 +205,101 @@ class LeadsController extends Controller
 
   public function uploadCSV(Request $request)
   {
-    // echo "something";
-    // dd($request->file('csvfile'));
-    Excel::import(new LeadsImport, $request->file('csvfile'));
-    // return redirect('leads');
+    
+    if ($request->input('submit') != null )
+    {
+      $file = $request->file('file');
+
+      // File Details 
+      $filename = $file->getClientOriginalName();
+      $extension = $file->getClientOriginalExtension();
+      $tempPath = $file->getRealPath();
+      $fileSize = $file->getSize();
+      $mimeType = $file->getMimeType();
+
+      // Valid File Extensions
+      $valid_extension = array("csv");
+
+      // 2MB in Bytes
+      $maxFileSize = 2097152; 
+
+      if(in_array(strtolower($extension),$valid_extension))
+      {
+        if($fileSize <= $maxFileSize)
+        {
+          // File upload location
+          $location = 'uploads';
+
+          // Upload file
+          $file->move($location,$filename);
+
+          // Import CSV to Database
+          $filepath = public_path($location."/".$filename);
+
+          // Reading file
+          $file = fopen($filepath,"r");
+
+          $importData_arr = array();
+          $i = 0;
+
+          while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) 
+          {
+            $num = count($filedata);
+            
+            // Skip first row (Remove below comment if you want to skip the first row)
+            if($i == 0)
+            {
+                $i++;
+                continue; 
+            }
+
+            for ($c = 0; $c < $num; $c++) 
+            {
+                $importData_arr[$i][] = $filedata [$c];
+            }
+            $i++;
+          }
+
+          fclose($file);
+          foreach($importData_arr as $importData)
+          {
+            $data = array(
+              "salute" =>$importData[0],
+              "name" => $importData[1],
+              "mobile" => $importData[2],
+              "whatsapp" => $importData[3],
+              "credit_card" => $importData[4],
+              "telem" => $importData[5],
+              );
+
+            $insert = Lead::insertLeads($data);
+            
+          }
+
+        }
+      }
+    }
+
+
+    return redirect('/leads/all');
   }
 
-  public function archiveLeads($lead_id)
+  public function archiveLeads(Request $request, $lead_id)
   {
-    Leads::where('lead_id', $lead_id)->update(['status'=>3]);
+    dd($request);
+    if($request->archive == 0)
+    {
+      Lead::where('lead_id', $lead_id)->update(['status'=> 0]);
+    }
+    
+    if ($request->restore == 1)
+    {
+      Lead::where('lead_id', $lead_id)->update(['status'=> 1]);
+    }
 
     return redirect('leads/all');
   }
+
 
   public function showArchive()
   {
@@ -225,7 +312,7 @@ class LeadsController extends Controller
     $leads = DB::table('leads')
         ->join('salutations','salutations.salutation_id','leads.salutation_id')
         ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
-        ->where('leads.status','=',3)
+        ->where('leads.status','=',0)
         ->select('leads.lead_id','leads.created_at','leads.name','salutations.salutation','sales_teams.sales_name')
         ->orderBy('leads.lead_id')
         ->get();

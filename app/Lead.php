@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class Leads extends Model
+class Lead extends Model
 {
     protected $fillable = [
         'lead_id',
@@ -25,6 +26,29 @@ class Leads extends Model
     ];
 
     protected $dates = ['created_at', 'updated_at'];
+
+    protected $table = 'leads';
+
+    public static function insertLeads($data)
+    {
+        $current = date('Y-m-d H:i:s');
+        $salute = DB::table('salutations')->where('salutation', $data['salute'])->pluck('salutations.salutation_id');
+        $telem = DB::table('sales_teams')->where('sales_name', $data['telem'])->pluck('sales_team_id');
+
+        $value = DB::table('leads')
+                ->insert([
+                    'salutation_id' => $salute[0],
+                    'telemarketer_id' => $telem[0],
+                    'name' => $data['name'],
+                    'credit_card_limit' => $data['credit_card'],
+                    'mobile_no' => $data['mobile'],
+                    'whatsapp_no' =>$data['whatsapp'],
+                    'status' => 1,
+                    'created_at' => $current,
+                    'updated_at' => $current
+                ]);
+
+    }
 
     // protected $guarded = ['lead_id'];
 
@@ -83,6 +107,6 @@ class Leads extends Model
     //  {
     //      return $this->hasOne('App\Religion', 'religion_id','religion');
     //  }
-
+    
    
 }

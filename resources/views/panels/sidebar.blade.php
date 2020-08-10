@@ -1,4 +1,4 @@
-{{-- vertical-menu --}}
+  {{-- vertical-menu --}}
 @if($configData['mainLayoutType'] == 'vertical-menu')
 <div class="main-menu menu-fixed @if($configData['theme'] === 'light') {{"menu-light"}} @else {{'menu-dark'}} @endif menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="navbar-header expanded">

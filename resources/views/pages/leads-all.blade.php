@@ -25,7 +25,11 @@
                 <div class="card-content">
                     <div class="px-2 pt-1">
                         <a href="{{route('leads.new')}}" class="btn btn-outline-primary round mr-1 mb-1">New Lead</a>
-                        <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a> 
+                        <form action="{{ route('leads.upload')}}" class="m-2" method="POST" enctype='multipart/form-data'>
+                            {{ csrf_field() }}
+                            <input type='file' name='file'>
+                            <input type='submit' name='submit' value='Import'>
+                        </form>
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
@@ -43,23 +47,13 @@
                                 <tbody>
                                     @if(isset($payload))
                                         @foreach($payload['leads'] as $lead)
-                                        <tr>
+                                        <tr></tr>
                                             <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
                                             <td>{{$lead->salutation}} {{$lead->name}}</td>
                                             <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('d-m-Y')}}</td>
                                             <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('h:i A')}}</td>
                                             <td>{{$lead->sales_name}}</td>
                                             <td>
-                                                <!-- <button class="btn btn-outline-primary round " data-toggle="modal" data-target="#addCall">
-                                                    <a href="{{route('tours.new', $lead->lead_id)}}">Create Tour</a>
-                                                </button> -->
-                                                <!-- <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
-                                                    @csrf
-                                                    @method('patch')
-                                                    <button class="btn btn-outline-primary round mb-1 pl-3 pr-3" data-toggle="modal" data-target="#addCall">
-                                                        Archive
-                                                    </button>
-                                                </form> -->
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -69,10 +63,11 @@
                                                             <a class="dropdown-item" href="{{route('tours.new', $lead->lead_id)}}" ><i class="bx bx-edit-alt mr-1"></i>Create Tour</a>
                                                         </button>
                                                         <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
-                                                        @csrf
-                                                        @method('patch')
-                                                            <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                                <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> Archive</a>
+                                                            @csrf
+                                                            @method('patch')
+                                                            <input type="hidden" value="0" name="archive">
+                                                            <button class="bg-transparent border-0" type="submit">
+                                                                <a class="dropdown-item"><i class="bx bx-trash mr-1"></i> Archive</a>
                                                             </button>
                                                         </form>
                                                     </div>
@@ -88,35 +83,7 @@
             </div>
         </div>
     </div>
-    {{-- Modal Start --}}
-
-    {{-- Upload CSV Modal --}}
-        <div class="modal fade" id="csvUpload" tabindex="-1" role="dialog" aria-labelledby="#csvUploadTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-swvb-blue">
-                        <h5 class="modal-title white" id="csvUploadTitle">Upload Leads (CSV){{URL::current()}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="bx bx-x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <form action="{{route('leads.csvUpload')}}" class="dropzone dropzone-area" id="leads-upload" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="dz-message">Click Here or Drop File to Upload</div>
-                            </form>
-                        </div>
-                        <button class="btn btn-outline-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
-                        <button type="button" class="btn btn-outline-primary" id="submit-leads-csv" >
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Upload</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{-- Modal End --}}
+    
 </section>
 <!--/ Zero configuration table -->
 @endsection

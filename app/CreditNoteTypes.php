@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CreditNoteTypes extends Model
+class CreditNoteType extends Model
 {
     protected $fillable = [
         'cn_type_id',

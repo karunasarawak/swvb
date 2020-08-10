@@ -43,295 +43,53 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1000031</td>
-                                        <td>1000031</td>
-                                        <td>Clementine</td>
-                                        <td>Clementine</td>
-                                        <td>03 June 2019</td>
-                                        <td>03:10 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Phelan Henson</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000032</td>
-                                        <td>1000032</td>
-                                        <td>Elizabeth</td>
-                                        <td>Elizabeth</td>
-                                        <td>27 April 2019</td>
-                                        <td>03:05 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Charles Dean</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000033</td>
-                                        <td>1000033</td>
-                                        <td>Todd</td>
-                                        <td>Todd</td>
-                                        <td>06 January 2020</td>
-                                        <td>05:19 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Travis Mckinney</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000034</td>
-                                        <td>1000034</td>
-                                        <td>Iola</td>
-                                        <td>Iola</td>
-                                        <td>06 November 2019</td>
-                                        <td>08:31 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Jameson Knight</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000035</td>
-                                        <td>1000035</td>
-                                        <td>Zorita</td>
-                                        <td>Zorita</td>
-                                        <td>11 June 2018</td>
-                                        <td>07:18 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Reed Meyer</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000036</td>
-                                        <td>1000036</td>
-                                        <td>Denton</td>
-                                        <td>Denton</td>
-                                        <td>13 March 2020</td>
-                                        <td>09:30 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Joseph Sanford</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000037</td>
-                                        <td>1000037</td>
-                                        <td>Maris</td>
-                                        <td>Maris</td>
-                                        <td>21 January 2020</td>
-                                        <td>11:09 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Daniel Matthews</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000038</td>
-                                        <td>1000038</td>
-                                        <td>Cecilia</td>
-                                        <td>Cecilia</td>
-                                        <td>26 November 2019</td>
-                                        <td>03:37 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Tyler Washington</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000039</td>
-                                        <td>1000039</td>
-                                        <td>Buckminster</td>
-                                        <td>Buckminster</td>
-                                        <td>10 March 2020</td>
-                                        <td>05:35 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Salvador Heath</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000040</td>
-                                        <td>1000040</td>
-                                        <td>Hadley</td>
-                                        <td>Hadley</td>
-                                        <td>28 October 2018</td>
-                                        <td>12:43 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Hamish Klein</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000041</td>
-                                        <td>1000041</td>
-                                        <td>Malachi</td>
-                                        <td>Malachi</td>
-                                        <td>22 January 2020</td>
-                                        <td>03:29 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Kennan Chase</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1000042</td>
-                                        <td>1000042</td>
-                                        <td>Yael</td>
-                                        <td>Yael</td>
-                                        <td>04 September 2019</td>
-                                        <td>07:31 PM</td>
-                                        <td>03:10 AM</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>Joel Allen</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
-                                        <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                Reactivate
-                                            </button>
-                                        </td>
-                                        
-                                    </tr>
+                                    @foreach($payload['allArchive'] as $archive)
+                                        <tr>
+                                            <td>{{ $archive->lead_id1 }}</td>
+                                            <td>{{ $archive->tour_id }}</td>
+                                            <td>{{ $archive->salutation }} {{ $archive->name }}</td>
+                                            <td>???</td>
+                                            <td>{{ $archive->tour_date }}</td>
+                                            @if($archive->tour_time_in != null)
+                                                <td>{{ Carbon\Carbon::createFromFormat('H:i:s', $archive->tour_time_in)->format('h:i A') }}</td>
+                                            @else
+                                                <td></td>
+                                            @endif()
+                                            
+                                            @if($archive->tour_time_out != null)
+                                                <td>{{ Carbon\Carbon::createFromFormat('H:i:s', $archive->tour_time_out)->format('h:i A') }}</td>
+                                            @else
+                                                <td></td>
+                                            @endif
+                                            
+                                            <td>{{ $archive->venue_name }}</td>
+                                            <td>J??</td>
+                                            <td>{{ $archive->sales_name }}</td>
+
+                                            @if($archive->tour_status == null)
+                                                <td>Haven Attended</td>
+                                            @elseif($archive->tour_status == 1)
+                                                <td>Attended</td>
+                                            @elseif($archive->tour_status == 2)
+                                                <td>Not Attended</td>
+                                            @else
+                                                <td>Unknown</td>
+                                            @endif
+
+                                            <td>
+                                                <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                    <i class="bx bx-check-circle bx-md m-0 success"></i>
+                                                </button>
+                                                <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
+                                                    <i class="bx bx-x-circle bx-md m-0 danger"></i>
+                                                </button>
+                                            </td>
+                                            <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                    Reactivate
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Leads')
+@section('title','Contacts')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -47,7 +47,7 @@
                               
                                                                                 <!-- coz many display list -->
                                                                         <!--  pass lead id to controller to choose   main table ->  link to other table  -> database column name-->
-                                        <tr class="row-link" onclick="location.href='{{route('contacts.details', $contacts->lead_id)}}'">
+                                        <tr class="row-link" onclick="location.href='{{route('contact.details', $contacts->lead_id)}}'">
                                             
                                             <td>{{$contacts->salutation['salutation']}}</td>
                                             <td>{{$contacts -> name}}</td>

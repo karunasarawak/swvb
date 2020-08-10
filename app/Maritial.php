@@ -11,9 +11,9 @@ class Maritial extends Model
         'maritial_name',
     ];
 
-    public function leads()
+    public function lead()
     {
-        return $this->belongsTo('App\Leads');
+        return $this->belongsTo('App\Lead');
     }
 }
 

@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 
-use App\Invoices;
+use App\Invoice;
 
-use App\InvoiceItems;
+use App\InvoiceItem;
 
 use App\Membership;
 
-use App\InvoiceItemTypes;
+use App\InvoiceItemType;
 
 class InvoicesController extends Controller
 {
@@ -26,7 +26,7 @@ class InvoicesController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "/invoice", "name" => "Invoice"],["name" => "All"]
     ];
 
-    $invoices = Invoices::with('invoiceItem', 'membership.lead')->get();
+    $invoices = Invoice::with('invoiceItem', 'membership.lead')->get();
 
     // $invoiceItems = InvoiceItems::all();
 
@@ -47,13 +47,13 @@ class InvoicesController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "/invoice", "name" => "Invoice"],["name" => "New Invoice"]
     ];
 
-    $invoices = Invoices::all();
+    $invoices = Invoice::all();
 
-    $invoiceItems = InvoiceItems::all();
+    $invoiceItems = InvoiceItem::all();
 
     $memberships = Membership::with('lead')->get();
 
-    $invoiceItemTypes = InvoiceItemTypes::all();
+    $invoiceItemTypes = InvoiceItemType::all();
 
     $payload = ['invoices'=>$invoices, 'invoiceItems'=>$invoiceItems, 'memberships'=>$memberships, 'invoiceItemTypes'=>$invoiceItemTypes];
 
@@ -61,7 +61,7 @@ class InvoicesController extends Controller
   }
 
   public function storeInvoice(Request $request) {
-    $newInvoice = Invoices::create($request->all());
+    $newInvoice = Invoice::create($request->all());
     $newInvoiceId = $newInvoice->id;
 
     for($i = 0; $i < count($request->itemID); $i++) {
@@ -73,7 +73,7 @@ class InvoicesController extends Controller
       ];
     }
 
-    InvoiceItems::insert($invoiceItems);
+    InvoiceItem::insert($invoiceItems);
 
     return redirect('invoice');
   }
@@ -85,7 +85,7 @@ class InvoicesController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "/invoice", "name" => "Invoice"],["name" => "View Invoice Details"]
     ];
 
-    $invoice = Invoices::where('inv_id', $id)->get();
+    $invoice = Invoice::where('inv_id', $id)->get();
 
     $payload = ['invoice'=>$invoice[0]];
 

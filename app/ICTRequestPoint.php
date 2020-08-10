@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ICTRequestPoints extends Model
+class ICTRequestPoint extends Model
 {
     protected $fillable =[
         'ict_req_id',

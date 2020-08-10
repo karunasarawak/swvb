@@ -15,7 +15,7 @@ class CreateInstallmentScheduleTables extends Migration
     {
         Schema::create('installment_schedule', function (Blueprint $table) {
             $table->id('install_schedule_id');
-            $table->integer('mbrship_id')->nullable();
+            $table->integer('mbrship_id')->length(11)->nullable();
             $table->decimal('price')->length(11)->nullable();
             $table->decimal('net_price')->length(11)->nullable();
             $table->decimal('downpayment')->length(11)->nullable();

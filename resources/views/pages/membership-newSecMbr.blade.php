@@ -47,9 +47,9 @@
           <label>Existing Lead</label>
           <select class="select2 form-control"  id="exist_lead" name="exist_lead" readonly>
             <option value="">--</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            @foreach($payload['allLead'] as $allLead)
+              <option value="{{ $allLead->lead_id }}">{{ $allLead->name }}</option>
+            @endforeach
           </select>
         </div>
       </div>

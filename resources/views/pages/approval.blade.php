@@ -46,7 +46,6 @@
                                         <th class="text-white">Submitted Data</th>
                                         <th class="text-white">Voucher</th>
                                         <th class="text-white">Action</th>
-                                        <th class="text-white">Special Approval</th>
                                     </tr>
                                 </thead>
                                
@@ -59,14 +58,6 @@
                                         <td>Wilson</td>
                                         <td>01 July 2020</td>
                                         <td>CV10201010</td>
-                                        <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">                                                                    
-                                            <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                            </button>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                            </button>
-                                        </td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"

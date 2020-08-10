@@ -27,9 +27,19 @@ class ReservationController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Reservation"],["name" => "New"]
         ];
 
-        $salute = DB::table('salutations')->get();
+        $payload['communication_channels']=[
+            '0'=>'Walk in',
+            '1'=>'Mobile',
+            '2'=>'Whatsapp',
+            '3'=>'SMS/MMS',
+            '4'=>'Email',
+            '5'=>'Post',
+            '6'=>'Online',
+            '7'=>'Fax'
+        ];
+        $payload['salute']=DB::table('salutations')->get();
         $rsvntype=$request->session()->get('rsvntype');
-        return view('pages.reservation-new',compact('pageConfigs','breadcrumbs','rsvntype','salute'));
+        return view('pages.reservation-new',compact('pageConfigs','breadcrumbs','rsvntype','payload'));
         //return view('pages.reservation-new', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
       }
 
@@ -86,9 +96,9 @@ class ReservationController extends Controller
 
       public function test(){
         //dd(DB::select('desc reservations'));
-       dd(DB::select('desc memberships'));
-       dd(DB::select('desc leads'));
-        //dd(DB::select('desc accommodations'));
+       //dd(DB::select('desc memberships'));
+       //dd(DB::select('desc leads'));
+        dd(DB::select('desc accommodations'));
         //dd(DB::select('desc reservation_types'));
       }
     

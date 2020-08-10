@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CreditNoteSubjects;
+use App\CreditNoteSubject;
 use Illuminate\Http\Request;
 
 class CreditNoteSubjectsController extends Controller

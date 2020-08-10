@@ -4,12 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Salutation extends Model
+class Staff extends Model
 {
     protected $fillable = [
-        'salutation'
+        'staff_id',
+        'role_id',
+        'staff_name',
+        'staff_fullname',
+        'staff_code',
+        'email',
+        'is_active'
     ];
-
+   
     public function lead()
     {
         return $this->hasMany('App\Lead');

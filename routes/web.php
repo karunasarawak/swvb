@@ -37,16 +37,18 @@ Route::get('/membership/eh', 'MembershipController@entitlementh');
 Route::get('/membership/advance', 'MembershipController@advanceent');
 Route::get('/membership/offset', 'MembershipController@offset');
 
-Route::get('/contacts', 'ContactsController@index');
-Route::get('/contacts/{lead_id}/details', 'ContactsController@viewDetails')->name('contacts.details');
-Route::patch('/contacts/{lead_id}/details', 'ContactsController@editContact')->name('contacts.edit');
+Route::get('/contacts', 'ContactController@index');
+Route::get('/contact/{lead_id}/details', 'ContactController@viewDetails')->name('contact.details');
+Route::patch('/contact/{lead_id}/details', 'ContactController@editContact')->name('contact.edit');
 
 Route::get('/leads/all', 'LeadsController@index')->name('leads.all');   
 Route::get('/leads/new', 'LeadsController@newLead')->name('leads.new');
 Route::get('/leads/{lead_id}/details', 'LeadsController@viewLead')->name('leads.details');
 Route::get('/leads/archive', 'LeadsController@showArchive');
 Route::post('/leads/new', 'LeadsController@storeLead')->name('leads.store');
-Route::post('/leads/all', 'LeadsController@uploadCSV')->name('leads.csvUpload');
+
+Route::post('/leads/all', 'LeadsController@uploadCSV')->name('leads.upload');
+
 Route::post('/leads/{lead_id}/details', 'LeadsController@createEvent')->name('leads.createEvent');
 Route::patch('/leads/{lead_id}/details', 'LeadsController@editLead')->name('leads.edit');
 Route::patch('/leads/{lead_id}/archive', 'LeadsController@archiveLeads')->name('leads.archive');
@@ -60,7 +62,8 @@ Route::get('/tours/{tour_id}/details', 'ToursController@showDetails')->name('tou
 Route::get('/tours/{tour_id}/attend', 'ToursController@attendTour')->name('tours.attendTour');
 Route::patch('/tours','ToursController@editTime')->name('tours.edit');
 Route::patch('/{lead_id}/tours','ToursController@storeTour')->name('tours.store');
-Route::get('/tours/{tour_id}/archive', 'ToursController@archive');
+Route::patch('/tours/{tour_id}/archive', 'ToursController@archiveTour')->name('tours.archive');
+Route::get('/tours/archive', 'ToursController@showAllArchive');
 // Route::get('/tours/test', 'ToursController@test');
 
 Route::get('/vouchers', 'VouchersController@index');
@@ -141,7 +144,7 @@ Route::get('/extmembership/IInewenroll', 'ExtMembershipController@IInewenroll');
 
 Route::get('/aging', 'AgingReminderController@index');
 
-Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest');
+Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest')->name('ict.bring');
 Route::get('/admin/{ict_id}/{ict_status}/ictrequest', 'UsersRolesController@changestatus')->name('ict.status');
 Route::get('/admin/{ict_req_id}/ictrequest', 'UsersRolesController@rejectstatus')->name('ict.reject');
 Route::get('/admin/newictrequestpoint', 'UsersRolesController@newictrequestpoint')->name('new.points');
@@ -150,13 +153,18 @@ Route::post('/admin/newictrequestpoint', 'UsersRolesController@storeictrequestpo
 
 Route::get('/admin/newictrequestacc', 'UsersRolesController@newictrequestacc');
 Route::get('/admin/ictaccdetails', 'UsersRolesController@ictrequestaccdetails');
-Route::get('/admin/ictptdetails', 'UsersRolesController@ictrequestptdetails');
-Route::get('/userroles', 'UsersRolesController@userroles')->name('new.roles');
+Route::get('/admin/{pict_req_detail_id}/ictptdetails', 'UsersRolesController@ictrequestptdetails')->name('pt.details');
+Route::get('/userroles', 'UsersRolesController@userroles');
+Route::post('/roles/new', 'UsersRolesController@newroles')->name('new.roles');
 Route::get('/userroles/{role_id}/{is_active}', 'UsersRolesController@activation')->name('staff.status');
+Route::post('/staff/new', 'UsersRolesController@newusersstaff')->name('new.staff');
+
+Route::get('/roledetails/{id}', 'UsersRolesController@roledetails')->name('role.details');
 
 
-Route::get('/roledetails', 'UsersRolesController@roledetails');
-Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');
+
+Route::get('/', 'SignatureController@upload')->name('signature');
+// Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');
 
 
 Route::get('/admin/approvals', 'UsersRolesController@approvals');

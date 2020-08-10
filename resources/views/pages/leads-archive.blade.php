@@ -54,10 +54,12 @@
                                                 <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
                                                     @csrf
                                                     @method('patch')
-                                                    <button class="btn btn-outline-primary round mb-1 pl-3 pr-3" data-toggle="modal" data-target="#addCall">
+                                                    <input type="hidden" value="1" name="restore">
+                                                    <button class="btn btn-outline-primary round mb-1 pl-3 pr-3">
                                                        Restore
                                                     </button>
                                                 </form>
+                                                
                                             </td>
                                         </tr>
                                         @endforeach

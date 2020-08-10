@@ -19,26 +19,19 @@
                     <div class="card-header bg-swvb-cyan">
                         <div class="row">
                             <h4 class="col card-title text-white ml-4">Points/Entitlement Adjustment Details</h4>
-                           
+                               
                         </div>
+                        
                     </div>
                     <div class="card-content">
                         <div class="card-body card-dashboard">
-                            <div class="row pt-1">
-                                <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2 pl-5">CAI Points Reinstate/Adjustment<button type="button" class="border-0 bg-transparent" x-show="o" @click="e=true, o=false">                                                           
-                                            <i class="bx bx-pencil "></i>
-                                        </button>
-                                    </p>
-                                </div>
-                            </div>
-
+                            
                         
-                            <div class="row" >
+                            <div class="row pt-3">
                                 <div class="col ml-5">
                                     <div class="row">
                                         <p class="col">Membership No.</p>
-                                        <p class="col font-weight-bold black" x-show="o"></p>
+                                        <p class="col font-weight-bold black" x-show="o">{{$payload['members']->mbrship_no}}</p>
                                         <p class="col" x-cloak x-show="e">
                                         <select class="custom-select form-control required" id="salutation" name="salutation" required>
                                             
@@ -49,14 +42,14 @@
                                 
                                     <div class="row">
                                         <p class="col">Member Name</p>
-                                        <p class="col font-weight-bold black" x-show="o"></p>
+                                        <p class="col font-weight-bold black" x-show="o">{{$payload['members']->name}}</p>
                                         <p class="col" x-cloak x-show="e">
                                             <input  type="text" name="name" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
                                         </p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Reservation No.</p>
-                                        <p class="col font-weight-bold black" x-show="o"></p>
+                                        <p class="col font-weight-bold black" x-show="o">{{$payload['members']->rsvn_no}}</p>
                                         <p class="col" x-cloak x-show="e">
                                         <select class="custom-select form-control required" id="gender" name="gender" required>
                                             
@@ -65,375 +58,213 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table leads-all">
-                                                <thead class="bg-swvb-dark">
-                                                    <tr>
-                                                        <th class="text-white">Use Year</th>
-                                                        <th class="text-white">Points</th>
-                                                        <th class="text-white">Proposed Expiry Date</th>
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                
+                               
+                            </div>
+
+
+                            <div class="row pt-1">
+                                <div class="col">
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2 pl-5">CAI Points Reinstate/Adjustment<button type="button" class="border-0 bg-transparent" x-show="o" @click="e=true, o=false">                                                           
+                                            <i class="bx bx-pencil "></i>
+                                        </button>
+                                    </p>
+                                </div>
+                               
                             </div>
 
                             <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table leads-all">
-                                        <thead class="bg-swvb-dark">
-                                            <tr>
-                                                <th class="text-white">Use Year</th>
-                                                <th class="text-white">Points</th>
-                                                <th class="text-white">Proposed Expiry Date</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode A</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode A</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode A</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                <div class="col">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="table-responsive pt-3">
+                                                <table class="table tours-all">
+                                                    <thead class="bg-swvb-dark">
+                                                        <tr>
+                                                            <th class="text-white">Use Year</th>
+                                                            <th class="text-white">Entitlement (WD)</th>
+                                                            <th class="text-white">Entitlement (WE)</th>
+                                                            <th class="text-white">Proposed Expiry Date</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                            @if(isset($payload))
+                                                @foreach($payload['pointadj1'] as $pt1) 
+                                                    <tbody>
+                                           
+                                                        <tr>
 
-                            <div class="row pt-1">
-                                <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC POE Reinstate/Adjustment<i class="bx bx-pencil"></i></p>
-                                </div>
-                            </div>
-                            <div class="row ml-3">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table leads-all">
-                                                <thead class="bg-swvb-dark">
-                                                    <tr>
-                                                        <th class="text-white">POE</th>
-                                                        <th class="text-white">Entitlement</th>
-                                                        <th class="text-white">Proposed Expiry Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                            <td>{{$pt1->poe_year}}</td>
+                                                            <td>{{$pt1->wd}}</td>
+                                                            <td>{{$pt1->we}}</td>
+                                                            <td>{{$pt1->expiry_date}}</td>
+                                                            
+                                                        </tr>
+                                                @endforeach
+                                            @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>  
-
-                            
-                            <div class="row pt-1">
-                                <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC POE Expiry Date Extension<i class="bx bx-pencil"></i></p>
-                                </div>
                             </div>
-                            <div class="row ml-3">
+
+                            <div class="col">
+                                    <p class="h6 swvb-blue ml-2 font-weight-bold my-auto pb-2">EVC POE Reinstate<i class="bx bx-pencil"></i></p>
+                                </div>
+
+                            <div class="row">
+                               
                                 <div class="col">
-                                    <div class="row">
-                                        <p class="col">Proposed Expiry Date</p>
-                                        <p class="col font-weight-bold black" x-show="o"></p>
-                                        <p class="col" x-cloak x-show="e">
-                                            <input  type="text" name="home_no" class="form-control" value="" placeholder="+6082 123 456" data-validation-required-message="Please write the company name"  required>
-                                        </p>
+                                    <div class="table-responsive pt-3">
+                                        <table class="table">
+                                            <thead class="bg-swvb-dark">
+                                                <tr>
+                                                    <th class="text-white">POE</th>
+                                                    <th class="text-white">Entitlement (WE)</th>
+                                                    <th class="text-white">Entitlement (WD)</th>
+                                                    <th class="text-white">Proposed Expiry Date</th>
+                                                </tr>
+                                            </thead>
+                                            @if(isset($payload))
+                                                @foreach($payload['pointadj2'] as $pt2) 
+                                            <tbody>
+                                           
+                                                        <tr>
+
+                                                            <td>{{$pt2->poe_year}}</td>
+                                                            <td>{{$pt2->we}}</td>
+                                                            <td>{{$pt2->wd}}</td>
+                                                            <td>{{$pt2->expiry_date}}</td>
+                                                            
+                                                        </tr>
+                                                @endforeach
+                                            @endif
+                                               
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
 
+
                             <div class="row pt-1 ml-3">
+                                <div class="col">
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Points Expiry Date Extention<i class="bx bx-pencil"></i></p>
+                                </div>
                                 <div class="col">
                                     <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Add Bonus Entitlement<i class="bx bx-pencil"></i></p>
                                 </div>
                             </div>
-                    
-                            <div class="row ml-3">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table tours-all">
+                                                    <thead class="bg-swvb-dark">
+                                                        <tr>
+                                                            <th class="text-white">Use Year</th>
+                                                            
+                                                            <th class="text-white">Proposed Expiry Date</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                            @if(isset($payload))
+                                                @foreach($payload['pointadj3'] as $pt3) 
+                                                        <tr>
+
+                                                            <td>{{$pt3->poe_year}}</td>
+                                                            
+                                                            <td>{{$pt3->expiry_date}}</td>
+                                                            
+                                                        </tr>
+                                                @endforeach
+                                            @endif
+                                               
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col">
                                     <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table leads-all">
-                                                <thead class="bg-swvb-dark">
-                                                    <tr>
-                                                        <th class="text-white">POE</th>
-                                                        <th class="text-white">Entitlement</th>
-                                                        <th class="text-white">Proposed Expiry Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table ">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">POE</th>
+                                                                <th class="text-white">Entitlement (WE)</th>
+                                                                <th class="text-white">Entitlement (WD)</th>
+                                                                <th class="text-white">Proposed Expiry Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                            @if(isset($payload))
+                                                @foreach($payload['pointadj4'] as $pt4) 
+                                                        <tr>
+
+                                                            <td>{{$pt4->poe_year}}</td>
+                                                            <td>{{$pt4->we}}</td>
+                                                            <td>{{$pt4->wd}}</td>
+                                                            <td>{{$pt4->expiry_date}}</td>
+                                                            
+                                                        </tr>
+                                                @endforeach
+                                            @endif
+                                                          
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                           
                         
                             <div class="row pt-1 ml-3">
                                 <div class="col">
                                     <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Add Member Loyatly Reward<i class="bx bx-pencil"></i></p>
                                 </div>
+                                
                             </div>
                             <div class="row ml-3">
                                 <div class="col">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table leads-all">
-                                                <thead class="bg-swvb-dark">
-                                                    <tr>
-                                                        <th class="text-white">Membership No.</th>
-                                                        <th class="text-white">Entitlement</th>
-                                                        <th class="text-white">Proposed Expiry Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table leads-all">
+                                                    <thead class="bg-swvb-dark">
+                                                        <tr>
+                                                            <th class="text-white">Membership No.</th>
+                                                            <th class="text-white">Entitlement (WD)</th>
+                                                            <th class="text-white">Entitlement (WE)</th>
+                                                            <th class="text-white">Proposed Expiry Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                            @if(isset($payload))
+                                                @foreach($payload['pointadj5'] as $pt5) 
+                                                        <tr>
+                                                            <td>{{$pt5->mbrship_no}}</td>
+                                                            <td>{{$pt5->wd}}</td>
+                                                            <td>{{$pt5->we}}</td>
+                                                            <td>{{$pt5->expiry_date}}</td>
+                                                            
+                                                        </tr>
+                                                @endforeach
+                                            @endif
+                                                       
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

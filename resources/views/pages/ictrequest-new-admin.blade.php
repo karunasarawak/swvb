@@ -52,8 +52,8 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>digit</label>
-                                            <input type="number" class="form-control" placeholder="" id="demo"  disabled>
+                                            <!-- <label>digit</label> -->
+                                            <input type="hidden" class="form-control" placeholder="" id="demo"  disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -107,9 +107,11 @@
                                     </div>
                                 </div>
                             </div>
+
+                            
                         </div>
 
-                        <!-- CAI Points Reinstate/Adjustment -->
+                            <!-- CAI Points Reinstate/Adjustment -->
                         <div id="cai">
                             <div class="row pt-1">
                                 <div class="col">
@@ -326,38 +328,39 @@
                                 <div class="form repeater-default">
                                     <div data-repeater-list="group5">
                                         <div data-repeater-item>
-                                        <div class="row justify-content-between">
-                                            <div class="col-md-2 col-sm-12 form-group">
-                                                <select name="mbrship_id" id="mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member"  required>
-                                                    <option value="" disabled selected>Membership No</option>
-                                                    @if(isset($payload))
-                                                        @foreach($payload['memberships'] as $membership)
-                                                    <option value="{{$membership->mbrship_id}}" >{{$membership->mbrship_no}}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                                <!-- <label for="Email">Membership No.</label>
-                                                <input type="number" name="mbrship_no" class="form-control" id="pt_use_yr" placeholder="Enter Use year"> -->
+                                            <div class="row justify-content-between">
+                                                <div class="col-md-2 col-sm-12 form-group">
+                                                    <label>Membership No.</label>
+                                                    <select name="mbrship_id1" id="mbrship_id1" class="custom-select form-control" data-validation-required-message="Please select a member"  required>
+                                                        <option value="" disabled selected>Membership No</option>
+                                                        @if(isset($payload))
+                                                            @foreach($payload['memberships'] as $membership)
+                                                        <option value="{{$membership->mbrship_id}}" >{{$membership->mbrship_no}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                    <!-- <label for="Email">Membership No.</label>
+                                                    <input type="number" name="mbrship_no" class="form-control" id="pt_use_yr" placeholder="Enter Use year"> -->
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group">
+                                                    <label for="password">Entitlement (WD)</label>
+                                                    <input type="number" name="wd5" class="form-control" id="password" placeholder="Enter Password">
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group">
+                                                    <label for="password">Entitlement (WE)</label>
+                                                    <input type="number" name="we5" class="form-control" id="password" placeholder="Enter Password">
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group">
+                                                    <label for="password">Proposed Expiry Date</label>
+                                                    <input type="date" name="expiry_date5" class="form-control" id="password" placeholder="Enter Password">
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                    class="bx bx-x"></i>
+                                                    Delete
+                                                </button>
+                                                </div>
                                             </div>
-                                            <div class="col-md-2 col-sm-12 form-group">
-                                                <label for="password">Entitlement (WD)</label>
-                                                <input type="number" name="wd5" class="form-control" id="password" placeholder="Enter Password">
-                                            </div>
-                                            <div class="col-md-2 col-sm-12 form-group">
-                                                <label for="password">Entitlement (WE)</label>
-                                                <input type="number" name="we5" class="form-control" id="password" placeholder="Enter Password">
-                                            </div>
-                                            <div class="col-md-2 col-sm-12 form-group">
-                                                <label for="password">Proposed Expiry Date</label>
-                                                <input type="date" name="expiry_date5" class="form-control" id="password" placeholder="Enter Password">
-                                            </div>
-                                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                                class="bx bx-x"></i>
-                                                Delete
-                                            </button>
-                                            </div>
-                                        </div>
                                         <hr>
                                         </div>
                                     </div>

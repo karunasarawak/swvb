@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nationalities extends Model
+class CreditNoteType extends Model
 {
     protected $fillable = [
-        'nation_id',
-        'nation',
+        'cn_type_id',
+        'cn_type',
     ];
 }

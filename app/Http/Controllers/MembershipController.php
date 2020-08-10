@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Membership;
-use App\Leads;
+use App\Lead;
 use App\Country;
 use Illuminate\Database\Seeder;
 
@@ -47,6 +47,7 @@ class MembershipController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Create membership"]
     ];
     
+    $allLead = DB::table('leads')->get();
     $salute = DB::table('salutations')->get();
     $gender = DB::table('gender')->get();
     $maritual  = DB::table('maritial_status')->get();
@@ -95,6 +96,7 @@ class MembershipController extends Controller
     }
 
     $payload = [
+              'allLead'=>$allLead,
               'lead'=>$lead[0],
               'lead2'=>$lead2[0],
               'tour'=>$tour[0], 

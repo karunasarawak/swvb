@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Addresses extends Model
+class Address extends Model
 {
     protected $fillable = [
         'lead_id',
@@ -21,7 +21,7 @@ class Addresses extends Model
 
     public function leads()
     {
-        return $this->belongsTo('App\Leads');
+        return $this->belongsTo('App\Lead');
     }
 
     public function Cities()

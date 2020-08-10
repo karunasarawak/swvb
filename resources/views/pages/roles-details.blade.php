@@ -70,385 +70,53 @@
                                 </thead>
                                 <tbody>
                                     
-                                    <tr>
-                                        <td>Credentials</td>
+                            @if(isset($payload))
+                                @foreach($payload['module'] as $l)        
+                                <tr>
+                                    <td>{{$l}}</td>
+                                  
                                         <td>
                                             <fieldset>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck1">
-                                                <label class="custom-control-label" for="customColorCheck1"></label>
+                                                <input type="checkbox" class="custom-control-input bg-primary checkbox"  name="{{$l}}_ea" id="{{$l}}1">
+                                                <label class="custom-control-label" for="{{$l}}1"></label>
                                             </div>
                                             </fieldset>
                                         </td>
                                         <td><fieldset>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck2">
-                                                <label class="custom-control-label" for="customColorCheck2"></label>
+                                                <input type="checkbox" class="custom-control-input bg-primary checkbox"  name="{{$l}}_c" id="{{$l}}2">
+                                                <label class="custom-control-label" for="{{$l}}2"></label>
                                             </div>
                                             </fieldset>
                                         </td>
                                         <td><fieldset>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck3">
-                                                <label class="custom-control-label" for="customColorCheck3"></label>
+                                                <input type="checkbox" class="custom-control-input bg-primary checkbox"  name="{{$l}}_v" id="{{$l}}3">
+                                                <label class="custom-control-label" for="{{$l}}3"></label>
                                             </div>
                                             </fieldset>
                                         </td>
                                         <td><fieldset>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck4">
-                                                <label class="custom-control-label" for="customColorCheck4"></label>
+                                                <input type="checkbox" class="custom-control-input bg-primary checkbox"  name="{{$l}}_e" id="{{$l}}4">
+                                                <label class="custom-control-label" for="{{$l}}4"></label>
                                             </div>
                                             </fieldset>
                                         </td>
                                         <td><fieldset>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck5">
-                                                <label class="custom-control-label" for="customColorCheck5"></label>
+                                                <input type="checkbox" class="custom-control-input bg-primary "  name="{{$l}}_na" id="{{$l}}5">
+                                                <label class="custom-control-label" for="{{$l}}5"></label>
                                             </div>
                                             </fieldset>
                                         </td>
-               
-                                    </tr>
-                                    <tr>
-                                        <td>Tours</td>
-                                        <td>
-                                            <fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck6">
-                                                <label class="custom-control-label" for="customColorCheck6"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck7">
-                                                <label class="custom-control-label" for="customColorCheck7"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck8">
-                                                <label class="custom-control-label" for="customColorCheck8"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck9">
-                                                <label class="custom-control-label" for="customColorCheck9"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck10">
-                                                <label class="custom-control-label" for="customColorCheck10"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-               
-                                    </tr>
-                                    <tr>
-                                        <td>Vouchers</td>
-                                        <td>
-                                            <fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck11">
-                                                <label class="custom-control-label" for="customColorCheck11"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck12">
-                                                <label class="custom-control-label" for="customColorCheck12"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck13">
-                                                <label class="custom-control-label" for="customColorCheck13"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck14">
-                                                <label class="custom-control-label" for="customColorCheck14"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck15">
-                                                <label class="custom-control-label" for="customColorCheck15"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-               
-                                    </tr>
-                                    <tr>
-                                        <td>Stamping Fee Request</td>
-                                        <td>
-                                            <fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck16">
-                                                <label class="custom-control-label" for="customColorCheck16"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck17">
-                                                <label class="custom-control-label" for="customColorCheck17"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck18">
-                                                <label class="custom-control-label" for="customColorCheck18"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck19">
-                                                <label class="custom-control-label" for="customColorCheck19"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input bg-primary" checked name="customCheck" id="customColorCheck20">
-                                                <label class="custom-control-label" for="customColorCheck20"></label>
-                                            </div>
-                                            </fieldset>
-                                        </td>
-               
-                                    </tr>
-                                    <tr>
-                                        <td>Membership</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Contract</td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox24">
-                                                    <label for="checkbox24"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox34">
-                                                    <label for="checkbox34"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox44">
-                                                    <label for="checkbox44"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox54">
-                                                    <label for="checkbox54"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox64">
-                                                    <label for="checkbox64"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                      
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Contract</td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox25">
-                                                    <label for="checkbox25"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox35">
-                                                    <label for="checkbox35"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox45">
-                                                    <label for="checkbox45"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox55">
-                                                    <label for="checkbox55"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox65">
-                                                    <label for="checkbox65"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                      
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Points/Entitlement</td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox26">
-                                                    <label for="checkbox26"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox36">
-                                                    <label for="checkbox36"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox46">
-                                                    <label for="checkbox46"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox56">
-                                                    <label for="checkbox56"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox66">
-                                                    <label for="checkbox66"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                      
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>External members hip</td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox27">
-                                                    <label for="checkbox27"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox37">
-                                                    <label for="checkbox37"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox47">
-                                                    <label for="checkbox47"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox57">
-                                                    <label for="checkbox57"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox67">
-                                                    <label for="checkbox67"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                       
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Payment details</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Methodp</td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox28">
-                                                    <label for="checkbox28"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox38">
-                                                    <label for="checkbox38"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox48">
-                                                    <label for="checkbox48"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox58">
-                                                    <label for="checkbox58"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                        <td><fieldset>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox68">
-                                                    <label for="checkbox68"></label>
-                                                </div>
-                                            </fieldset>
-                                        </td>
-                                       
-                                    </tr>
+                                   
+                                </tr>
+                                @endforeach
+                            @endif
+
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -460,7 +128,45 @@
     </div>
 </section>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+    
+        $("#{{$l}}1").change(function(){
+            var checked = $(this).is(':checked');
+            if (checked){
+                $(".checkbox").each(function(){
+                    $(this).prop("checked", true);
+                });
+            }else {
+                $(".checkbox").each(function(){
+                    $(this).prop("checked", false);
+                });
+            }
+        });
 
+    
+    
+        $(".checkbox").click(function(){
+
+            if($(".checkbox").length == $(".checkbox:checked").length){
+                $("#{{$l}}1").prop("checked", true);
+            }else {
+                $("#{{$l}}1").removeAttr("checked");
+            }
+
+        });
+
+    });
+
+    document.getElementById('#{{$l}}1').onclick = function(){
+        alert(hi);
+        var checkboxes = document.querySelectorAll('input[type="checkbox")');
+        for (var checkbox of checkboxes){
+            checkbox.checked = this.checked;
+        }
+    }
+
+</script>
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

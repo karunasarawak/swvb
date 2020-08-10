@@ -45,16 +45,10 @@ class CreateLeadsTable extends Migration
 
             $table->string('relationship_to_pri_mbr',30)->nullable();
 
-             $table->string('prefer_lang',80)->nullable();
+            $table->string('prefer_lang',80)->nullable();
 
-            $table->tinyInteger('status')->length(1)->nullable();
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
-           
-            
-            
-            
-           
-
             
         });
 
