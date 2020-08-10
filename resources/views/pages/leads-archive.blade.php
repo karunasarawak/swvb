@@ -73,35 +73,7 @@
             </div>
         </div>
     </div>
-    {{-- Modal Start --}}
 
-    {{-- Upload CSV Modal --}}
-        <div class="modal fade" id="csvUpload" tabindex="-1" role="dialog" aria-labelledby="#csvUploadTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-swvb-blue">
-                        <h5 class="modal-title white" id="csvUploadTitle">Upload Leads (CSV){{URL::current()}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="bx bx-x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <form action="{{route('leads.csvUpload')}}" class="dropzone dropzone-area" id="leads-upload" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="dz-message">Click Here or Drop File to Upload</div>
-                            </form>
-                        </div>
-                        <button class="btn btn-outline-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
-                        <button type="button" class="btn btn-outline-primary" id="submit-leads-csv" >
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Upload</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{-- Modal End --}}
 </section>
 <!--/ Zero configuration table -->
 @endsection

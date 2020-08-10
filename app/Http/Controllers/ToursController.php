@@ -400,13 +400,15 @@ class ToursController extends Controller
     if($request->archive == 0)
     {
       Tour::where('tour_id', $tour_id)->update(['tours.tour_status'=> 0]);
+      return redirect("tours");
     }
     else if ($request->archive == 1)
     {
       Tour::where('tour_id', $tour_id)->update(['tours.tour_status'=> 1]);
+      return redirect("tours/archive");
     }
 
-    return redirect("tours/archive");
+    
   }
   
   public function showAllArchive()

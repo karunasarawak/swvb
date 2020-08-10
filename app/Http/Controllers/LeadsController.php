@@ -286,18 +286,19 @@ class LeadsController extends Controller
 
   public function archiveLeads(Request $request, $lead_id)
   {
-    dd($request);
+    // dd($request);
     if($request->archive == 0)
     {
       Lead::where('lead_id', $lead_id)->update(['status'=> 0]);
+      return redirect('leads/all');
     }
     
     if ($request->restore == 1)
     {
       Lead::where('lead_id', $lead_id)->update(['status'=> 1]);
+      return redirect('leads/archive');
     }
 
-    return redirect('leads/all');
   }
 
 
