@@ -24,7 +24,39 @@ class ICTRequestPoint extends Model
         'pict_req_status'
     ];
 
-    protected $table = 'points_ict_requests';
+    protected $table = 'ict_requests';
+
+    public function verifystaff()
+    {
+        return $this->belongsTo('App\Staff', 'pict_verifier', 'staff_id');
+    }
+
+    public function approvestaff()
+    {
+        return $this->belongsTo('App\Staff', 'pict_approval', 'staff_id');
+    }
+
+    public function reqstaff()
+    {
+        return $this->belongsTo('App\Staff', 'pict_req_by', 'staff_id');
+    }
+
+    public function department()
+    {
+        return $this->hasMany('App\Department', 'dept_id', 'staff_id');
+    }
+
+    public function membership()
+    {
+        return $this->belongsTo('App\Membership', 'mbrship_id', 'mbrship_id');
+    }
+
+    public function reservation()
+    {
+        return $this->belongsTo('App\Reservation', 'mbrship_id', 'mbrship_id');
+    }
+
+
 
 
 }

@@ -35,9 +35,7 @@
                                         <th class="text-white">Verified By</th>
                                         <th class="text-white">Approved By</th>
                                         <th class="text-white">Resolved By</th>
-                                        
-                                        
-                                        
+                          
                                         <th class="text-white">Status</th>
                                         
                                         <th class="text-white">Action</th>
@@ -45,17 +43,19 @@
                                 </thead>
                                 <tbody>
                     @if(isset($payload))
-                        @foreach($payload['ict'] as $ict)     
+                        @foreach($payload['ict'] as $ict)   
+
                              @if(isset($payload['ict']))
                                     <tr>
+                                            <!-- if use relationship, table->model function name->column -->
                                         <td><a href="{{ route('pt.details', $ict->pict_req_id)}}">{{$ict->pict_req_id}}</a></td>
-                                        <td>{{$ict->mbrship_no}}</td>
-                                        <td>{{$ict->dept}}</td>
-                                        <td>{{$ict->staff_name}}</td>
+                                        <td>{{$ict->ictMembership}}</td>
+                                        <td>{{$ict->department->dept}}</td>
+                                        <td>{{$ict->reqstaff->staff_name}}</td>
                                         <td>{{$ict->pict_req_created_at}}</td>
-                                        <td>{{$ict->staff_name}}</td>
-                                        <td>{{$ict->staff_name}}</td>
-                                        <td>{{$ict->staff_name}}</td>
+                                        <td>{{$ict->verifystaff->staff_name}}</td>
+                                        <td>{{$ict->approvestaff->staff_name}}</td>
+                                        <td>{{$ict->pict_processed}}</td>
                                         @if ($ict->pict_req_status == "0")
                                             <?php $status = "Pending Verify"; ?>
                                         @elseif ($ict->pict_req_status == "1")

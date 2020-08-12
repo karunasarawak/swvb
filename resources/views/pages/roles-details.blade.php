@@ -71,10 +71,14 @@
                                 <tbody>
                                     
                             @if(isset($payload))
-                                @foreach($payload['module'] as $l)        
-                                <tr>
+                                @foreach($payload['module'] as $l)
+                                <?php
+                                    $moduleName = str_replace(' ','',$l); 
+                                ?>
+                                <tr>    
+                               
                                     <td>{{$l}}</td>
-                                  
+                                        
                                         <td>
                                             <fieldset>
                                             <div class="custom-control custom-checkbox">

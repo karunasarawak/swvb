@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Vouchers;
+use App\Voucher;
 
 class VouchersController extends Controller
 {
@@ -16,7 +16,7 @@ class VouchersController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Vouchers"],["name" => "All"]
         ];
 
-        $voucher = Vouchers::all()->where('voucher_status', 1);
+        $voucher = Voucher::all()->where('voucher_status', 1);
 
         // dd($voucher);
 
@@ -25,7 +25,7 @@ class VouchersController extends Controller
     
     public function editVoucher(Request $request)
     {
-      Vouchers::where('voucher_id', $request->voucher_id)
+      Voucher::where('voucher_id', $request->voucher_id)
           ->update([
             'cv_exp_date'=>$request->exp_date,
             'night'=>$request->stay,
@@ -38,8 +38,8 @@ class VouchersController extends Controller
 
     public function archiveVoucher(Request $request, $voucher_id)
     {
-      $voucher = Vouchers::find(1);
-      $voucher->voucher_status = '3';
+      $voucher = Voucher::find(1);
+      $voucher->voucher_status = '0';
       $voucher->save();
 
       return redirect('vouchers/archive');

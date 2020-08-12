@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStampingFeesTable extends Migration
+class CreateStampingFeeListTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateStampingFeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stamping_fees', function (Blueprint $table) {
-            $table->id();
+        Schema::create('stamping_fee_list', function (Blueprint $table) {
+            $table->id('sfl_id');
+            $table->integer('sfb_id')->length(11)->nullable();
+            $table->integer('mbrship_id')->length(11)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateStampingFeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stamping_fees');
+        Schema::dropIfExists('stamping_fee_list');
     }
 }

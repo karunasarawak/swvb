@@ -49,8 +49,18 @@
                                     <p class="col">Status</p>
                                     <p class="col font-weight-bold black">123412341234</p>
                                 </div>
+
+                                <div class="row">
+                                    <p class="col">Extra Bed</p>
+                                    <p class="col font-weight-bold black"><input type="number" name="nric" class="form-control" value="" placeholder="NRIC" data-validation-required-message="Please write the company name"  required></p>
+                                </div>
+
+                                <div class="row">
+                                    <p class="col">Sofa Bed</p>
+                                    <p class="col font-weight-bold black"><input  type="number" name="nric" class="form-control" value="" placeholder="NRIC" data-validation-required-message="Please write the company name"  required></p>
+                                </div>
                             </div>
-                            <div class="col">
+                            <div class="col ml-2">
                                 <div class="row">
                                     <form class="form repeater-default">
                                         <div data-repeater-list="group-a">
@@ -87,7 +97,7 @@
             <div class="card">
                 <div class="row pt-1 pl-2" >
                     <div class="col">
-                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2 ml-2">Unit Type Price</p>
+                        <p class="h7 swvb-blue font-weight-bold  ml-2">Unit Type Price</p>
                     </div>
                 </div>
                 <div class="card-content">
@@ -310,22 +320,56 @@
                             </div>
                             
                         </div>
-                        <div class="row pl-2">
-                            <div class="col">
-                                <div class="row">
-                                    <p class="col">Amount Payable WD</p>
-                                    <p class="col font-weight-bold black">234560000</p>
+                        
+                        <div class="row">
+                            <div class="card-content">
+                    
+                                <div class="card-body card-dashboard">
+                                    <div class="table-responsive">
+                                        <table class="table tours-all">
+                                            <thead class="bg-swvb-dark">
+                                                <tr>
+                                                    <th class="text-white" style="width:50%">Season</th>
+                                                    <th class="text-white" style="width:50%">Payable WD</th>
+                                                    <th class="text-white" style="width:50%">Payable WE</th>
+                                                    <th class="text-white" style="width:50%">Reservation Type</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr>
+                                                    <td>Erman</td>
+                                                    <td>ICT</td>
+                                                    <td>ICT01</td>
+                                                    <td>ICT01</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Erman</td>
+                                                    <td>ICT</td>
+                                                    <td>ICT01</td>
+                                                    <td>ICT01</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Erman</td>
+                                                    <td>ICT</td>
+                                                    <td>ICT01</td>
+                                                    <td>ICT01</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Erman</td>
+                                                    <td>ICT</td>
+                                                    <td>ICT01</td>
+                                                    <td>ICT01</td>
+                                                </tr>
+                                       
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <p class="col">Amount Payable WE</p>
-                                    <p class="col font-weight-bold black">John Doe</p>
-                                </div>
-                                <div class="row">
-                                    <p class="col">Reservation Type</p>
-                                    <p class="col font-weight-bold black">Kuching Branch</p>
-                                </div>
-                               
                             </div>
+
+
                         </div>
                     </div>
                 </div>

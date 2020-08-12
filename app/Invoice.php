@@ -11,6 +11,7 @@ class Invoice extends Model
         'inv_no',
         'mbrship_id',
         'mbrship_name',
+        'type',
         'items_amount',
         'tax_amount',
         'rounding',

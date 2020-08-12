@@ -64,6 +64,9 @@ class InvoicesController extends Controller
     $newInvoice = Invoice::create($request->all());
     $newInvoiceId = $newInvoice->id;
 
+    Invoice::where('inv_id', $newInvoiceId)
+    ->update(['type' => $request->type]);
+
     for($i = 0; $i < count($request->itemID); $i++) {
       $invoiceItems[] = [
         'inv_id' => $newInvoiceId,

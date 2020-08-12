@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EventLogsCategory extends Model
+class EventLogCategory extends Model
 {
     protected $fillable= [
         'el_cat_id',

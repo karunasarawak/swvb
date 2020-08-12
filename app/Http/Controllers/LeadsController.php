@@ -10,8 +10,8 @@ use App\Tour;
 use App\Salutation;
 use App\Staff;
 use App\EventLog;
-use App\EventLogsCategory;
-use App\EventLogsType;
+use App\EventLogCategory;
+use App\EventLogType;
 use App\CallLog;
 use App\Address;
 use Carbon\Carbon;
@@ -124,7 +124,6 @@ class LeadsController extends Controller
               ->get();
 
     $salutations = DB::table('salutations')->get();
-
     $telemarketer = DB::table('sales_teams')->where('sales_role_id',1)->get();
 
     $event_type = DB::table('event_logs_type')->get();
@@ -138,10 +137,13 @@ class LeadsController extends Controller
                           'event_logs.title','event_logs.last_updated_by','event_logs.created_by', 'event_logs.created_at','event_logs.updated_at')
                   ->get();
 
-    $events = EventLog::with('eventLogsCategory', 'eventLogsType')->where('lead_id', $lead_id)->get();
+    $events = EventLog::where('lead_id', $lead_id)->get();
+
+  
 
     $payload = ['details'=>$details[0], 'salutations'=>$salutations, 'telemarketer'=>$telemarketer, 'events'=>$events];
     $event = ['event_type'=>$event_type, 'event_cat'=>$event_cat, 'event_logs'=>$event_logs];
+    // dd($payload['events']);
 
     return view('pages.leads-details',
                 ['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload, 'event'=>$event]

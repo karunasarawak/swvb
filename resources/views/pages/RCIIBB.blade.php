@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">RCI:BB<a href="" class="btn btn-outline-white text-white round ml-1" data-toggle="modal" data-target="#inlineForm">New Batch</a>  </h4>
+                    <h4 class="col card-title text-white">RCI:BB<a href="{{route('rcibb.new')}}" class="btn btn-outline-white text-white round ml-1">New Batch</a></h4>
                     
                 </div>
                 <div class="card-content">
@@ -57,7 +57,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">74</a></td>
                                                 <td>205420000</td>
                                                 <td>Yakub Sebastian</td>
                                                 <td>RM 247.30</td>
@@ -94,7 +94,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>205420000</td>
                                                 <td>Yakub Sebastian</td>
                                                 <td>RM 247.30</td>
@@ -131,7 +131,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000034</td>
                                                 <td>Iola</td>
                                                 <td>Iola</td>
@@ -168,7 +168,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000035</td>
                                                 <td>Zorita</td>
                                                 <td>Zorita</td>
@@ -205,7 +205,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000036</td>
                                                 <td>Denton</td>
                                                 <td>Denton</td>
@@ -242,7 +242,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000037</td>
                                                 <td>Maris</td>
                                                 <td>Maris</td>
@@ -279,7 +279,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000038</td>
                                                 <td>Cecilia</td>
                                                 <td>Cecilia</td>
@@ -316,7 +316,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000039</td>
                                                 <td>Buckminster</td>
                                                 <td>Buckminster</td>
@@ -353,7 +353,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000040</td>
                                                 <td>Hadley</td>
                                                 <td>Hadley</td>
@@ -390,7 +390,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000041</td>
                                                 <td>Malachi</td>
                                                 <td>Malachi</td>
@@ -427,7 +427,7 @@
                                                     </td>
                                             </tr>
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
                                                 <td>1000042</td>
                                                 <td>Yael</td>
                                                 <td>Yael</td>

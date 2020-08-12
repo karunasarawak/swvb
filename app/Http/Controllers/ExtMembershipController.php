@@ -28,7 +28,7 @@ class ExtMembershipController extends Controller
         return view('pages.RCIIBB', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
       }  
 
-      public function newBatch(){
+      public function newIIRUBatch(){
 
         $pageConfigs = ['pageHeader' => true];
     
@@ -50,7 +50,7 @@ class ExtMembershipController extends Controller
         return view('pages.dbrdetails', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
       }  
 
-      public function rcienrollment(){
+      public function enrollment(){
 
         $pageConfigs = ['pageHeader' => true];
     

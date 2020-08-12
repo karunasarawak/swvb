@@ -28,7 +28,6 @@ class CreateToursTable extends Migration
             $table->time('tour_time_in')->nullable();
             $table->time('tour_time_out')->nullable();
 
-
             $table->string('tour_marketing_agency', 60)->nullable();
             $table->tinyInteger('tour_no_of_children')->nullable();
             $table->tinyInteger('tour_outcome')->nullable();
@@ -36,7 +35,7 @@ class CreateToursTable extends Migration
             $table->decimal('tour_month_income',9,2)->nullable();
             $table->tinyInteger('tour_proceed_contract')->nullable();
             $table->tinyInteger('tour_attend')->nullable();
-            $table->integer('tour_status')->default('1')->nullable();
+            $table->tinyInteger('is_archive')->length(1)->nullable();
 
             $table->timestamps();
         });

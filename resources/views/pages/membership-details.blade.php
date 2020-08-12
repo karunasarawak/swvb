@@ -14,7 +14,7 @@
     <div class="row" x-data="{ edit: false, original:true}">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-swvb-cyan">
+                <div class="card-header bg-swvb-cyan">  
                     <div class="row">
                         <h4 class="col card-title text-white">Membership Details - 234560000</h4>
                             <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
@@ -27,7 +27,7 @@
                                     Close
                                 </button>
                             </p>
-                        </div>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -458,7 +458,9 @@
                                                                     <th class="text-white">Name on Card</th>
                                                                     <th class="text-white">Expiry</th>
                                                                     <th class="text-white">For</th>
+                                                                    <th class="text-white">Purpose</th>
                                                                     <th class="text-white">Status</th>
+                                                                    
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -475,6 +477,7 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td></td>
+                                                                    <td>AMF</td>
                                                                     <td><button class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#inlineForm">Edit</button></td>
                                                                 </tr>
                                                                 <tr>
@@ -490,11 +493,12 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td></td>
+                                                                    <td>Installment</td>
                                                                     <td><button class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#inlineForm">Edit</button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -1030,7 +1034,7 @@
         <div class="col-md-4 float-right-top">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title  text-white">Function</h4>
+                    <h4 class="card-title  text-white">Members' Menu</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -1046,7 +1050,7 @@
                                 </div>
                                 <div class="row pt-1">
                                     <div class="col text-align-center">
-                                        <a href="{{ url('/membership/new') }}" type="button" class="w-100 btn btn-primary ">Account Status</a>
+                                        <a href="{{ url('/membership/new') }}" type="button" class="w-100 btn btn-primary ">Account Statement</a>
                                     </div>
                                 </div>
                                 <div class="row pt-1">
@@ -1161,7 +1165,7 @@
 <!-- pop out modal box for update status (status : active) -->
 <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
+        <div class="modal-content"> 
                 <div class="modal-header bg-swvb-cyan">
                     <h4 class="modal-title text-white" id="myModalLabel33">UPDATE STATUS</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1197,6 +1201,28 @@
                         <div class="radio">
                             <input type="radio" name="Deceased" id="Suspend" value="Suspend" checked="">
                             <label for="female1">Suspend</label>
+                        </div>
+                        <div class="radio">
+                            <input type="radio" name="Deceased" id="act" value="Suspend" checked="">
+                            <label for="act">Activation</label>
+                        </div>
+
+                        <div class="form-group controls">
+                            <label class="d-block">Waive Activation Fee</label>
+                            <select name="sp" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                <option value="" disabled selected></option>
+                                <option value="" >Yes</option>
+                                <option value="" >No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group controls">
+                            <label class="d-block">Waive Activation Fee Percentage</label>
+                            <select name="sp" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                            <option value="" disabled>--</option>
+                                <option value="" disabled selected></option>
+                                <option value="" >100%</option>                            
+                            </select>
                         </div>
                         <div class="px-2">
                             <button class="btn btn-outline-primary round mr-1 mb-1" onclick="redirect()">Save</a>

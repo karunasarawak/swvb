@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">Selections - MSD<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
+                        <h4 class="card-title text-white ml-2">Selections - MSD</h4>
                     </div>    
                 </div>
                 <div class="card-content">

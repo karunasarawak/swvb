@@ -46,7 +46,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#edittax">
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
@@ -64,7 +64,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#edittax">
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
@@ -82,7 +82,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#edittax">
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
@@ -100,7 +100,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#edittax">
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
@@ -118,7 +118,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#edittax">
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
@@ -136,7 +136,7 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#edittax">
                                                         <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
                                                     </button>
 
@@ -379,6 +379,54 @@
     </div>
 </div>
 
+<!--update status Modal for status: Suspend-->
+<div class="modal fade text-left" id="edittax" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">Edit Tax</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <form action="#">
+                <div class="modal-body">
+                                
+                    
+                    <div class="form-group">
+                        <div class="controls">
+                            <label > Tax</label>
+                            <input  type="number" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <label > Tax Code</label>
+                            <input  type="number" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <label > Percentage</label>
+                            <input  type="number" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <!--/ Zero configuration table -->

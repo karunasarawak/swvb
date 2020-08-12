@@ -51,155 +51,179 @@
                                         </p>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table leads-all">
-                                                <thead class="bg-swvb-dark">
-                                                    <tr>
-                                                        <th class="text-white">No.</th>
-                                                        <th class="text-white">Unit Price (RM)</th>
-                                                        <th class="text-white">Rounding Adj. (RM)</th>
-                                                        <th class="text-white">Total (RM)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode A</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1234 0000</td>
-                                                        <td>Mode B</td>
-                                                        <td>01 April 2020</td>
-                                                        
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table leads-all">
+                                                    <thead class="bg-swvb-dark">
+                                                        <tr>
+                                                            <th class="text-white">No.</th>
+                                                            <th class="text-white">Unit Price (RM)</th>
+                                                            <th class="text-white">Rounding Adj. (RM)</th>
+                                                            <th class="text-white">Total (RM)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>1234 0000</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="row pt-1 pl-5">
+                            <div class="row pt-1 pb-1 pl-5">
                                 <div class="col">
                                     <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Credit Note/Debit Note/Void Receipt/Refund<i class="bx bx-pencil"></i></p>
                                 </div>
                             </div>
-                            <div class="row ml-3">
-                                <div class="table-responsive">
-                                    <table class="table leads-all">
-                                        <thead class="bg-swvb-dark">
-                                            <tr>
-                                                <th class="text-white">No.</th>
-                                                <th class="text-white">Reservation No.</th>
-                                                <th class="text-white">Document Type</th>
-                                                <th class="text-white">Original Inv No. / OR No.</th>
-                                                <th class="text-white">Unit Price (RM)</th>
-                                                <th class="text-white">Rounding Adj. (RM)</th>
-                                                <th class="text-white">Total (RM)</th>
-                                                <th class="text-white">Reasons</th>
-                                                <th class="text-white">Remarks</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode A</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode A</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode A</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>1234 0000</td>
-                                                <td>Mode B</td>
-                                                <td>01 April 2020</td>
-                                                <td>Item 01</td>
-                                                
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table leads-all">
+                                                    <thead class="bg-swvb-dark">
+                                                        <tr>
+                                                            <th class="text-white">No.</th>
+                                                            <th class="text-white">Reservation No.</th>
+                                                            <th class="text-white">Document Type</th>
+                                                            <th class="text-white">Original Inv No. / OR No.</th>
+                                                            <th class="text-white">Unit Price (RM)</th>
+                                                            <th class="text-white">Rounding Adj. (RM)</th>
+                                                            <th class="text-white">Total (RM)</th>
+                                                            <th class="text-white">Reasons</th>
+                                                            <th class="text-white">Remarks</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>Item 01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>Item 01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>Item 01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>Item 01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>Item 01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode A</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>1234 0000</td>
+                                                            <td>Mode B</td>
+                                                            <td>01 April 2020</td>
+                                                            <td>Item 01</td>
+                                                            <td>Item 01</td>
+                                                        </tr>
+                                                    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>  
                     

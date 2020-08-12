@@ -19,7 +19,6 @@
                         <div class="col">
                             <h4 class="card-title text-white">Reinstatement - 234560000</h4>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="card-content">
@@ -52,16 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Amount Due at Termination</label>
-                                            <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
-                                                <div class="form-control-position">RM</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                
                             </div>
@@ -74,20 +64,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label for="location">Late Payment Penalty Charge</label>
-                                            <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                <option value="1">Yes </option>
-                                                <option value="2">No</option>
-
-                                            </select>           
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- if late payment chose yes then show -->
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label></label>
+                                            <label>Amount Due At Reinstatement</label>
                                             <div class="position-relative has-icon-left">
                                                 <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
                                                 data-validation-required-message="The amount of late payment penalty charge" required>
@@ -96,54 +73,49 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Amount Due at Termination</label>
-                                            <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
-                                                <div class="form-control-position">RM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
+
+
                             <div class="row">
+                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Reinstatement Fee</label>
-                                                <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                                    <option value=""></option>
-                                                    <option value="Mr.">Yes</option>
-                                                    <option value="Ms.">No</option>
-                                                    
-                                                </select>
+                                            <label for="location">Generate Reinstatement fee invoice</label>
+
+                                            <div class="custom-control-inline">
+                                                <div class="radio mr-1">
+                                                 <input type="radio" name="amfcc" value="1" id="ccy" @click="xcc=false, cc=true" required>
+                                                <label for="ccy">Yes</label>
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="amfcc" value="0" id="ccn" @click="xcc=true, cc=false">
+                                                <label for="ccn">No</label>
+                                            </div>
+                                            
+                                            </div>       
                                         </div>
                                     </div>
                                 </div>
                                 <!-- if reinstatement fee yes then show -->
+                               
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label></label>
-                                            <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
-                                                data-validation-required-message="The amount of reinstatament fee" required>
-                                                <div class="form-control-position">RM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Total Amount Payable</label>
-                                            <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
-                                                <div class="form-control-position">RM</div>
+                                            <label for="location">AMOUNT DUE AT REINSTATEMENT</label>
+                                            <div class="row pl-1">
+                                                <div class="custom-control-inline">
+                                                    <div class="radio mr-1">
+                                                        <input type="radio" name="amfcc" value="1" id="cb" @click="xcc=false, cc=true" required>
+                                                        <label for="cb">Yes</label>
+                                                    </div>
+                                                
+                                                    <div class="radio">
+                                                        <input type="radio" name="amfcc" value="0" id="c" @click="xcc=true, cc=false">
+                                                        <label for="c">No</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

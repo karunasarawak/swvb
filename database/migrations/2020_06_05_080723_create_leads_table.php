@@ -18,12 +18,12 @@ class CreateLeadsTable extends Migration
             $table->id('lead_id')->length(11);
             $table->bigInteger('salutation_id')->length(11)->unsigned()->nullable();
             $table->foreign('salutation_id')->references('salutation_id')->on('salutations');
-            $table->integer('ethnicity_id')->length(11)->nullable();
-            $table->integer('religion_id')->length(11)->nullable();
-            $table->integer('telemarketer_id')->length(11)->nullable();
-            $table->integer('venue_id')->length(11)->nullable();
+            $table->tinyInteger('ethnicity_id')->length(2)->nullable();
+            $table->tinyInteger('religion_id')->length(2)->nullable();
+            $table->tinyInteger('telemarketer_id')->length(2)->nullable();
+            $table->tinyInteger('venue_id')->length(2)->nullable();
             $table->string('name',255)->nullable();
-            $table->integer('gender')->length(11)->nullable();
+            $table->tinyInteger('gender')->length(11)->nullable();
             $table->string('nric')->length(20)->nullable();
             $table->date('dob')->length(11)->nullable();
             $table->tinyInteger('marital_status')->length(1)->nullable();
@@ -42,8 +42,9 @@ class CreateLeadsTable extends Migration
             $table->integer('credit_card_limit')->length(11)->nullable();
             $table->tinyInteger('is_pri_mbr')->length(1)->nullable();
             $table->tinyInteger('is_sec_mbr')->length(1)->nullable();
+            
 
-            $table->string('relationship_to_pri_mbr',30)->nullable();
+            $table->string('relationship_to_pri_mbr', 30)->nullable();
 
             $table->string('prefer_lang',80)->nullable();
 
@@ -52,14 +53,16 @@ class CreateLeadsTable extends Migration
             
         });
 
-        // DB::table('leads')->insert(
-        //     array(
-        //         ['salutation_id' => 1, 'name' => 'John Doe', 'mobile_no' => '01234567890', 'whatsapp_no' => '01234567890', 'credit_card_limit'=> 1000, 'telemarketer_id'=> 1],
-        //         ['salutation_id' => 2, 'name' => 'Mary Jane', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2],
-        //         ['salutation_id' => 3, 'name' => 'Arthur', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 1],
-        //         ['salutation_id' => 4, 'name' => 'Morgan', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2],
-        //     )
-        // );
+        $current = date('Y-m-d H:i:s');
+
+        DB::table('leads')->insert(
+            array(
+                ['salutation_id' => 1, 'name' => 'John Doe', 'mobile_no' => '01234567890', 'whatsapp_no' => '01234567890', 'credit_card_limit'=> 1000, 'telemarketer_id'=> 1, 'created_at'=> $current, 'updated_at'=>$current],
+                ['salutation_id' => 2, 'name' => 'Mary Jane', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2, 'created_at'=> $current, 'updated_at'=>$current],
+                ['salutation_id' => 1, 'name' => 'Arthur', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 1, 'created_at'=> $current, 'updated_at'=>$current],
+                ['salutation_id' => 2, 'name' => 'Morgan', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2, 'created_at'=> $current, 'updated_at'=>$current],
+            )
+        );
     }
 
     /**

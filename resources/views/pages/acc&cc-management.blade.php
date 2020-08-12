@@ -15,9 +15,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <div class="row ">
-                        <h4 class="col ml-4 card-title text-white">ACC & CC Management | Invoice Header</h4>
-                        
+                    <div class="row">
+                        <h4 class="col ml-4 card-title text-white">ACC & CC Management | Invoice Header</h4>                        
                     </div>
                 </div>
                 <div class="card-content">
@@ -29,8 +28,6 @@
                                     <div class="col-sm-4">
                                         <p class="h7 swvb-blue ml-3 font-weight-bold my-auto pt-2">Basic Informations</p>
                                     </div>
-                                    
-                                    
                                 </div>
                                 <div class="row pt-1 pl-3">
                                     <div class="col">
@@ -98,17 +95,21 @@
                                    
                                 </div>
                             <div class="row">
-                                <p class="col"><button type="button" class=" btn btn-primary m-1 ml-3" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button></p>
-                                <p class="col-sm-2 h7 ml-2  font-weight-bold my-auto pb-2">
-                                        <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
-                                            Save
-                                        </button>
-                                    </p>
-                                <p class="col h7  font-weight-bold my-auto pb-2">
-                                    <button type="button" class="btn btn-primary" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
+                                <div class="col-md-11">
+                                    <button type="button" class=" btn btn-primary float-right" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 ">
+                                    <button type="submit" class="btn btn-primary float-right" x-show="edit" x-cloak >                                                                    
+                                        Save
+                                    </button>
+                                </div>
+                                <div class="col ">
+                                    <button type="button" class="btn btn-primary float-right" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
                                         Close
                                     </button>
-                                </p>
+                                </div>
                             </div>
                                 <div class="row">
                                     <div class="col-sm-10">

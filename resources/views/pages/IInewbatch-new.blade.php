@@ -26,93 +26,99 @@
             <form class="form repeater-default">
                 <div data-repeater-list="group-a">
                     <div data-repeater-item>
-                        
-                                <div class="row pt-1">
-                                    <div class="col">
-                                        <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Batch #1</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="location">Room No.</label>
-                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                    <option value="1">2345600</option>
-                                                    <option value="2">John</option>
 
-                                                </select>
-                                    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="location">Room Type</label>
-                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                    <option value="1">Chalet</option>
-                                                    <option value="2">John</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="location"> Bed Type</label>
-                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                    <option value="1">Chalet</option>
-                                                    <option value="2">John</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="location">Week</label>
-                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                    <option value="1">Chalet</option>
-                                                    <option value="2">John</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label>Check In</label>
-                                                    <input type="date" class="form-control" value="14 July 2020" id="creditcard" name="name"
-                                                    data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label>Check Out</label>
-                                                    <input type="link" class="form-control" value="20 July 2020" id="creditcard" name="name"
-                                                    data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    
-                                </div>
-                                
-                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                    class="bx bx-x"></i>
-                                    Delete
-                                </button>
+                        <div class="row pt-1">
+                            <div class="col">
+                                <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Batch #1</p>
                             </div>
                         </div>
-                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label for="location">Room No.</label>
+                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                            <option value="1">2345600</option>
+                                            <option value="2">John</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label for="location">Room Type</label>
+                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                            <option value="1">Chalet</option>
+                                            <option value="2">John</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label for="location"> Bed Type</label>
+                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                            <option value="1">Chalet</option>
+                                            <option value="2">John</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label for="location"> Year</label>
+                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                            <option value="1">Chalet</option>
+                                            <option value="2">John</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label for="location">Week</label>
+                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                            <option value="1">Chalet</option>
+                                            <option value="2">John</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label>Check In</label>
+                                            <input type="date" class="form-control" value="14 July 2020" id="creditcard" name="name"
+                                            data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <label>Check Out</label>
+                                            <input type="link" class="form-control" value="20 July 2020" id="creditcard" name="name"
+                                            data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                                
+                        <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                class="bx bx-x"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
                     
                 </div>
                 <div class="form-group">

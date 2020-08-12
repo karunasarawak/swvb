@@ -71,13 +71,13 @@
 {{-- vendor scripts --}}
 @section('vendor-scripts')
 <script>
-  var pri = ['pri_salute','pri_name','pri_gender','pri_nric', 'pri_dob','pri_maritual',
+  var pri = ['lead_id','pri_salute','pri_name','pri_gender','pri_nric', 'pri_dob','pri_maritual',
             'pri_race','pri_religion','pri_nation','pri_lang','pri_status',
             'pri_occup','pri_company','pri_mobile','pri_whatsapp','pri_home','pri_office','pri_pemail','pri_aemail',
             'pri_addr1','pri_alt_addr1','pri_addr2','pri_alt_addr2','pri_code','pri_city','pri_alt_code',
             'pri_alt_city','pri_state','pri_alt_state','pri_country','pri_alt_country','pri_remarks'];
 
-  var sec =  ['sec_salute','sec_name','sec_gender','sec_nric', 'sec_dob','sec_maritual',
+  var sec =  ['exist_lead','sec_salute','sec_name','sec_gender','sec_nric', 'sec_dob','sec_maritual',
             'sec_race','sec_religion','sec_nation','sec_lang','sec_status', 
             'sec_occup','sec_company','sec_mobile','sec_whatsapp','sec_home','sec_office','sec_pemail','sec_aemail',
             'sec_addr1','sec_alt_addr1','sec_addr2','sec_alt_addr2','sec_code','sec_city','sec_alt_code',
@@ -105,23 +105,24 @@
     alert(sample.className);
   }
 
-  function chooseLead($condition)
+  function chooseLead(condition)
   {
-    console.log($condition);
+    console.log(condition);
 
-    if($condition == 1)
+    if(condition == 1)
     {
       var data = @json($payload['lead2']);
 
-      for(a in data)
+      console.log(data);
+      for(var a = 0; a < data.length; a++)
       {
         if(data[a] == null)
         {
-          document.getElementById(sec[i]).value = "";
+          document.getElementById(sec[a]).value = "";
         }
         else if (data[a] != null)
         {
-          document.getElementById(sec[i]).value = data[a];
+          document.getElementById(sec[a]).value = data[a];
         }
       }
     }
@@ -152,5 +153,6 @@
 <script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 <script src="{{asset('js/scripts/forms/select/form-select2.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 {{-- <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script> --}}
 @endsection

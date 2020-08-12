@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">Accommodation<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles">New</button></h4>
+                    <h4 class="col card-title text-white">Accommodation<a href="{{ url('/admin/accmdetails') }}" class="btn btn-outline-white round mr-1 ml-1 text-white">New</a></h4>
                     
                 </div>
                 <div class="card-content">
@@ -37,7 +37,7 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="rmh-tab-fill" data-toggle="tab" href="#rmh-fill" role="tab"
                                                     aria-controls="rmh-fill" aria-selected="false">
-                                                    Package Price
+                                                    Easturia Vacation Club
                                                     </a>
                                                 </li>
                         
@@ -70,12 +70,7 @@
 
                                                                         
                                                                     </tr>
-                                                                    <tr>
-                                                                        <th class="text-white">WD</th>
-                                                                        <th class="text-white">WE</th>
-                                                                        
-                                                                        
-                                                                    </tr>
+                                                                    
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>

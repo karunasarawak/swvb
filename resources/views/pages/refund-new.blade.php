@@ -64,7 +64,7 @@
                             <div class="col ml-1">
                                 <div class="row">
                                     <div class="col-sm-6">Payment Voucher
-                                        <input type="number" name="name" class="form-control" placeholder="Name" disabled>  
+                                        <input type="number" name="name" class="form-control" placeholder="payment voucher no." required>  
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group controls">
@@ -98,13 +98,22 @@
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th></th>
+                                                <th>
+                                                    <fieldset>
+                                                        <div class="checkbox">
+                                                            
+                                                            <input type="checkbox" class="checkbox-input" id="checkbox1">
+                                                            <label for="checkbox"></label>
+                                                        </div>
+                                                    </fieldset>
+                                                </th>
                                                 <th class="text-white">Invoice</th>
                                                 <th class="text-white">Date</th>
                                                 <th class="text-white">Description</th>
                                                 <th class="text-white">Amount</th>
                                                 <th class="text-white">Paid</th>
                                                 <th class="text-white">Balance</th>
+                                                <th class="text-white">Applied Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -122,6 +131,9 @@
                                                 <td>200</td>
                                                 <td>50</td>
                                                 <td>150</td>
+                                                <td>
+                                                    <input type="text" name="" class="form-control">
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><fieldset>
@@ -137,6 +149,9 @@
                                                 <td>200</td>
                                                 <td>50</td>
                                                 <td>150</td>
+                                                <td>
+                                                    <input type="text" name="" class="form-control">
+                                                </td>
                                             </tr>
                                             
                                         </tbody>

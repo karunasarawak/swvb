@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Receipt')
+@section('title','New Receipt')
 
 {{-- page style --}}
 @section('page-styles')
@@ -65,11 +65,11 @@
                                     <div class="controls">
                                         <label for="location">Collected By</label>
                                         <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                            <option value="1">MSCHQ</option>
-                                            <option value="2">OTP-AMEX</option>
-                                            <option value="1">OTP-VISA/MASTER</option>
-                                            <option value="2">MPRC</option>
-                                            <option value="1">SALES AGENT</option>
+                                            <option value="MSCHQ">MSCHQ</option>
+                                            <option value="OTP-AMEX">OTP-AMEX</option>
+                                            <option value="OTP-VISA/MASTER">OTP-VISA/MASTER</option>
+                                            <option value="MPRC">MPRC</option>
+                                            <option value="SALES AGENT">SALES AGENT</option>
                                             
 
                                         </select>           

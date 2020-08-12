@@ -39,11 +39,13 @@
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="mbrship_id">Membership No</label>
-                                                <select name="mbrship_id" id="mbrship_id" class="select2 custom-select form-control" data-validation-required-message="Please select a member" onchange="setInputName()" required>
+                                                <select name="mbrship_id" id="mbrship_id" class="select2 custom-select form-control" 
+                                                data-validation-required-message="Please select a member" onchange="setInputName()" required>
                                                     <option value="" disabled selected>Membership No</option>
                                                     @if(isset($payload))
                                                         @foreach($payload['memberships'] as $membership)
-                                                    <option value="{{$membership->mbrship_id}}" data-name="{{$membership->lead->name}}">{{$membership->mbrship_no}}</option>
+                                                    <option value="{{$membership->mbrship_id}}" data-name="{{$membership->lead->name}}">
+                                                        {{$membership->mbrship_no}}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
@@ -75,6 +77,38 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                        <div class="col-sm-6">
+                                        <label>Type</label>
+                                        <br>
+                                        <input type="radio" id="type_installment" class="radioButtonType" name="type" value="Installment" checked="checked" onclick="showItemInput('Installment')">
+                                        <label for="type_installment" class="rb-label">Installment</label>
+                                        <br>
+                                        <input type="radio" id="type_amf" class="radioButtonType" name="type" value="AMF" onclick="showItemInput('AMF')">
+                                        <label for="type_amf" class="rb-label">AMF</label>
+                                        <br>
+                                        <input type="radio" id="type_other" class="radioButtonType" name="type" value="Other" onclick="showItemInput('Other')">
+                                        <label for="type_other" class="rb-label">Other</label>
+                                    </div>
+                                </div>
+                                <div id="item-input-1" class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="item_name">Item Name</label>
+                                                <input type="text" class="form-control" id="item_name_1" name="item_name">         
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="amount">Amount</label>
+                                                <input type="number" class="form-control" id="amount_1" step=".01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div id="item-input-2" class="row hidden">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="controls">
@@ -83,7 +117,9 @@
                                                     <option value="" disabled selected>Select an item</option>
                                                     @if(isset($payload))
                                                         @foreach($payload['invoiceItemTypes'] as $invoiceItemType)
+                                                        @if($invoiceItemType->item != "Installment" && $invoiceItemType->item != "AMF")
                                                     <option value="{{$invoiceItemType->inv_itm_type_id}}">{{$invoiceItemType->item}}</option>
+                                                        @endif
                                                         @endforeach
                                                     @endif
                                                 </select>           
@@ -94,27 +130,28 @@
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="amount">Amount</label>
-                                                <input type="number" class="form-control" id="amount" step=".01">
+                                                <input type="number" class="form-control" id="amount_2" step=".01">
                                             </div>
                                         </div>
                                     </div>
                                 </div> 
-                                <div class="row">
+                                <div id="item-input-3" class="row hidden">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="item_name">Item Name</label>
-                                                <input type="text" class="form-control" id="item_name" name="item_name" disabled>   
+                                                <input type="text" class="form-control" id="item_name_2" name="item_name" disabled>   
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <button type="button" class="btn btn-clear m-1" id="btn_clear" onclick="clearInvoiceDetail()">Clear</button>
                                                 <button type="button" class="btn btn-primary m-1" id="btn_add" onclick="addInvoiceDetail()">Add</button>
+                                                <button type="button" class="btn btn-danger m-1" id="btn_clear_added" onclick="clearInvoiceItems()">Clear Added Items</button>
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +238,7 @@
                                             <th class="h6 text-white font-weight-bold my-auto align-middle" colspan="2">Amount</td>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="invoice-tbody">
                                         <!-- <tr id="invoice-detail-0">
                                             <td class="align-middle tbl-cell-text">Admin Charges</td>
                                             <td class="align-middle tbl-cell-text">RM 10</td>

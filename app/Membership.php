@@ -35,6 +35,8 @@ class Membership extends Model
         'mbrship_status'
     ];
 
+    protected $table = 'memberships';
+
     public function lead()
     {
         return $this->belongsTo('App\Lead', 'lead_id1', 'lead_id');
@@ -44,4 +46,11 @@ class Membership extends Model
     {
         return $this->belongsto('App\Address', 'addr_1', 'addr_1');
     }
+
+    public function reservation()
+    {
+        return $this->hasOne('App\Reservation', 'mbrship_id', 'mbrship_id');
+    }
+
+
 }

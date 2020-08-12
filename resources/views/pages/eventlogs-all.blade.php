@@ -15,9 +15,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title">
-                        <a href="" class="btn btn-outline-white text-white round mr-1 mb-1" data-toggle="modal" data-target="#inlineForm">New</a>                            
-                        <a href="" class="btn btn-outline-white text-white round mr-1 mb-1" data-toggle="modal" data-target="#inlineForm">Bulk Upload</a></h4>
+                    <div class="card-title">
+                        <div class="row">
+                            <a href="" class="btn btn-outline-white text-white round mb-1 ml-1" data-toggle="modal" data-target="#inlineForm">New</a>                            
+                            <div class="col-md-4">
+                                <fieldset class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content">
                         <div class="px-2 pt-1">

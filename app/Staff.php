@@ -20,4 +20,6 @@ class Staff extends Model
     {
         return $this->hasMany('App\Lead');
     }
+
+   
 }

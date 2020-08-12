@@ -1,4 +1,18 @@
 @foreach($array as $d)
-<?php print_r($d);?>
-    <option value='{{$d->$key}}' @if(!empty($data) && $data==$d->$key) selected="selected" @endif>{{$d->$value}}</option>
+    <option 
+        value='{{$d->$key}}' 
+        @if(!empty($data) && $data==$d->$key) selected="selected" @endif
+        @if(!empty($class))
+            @php
+                $clas='';
+                $cls=explode(',',$class);
+                foreach($cls as $c){
+                    $clas.=$c.' '.$c.$d->$c.' ';
+                }
+            @endphp
+            class='{{$clas}}'
+        @endif
+    >
+        {{$d->$value}}
+    </option>
 @endforeach

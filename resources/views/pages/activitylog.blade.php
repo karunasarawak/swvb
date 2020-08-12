@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Membership')
+@section('title','Activity Logs')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title text-white">All Membership</h4>
+                    <h4 class="card-title text-white">Activity Logs</h4>
                 </div>
 
                 <br>

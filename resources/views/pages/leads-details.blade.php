@@ -114,8 +114,7 @@
                 <div class="card-header d-flex justify-content-between pb- bg-swvb-cyan">
                     <div class="card-title">
                         <div class="row">
-                        
-                            <h4 class="card-title text-white col">Event Log</h4>
+                            <h4 class="col card-title text-white">Event Log</h4>
                             <button class="btn btn-outline-white col" data-toggle="modal" data-target="#addCall">Create Event</button>
                         </div>
                     </div>
@@ -191,9 +190,9 @@
                                             <span class="d-none d-sm-block">Save</span>
                                     </button>
                                     
-                                    <button type="button" class="close btn btn-light-secondary" data-dismiss="modal" aria-label="close">
-                                            <i class="bx bx-x d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Close</span>
+                                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Close</span>
                                     </button>
                                 </div>
                             </form>
@@ -221,75 +220,98 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     @foreach($payload['events'] as $event)
+                                    @foreach ($payload['events'] as $event)
                                      <tr class="show_row">
                                         <td>{{$event->el_id}}</td>
                                         <!-- <td>{{$event->lead->name}}</td> -->
-                                        <td>{{$event->eventLogsType->el_type_name}}</td>
-                                        <td>{{$event->eventLogsCategory->el_cat_name}}</td>
+                                        <td>{{$event->eventLogType->el_type_name}}</td>
+                                        <td>{{$event->eventLogCategory->el_cat_name}}</td>
                                         <td>{{$event->title}}</td>
                                         <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->created_at)->format('d-m-Y')}}</td>
                                         <td>{{$event->created_by}}</td>
                                         <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->updated_at)->format('d-m-Y')}}</td>
                                         <td>{{$event->last_updated_by}}</td>
                                         <td>
-                                            <button class="btn btn-outline-primary w-40" onclick="hiddenRow({{$loop->iteration}})">Show</button>
-                                            <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#leadsaddcall" 
-                                            onclick="getEventID({{$event->el_id}}, {{$event->lead_id}})">Add Call</button>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="btn btn-outline-primary w-40" onclick="hiddenRow({{$loop->iteration}})">
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> Show</a>
+                                                </button>
+                                                <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#leadsaddcall" 
+                                                onclick="getEventID({{$event->el_id}}, {{$event->lead_id}})">
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> Add Call</a>
+                                                </button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
-                                            <tr class="hidden1_row{{$loop->iteration}}" style="display:none;">
-                                                <th>Call ID</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Call Length</th>
-                                                <th>Start</th>
-                                                <th>End</th>
-                                                <th>Outcome</th>
-                                                <th>Reason</th>
-                                                <th>Remarks</th>
-                                                <th>Actions</th>
-                                            </tr>
+                                    <tr class="hidden1_row{{$loop->iteration}}" style="display:none;">
+                                        <th>Call ID</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Call Length</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Outcome</th>
+                                        <th>Reason</th>
+                                        <th>Remarks</th>
+                                        <th>Actions</th>
+                                    </tr>
+
+                                    {{-- <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr> --}}
                                        
-                                            @foreach($event->callLogs as $calls)
-                                                <tr class="hidden2_row{{$loop->iteration}}" style="display:none;">
-                                                    <td>{{$calls->cl_id}}</td>
-                                                    <td>{{$calls->init_date}}</td>
+                                    @foreach($event->callLog as $calls)
+                                        <tr class="hidden2_row{{$loop->iteration}}" style="display:none;">
+                                            <td>{{$calls->cl_id}}</td>
+                                            <td>{{$calls->init_date}}</td>
 
-                                                    @if($calls->init_time != null)
-                                                        <td>{{Carbon\Carbon::createFromFormat('H:i:s', $calls->init_time)->format('H:i A')}}</td>
-                                                    @else
-                                                        <td>{{$calls->init_time}}</td>
-                                                    @endif
+                                            @if($calls->init_time != null)
+                                                <td>{{Carbon\Carbon::createFromFormat('H:i:s', $calls->init_time)->format('H:i A')}}</td>
+                                            @else
+                                                <td>{{$calls->init_time}}</td>
+                                            @endif
 
-                                                    @if($calls->call_length != 0)
-                                                        <td>{{$calls->call_length}} Minutes</td>
-                                                    @else
-                                                        <td></td>
-                                                    @endif
-                                                    
-                                                    @if($calls->start_time != null)
-                                                        <td>{{Carbon\Carbon::createFromFormat('H:i:s', $calls->start_time)->format('H:i A')}}</td>
-                                                    @else
-                                                        <td>{{$calls->start_time}}</td>
-                                                    @endif
+                                            @if($calls->call_length != 0)
+                                                <td>{{$calls->call_length}} Minutes</td>
+                                            @else
+                                                <td></td>
+                                            @endif
+                                            
+                                            @if($calls->start_time != null)
+                                                <td>{{Carbon\Carbon::createFromFormat('H:i:s', $calls->start_time)->format('H:i A')}}</td>
+                                            @else
+                                                <td>{{$calls->start_time}}</td>
+                                            @endif
 
-                                                    @if($calls->end_time != null)
-                                                        <td>{{Carbon\Carbon::createFromFormat('H:i:s', $calls->end_time)->format('H:i A')}}</td>
-                                                    @else
-                                                        <td>{{$calls->end_time}}</td>
-                                                    @endif
+                                            @if($calls->end_time != null)
+                                                <td>{{Carbon\Carbon::createFromFormat('H:i:s', $calls->end_time)->format('H:i A')}}</td>
+                                            @else
+                                                <td>{{$calls->end_time}}</td>
+                                            @endif
 
-                                                    <td>{{$calls->outcome}}</td>
-                                                    <td>{{$calls->reason}}</td>
-                                                    <td>{{$calls->remarks}}</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#update" 
-                                                        onclick="getID({{$event->el_id}},{{$calls->lead_id}}, {{$calls->cl_id}})">Update Call</button>
-                                                    </td>
-                                                </tr>
-                                        @endforeach                                         
-                                    @endforeach
+                                            <td>{{$calls->outcome}}</td>
+                                            <td>{{$calls->reason}}</td>
+                                            <td>{{$calls->remarks}}</td>
+                                            <td>
+                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#update" 
+                                                onclick="getID({{$event->el_id}},{{$calls->lead_id}}, {{$calls->cl_id}})">Update Call</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach                                         
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

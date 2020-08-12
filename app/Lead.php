@@ -62,9 +62,9 @@ class Lead extends Model
         return $this->belongsTo('App\Staffs', 'telemarketer_id', 'staff_id');
     }
 
-    public function EventLogs()
+    public function EventLog()
     {
-        return $this->hasMany('App\EventLogs', 'lead_id', 'lead_id');
+        return $this->hasMany('App\EventLog', 'lead_id', 'lead_id');
     }
 
     public function genders()

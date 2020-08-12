@@ -94,7 +94,7 @@
                                     <tbody>
                                     @foreach ($payload['invoice']->invoiceItem as $invoiceItem)
                                         <tr>
-                                            <td class="align-middle tbl-cell-text">{{$invoiceItem->invoiceItemTypes->item}}</td>
+                                            <td class="align-middle tbl-cell-text">{{$invoiceItem->invoiceItemType->item}}</td>
                                             <td class="align-middle tbl-cell-text">RM {{$invoiceItem->amount}}</td>
                                         </tr>
                                     @endforeach

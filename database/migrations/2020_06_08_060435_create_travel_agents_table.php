@@ -15,13 +15,21 @@ class CreateTravelAgentsTable extends Migration
     {
         Schema::create('travel_agents', function (Blueprint $table) {
             $table->id('ta_id')->length(11);
-            $table->string('ta_name',100);
-            $table->string('ta_abbr',100);
-            $table->tinyInteger('ta_type')->length(1);
-            $table->string('ta_remarks',255);
+            $table->string('ta_name',60);
+            $table->string('ta_code',10);
             $table->tinyInteger('ta_status')->length(1);
             $table->timestamps();
         });
+
+        DB::table('travel_agents')->insert(array([        
+            'ta_name' => 'Club Asia International',
+            'ta_code' => 'CAI',
+            'ta_status' => 1,
+        ],[
+            'ta_name' => 'Easturia Vacation Club',
+            'ta_code' => 'EVC',
+            'ta_status' => 1,
+        ]));
     }
 
     /**

@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="remark">Remark</label>
@@ -106,6 +106,7 @@
                                                     <th class="h6 text-white font-weight-bold my-auto align-middle">Paid</th>
                                                     <th class="h6 text-white font-weight-bold my-auto align-middle">Balance</th>
                                                     <th class="h6 text-white font-weight-bold my-auto align-middle">Credit Amount</th>
+                                                    <th class="h6 text-white font-weight-bold my-auto align-middle">Total Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

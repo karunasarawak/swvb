@@ -38,13 +38,13 @@ class ToursController extends Controller
                 ->join('salutations','salutations.salutation_id','leads.salutation_id')
                 ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
                 ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
-                ->where('tours.tour_status', '!=',0)
+                ->where('tours.is_archive', '!=',0)
                 ->select('salutations.salutation','tours.tour_id','tours.lead_id1','leads.name',
                 'tours.tour_date','tours.tour_initial_time','tours.tour_time_in','tours.tour_time_out',
                 'tours.tour_attend','sales_teams.sales_team_id','sales_venues.venue_name','sales_venues.sales_venue_id','sales_teams.sales_name')
                 ->orderBy('tours.tour_id')
                 ->get();
-    // DB::table()->get();
+    // dd($tours_s);
     $payload = ['tours_s'=> $tours_s];
     // dd($leads);
 
@@ -180,6 +180,7 @@ class ToursController extends Controller
                   'alt_email' =>$request->aemail1
                   ]);
 
+
     //Update Tour
     $updateTour = Tour::where('tour_id', $request->tourid)
               ->update([
@@ -197,52 +198,58 @@ class ToursController extends Controller
                 'tour_attend'=>1
               ]);
       
-      //Existing
-      if($request->exist_lead != null)
-      {
-        $update = Tour::where('tour_id', $request->tourid)->update(['lead_id2'=>$request->exist_lead]);
-      }
-      //NewLead
-      else if($request->exist_lead == null)
-      {
-        if($request->name2 != null || $request->gender != null)
-        {
-          $current = date('Y-m-d H:i:s');
-          $createLead = DB:: table('leads')->insert([
-            'salutation_id'=>$request->salutation2,
-            'name'=>$request->name2,
-            'gender'=> $request->gender2,
-            'nric'=>$request->nric2,
-            'dob'=>$request->dob2,
-            'venue_id'=>$request->venue1,
-            'marital_status'=>$request->status2,
-            'ethnicity_id' => $request->race2,
-            'telemarketer_id'=>$telem[0],
-            'religion_id'=>$request->religion2,
-            'nationality' =>$request->nationality2,
-            'occupation' =>$request->occupation2,
-            'company' =>$request->company2,
-            'mobile_no' =>$request->mobileno2,
-            'whatsapp_no' =>$request->whatsapp2,
-            'home_no'=>$request->homeno2,
-            'office_no'=>$request->officeno2,
-            'primary_email'=>$request->pemail2,
-            'alt_email' =>$request->aemail2,
-            'status'=>1,
-            'created_at'=>$current,
-            'updated_at'=>$current
-            
-          ]);
 
-          $second_lead_id = DB::getPDO()->lastInsertId();
+    
+    //Existing
+    if($request->exist_lead != null)
+    {
+      $update = Tour::where('tour_id', $request->tourid)->update(['lead_id2'=>$request->exist_lead]);
+      $second_lead_id = $request->exist_lead;
+    }
+    //NewLead
+    else if($request->exist_lead == null)
+    {
+      if($request->name2 != null || $request->gender != null)
+      {
+        $current = date('Y-m-d H:i:s');
+        $createLead = DB:: table('leads')->insert([
+          'salutation_id'=>$request->salutation2,
+          'name'=>$request->name2,
+          'gender'=> $request->gender2,
+          'nric'=>$request->nric2,
+          'dob'=>$request->dob2,
+          'venue_id'=>$request->venue1,
+          'marital_status'=>$request->status2,
+          'ethnicity_id' => $request->race2,
+          'telemarketer_id'=>$telem[0],
+          'religion_id'=>$request->religion2,
+          'nationality' =>$request->nationality2,
+          'occupation' =>$request->occupation2,
+          'company' =>$request->company2,
+          'mobile_no' =>$request->mobileno2,
+          'whatsapp_no' =>$request->whatsapp2,
+          'home_no'=>$request->homeno2,
+          'office_no'=>$request->officeno2,
+          'primary_email'=>$request->pemail2,
+          'alt_email' =>$request->aemail2,
+          'status'=>1,
+          'created_at'=>$current,
+          'updated_at'=>$current
           
-          $update = Tour::where('tour_id', $request->tourid)->update(['lead_id2'=>$second_lead_id]);
-        }
-        else
-        {
-          $update = Tour::where('tour_id', $request->tourid)->update(['lead_id2'=>null]);
-        }
+        ]);
+
+        $second_lead_id = DB::getPDO()->lastInsertId();
+        $update = Tour::where('tour_id', $request->tourid)->update(['lead_id2'=>$second_lead_id]);
+        
       }
+      else
+      {
+        $update = Tour::where('tour_id', $request->tourid)->update(['lead_id2'=>null]);
+        $second_lead_id = null;
+      }
+
+      
+    }
 
       // Generate voucher number
       $voucher = rand(0,99999);
@@ -271,21 +278,23 @@ class ToursController extends Controller
         $last_voucher_id = DB::getPDO()->lastInsertId(); 
         
         //Check Voucher Apply Attendees
-        if(in_array('1', $request->get('apply')))
-        {
+        // if(in_array('1', $request->get('apply')))
+        // {
 
-        }
+        // }
         
-        if(in_array('2', $request->get('apply')))
-        {
+        // if(in_array('2', $request->get('apply')))
+        // {
 
-        }
+        // }
 
         //Update tour voucher id
         $update = Tour::where('tour_id', $request->tourid)->update(['voucher_id'=>$last_voucher_id]);
 
       }   
-
+    
+    
+    // dd($second_lead_id);
     $details = DB::table('tours')
           ->join('leads','leads.lead_id','tours.lead_id1')
           ->join('gender','gender.gender_id','leads.gender')
@@ -307,11 +316,25 @@ class ToursController extends Controller
           ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
           ->where('tour_id', $tour_id)
           ->get();
-                    
-    $lead_id2 = DB::table('tours')
-                ->where('tour_id', $tour_id)->get('tours.lead_id2');
 
-    $payload = ['details'=> $details[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
+    if($second_lead_id != null)
+    {
+      $detail2 = DB::table('leads')->where('lead_id', $second_lead_id)
+      >join('gender', 'gender.gender_id', 'leads.gender')
+      ->join('maritial_status', 'maritial_status.maritial_id', 'leads.marital_status')
+      ->join('religions', 'religions.religion_id', 'leads.religion_id')
+      ->get();
+    }
+    else
+    {
+      $detail2 = null;
+    }
+    
+                    
+    // $lead_id2 = DB::table('tours')
+    //             ->where('tour_id', $tour_id)->get('tours.lead_id2');
+
+    $payload = ['details'=> $details[0],'detail2'=>$detail2[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
 
 
     return view('pages.tours-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
@@ -336,8 +359,9 @@ class ToursController extends Controller
             ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
             ->where('tour_id', $tour_id)
             ->get();
-
+    // dd($details);
     $lead_id2 = DB::table('tours')->where('tour_id', $tour_id)->pluck('tours.lead_id2');
+    // dd($lead_id2);
 
     if($lead_id2[0] != null)
     {
@@ -346,6 +370,8 @@ class ToursController extends Controller
       ->join('maritial_status', 'maritial_status.maritial_id', 'leads.marital_status')
       ->join('religions', 'religions.religion_id', 'leads.religion_id')
       ->get();
+
+      // dd($detail2);
     }
     else
     {
@@ -355,13 +381,14 @@ class ToursController extends Controller
     $sp = DB::table('tours')
           ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
           ->get();
+
     $sm = DB::table('tours')
           ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
           ->get();
 
 
     $payload = ['details'=>$details[0], 'detail2' => $detail2[0], 'sp'=>$sp[0], 'sm'=>$sm[0]];
-    // dd($payload);
+    
 
     return view('pages.tours-details', ['payload'=>$payload]);
   }
@@ -380,7 +407,7 @@ class ToursController extends Controller
       'tour_date'=>$request->date,
       'tour_initial_time'=>$request->time,
       'sales_venue_id'=>$request->venue,
-      'tour_status'=>2
+      'is_archive'=>2
       // 'tour_countries'=>$request->country,
       // 'tour_states'=>$request->state,
       // 'tour_cities'=>$request->city,
@@ -399,12 +426,12 @@ class ToursController extends Controller
   {
     if($request->archive == 0)
     {
-      Tour::where('tour_id', $tour_id)->update(['tours.tour_status'=> 0]);
+      Tour::where('tour_id', $tour_id)->update(['tours.is_archive'=> 0]);
       return redirect("tours");
     }
     else if ($request->archive == 1)
     {
-      Tour::where('tour_id', $tour_id)->update(['tours.tour_status'=> 1]);
+      Tour::where('tour_id', $tour_id)->update(['tours.is_archive'=> 1]);
       return redirect("tours/archive");
     }
 
@@ -418,7 +445,7 @@ class ToursController extends Controller
             ->join('salutations','salutations.salutation_id','leads.salutation_id')
             ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
             ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
-            ->where('tours.tour_status',0)
+            ->where('tours.is_archive',0)
             ->select('salutations.salutation','tours.tour_id','tours.lead_id1','leads.name',
             'tours.tour_date','tours.tour_initial_time','tours.tour_time_in','tours.tour_time_out',
             'tours.tour_attend','sales_teams.sales_team_id','sales_venues.venue_name','sales_venues.sales_venue_id','sales_teams.sales_name')

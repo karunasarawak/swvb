@@ -34,6 +34,7 @@ Route::get('/membership/reinstate', 'MembershipController@reinstate');
 Route::get('/membership/pthistory', 'MembershipController@pthistory');
 Route::get('/membership/em', 'MembershipController@entitlementm');
 Route::get('/membership/eh', 'MembershipController@entitlementh');
+
 Route::get('/membership/advance', 'MembershipController@advanceent');
 Route::get('/membership/offset', 'MembershipController@offset');
 
@@ -46,9 +47,7 @@ Route::get('/leads/new', 'LeadsController@newLead')->name('leads.new');
 Route::get('/leads/{lead_id}/details', 'LeadsController@viewLead')->name('leads.details');
 Route::get('/leads/archive', 'LeadsController@showArchive');
 Route::post('/leads/new', 'LeadsController@storeLead')->name('leads.store');
-
 Route::post('/leads/all', 'LeadsController@uploadCSV')->name('leads.upload');
-
 Route::post('/leads/{lead_id}/details', 'LeadsController@createEvent')->name('leads.createEvent');
 Route::patch('/leads/{lead_id}/details', 'LeadsController@editLead')->name('leads.edit');
 Route::patch('/leads/{lead_id}/archive', 'LeadsController@archiveLeads')->name('leads.archive');
@@ -83,6 +82,10 @@ Route::get('/refund', 'RefundController@index');
 Route::get('/refund/new', 'RefundController@newRefund');
 Route::get('/refund/details', 'RefundController@details');
 
+Route::get('/debitnote', 'DebitNoteController@index');  
+Route::get('/debitnote/new', 'DebitNoteController@newDebitNote');
+Route::get('/debitnote/details', 'DebitNoteController@details');
+
 Route::get('/creditnote', 'CreditNotesController@index');
 Route::get('/creditnote/new', 'CreditNotesController@newCreditNote');
 Route::get('/creditnote/search', 'CreditNotesController@search');
@@ -96,7 +99,13 @@ Route::get('/installment/calculator', 'InstallmentController@calculator');
 Route::get('/installment/amfall', 'InstallmentController@amfall');
 Route::get('/installment/amfdetails', 'InstallmentController@amfdetails');
 
+Route::get('/contra', 'ContraController@index');
+Route::get('/contra/new', 'ContraController@new');
+Route::get('/contra/details', 'ContraController@details');
+
 Route::get('/report/stampingfee', 'ReportController@stampingfee');  
+Route::get('/report/stampingfee/ready', 'ReportController@showReadyStamp');  
+
 Route::get('/report/activitylog', 'ReportController@activitylog');
 Route::get('/report/stampingfeedetails', 'ReportController@stampingfeedetails');
 Route::get('/report/calculator', 'ReportController@calculator');
@@ -105,17 +114,24 @@ Route::get('/report/stampingfeedprintdownload', 'ReportController@download');
 Route::get('/eventlogs', 'EventLogsController@index');
 Route::get('/eventlogs/details', 'EventLogsController@details');
 
-Route::get('/membershipdeckdispatch/supplier', 'MembershipDeckDispatchController@showsupplier');
-Route::get('/membershipdeckdispatch/supplierdetails', 'MembershipDeckDispatchController@supplierdetails');
+Route::get('/cardprintinglist', 'CardPrintingController@showCardBatch')->name('card.batch');
+Route::post('/cardprintinglist/new', 'CardPrintingController@createBatch')->name('card.create');
+Route::get('/cardprintinglist/ready', 'CardPrintingController@showReadyPrint')->name('card.ready');
+Route::get('/cardprintinglist/details', 'CardPrintingController@showCardBatchDetails')->name('card.details');
+Route::get('/cardprintinglist/dispatch', 'CardPrintingController@dispatch');
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');
 Route::get('/reservations/new', 'ReservationController@addnew');
 Route::patch('/reservations/new', 'ReservationController@savenew');
 Route::get('/reservations/fdetails', 'ReservationController@facilitydetails');
-Route::get('/reservations', 'ReservationController@reservationredirect')->name('rsvn.bring');
+Route::get('/reservation', 'ReservationController@reservationredirect')->name('rsvn.bring');
 Route::get('/rtest','ReservationController@test');
+Route::get('/getmemberdetail/{id}','ReservationController@memberdetail');
 
+
+Route::get('/batchpayment', 'BatchPaymentController@index');
+Route::get('/batchpayment/details', 'BatchPaymentController@details');
 
 Route::get('/communicationlog', 'CommunicationLogController@index');
 Route::get('/communicationlog/new', 'CommunicationLogController@newLog');
@@ -124,6 +140,7 @@ Route::get('/ictrequest', 'IctRequestController@index');
 
 Route::get('/inventory', 'InventoryController@index');
 
+Route::get('/offsetreminder', 'InventoryController@offset');
 //Task Assignment
 Route::get('/taskassign', 'TaskAssignmentController@index');
 Route::post('/taskassign', 'TaskAssignmentController@uploadCSV');
@@ -131,14 +148,15 @@ Route::post('/taskassign', 'TaskAssignmentController@uploadCSV');
 Route::get('/approval', 'ApprovalController@index');
 
 Route::get('/extmembership', 'ExtMembershipController@index');
-Route::get('/extmembership/rcibb', 'ExtMembershipController@rcibball');
-Route::get('/extmembership/rcinew', 'ExtMembershipController@rcinew');
-Route::get('/extmembership/rcibbdetails', 'ExtMembershipController@rcibbdetails');
-
-Route::get('/extmembership/new', 'ExtMembershipController@newBatch');
 Route::get('/extmembership/details', 'ExtMembershipController@IIdetails');
+Route::get('/extmembership/rcibb', 'ExtMembershipController@rcibball');
+Route::get('/extmembership/rcibb/new', 'ExtMembershipController@rcinew')->name('rcibb.new');
+Route::get('/extmembership/rcibb/details', 'ExtMembershipController@rcibbdetails');
 
-Route::get('/extmembership/rcienrollment', 'ExtMembershipController@rcienrollment');
+Route::get('/iiru/new', 'ExtMembershipController@newIIRUBatch');
+Route::get('/iiru/details', 'ExtMembershipController@IIdetails');
+
+Route::get('/enrollment', 'ExtMembershipController@enrollment');
 Route::get('/extmembership/rcinewenroll', 'ExtMembershipController@rcinewenroll');
 Route::get('/extmembership/IInewenroll', 'ExtMembershipController@IInewenroll');
 
@@ -162,10 +180,8 @@ Route::post('/staff/new', 'UsersRolesController@newusersstaff')->name('new.staff
 Route::get('/roledetails/{id}', 'UsersRolesController@roledetails')->name('role.details');
 
 
-
-Route::get('/', 'SignatureController@upload')->name('signature');
+Route::get('/signature/create', 'SignatureController@upload')->name('signature');
 // Route::get('/basicpermissions', 'UsersRolesController@basicpermissions');
-
 
 Route::get('/admin/approvals', 'UsersRolesController@approvals');
 Route::get('/admin/taxinterest', 'UsersRolesController@taxinterest');

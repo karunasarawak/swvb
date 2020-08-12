@@ -10,13 +10,13 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section>
+<section id="form-repeater-wrapper">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="card-title text-white ml-2">Facilities Details<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles">New</button></h4>
+                        <h4 class="card-title text-white ml-2">Facilities Details</h4>
                     </div>    
                 </div>
                 <div class="card-content">
@@ -64,27 +64,70 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
-                        <div class="row pt-3 pl-2">
-                            <div class="col-sm-4">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Pricing</p>
-                            </div>
-                            
-                        </div>
-                        <div class="row pl-2">
+                        <div class="row pt-3">
                             <div class="col">
                                 <div class="row">
-                                    <p class="col">Season</p>
-                                    <p class="col font-weight-bold black">234560000</p>
+                                    <div class="col-sm-6">
+                                        <div class="form-group controls">
+                                            <label class="d-block">Seasonn</label>
+                                            <select name="cco" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                <option value="">--</option>
+                                                <option value="1">AA</option>
+                                                <option value="2">BB</option>
+                                            </select> 
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <p class="col">Start Date</p>
-                                    <p class="col font-weight-bold black">John Doe</p>
+                                    <div class="col-md-12">
+                                        <form class="form repeater-default">
+                                            <div data-repeater-list="group-a">
+                                                <div data-repeater-item>
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-md-2 col-sm-12 form-group">
+                                                            <label for="Email">Start Date </label>
+                                                            <input type="date" class="form-control" id="Email" placeholder="Enter email id">
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-12 form-group">
+                                                            <label for="Email">End Date </label>
+                                                            <input type="date" class="form-control" id="Email" placeholder="Enter email id">
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-12 form-group">
+                                                            <label for="password">Amount Payable Weekday</label>
+                                                            <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-12 form-group">
+                                                            <label for="password">Amount Payable Weekdend</label>
+                                                            <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-12 form-group">
+                                                            <label for="gender">Reservation Type</label>
+                                                            <select name="gender" id="gender" class="form-control">
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">female</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                                class="bx bx-x"></i>
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col p-0">
+                                                    <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                                        Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <p class="col">Status</p>
-                                    <p class="col font-weight-bold black">Kuching Branch</p>
-                                </div>
-                            
                             </div>
                         </div>
                     </div>
@@ -225,4 +268,5 @@
 <script src="{{asset('js/scripts/datatables/datatable.js')}}"></script>
 <script src="{{asset('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
+<script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 @endsection

@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="card">
                 <!-- must use form and route method to submit data -->
-                <form action="{{route('contacts.edit', $payload['leads']->lead_id)}}" method="POST" x-data="{ e: false, o:true}">
+                <form action="{{route('contact.edit', $payload['leads']->lead_id)}}" method="POST" x-data="{ e: false, o:true}">
                     @csrf
                     @method('patch')
                     <div class="card-header bg-swvb-cyan">
@@ -421,7 +421,7 @@
                                                     
                                                     <td>{{$contacts->mbrship_no}}</td>
                                                     <td>{{$contacts->agreement_date}}</td>
-                                                    <td>{{$contacts->package_name}}</td>
+                                                    <td>{{$contacts->package}}</td>
                                                     <td>{{$contacts->mbrship_status}}</td>
                                                 </tr>
                                             @endforeach

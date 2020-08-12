@@ -16,6 +16,8 @@ class InvoiceItem extends Model
 
     // protected $guarded = ['inv_itm_id'];
 
+    protected $table = 'invoice_items';
+
     public function invoiceItemType()
     {
         return $this->belongsTo('App\InvoiceItemType', 'inv_itm_type_id', 'inv_itm_type_id');

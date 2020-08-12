@@ -34,7 +34,6 @@ class CreateStatesTable extends Migration
                 ['state_name' => 'Sarawak', 'country_id'=>1],
                 ['state_name' => 'Selangor', 'country_id'=>1],
                 ['state_name' => 'Terengganu', 'country_id'=>1],
-
             )
         );
         

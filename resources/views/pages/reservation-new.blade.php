@@ -43,13 +43,16 @@
                     <div class="form-group">
                       <label for="mbrship_id">Membership No.</label>
                       <select class="form-control select2 required" id="mbrship_id" name="res[mbrship_id]" required>
+                      <option>--Select Membership No--</option>
+                      @include('includes.option_from_data',['array'=>$payload['membership'],'key'=>'mbrship_id','value'=>'mbrship_no'])
+
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="name1">Name </label>
-                        <input type="text" class="form-control required" id="lead_name" placeholder="John Doe" readonly="readonly">
+                        <input type="text" class="form-control required" id="lead_name" placeholder="Name" readonly="readonly">
                     </div>
                   </div>
                  
@@ -271,13 +274,9 @@
                         <div class="form-group">
                           <label for="income">Travel Agent</label>
                           <div class="position-relative has-icon-left">
-                            <select name="no_child1" class="custom-select" required>
+                            <select id="ta" class="custom-select" required>
                               <option value="0">Please select the travel agent</option>
-                              <option value="1">EVC</option>
-                              <option value="2">02</option>
-                              <option value="3">03</option>
-                              <option value="4">04</option>
-                              <option value="5">05</option>
+                              @include('includes.option_from_data',['array'=>$payload['travel_agents'],'key'=>'ta_id','value'=>'ta_name'])
                             </select>
                           </div>
                         </div>
@@ -286,13 +285,9 @@
                         <div class="form-group">
                           <label for="income">Hotel</label>
                           <div class="position-relative has-icon-left">
-                            <select name="res[accom_id]" class="custom-select" required>
+                            <select name="res[accom_id]" class="custom-select" id="accom" required>
                               <option value="0">Please select the hotel</option>
-                              <option value="1">DBR</option>
-                              <option value="2">02</option>
-                              <option value="3">03</option>
-                              <option value="4">04</option>
-                              <option value="5">05</option>
+                              @include('includes.option_from_data',['array'=>$payload['accommodations'],'key'=>'accom_id','value'=>'accom_name','class'=>'ta_id'])
                             </select>
                           </div>
                         </div>
@@ -342,44 +337,7 @@
                             </select>
                         </div>
                       </div>
-                  
-
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="salesvenue">Breakfast</label>
-                      
-
-                          <div class="custom-control-inline">
-                            <div class="row">  
-                              <div class="col radio ml-1 mr-1">
-                                <input type="radio" name="Breakfast" id="Yes3" checked="" required>
-                                <label for="Yes3">Yes</label>
-                              </div>
-                              <div class="col radio">
-                                <input type="radio" name="Breakfast" id="No3" checked="">
-                                <label for="No3">No</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      
-      
-                      <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="income">Reserve Breakfast Per Pax</label>
-                            <input type="link" class="form-control required" placeholder="Your name" id="income1" name="income1" data-toggle="modal" data-target="#breakfastexpenses" required>  
-                          </div>
-                      </div>
-                      
-                      <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="income">Breakfast Pax </label>
-                            <input type="number" class="form-control required" placeholder="No of adults" id="income1" name="income1" required>  
-                          </div>
-                      </div>
-
+                
                     
                       <div class="col-md-6">
                         <div class="form-group">
@@ -554,13 +512,150 @@
                           <input type="number" class="form-control required" placeholder="Cost" id="income1" name="income1" value="">
                       </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="salesvenue">Breakfast</label>
+                          <div class="custom-control-inline">
+                            <div class="row">  
+                              <div class="col radio ml-1 mr-1">
+                                <input type="radio" name="Breakfast" id="Yes3" checked="" required>
+                                <label for="Yes3">Yes</label>
+                              </div>
+                              <div class="col radio">
+                                <input type="radio" name="Breakfast" id="No3" checked="">
+                                <label for="No3">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+    
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="income">Reserve Breakfast Per Pax</label>
+                            <input type="link" class="form-control required" placeholder="Your name" id="income1" name="income1" data-toggle="modal" data-target="#breakfastexpenses" required>  
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="income">Breakfast Pax </label>
+                            <input type="number" class="form-control required" placeholder="No of adults" id="income1" name="income1" required>  
+                          </div>
+                      </div>
                   
                 </fieldset> 
               @else
               <!-- Step 3 -->
               <h6>
                 <i class="step-icon"></i>
-                <span>STEP 3 - ROOM DETAIL</span>
+                <span>STEP @if($rsvntype=='faciltities')3 @else 3 @endif - GUEST INFO</span>
+              </h6>
+              <fieldset>
+                <section id="form-repeater-wrapper">
+                <!-- form default repeater -->
+                  
+                <!--/ form default repeater -->
+                 <div class="row">
+                    <div class="col">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4 class="card-title">
+                            Check In Guest Info
+                          </h4>
+                        </div>
+                        <div class="card-content">
+                          <div class="card-body">
+                                <div class="form repeater-default">
+                                    <div data-repeater-list="group-a">
+                                        <div data-repeater-item>
+                                            <div class="row justify-content-between">
+                                                 <div class="col-sm-4" >
+                                                   <div class="form-group controls">
+                                                     <label>Check In Guest</label>               
+                                                     <div class="custom-control-inline">
+                                                        <div class="radio mr-1">
+                                                          <input type="radio" name="amfcc" value="1" id="ccy" @click="xcc=false, cc=true" required>
+                                                          <label for="ccy">Member</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                          <input type="radio" name="amfcc" value="0" id="ccn" @click="xcc=true, cc=false">
+                                                          <label for="ccn">Guest</label>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="col-md-4 form-group">
+                                                    <label for="malaysian">Member</label>
+                                                    <select name="malaysian" id="malaysian" class="form-control">
+                                                        <option value="1">Primary Member</option>
+                                                        <option value="0">Non Malaysian</option>
+                                                    </select>
+                                                  </div>  
+                                                  
+                                                <div class="col-md-4 form-group">
+                                                    <label for="salution_id">Salutation</label>
+                                                    <select name="salution_id" id="salution_id" class="form-control">
+                                                    @include('includes.option_from_data',['array'=>$payload['salute'],'key'=>'salutation_id','value'=>'salutation'])
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="guest_name">Name</label>
+                                                    <input name="guest_name" class="form-control" id="guest_name" placeholder="Enter name">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="contact_no">Contact No.</label>
+                                                    <input name="contact_no" class="form-control" id="guest_contact_no" placeholder="Enter contact no.">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="guest_nric">NRIC</label>
+                                                    <input name="guest_nric" class="form-control" id="guest_nric" placeholder="Enter NRIC">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="passport">Passport</label>
+                                                    <input name="passport" class="form-control" id="guest_passport" placeholder="Enter passport.">
+                                                </div>
+                                                
+                                                <div class="col-md-4 form-group">
+                                                  <label for="malaysian">Nationality</label>
+                                                  <select name="malaysian" id="malaysian" class="form-control">
+                                                      <option value="1">Malaysian</option>
+                                                      <option value="0">Non Malaysian</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                  <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                      class="bx bx-x"></i>
+                                                      Delete
+                                                  </button>
+                                                </div>
+                                          </div>
+                                          <hr>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col p-0">
+                                        <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                            Add
+                                        </button>
+                                        </div>
+                                    </div>
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                 </div>
+              </section>
+              </fieldset>
+            @endif
+              <!-- Step 4 -->
+              
+              <h6>
+                <i class="step-icon"></i>
+                <span>STEP 4 - ROOM DETAIL</span>
               </h6>
               <fieldset id="touchspin-fixer">
                 <!-- hotel -->
@@ -671,91 +766,7 @@
                     </div>
                 </div>
               </fieldset>
-            @endif
-              <!-- Step 4 -->
-              <h6>
-                <i class="step-icon"></i>
-                <span>STEP @if($rsvntype=='faciltities')3 @else 4 @endif - GUEST INFO</span>
-              </h6>
-              <fieldset>
-                <section id="form-repeater-wrapper">
-                <!-- form default repeater -->
-                  
-                <!--/ form default repeater -->
-                 <div class="row">
-                    <div class="col">
-                      <div class="card">
-                        <div class="card-header">
-                          <h4 class="card-title">
-                            Check In Guest Info
-                          </h4>
-                        </div>
-                        <div class="card-content">
-                          <div class="card-body">
-                                <div class="form repeater-default">
-                                    <div data-repeater-list="group-a">
-                                        <div data-repeater-item>
-                                            <div class="row justify-content-between">
-                                                <div class="col-md-4 form-group">
-                                                    <label for="salution_id">Salutation</label>
-                                                    <select name="salution_id" id="salution_id" class="form-control">
-                                                    @include('includes.option_from_data',['array'=>$payload['salute'],'key'=>'salutation_id','value'=>'salutation'])
-                                                  </select>
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="guest_name">Name</label>
-                                                    <input name="guest_name" class="form-control" id="guest_name" placeholder="Enter name">
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="contact_no">Contact No.</label>
-                                                    <input name="contact_no" class="form-control" id="contact_no" placeholder="Enter contact no.">
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="guest_nric">NRIC</label>
-                                                    <input name="guest_nric" class="form-control" id="guest_nric" placeholder="Enter contact no.">
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="passport">Passport</label>
-                                                    <input name="passport" class="form-control" id="passport" placeholder="Enter contact no.">
-                                                </div>
-                                                
-                                                <div class="col-md-4 form-group">
-                                                  <label for="malaysian">Nationality</label>
-                                                  <select name="malaysian" id="malaysian" class="form-control">
-                                                      <option value="FontEnd Developer">Malaysian</option>
-                                                      <option value="BackEnd Developer">Developer</option>
-                                                      <option value="Bussiness Analystic">Tester</option>
-                                                      <option value="Project Cordinator">Manager</option>
-                                                  </select>
-                                                </div>
-                                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                                  <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                                      class="bx bx-x"></i>
-                                                      Delete
-                                                  </button>
-                                                </div>
-                                          </div>
-                                          <hr>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col p-0">
-                                        <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
-                                            Add
-                                        </button>
-                                        </div>
-                                    </div>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                 </div>
-              </section>
-              
-              </fieldset>
-
-              
+  
             </form>
           </div>
         </div>
@@ -919,11 +930,40 @@
  
 
   $('#mbrship_id').change(function() {
-      alert('1');
+      $.ajax({
+        url: "{{url('/getmemberdetail')}}/"+ $('#mbrship_id').val(),
+        cache: false
+      })
+      .done(function( html ) {
+        var d=JSON.parse(html);
+        var data=d['lead'];
+        $('#lead_name').val(data['name']);
+        $('#salution_id').val(data['salutation_id']);
+        $('.mem_salutation').val(data['salutation']);
+        $('.mem_name').html(data['name']);
+        $('#guest_name').val(data['name']);
+        $('.mem_contact').html(data['mobile_no']);
+        $('#contact_no').val(data['mobile_no']);
+        $('.mem_whatsapp_no').html(data['whatsapp_no']);
+        $('#guest_nric').val(data['nric']);
+        $('#guest_nationality').val(data['nationality']);
+
+        var pack=d['package'];
+        $('.mem_package').html(pack['package_name']);
+      });
       //query lead and membership info
       //if no ii. $('.mbrship_status').hide()
       //fill allocation
       //payment
+  });
+
+  $('#ta').change(function(){
+    var val=$(this).val();
+     $('option.ta_id').hide();
+     $('option.ta_id'+val).show(); 
+     if(!$('option.ta_id:selected').hasClass('ta_id'+val)){
+        $('#accom').val('0').change();
+     }
   });
 
   $('.mbrship_status input').click(function() {
@@ -951,6 +991,7 @@
           }
         },500);
       });
+    }
 
   });
 

@@ -62,7 +62,7 @@
             "icon": "phone",
             "submenu": [{
                     "url": "extmembership",
-                    "name": "RCI/II Enrollment",
+                    "name": "All",
                     "i18n": "All",
                     "icon": "bx bx-right-arrow-alt"
                 },
@@ -72,9 +72,16 @@
                     "i18n": "Archive",
                     "icon": "bx bx-right-arrow-alt"
                 },
+
                 {
-                    "url": "extmembership/details",
-                    "name": "II Dep",
+                    "url": "extmembership",
+                    "name": "II Reserve Unit",
+                    "i18n": "Archive",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "reservations",
+                    "name": "II Deposit",
                     "i18n": "Archive",
                     "icon": "bx bx-right-arrow-alt"
                 }
@@ -91,13 +98,8 @@
                     "name": "All",
                     "i18n": "All",
                     "icon": "bx bx-right-arrow-alt"
-                },
-                {
-                    "url": "contacts/details",
-                    "name": "Archive",
-                    "i18n": "Archive",
-                    "icon": "bx bx-right-arrow-alt"
                 }
+
             ]
         },
 
@@ -159,125 +161,44 @@
             ]
         },
         {
-            "url": "#",
+            "url": "/invoice",
             "name": "Invoice",
             "i18n": "Invoice",
-            "icon": "envelope-pull",
-            "submenu": [{
-                    "url": "/invoice",
-                    "name": "All",
-                    "i18n": "All",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-                {
-                    "url": "vouchers/archive",
-                    "name": "Archive",
-                    "i18n": "Archive",
-                    "icon": "bx bx-right-arrow-alt"
-                }
-            ]
+            "icon": "envelope-pull"
         },
 
         {
-            "url": "#",
+            "url": "/receipt",
             "name": "Receipt",
             "i18n": "Receipt",
-            "icon": "envelope-pull",
-            "submenu": [{
-                    "url": "/receipt",
-                    "name": "All",
-                    "i18n": "All",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-
-                {
-                    "url": "receipt/details",
-                    "name": "Receipt Details",
-                    "i18n": "Archive",
-                    "icon": "bx bx-right-arrow-alt"
-                }
-            ]
+            "icon": "envelope-pull"
         },
-
         {
-            "url": "refund",
+            "url": "/refund",
             "name": "Refund",
             "i18n": "Refund",
-            "icon": "envelope-pull",
-            "submenu": [{
-                    "url": "/refund",
-                    "name": "All",
-                    "i18n": "All",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-
-                {
-                    "url": "/refund/details",
-                    "name": "Refund Details",
-                    "i18n": "Archive",
-                    "icon": "bx bx-right-arrow-alt"
-                }
-            ]
+            "icon": "envelope-pull"
         },
 
         {
-            "url": "creditnote",
+            "url": "/creditnote",
             "name": "Credit Note",
             "i18n": "Credit Note",
-            "icon": "credit-card-out",
-            "submenu": [{
-                    "url": "/creditnote",
-                    "name": "All",
-                    "i18n": "All",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-                {
-                    "url": "/creditnote/new",
-                    "name": "Create New",
-                    "i18n": "Create New",
-                    "icon": "bx bx-right-arrow-alt"
-                }
-            ]
+            "icon": "credit-card-out"
         },
 
         {
-            "url": "debitnote",
+            "url": "/debitnote",
             "name": "Debit Note",
             "i18n": "Debit Note",
-            "icon": "credit-card-in",
-            "submenu": [{
-                    "url": "/debitnote",
-                    "name": "All",
-                    "i18n": "All",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-                {
-                    "url": "/debitnote/new",
-                    "name": "Create New",
-                    "i18n": "Create New",
-                    "icon": "bx bx-right-arrow-alt"
-                }
-            ]
+            "icon": "credit-card-in"
         },
 
         {
-            "url": "contra",
+            "url": "/contra",
             "name": "Contra",
             "i18n": "Contra",
-            "icon": "envelope-pull",
-            "submenu": [{
-                    "url": "/contra",
-                    "name": "All",
-                    "i18n": "All",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-                {
-                    "url": "/contra/new",
-                    "name": "Create New",
-                    "i18n": "Create New",
-                    "icon": "bx bx-right-arrow-alt"
-                }
-            ]
+            "icon": "envelope-pull"
         },
 
         {
@@ -285,6 +206,109 @@
             "name": "Call Management",
             "i18n": "Event Logs",
             "icon": "calendar"
+        },
+
+        {
+            "url": "userroles",
+            "name": "Users & Roles",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "cardprintinglist/dispatch",
+            "name": "Dispatch",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+
+        {
+            "url": "admin/taxinterest",
+            "name": "Taxes & Interests",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "admin/branches",
+            "name": "Branches",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "admin/packages",
+            "name": "Packages",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+
+        {
+            "url": "admin/facilities",
+            "name": "Facilities",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "admin/accmd",
+            "name": "Accommodations",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "admin/pt-entitlement",
+            "name": "Points & Entitlements",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "admin/attachments",
+            "name": "Attachments",
+            "i18n": "Event Logs",
+            "icon": "calendar"
+        },
+
+        {
+            "url": "contra",
+            "name": "Selections",
+            "i18n": "Contra",
+            "icon": "envelope-pull",
+            "submenu": [{
+                    "url": "/contra",
+                    "name": "General",
+                    "i18n": "All",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "/admin/msd",
+                    "name": "MSD",
+                    "i18n": "Create New",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "/admin/mrd",
+                    "name": "MRD",
+                    "i18n": "Create New",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "/admin/acccc",
+                    "name": "ACC",
+                    "i18n": "Create New",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "/admin/selectionict",
+                    "name": "ICT",
+                    "i18n": "Create New",
+                    "icon": "bx bx-right-arrow-alt"
+                }
+            ]
         },
 
         {
@@ -304,7 +328,7 @@
 
         {
             "url": "ictrequest",
-            "name": "ICT Request",
+            "name": "ICT Requests",
             "i18n": "Refund",
             "icon": "envelope-pull"
         },
@@ -324,12 +348,6 @@
                 {
                     "url": "installment/calculator",
                     "name": "Installment Schedule Calculator",
-                    "i18n": "Archive",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-                {
-                    "url": "installment/amfall",
-                    "name": "AMF Schedule",
                     "i18n": "Archive",
                     "icon": "bx bx-right-arrow-alt"
                 }
@@ -359,7 +377,7 @@
         },
 
         {
-            "url": "membershipdeckdispatch/supplier",
+            "url": "cardprintinglist",
             "name": "Card Printing List",
             "i18n": "Event Logs",
             "icon": "calendar"

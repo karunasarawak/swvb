@@ -32,53 +32,147 @@
                         </form>
                     </div>
                     <div class="card-body card-dashboard">
-                        <div class="table-responsive">
-                            <table class="table leads-all">
-                                <thead class="bg-swvb-dark">
-                                    <tr>
-                                        <th class="text-white">Lead ID</th>
-                                        <th class="text-white">Name</th>
-                                        <th class="text-white">Creation Date</th>
-                                        <th class="text-white">Creation Time</th>
-                                        <th class="text-white">Telemarketer</th>
-                                        <th class="text-white">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(isset($payload))
-                                        @foreach($payload['leads'] as $lead)
-                                        <tr></tr>
-                                            <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
-                                            <td>{{$lead->salutation}} {{$lead->name}}</td>
-                                            <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('d-m-Y')}}</td>
-                                            <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('h:i A')}}</td>
-                                            <td>{{$lead->sales_name}}</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                            <a class="dropdown-item" href="{{route('tours.new', $lead->lead_id)}}" ><i class="bx bx-edit-alt mr-1"></i>Create Tour</a>
-                                                        </button>
-                                                        <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
-                                                            @csrf
-                                                            @method('patch')
-                                                            <input type="hidden" value="0" name="archive">
-                                                            <button class="bg-transparent border-0" type="submit">
-                                                                <a class="dropdown-item"><i class="bx bx-trash mr-1"></i> Archive</a>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
 
-                                </tbody>
-                            </table>
+                        <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill" role="tab"
+                                aria-controls="home-fill" aria-selected="true">
+                                Leads
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill" role="tab"
+                                aria-controls="profile-fill" aria-selected="false">
+                                Call Reminder
+                                </a>
+                            </li>
+                            
+                        </ul>
+
+                        <div class="tab-content pt-1">
+                            <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill">
+                                <div class="table-responsive">
+                                    <table class="table leads-all">
+                                        <thead class="bg-swvb-dark">
+                                            <tr>
+                                                <th class="text-white">Lead ID</th>
+                                                <th class="text-white">Name</th>
+                                                <th class="text-white">Creation Date</th>
+                                                <th class="text-white">Creation Time</th>
+                                                <th class="text-white">Telemarketer</th>
+                                                <th class="text-white">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(isset($payload))
+                                                @foreach($payload['leads'] as $lead)
+                                                <tr></tr>
+                                                    <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
+                                                    <td>{{$lead->salutation}} {{$lead->name}}</td>
+
+                                                    @if($lead->created_at != null)
+                                                        <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('d-m-Y')}}</td>
+                                                        <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('h:i A')}}</td>
+                                                    @else
+                                                        <td></td>
+                                                        <td></td>
+                                                    @endif
+
+                                                    <td>{{$lead->sales_name}}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
+                                                                    <a class="dropdown-item" href="{{route('tours.new', $lead->lead_id)}}" ><i class="bx bx-edit-alt mr-1"></i>Create Tour</a>
+                                                                </button>
+                                                                <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
+                                                                    @csrf
+                                                                    @method('patch')
+                                                                    <input type="hidden" value="0" name="archive">
+                                                                    <button class="bg-transparent border-0" type="submit">
+                                                                        <a class="dropdown-item"><i class="bx bx-trash mr-1"></i> Archive</a>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            @endif
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                            <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
+                                <div class="table-responsive">
+                                        <div class="table-responsive">
+                                            <table class="table leads-all">
+                                                <thead class="bg-swvb-dark">
+                                                    <tr>
+                                                        <th class="text-white">Lead ID</th>
+                                                        <th class="text-white">Name</th>
+                                                        <th class="text-white">Call Date</th>
+                                                        <th class="text-white">Call Time</th>
+                                                        <th class="text-white">Telemarketer</th>
+                                                        <th class="text-white">Status</th>
+                                                        <th class="text-white">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if(isset($payload))
+                                                        @foreach($payload['leads'] as $lead)
+                                                        <tr></tr>
+                                                            <td><a href="{{route('leads.details', $lead->lead_id)}}">{{$lead->lead_id}}</a></td>
+                                                            <td>{{$lead->salutation}} {{$lead->name}}</td>
+
+                                                            @if($lead->created_at != null)
+                                                                <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('d-m-Y')}}</td>
+                                                                <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lead->created_at)->format('h:i A')}}</td>
+                                                            @else
+                                                                <td></td>
+                                                                <td></td>
+                                                            @endif
+
+                                                            <td>{{$lead->sales_name}}</td>
+                                                            <td>Called</td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                                    </span>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
+                                                                            <a class="dropdown-item" href="{{route('tours.new', $lead->lead_id)}}" ><i class="bx bx-edit-alt mr-1"></i>Create Tour</a>
+                                                                        </button>
+                                                                        <form action="{{route('leads.archive', $lead->lead_id)}}" method="POST">
+                                                                            @csrf
+                                                                            @method('patch')
+                                                                            <input type="hidden" value="0" name="archive">
+                                                                            <button class="bg-transparent border-0" type="submit">
+                                                                                <a class="dropdown-item"><i class="bx bx-trash mr-1"></i> Archive</a>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    @endif
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
                 </div>
             </div>
         </div>

@@ -110,24 +110,24 @@
                         <div class="row pt-1">
                             <div class="col">
                                 <div class="form repeater-default">
-                                    <div data-repeater-list="group-a">
+                                    <div data-repeater-list="group1">
                                         <div data-repeater-item>
                                             <div class="row justify-content-between">
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="Email">Invoice Type</label>
-                                                    <input type="number" name="use_yr" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
+                                                    <input type="number" name="doc_type" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Unit Price (RM)</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="unit_price" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Rounding Adj. (RM)</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="rounding" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Total (RM)</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="total_price" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 
                                                 <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
@@ -162,12 +162,12 @@
                         <div class="row pt-1">
                             <div class="col">
                                 <div class="form repeater-default">
-                                    <div data-repeater-list="group1">
+                                    <div data-repeater-list="group2">
                                         <div data-repeater-item>
                                             <div class="row justify-content-between">
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="gender">Document Type</label>
-                                                    <select name="doctype" id="gender" class="form-control">
+                                                    <select name="doc_type" id="doc_type" class="form-control">
                                                     <option value="" disabled selected>Select a document type</option>
                                                         <option value="Male">Credit Note</option>
                                                         <option value="Female">Debit Note</option>
@@ -176,19 +176,19 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Original Invoice No.</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="doc_id" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Unit Price (RM)</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="unit_price" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Rounding Adj. (RM)</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="rounding" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Total (RM)</label>
-                                                    <input type="number" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="total_price" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 
                                                 <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
@@ -327,7 +327,7 @@
                                     <div class="controls">
                                         <label>Others or Remarks</label>
                                         <div class="position-relative">
-                                            <input type="text" class="form-control" placeholder="+60 12 345 6789" id="mobile" name="mobile_no"
+                                            <input type="text" name="aict_other_remarks" class="form-control" placeholder="+60 12 345 6789" id="mobile" name="mobile_no"
                                             data-validation-required-message="This Mobile No. field is required" required>
                                         </div>
                                     </div>

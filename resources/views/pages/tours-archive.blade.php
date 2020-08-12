@@ -63,14 +63,14 @@
                                             @endif
                                             
                                             <td>{{ $archive->venue_name }}</td>
-                                            <td>J??</td>
+                                            <td></td>
                                             <td>{{ $archive->sales_name }}</td>
 
-                                            @if($archive->tour_status == null)
+                                            @if($archive->is_archive == null)
                                                 <td>Haven Attended</td>
-                                            @elseif($archive->tour_status == 1)
+                                            @elseif($archive->is_archive == 1)
                                                 <td>Attended</td>
-                                            @elseif($archive->tour_status == 2)
+                                            @elseif($archive->is_archive == 2)
                                                 <td>Not Attended</td>
                                             @else
                                                 <td>Unknown</td>

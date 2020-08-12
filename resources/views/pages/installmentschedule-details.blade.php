@@ -15,8 +15,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <div class="row ">
-                        <h4 class="col ml-4 card-title text-white">Installment Schedule Detail</h4>
+                    <div class="row ml-1">
+                        <h4 class="col card-title text-white">Installment Schedule Detail</h4>
                         <a href="{{ url('/installment/calculator') }}" class="btn btn-outline-white round text-white">Installment Calculator</a>
                         <button class="btn btn-outline-white round text-white bx bx-printer ml-1 float-right"></button>
 
@@ -36,8 +36,20 @@
                                     <div class="col">
                                         <p class="h7 swvb-blue font-weight-bold my-auto pt-2 ml-2">Payment Details</p>
                                     </div>
-                                    
+                                    <div class="col">
+                                        
+                                        <button type="button" class="btn btn-primary m-1 ml-3 float-right" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button>
+                                        <button type="button" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
+                                            Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak >                                                                    
+                                            Save
+                                        </button>
+                                 
+                                    </div>
+
                                 </div>
+
                                 <div class="row pt-1 pl-3">
                                     <div class="col">
                                         <div class="row">
@@ -124,22 +136,10 @@
                                         
                                     </div>
                                 </div>
-                            <div class="row">
-                                <p class="col"><button type="button" class=" btn btn-primary m-1 ml-3" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button></p>
-                                <p class="col-sm-2 h7 ml-2  font-weight-bold my-auto pb-2">
-                                        <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
-                                            Save
-                                        </button>
-                                    </p>
-                                <p class="col h7  font-weight-bold my-auto pb-2">
-                                    <button class="btn btn-primary" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
-                                        Close
-                                    </button>
-                                </p>
-                            </div>
-                                <div class="card-body card-dashboard pt-3">
-                                    <div class="table-responsive">
-                                        <table class="table">
+                           
+                                
+                                    <div class="table table-responsive pt-3">
+                                        <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
                                                     <th class="text-white">No.</th>
@@ -149,8 +149,8 @@
                                                     <th class="text-white">Invoice Date</th>
                                                     <th class="text-white">Item Name</th>
                                                     <th class="text-white">Amount</th>
-                                                    <th class="text-white">Down Payment 1</th>
-                                                    <th class="text-white">Down Payment 2</th>
+                                                    <th class="text-white expanded">Down Payment 1</th>
+                                                    <th class="text-white expanded">Down Payment 2</th>
                                                     <th class="text-white">Admin Charges</th>
                                                     <th class="text-white">Total</th>
                                                     <th class="text-white">Balance</th>
@@ -267,11 +267,12 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                               
 
                                 
                             
-                            <button type="button" class="btn btn-primary m-1 ml-3" id="btn_add1" onclick="showContact2()">Reschedule</button>
+                                <button type="button" class=" btn btn-primary m-3 float-right" id="btn_add1" onclick="showContact2()">Reschedule</button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -114,6 +114,7 @@ class MembershipController extends Controller
               'sm'=>$sm,
               'venue'=>$venue
             ];
+            // dd($payload);
 
       return view('pages.membership-create',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);  
     }
@@ -129,6 +130,7 @@ class MembershipController extends Controller
     $amf_auto = null;
 
     $lead_id = $request->lead_id;
+    // dd($lead_id);
     $lead_id2 = $request->lead_id2;
     $tour_id = $request->tour_id;
 
@@ -144,6 +146,7 @@ class MembershipController extends Controller
         ]);
     $pri_addr_id1 = DB::getPDO()->lastInsertId();
 
+
     //PM - Alternative Addresses
     $addr2 = DB::table('addresses')->insert([
             'leads_id'=>$lead_id,
@@ -155,6 +158,7 @@ class MembershipController extends Controller
             'country_id'=>$request->pri_alt_country,
         ]);
     $pri_addr_id2 = DB::getPDO()->lastInsertId();
+
 
     //Coporate Info
     if($request->contract_type == 2)
@@ -248,7 +252,7 @@ class MembershipController extends Controller
 
     //Create Secondary Member
     //If Existing Lead
-    if($request->exist_lead != null)
+    if($request->exist_lead != null && $request->lead_status == 1)
     {
         $sec_lead_id = DB::table('leads')->where('lead_id', $request->exist_lead)->pluck('lead_id');
         //Update Existing Lead Basic Information
@@ -288,14 +292,19 @@ class MembershipController extends Controller
 
         $sec_lead_id = DB::getPDO()->lastInsertId();
     }
-    // dd($sec_lead_id);{{  }}
-    //Update Membership second lead id
-    // print("Second Lead ID: ".$sec_lead_id." Membership ID: ".$mbr_id);
-    // $updatelead2= DB::table('memberships')->where('mbrship_id', $mbr_id)
-    //             ->update(['lead_id2', $sec_lead_id]);
+    else
+    {
+      $sec_lead_id = null;
+    }
 
-    //Second Primary Address
-    $saddr1 = DB::table('addresses')->insert([
+    if($sec_lead_id == null)
+    {
+
+    }
+    else
+    {
+      //Second Primary Address
+      $saddr1 = DB::table('addresses')->insert([
         'leads_id'=>$sec_lead_id,
         'addr_1'=>$request->sec_addr1,
         'addr_2'=>$request->sec_addr2,
@@ -305,10 +314,10 @@ class MembershipController extends Controller
         'country_id'=>$request->sec_country,
         'is_primary'=>1]);
 
-    $sec_addr_id1 = DB::getPDO()->lastInsertId();
+      $sec_addr_id1 = DB::getPDO()->lastInsertId();
 
-    //Second Alternative Address
-    $saddr2 = DB::table('addresses')->insert([
+      //Second Alternative Address
+      $saddr2 = DB::table('addresses')->insert([
         'leads_id'=>$sec_lead_id,
         'addr_1'=>$request->sec_alt_addr1,
         'addr_2'=>$request->sec_alt_addr2,
@@ -318,7 +327,8 @@ class MembershipController extends Controller
         'country_id'=>$request->sec_alt_country,
         'is_primary'=>0]);
 
-    $second_alt_addr_id = DB::getPDO()->lastInsertId();
+      $second_alt_addr_id = DB::getPDO()->lastInsertId();
+    }
     
     //Update installment mbr_id
     $a = DB::table('installment_schedule')
@@ -326,7 +336,7 @@ class MembershipController extends Controller
         ->update(['mbrship_id'=>$mbr_id]);
         
     //dd($request->all());
-     return redirect('membership/'.$request->tour_id.'/details');
+    return redirect('membership/'.$request->tour_id.'/details');
   }
 
   public function showMembers(){
@@ -366,60 +376,60 @@ class MembershipController extends Controller
     return view('pages.membership-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
- public function withdrawMembership(){
-
-  $pageConfigs = ['pageHeader' => true];
-
-  $breadcrumbs = [
-    ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Withdraw Membership"]
-  ];
-
-  return view('pages.membership-withdraw',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
- public function transfer(){
-
-  $pageConfigs = ['pageHeader' => true];
-
-  $breadcrumbs = [
-    ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Transfer"]
-  ];
-
-  return view('pages.membership-transfer',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  public function reinstate(){
+  public function withdrawMembership(){
 
     $pageConfigs = ['pageHeader' => true];
-  
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Withdraw Membership"]
+    ];
+
+    return view('pages.membership-withdraw',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+
+  public function transfer(){
+
+    $pageConfigs = ['pageHeader' => true];
+
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Transfer"]
     ];
-  
-    return view('pages.membership-reinstate',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+
+    return view('pages.membership-transfer',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 
-public function updowngrade(){
+    public function reinstate(){
 
-  $pageConfigs = ['pageHeader' => true];
+      $pageConfigs = ['pageHeader' => true];
+    
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Transfer"]
+      ];
+    
+      return view('pages.membership-reinstate',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+      }
 
-  $breadcrumbs = [
-    ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
-  ];
+  public function updowngrade(){
 
-  return view('pages.membership-updowngrade',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-}
+    $pageConfigs = ['pageHeader' => true];
 
-public function repurchase(){
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
+    ];
 
-  $pageConfigs = ['pageHeader' => true];
+    return view('pages.membership-updowngrade',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
 
-  $breadcrumbs = [
-    ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
-  ];
+  public function repurchase(){
 
-  return view('pages.membership-repurchase',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-}
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
+    ];
+
+    return view('pages.membership-repurchase',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
 
   public function editMembers(Request $request, $id){
 
@@ -524,7 +534,18 @@ public function repurchase(){
     return view('pages.entitlementmanagement-advanced',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
-    public function create2ndMembership(){
+  public function offset(){
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
+    ];
+
+    return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+
+  public function create2ndMembership(){
 
       $pageConfigs = ['pageHeader' => true];
       
@@ -537,4 +558,6 @@ public function repurchase(){
       return view('pages.membership-newSecMbr',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
 
     }
+
+
 }

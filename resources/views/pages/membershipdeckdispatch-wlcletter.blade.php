@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Receipt')
+@section('title','Dispatch')
 
 {{-- page style --}}
 @section('page-styles')
@@ -14,11 +14,11 @@
   <div class="card">
     <div class="card-header bg-swvb-cyan">
       <div class="card-title">
-            <div class="row">
-                <h4 class="text white col">Membership Deck Dispatch</h4>
-                <a href="" class="btn btn-outline-white round mr-1 text-white">Upload CSV</a>
-                <a href="" class="btn btn-outline-white round text-white">Download</a>
-            </div>
+        <div class="row">
+            <h4 class="text white col">Membership Deck Dispatch</h4>
+            <a href="" class="btn btn-outline-white round mr-1 text-white">Upload CSV</a>
+            <a href="" class="btn btn-outline-white round text-white">Download</a>
+        </div>
       </div>
     </div>
     <div class="card-content">

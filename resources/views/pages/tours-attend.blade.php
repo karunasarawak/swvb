@@ -663,7 +663,7 @@
                   
                 </div>
               </fieldset>
-              <button type="submit" class="btn btn-primary m-1" id="btn_add1" onclick="showContact2()">Save</button>
+              <button type="submit" class="btn btn-primary m-1" id="btn_add1" >Save</button>
             </form>
           </div>
         </div>

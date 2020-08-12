@@ -21,75 +21,167 @@
                             <!-- <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a>  -->
                         </div>
                     </div>
-                    
-                    <div class="card-body card-dashboard">
-                        <div class="table-responsive">
-                            <table class="table" id="tbl-acc">
-                                <thead class="bg-swvb-dark">
-                                    <tr>
-                                        <th class="text-white">Invoice No.</th>
-                                        <th class="text-white">Membership No.</th>
-                                        <th class="text-white">Name</th>
-                                        <th class="text-white">Item</th>
-                                        <th class="text-white">Amount</th>
-                                        <th class="text-white">Issue Date</th>
-                                        <th class="text-white">Status</th>
-                                        <th class="text-white">Creator</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(isset($payload))
-                                        @foreach ($payload['invoices'] as $invoice)
-                                        <tr class="row-link" onclick="location.href='{{route('invoice.details', $invoice->inv_id)}}'">
-                                            <td>{{$invoice->inv_no}}</td>
-                                            <td>{{$invoice->membership->mbrship_no}}</td>
-                                            <td>{{$invoice->membership->lead->name}}</td>
-                                            <td>
-                                            <?php $i = 1; $len = count($invoice->invoiceItem); ?>
-                                            @foreach ($invoice->invoiceItem as $invoiceItem)
-                                                {{$invoiceItem->item_name}}<?php if($i < $len){echo ', ';} $i++;?>
-                                            @endforeach
-                                            </td>
-                                            <?php
-                                                if($invoice->inv_disc > 0){
-                                                    if($invoice->inv_disc_method == "RM"){
-                                                        $amount = $invoice->total - $invoice->inv_disc;
-                                                    } else if ($invoice->inv_disc_method == "%"){
-                                                        $amountPercentage = 100 - $invoice->inv_disc;
-                                                        $amount = $invoice->total * ($amountPercentage / 100);
-                                                    }
-                                                } else {
-                                                    $amount = $invoice->total;
-                                                }
-                                            ?>
-                                            <td>RM {{number_format($amount, 2)}}</td>
-                                            <td></td>
-                                            <td>
-                                                <?php 
-                                                if($invoice->status == "1") {
-                                                    echo 'Pending';
-                                                } ?>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
 
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Invoice No.</th>
-                                        <th>Membership No.</th>
-                                        <th>Name</th>
-                                        <th>Item</th>
-                                        <th>Amount</th>
-                                        <th>Issue Date</th>
-                                        <th>Status</th>
-                                        <th>Creator</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                    <div class="card-body card-dashboard">
+                        <ul class="nav nav-tabs  mt-3" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="all-tab-fill" data-toggle="tab" href="#all-fill" role="tab"
+                                aria-controls="all-fill" aria-selected="true">
+                                All
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="approval-tab-fill" data-toggle="tab" href="#tobeissued-fill" role="tab"
+                                aria-controls="tobeissued-fill" aria-selected="false">
+                                To be issued
+                                </a>
+                            </li>
+                        
+                        </ul>
+                        <div class="tab-content pt-1">
+                            <div class="tab-pane active" id="all-fill" role="tabpanel" aria-labelledby="all-tab-fill">
+                             
+                                <div class="table-responsive">
+                                    <table class="table" id="tbl-acc">
+                                        <thead class="bg-swvb-dark">
+                                            <tr>
+                                                <th class="text-white">Invoice No.</th>
+                                                <th class="text-white">Membership No.</th>
+                                                <th class="text-white">Name</th>
+                                                <th class="text-white">Item</th>
+                                                <th class="text-white">Amount</th>
+                                                <th class="text-white">Issue Date</th>
+                                                <th class="text-white">Status</th>
+                                                <th class="text-white">Creator</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(isset($payload))
+                                                @foreach ($payload['invoices'] as $invoice)
+                                                <tr class="row-link" onclick="location.href='{{route('invoice.details', $invoice->inv_id)}}'">
+                                                    <td>{{$invoice->inv_no}}</td>
+                                                    <td>{{$invoice->membership->mbrship_no}}</td>
+                                                    <td>{{$invoice->membership->lead->name}}</td>
+                                                    <td>
+                                                    <?php $i = 1; $len = count($invoice->invoiceItem); ?>
+                                                    @foreach ($invoice->invoiceItem as $invoiceItem)
+                                                        {{$invoiceItem->item_name}}<?php if($i < $len){echo ', ';} $i++;?>
+                                                    @endforeach
+                                                    </td>
+                                                    <?php
+                                                        if($invoice->inv_disc > 0){
+                                                            if($invoice->inv_disc_method == "RM"){
+                                                                $amount = $invoice->total - $invoice->inv_disc;
+                                                            } else if ($invoice->inv_disc_method == "%"){
+                                                                $amountPercentage = 100 - $invoice->inv_disc;
+                                                                $amount = $invoice->total * ($amountPercentage / 100);
+                                                            }
+                                                        } else {
+                                                            $amount = $invoice->total;
+                                                        }
+                                                    ?>
+                                                    <td>RM {{number_format($amount, 2)}}</td>
+                                                    <td></td>
+                                                    <td>
+                                                        <?php 
+                                                        if($invoice->status == "1") {
+                                                            echo 'Pending';
+                                                        } ?>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                @endforeach
+                                            @endif
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Invoice No.</th>
+                                                <th>Membership No.</th>
+                                                <th>Name</th>
+                                                <th>Item</th>
+                                                <th>Amount</th>
+                                                <th>Issue Date</th>
+                                                <th>Status</th>
+                                                <th>Creator</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tobeissued-fill" role="tabpanel" aria-labelledby="all-tab-fill">
+                                <div class="table-responsive">
+                                    <table class="table" id="tbl-acc-1">
+                                        <thead class="bg-swvb-dark">
+                                            <tr>
+                                                <th class="text-white">Invoice No.</th>
+                                                <th class="text-white">Membership No.</th>
+                                                <th class="text-white">Name</th>
+                                                <th class="text-white">Item</th>
+                                                <th class="text-white">Amount</th>
+                                                <th class="text-white">Issue Date</th>
+                                                <th class="text-white">Status</th>
+                                                <th class="text-white">Creator</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(isset($payload))
+                                                @foreach ($payload['invoices'] as $invoice)
+                                                <tr class="row-link" onclick="location.href='{{route('invoice.details', $invoice->inv_id)}}'">
+                                                    <td>{{$invoice->inv_no}}</td>
+                                                    <td>{{$invoice->membership->mbrship_no}}</td>
+                                                    <td>{{$invoice->membership->lead->name}}</td>
+                                                    <td>
+                                                    <?php $i = 1; $len = count($invoice->invoiceItem); ?>
+                                                    @foreach ($invoice->invoiceItem as $invoiceItem)
+                                                        {{$invoiceItem->item_name}}<?php if($i < $len){echo ', ';} $i++;?>
+                                                    @endforeach
+                                                    </td>
+                                                    <?php
+                                                        if($invoice->inv_disc > 0){
+                                                            if($invoice->inv_disc_method == "RM"){
+                                                                $amount = $invoice->total - $invoice->inv_disc;
+                                                            } else if ($invoice->inv_disc_method == "%"){
+                                                                $amountPercentage = 100 - $invoice->inv_disc;
+                                                                $amount = $invoice->total * ($amountPercentage / 100);
+                                                            }
+                                                        } else {
+                                                            $amount = $invoice->total;
+                                                        }
+                                                    ?>
+                                                    <td>RM {{number_format($amount, 2)}}</td>
+                                                    <td></td>
+                                                    <td>
+                                                        <?php 
+                                                        if($invoice->status == "1") {
+                                                            echo 'Pending';
+                                                        } ?>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                @endforeach
+                                            @endif
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Invoice No.</th>
+                                                <th>Membership No.</th>
+                                                <th>Name</th>
+                                                <th>Item</th>
+                                                <th>Amount</th>
+                                                <th>Issue Date</th>
+                                                <th>Status</th>
+                                                <th>Creator</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>

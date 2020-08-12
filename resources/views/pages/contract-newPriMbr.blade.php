@@ -10,25 +10,25 @@
     <div class="col-sm-4">
       <div class="form-group controls">
         <label>Lead ID</label>
-        <input type="text" name="lead_id" class="form-control" placeholder="Lead ID" value="{{$payload['lead']->lead_id}}" required>
+        <input type="text" name="lead_id" id="lead_id" class="form-control" placeholder="Lead ID" value="{{$payload['lead']->lead_id}}" required>
       </div>
     </div>
 
     <div class="col-sm-4">
       <div class="form-group controls">
-        <label>Lead ID 2</label>
+        {{-- <label>Lead ID 2</label> --}}
         @if($payload['lead2'] != null)
-          <input type="text" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="{{$payload['lead2']->lead_id}}" required>
+          <input type="hidden" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="{{$payload['lead2']->lead_id}}" required>
         @else
-          <input type="text" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="" required>
+          <input type="hidden" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="" required>
         @endif
       </div>
     </div>
 
     <div class="col-sm-4">
       <div class="form-group controls">
-        <label>Tour ID</label>
-        <input type="text" name="tour_id" class="form-control" placeholder="Tour ID" value="{{$payload['tour']->tour_id}}" required>
+        {{-- <label>Tour ID</label> --}}
+        <input type="hidden" name="tour_id" class="form-control" placeholder="Tour ID" value="{{$payload['tour']->tour_id}}" required>
       </div>
     </div>
     
@@ -254,9 +254,9 @@
       <h6 class="py-50">Primary Address</h6>
     </div>
 
-    <div class="col-6">
+    <!-- <div class="col-6">
       <h6 class="py-50">Alternate Address</h6>
-    </div>
+    </div> -->
 
   </div>
 
@@ -269,42 +269,11 @@
         </div>
       </div>
 
-      <div class="col-sm-6">
-        <div class="form-group controls">
-          <label>Address Line 1</label>
-          <input type="text" name="pri_alt_addr1" id="pri_alt_addr1" class="form-control" placeholder="--" required>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-sm-6">
-        <div class="form-group controls">
-          <label>Address Line 2</label>
-          <input type="text" id="pri_addr2" name="pri_addr2" class="form-control" placeholder="--" required>
-        </div>
-      </div>
-
+      
       <div class="col-sm-6">
         <div class="form-group controls">
           <label>Address Line 2</label>
           <input type="text" id="pri_alt_addr2" name="pri_alt_addr2" class="form-control" placeholder="--" required>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-sm-3">
-        <div class="form-group controls">
-          <label>Postcode</label>
-          <select id="pri_code" name="pri_code" class="form-control" required>
-            <option value=""disabled selected>Select a postcode</option>
-            <option value="1">98000</option>
-            <option value="2">Sibu</option>
-            <option value="3">Miri</option>
-          </select>
         </div>
       </div>
 
@@ -332,32 +301,6 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
-        <div class="form-group controls">
-            <label>City</label>
-            <select id="pri_alt_city" name="pri_alt_city" class="form-control" required>
-            <option  value=""disabled selected>Select a city</option>
-            @foreach($payload['city'] as $city)
-              <option value="{{$city->city_id}}">{{$city->city_name}}</option>
-            @endforeach
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group controls">
-          <label>State</label>
-          <select name="pri_state" id="pri_state" class="form-control">
-            <option value=""disabled selected>Select a state</option>
-            @foreach($payload['state'] as $state)
-              <option value="{{$state->id}}">{{$state->state_name}}</option>
-            @endforeach
-          </select>
-        </div>
-      </div>
-
       <div class="col-sm-6">
         <div class="form-group controls">
           <label>State</label>
@@ -369,20 +312,6 @@
           </select>
         </div>
       </div>
-    </div>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group controls">
-            <label>Country</label>
-            <select name="pri_country" id="pri_country" class="form-control" required>
-            <option value=""disabled selected>Select a country</option>
-              @foreach($payload['country'] as $country)
-                <option value="{{$country->id}}">{{$country->short_code}}-{{$country->country_name}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
 
         <div class="col-sm-6">
           <div class="form-group controls">
@@ -396,7 +325,82 @@
           </div>
         </div>
 
+      
+    </div>
+
+    <div class="row">
+
+      <div class="col-6">
+        <h6 class="py-50">Alternate Address</h6>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group controls">
+          <label>Address Line 1</label>
+          <input type="text" name="pri_alt_addr1" id="pri_alt_addr1" class="form-control" placeholder="--" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group controls">
+          <label>Address Line 2</label>
+          <input type="text" id="pri_addr2" name="pri_addr2" class="form-control" placeholder="--" required>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group controls">
+            <label>City</label>
+          <select id="pri_alt_city" name="pri_alt_city" class="form-control" required>
+            <option  value=""disabled selected>Select a city</option>
+            @foreach($payload['city'] as $city)
+              <option value="{{$city->city_id}}">{{$city->city_name}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group controls">
+          <label>Postcode</label>
+          <select id="pri_code" name="pri_code" class="form-control" required>
+            <option value=""disabled selected>Select a postcode</option>
+            <option value="1">98000</option>
+            <option value="2">Sibu</option>
+            <option value="3">Miri</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group controls">
+          <label>State</label>
+          <select name="pri_state" id="pri_state" class="form-control">
+            <option value=""disabled selected>Select a state</option>
+            @foreach($payload['state'] as $state)
+              <option value="{{$state->id}}">{{$state->state_name}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+        <div class="col-sm-6">
+          <div class="form-group controls">
+            <label>Country</label>
+            <select name="pri_country" id="pri_country" class="form-control" required>
+            <option value=""disabled selected>Select a country</option>
+              @foreach($payload['country'] as $country)
+                <option value="{{$country->id}}">{{$country->short_code}}-{{$country->country_name}}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+
+    </div>
+
+   
     
   <!-- alt address end -->
   <!-- remarks start -->
@@ -421,8 +425,12 @@
   
   <!-- remarks end -->
   <hr class="mx-n2">
-  
+  <button type="button" class="btn btn-primary position-absolute" id="btn_add1" onclick="showContact3()">Add Secondary Member</button>
+  <button type="button" class="btn btn-danger form-2 position-absolute" id="btn_delete1" onclick="hideContact3()">Delete Secondary Member</button>
+
+  @include('pages.contract-newSecMbr') 
 </fieldset>
+
 {{-- @stop --}}
 
 

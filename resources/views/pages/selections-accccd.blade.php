@@ -24,7 +24,7 @@
                     <div class="card-body card-dashboard">
                         <div class="row pt-1 pl-2" >
                             <div class="col">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Terminal<button class="btn btn-primary round mr-1 ml-5 text-white" data-toggle="modal" data-target="#addterminal">New</button></p>
+                                <p class="h7 swvb-blue  font-weight-bold">Terminal<button class="btn btn-primary round mr-1 ml-5 text-white" data-toggle="modal" data-target="#newterminal">New</button></p>
                             </div>
                             
                         </div>
@@ -102,7 +102,7 @@
                     <div class="card-body card-dashboard">
                         <div class="row pt-1 pl-2" >
                             <div class="col">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Methods<button class="btn btn-primary round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addpaymentmethods">New</button></p>
+                                <p class="h7 swvb-blue  font-weight-bold  ">Payment Methods</p>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -184,108 +184,9 @@
     
 </section>
 
-<!--update status Modal for status: Suspend-->
-<div class="modal fade text-left" id="addpaymentmethods" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-swvb-blue">
-                <h4 class="modal-title text-white" id="myModalLabel33">New Payment Method</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="bx bx-x"></i>
-                </button>
-            </div>
-            <form action="#">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div class="controls">
-                            <label >Payment Method</label>
-                            <input  type="text" name="company_name" class="form-control" placeholder="--" data-validation-required-message="Please write the company name"  required>
-                        </div>
-                    </div>
-                                
-                    <label>Clearance Day</label>
-                    <div class="form-group">
-                        <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
-                            <option value="" disabled>Select Clearance Day</option>
-                            <option value="d1">Cash (Today)</option>
-                            <option value="sibu">Credit Card (Next Working Day)</option>
-                            <option value="miri">Visa Card (Next Working Day)</option>
-                            <option value="miri">Master Card (Next Working Day)</option>
-                            <option value="miri">AMEX (Two Working Day)</option>
-                           
-                        </select>
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Save</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
-<!--update status Modal for status: Suspend-->
-<div class="modal fade text-left" id="addterminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-swvb-blue">
-                <h4 class="modal-title text-white" id="myModalLabel33">New Terminal</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="bx bx-x"></i>
-                </button>
-            </div>
-            <form action="#">
-                <div class="modal-body">
 
-                    <div class="form-group">
-                        <div class="controls">
-                            <label > bank</label>
-                            <input  type="text" name="company_name" class="form-control" placeholder="Bank" data-validation-required-message="Please write the company name"  required>
-                        </div>
-                    </div>
-                                
-                    <label>Clearance Day</label>
-                    <div class="form-group">
-                        <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
-                            <option value="" disabled>Select Clearance Day</option>
-                            <option value="d1">Admin</option>
-                            <option value="sibu">MSE</option>
-                            <option value="miri">MSO</option>
-                            <option value="miri">MRM</option>
-                            <option value="miri">MRE</option>
-                            <option value="miri">MRO</option>
-                            <option value="miri">FM</option>
-                            <option value="miri">CCE</option>
-                            <option value="miri">CCO</option>
-                        </select>
-                    </div>
-                   
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Save</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade text-left" id="newdnitem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+<div class="modal fade text-left" id="newterminal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-blue">
@@ -296,9 +197,19 @@
             </div>  
             <form action="#">
                 <div class="modal-body">
-                    
-                                
-                    <label>Status</label>
+                    <div class="form-group">
+                        <div class="controls">
+                            <label > Bank</label>
+                            <input  type="text" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <label > Status</label>
+                            <input  type="text" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
+                        </div>
+                    </div>
+                    <label>Clearance Day</label>
                     <div class="form-group">
                         <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
                             <option value="" disabled>Add Role</option>
@@ -315,7 +226,7 @@
                     </div>
                     <div class="form-group">
                         <div class="controls">
-                            <label > Item</label>
+                            <label > Bank Charges</label>
                             <input  type="number" name="company_name" class="form-control" placeholder="@saraworldwide.com" data-validation-required-message="Please write the company name"  required>
                         </div>
                     </div>

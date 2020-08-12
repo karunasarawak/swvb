@@ -87,7 +87,7 @@
 
 
                                 
-                                <div class="row pt-1 pl-2">
+                                <div class="row pt-3 pl-2">
                                     <div class="col-sm-4">
                                         <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Booking Details</p>
                                     </div>
@@ -122,8 +122,41 @@
                                             <p class="col font-weight-bold black">01/2024</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Provided Breakfast</p>
+                                            <p class="col">Provided Breakfast (RM)</p>
                                             <p class="col font-weight-bold black">100</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form repeater-default">
+                                                <div data-repeater-list="group-a">
+                                                    <div data-repeater-item>
+                                                        <div class="row justify-content-between">
+                                                            <div class="col-md-4  form-group">
+                                                                <label for="Email">Number of Pax </label>
+                                                                <input type="number" class="form-control" id="Email" placeholder="Enter number of pax">
+                                                            </div>
+                                                           
+                                                            <div class="col-md-6  form-group">
+                                                                <label for="password">Breakfast Price Per Pax (RM)</label>
+                                                                <input type="password" class="form-control" id="password" placeholder="Enter price per pax">
+                                                            </div>
+                                                            
+                                                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                                <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                                    class="bx bx-x"></i>
+                                                                    Delete
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col p-0">
+                                                        <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                                            Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +240,7 @@
                             
                             <div class="card">
                                 <div class="card-header bg-swvb-cyan">
-                                    <h4 class="card-title text-white">Unit Types<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addunittype"><i class="bx bx-plus"></i></button></h4>
+                                    <h4 class="card-title text-white">Unit Types<a href="{{ url('/admin/unitdetails') }}" class="btn btn-outline-white round mr-1 ml-1 text-white"><i class="bx bx-plus"></i></a></h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">

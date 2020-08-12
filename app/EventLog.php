@@ -29,13 +29,13 @@ class EventLog extends Model
         return $this->hasMany('App\CallLog', 'el_id', 'el_id');
     }
 
-    public function eventLogsCategory()
+    public function eventLogCategory()
     {
-        return $this->belongsTo('App\EventLogsCategory', 'el_cat_id', 'el_cat_id');
+        return $this->belongsTo('App\EventLogCategory', 'el_cat_id', 'el_cat_id');
     }
 
-    public function eventLogsType()
+    public function eventLogType()
     {
-        return $this->belongsTo('App\EventLogsType', 'el_type_id', 'el_type_id');
+        return $this->belongsTo('App\EventLogType', 'el_type_id', 'el_type_id');
     }
 }

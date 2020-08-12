@@ -14,12 +14,13 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-content">
-                    <div class="px-2 mt-1">
-                         <a href="{{asset('creditnote/new')}}" class="btn btn-outline-primary round mr-1 mb-1">New </a>
+                <div class="card-header bg-swvb-cyan">
+                        
+                        <a href="{{asset('creditnote/new')}}" class="btn btn-outline-white round mr-1 mb-1">New </a>
                         <!-- <a href="" class="btn btn-outline-primary round mr-1 mb-1">Upload CSV</a>  -->
-                    </div>
                     
+                </div>
+                <div class="card-content">  
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
                             <table class="table" id="tbl-acc">

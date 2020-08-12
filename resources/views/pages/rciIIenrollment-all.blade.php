@@ -16,14 +16,12 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="col-md-10 card-title text-white">RCI Enrollment</h4>
-                        <a href="{{ url('/communicationlog/new') }}" class="col btn btn-outline-white round text-white">Upload CSV</a>                        
+                        <h4 class="col card-title text-white">RCI Enrollment<a href="{{ url('/communicationlog/new') }}" class="btn btn-outline-white round text-white float-right">Upload CSV</a></h4>                 
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
-                        
-
+        
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -43,9 +41,7 @@
                                 aria-controls="rmh-fill" aria-selected="false">
                                 BSM
                                 </a>
-                            </li>
-                        
-                            
+                            </li>   
                         
                         </ul>
 

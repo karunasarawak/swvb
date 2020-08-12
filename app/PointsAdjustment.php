@@ -17,4 +17,7 @@ class PointsAdjustment extends Model
         'expiry_date',
         'req_type',
     ];
+
+    
+  
 }

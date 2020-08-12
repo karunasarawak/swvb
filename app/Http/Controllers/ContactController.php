@@ -49,70 +49,69 @@ class ContactController extends Controller
 
     // $salutation = Salutation::where('lead_id', $id)->get();
 
-    // $leads = DB::table('leads')
-    // ->where('lead_id', $id)
-
-    // ->join('salutations', 'salutations.salutation_id','leads.salutation_id')
-    // ->join('maritial_status', 'maritial_status.maritial_id','leads.marital_status')
-    // ->join('race', 'race.race_id','leads.ethnicity_id')
-    // ->join('religions', 'religions.religion_id','leads.religion_id')
-    // ->join('nationalities', 'nationalities.nation_id','leads.nationality')
-    // ->join('memberships', 'memberships.lead_id1','leads.lead_id')
-    
-    // // ->join('addresses', 'addresses.leads_id','leads.lead_id')
-    // ->join('gender', 'gender.gender_id','leads.gender')
-    // ->join('packages', 'packages.package_id','memberships.package_id')
-    // ->select('leads.lead_id','salutations.salutation','leads.name','gender.gender_name','leads.nric',
-    // 'leads.dob','maritial_status.maritial_name','race.race_name','religions.religion',
-    // 'nationalities.nation','leads.occupation','leads.company','leads.home_no',
-    // 'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email','salutations.salutation_id', 
-    // 'leads.prefer_lang')
-    // ->first();  
+    $leads = DB::table('leads')
+    ->join('salutations', 'salutations.salutation_id','leads.salutation_id')
+    ->join('maritial_status', 'maritial_status.maritial_id','leads.marital_status')
+    ->join('race', 'race.race_id','leads.ethnicity_id')
+    ->join('religions', 'religions.religion_id','leads.religion_id')
+    ->join('nationalities', 'nationalities.nation_id','leads.nationality')
+    ->join('memberships', 'memberships.lead_id1','leads.lead_id')
+    ->join('gender', 'gender.gender_id','leads.gender')
+    ->join('packages', 'packages.package_id','memberships.package_id')
+    ->where('leads.lead_id', $id)
+    ->select('leads.lead_id','salutations.salutation','leads.name','gender.gender_name','leads.nric',
+    'leads.dob','maritial_status.maritial_name','race.race_name','religions.religion',
+    'nationalities.nation','leads.occupation','leads.company','leads.home_no',
+    'leads.office_no','leads.whatsapp_no','leads.primary_email','leads.alt_email','salutations.salutation_id', 
+    'leads.prefer_lang')
+    ->first();  
     // dd($leads);
     // print_r($leads);
 
-    // // $leads = Leads::where('lead_id', $id)->get();
+    // $leads = Leads::where('lead_id', $id)->get();
     
-    // $memberships = DB::table('memberships')
-    // ->where('lead_id1', $id)
-    // ->join('packages','packages.package_id','memberships.package_id')
-    // ->select('memberships.mbrship_no','memberships.agreement_date','packages.package_name','memberships.mbrship_status')
-    // ->get();
-    // // $membership = Membership::where('lead_id', $id)->get();
+    $memberships = DB::table('memberships')
+    ->where('lead_id1', $id)
+    ->join('packages','packages.package_id','memberships.package_id')
+    ->select('memberships.mbrship_no','memberships.agreement_date','packages.package','memberships.mbrship_status')
+    ->get();
+    // $membership = Membership::where('lead_id', $id)->get();
     
-    //         // (target table, tt.link column, original table.link column)
-    // // var_dump(property_exists('lead_id'));
+            // (target table, tt.link column, original table.link column)
+    // var_dump(property_exists('lead_id'));
            
-    // $primaryAddress = DB::table('addresses')
-    // // ->where('leads_id', $id)
-    //   ->join('cities', 'cities.city_id','addresses.city_id')
-    //   ->join('countries', 'countries.id','addresses.country_id')
-    //   ->join('states', 'states.id','addresses.state_id')
-    //   ->where([
-    //     ['leads_id', '=', $id], ['is_primary', '=', '1']
-    //     ])
-    //   // ->where('is_primary', 1)
-    //   ->select('cities.city_name', 'addresses.city_id', 'addresses.country_id','countries.country_name','addresses.addr_1', 
-    //   'addresses.addr_2', 'addresses.postcode', 'addresses.state_id', 'states.state_name')
-    //   ->get();
+    $primaryAddress = DB::table('addresses')
+    // ->where('leads_id', $id)
+      ->join('leads','leads.lead_id','addresses.leads_id')
+      ->join('cities', 'cities.city_id','addresses.city_id')
+      ->join('countries', 'countries.id','addresses.country_id')
+      ->join('states', 'states.id','addresses.state_id')
+      ->where([
+        ['leads_id', '=', $id], ['is_primary', '=', '1']
+        ])
+      // ->where('is_primary', 1)
+      ->select('cities.city_name', 'addresses.city_id', 'addresses.country_id','countries.country_name','addresses.addr_1', 
+      'addresses.addr_2', 'addresses.postcode', 'addresses.state_id', 'states.state_name')
+      ->get();
       
-    //   // $primaryAddress = Address::where([ 
-    //   //   ['leads_id', '=' ,$id], ['is_primary', '=', 1]
-    //   //   ])->get();
+      // $primaryAddress = Address::where([ 
+      //   ['leads_id', '=' ,$id], ['is_primary', '=', 1]
+      //   ])->get();
 
-    //   // dd($leads);
+      
         
-    // $altAddress = DB::table('addresses')
-    //   ->join('cities', 'cities.city_id','addresses.city_id')
-    //   ->join('countries', 'countries.id','addresses.country_id')
-    //   ->join('states', 'states.id','addresses.state_id')
-    //   ->where([['leads_id', '=', $id], ['is_primary', '=', '0']])
-    //   ->select('cities.city_name', 'addresses.city_id','addresses.country_id','countries.country_name','addresses.addr_1', 
-    //   'addresses.addr_2', 'addresses.postcode', 'addresses.state_id','states.state_name')
-    //   ->get();
+    $altAddress = DB::table('addresses')
+      ->join('leads','leads.lead_id','addresses.leads_id')
+      ->join('cities', 'cities.city_id','addresses.city_id')
+      ->join('countries', 'countries.id','addresses.country_id')
+      ->join('states', 'states.id','addresses.state_id')
+      ->where([['leads_id', '=', $id], ['is_primary', '=', '0']])
+      ->select('cities.city_name', 'addresses.city_id','addresses.country_id','countries.country_name','addresses.addr_1', 
+      'addresses.addr_2', 'addresses.postcode', 'addresses.state_id','states.state_name')
+      ->get();
 
 
-
+      // dd($leads);
 
 
 

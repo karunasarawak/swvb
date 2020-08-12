@@ -10,7 +10,7 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section>
+<section class="simple-validation">
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -18,22 +18,18 @@
                     <h4 class="card-title text-white">All Membership</h4>
                 </div>
 
-                    <div class="col-md-2">
-                        <div class="form-group pt-1">
-                            <label >Filter</label>
-                            <select name="membershipfilter" class="select2 form-control" required>
-                            <option value="membershipfilter1">Pending</option>
-                            <option value="membershipfilter2">Active</option>
-                            <option value="membershipfilter3">Withdrawal</option>
-                            <option value="membershipfilter4">Suspended</option>
-                            </select>
-                        </div>
+                <div class="col-md-2 ml-1">
+                    <div class="form-group pt-1">
+                        <label >Filter</label>
+                        <select name="membershipfilter" class="select2 form-control" required>
+                        <option value="membershipfilter1">Pending</option>
+                        <option value="membershipfilter2">Active</option>
+                        <option value="membershipfilter3">Withdrawal</option>
+                        <option value="membershipfilter4">Suspended</option>
+                        </select>
                     </div>
-                    <div class="col-md-12">
-                        <a href="{{ url('/membership/{lead_id}/{tour_id}/new') }}" type="button" class="btn btn-primary ">Create membership</a>
-                    </div>
+                </div>
 
-                <br>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table table-responsive">
@@ -51,36 +47,35 @@
                                         <th class="text-white">Package Type</th>
                                         <th class="text-white">Package Price</th>
                                         <th class="text-white">Status</th>
-                                        <th class="text-white"> </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <!-- @foreach ($membership as $row)
                                     <tr>
-                                        <td><a href="/contacts/details">{{$row->mbrship_id}}</a></td>
-                                        <td>{{$row->name}}</td>
-                                        <td>{{$row->NRIC}}</td>
-                                        <td>{{$row->mobile_no}}</td>
-                                        <td>{{$row->primary_email}}</td>
-                                        <td>{{$row->application_date}}</td>
-                                        <td>{{$row->agreement_date}}</td>
-                                        <td>{{$row->mbrship_exp}}</td>
-                                        <td>{{$row->package_id}}</td>
-                                        <td>RM10,000</td>
-                                        <td>{{$row->mbrship_exp}}g</td>
-
-                                @endforeach -->
-
-                                        <!-- <td>
-                                            <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                <i class="bx bx-archive-in bx-md m-0 danger"></i>
-                                            </button>
-                                        </td> -->
-
-                                    <!-- </tr> -->
-
-
+                                        <td><a href="{{ route('members.redirect') }}">100001</a></td>
+                                        <td>John Doe</td>
+                                        <td>880914-13-4565</td>
+                                        <td>0124536869</td>
+                                        <td>johndoe@gmail.com</td>
+                                        <td>15-09-2020</td>
+                                        <td>20-09-2020</td>
+                                        <td>15-09-2050</td>
+                                        <td>Pearl</td>
+                                        <td>RM 2000</td>
+                                        <td>Pending</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{ route('members.redirect') }}">100005</a></td>
+                                        <td>Sharon Wang</td>
+                                        <td>950124-11-8542</td>
+                                        <td>012456546</td>
+                                        <td>sharon95@gmail.com</td>
+                                        <td>25-12-2020</td>
+                                        <td>11-04-2025</td>
+                                        <td>15-09-2050</td>
+                                        <td>Pearl</td>
+                                        <td>RM 4000</td>
+                                        <td>Pending</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

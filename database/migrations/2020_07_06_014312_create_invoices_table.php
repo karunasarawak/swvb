@@ -21,6 +21,7 @@ public function up()
             $table->foreign('mbrship_id')->references('mbrship_id')->on('memberships');
 
             $table->string('mbrship_name', 60)->nullable();
+            $table->string('type', 60)->nullable();
             $table->decimal('items_amount', 9, 2)->nullable();
             $table->decimal('tax_amount', 9, 2)->nullable();
             $table->decimal('rounding', 3, 2)->nullable();

@@ -28,7 +28,7 @@
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white">Type<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus white"></i></button></th>
+                                                <th class="text-white">Type<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addtypes"><i class="bx bx-plus white"></i></button></th>
                                                 <th class="text-white">Status</th>
                                                 <th class="text-white">Action</th>
                                                 
@@ -167,7 +167,7 @@
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white" style="width:50%">Categories<button class="btn btn-outline-white round ml-1" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus white"></i></button></th>
+                                                <th class="text-white" style="width:50%">Categories<button class="btn btn-outline-white round ml-1" data-toggle="modal" data-target="#addcategories"><i class="bx bx-plus white"></i></button></th>
                                                 <th class="text-white">Status</th>
                                                 <th class="text-white">Action</th>
                                                 
@@ -305,6 +305,68 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade text-left" id="addcategories" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel33">New Event Log Category</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <form action="#">
+            <div class="modal-body">
+            <label>Text</label>
+            <div class="form-group">
+                <input type="text" placeholder="Email Address" class="form-control">
+            </div>
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">Close</span>
+            </button>
+            <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">login</span>
+            </button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-left" id="addtypes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel33">New Event Log Type</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <form action="#">
+            <div class="modal-body">
+            <label>Type</label>
+            <div class="form-group">
+                <input type="text" placeholder="Email Address" class="form-control">
+            </div>
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">Close</span>
+            </button>
+            <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">login</span>
+            </button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

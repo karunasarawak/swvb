@@ -10,17 +10,16 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section>
+<section id="nav-filled">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">Interval International Reserve Unit<a href="{{ url('/extmembership/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
-                        
+                    <h4 class="col card-title text-white">Interval International Reserve Unit<a href="{{ url('/iiru/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
                 </div>
                 <div class="card-content">
-                    <div class="card-body card-dashboard">
-                        <fiv class="row">
+                    <div class="card-body ">
+                        <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group pt-1">
                                     <label >Filter Year</label>
@@ -48,9 +47,7 @@
                                 Riverside Majestic Hotel
                                 </a>
                             </li>
-                        
-                            
-                        
+                     
                         </ul>
 
                         <!-- Tab panes -->

@@ -19,7 +19,6 @@
                         
                         <p ><h4 class="card-title text-white ml-2">Installment Schedule<a href="{{ url('/installment/calculator') }}" class="btn btn-outline-white round text-white ml-2">Installment Calculator</a></h4> </p>
                         
-                        
                     </div>
                 </div>
                 <div class="card-content">
@@ -31,13 +30,13 @@
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Payment Schedule No.</th>
-                                        <th class="text-white">Membership No.</th>
-                                        <th class="text-white">Name</th>
-                                        <th class="text-white">Package</th>
+                                        <th class="text-white" style="30%">Membership No.</th>
+                                        <th class="text-white" style="50%">Name</th>
+                                        <th class="text-white" style="30%">Package</th>
                                         
-                                        <th class="text-white">Paid %</th>
-                                        <th class="text-white">Status</th>
-                                        <th class="text-white">Action</th>
+                                        <th class="text-white" style="30%">Paid %</th>
+                                        <th class="text-white" style="30%">Status</th>
+                                        <th class="text-white" style="30%">Action</th>
                                         
                                     </tr>
                                 </thead>
@@ -46,7 +45,7 @@
                                     <tr>
                                         <td><a href="{{ url('/installment/details') }}">00000001</a></td>
                                         <td>26541000</td>
-                                        <td>John Doe</td>
+                                        <td class="expanded">John Doe</td>
                                         <td>Pearl-Full</td>
                                         
                                         <td>50</td>

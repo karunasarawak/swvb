@@ -35,12 +35,12 @@
                                                 All
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
+                                            {{-- <li class="nav-item">
                                                 <a class="nav-link" id="request-tab-fill" data-toggle="tab" href="#request-fill" role="tab"
                                                 aria-controls="request-fill" aria-selected="false">
                                                 Request
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                             <li class="nav-item">
                                                 <a class="nav-link" id="approval-tab-fill" data-toggle="tab" href="#approval-fill" role="tab"
                                                 aria-controls="approval-fill" aria-selected="false">
@@ -72,15 +72,15 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr class="row-link" onclick="location.href='{{url('/refund/details')}}'">
-                                                                    <td>CN10013902</td>
-                                                                    <td>205420000</td>
-                                                                    <td>Yakub Sebastian</td>
-                                                                    <td>RM 247.30</td>
-                                                                    <td>Point Offset</td>
-                                                                    <td>03 June 2020</td>
-                                                                    <td>Active</td>
-                                                                    <td>System</td>
+                                                                <tr class="row-link">
+                                                                    <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">205420000</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">Yakub Sebastian</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">RM 247.30</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">Point Offset</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">03 June 2020</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">Active</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">System</a></td>
                                                                     <td>  
                                                                         <div class="dropdown">
                                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -99,13 +99,13 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
-                                                                    <td>205420000</td>
-                                                                    <td>Yakub Sebastian</td>
-                                                                    <td>RM 247.30</td>
-                                                                    <td>Point Offset</td>
-                                                                    <td>03 June 2020</td>
-                                                                    <td>Active</td>
-                                                                    <td>System</td>
+                                                                    <td><a href="{{url('/refund/details')}}">205420000</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">Yakub Sebastian</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">RM 247.30</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">Point Offset</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">03 June 2020</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">Active</a></td>
+                                                                    <td><a href="{{url('/refund/details')}}">System</a></td>
                                                                     <td>  
                                                                         <div class="dropdown">
                                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -353,7 +353,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="tab-pane" id="request-fill" role="tabpanel" aria-labelledby="request-tab-fill">
+                                            {{-- <div class="tab-pane" id="request-fill" role="tabpanel" aria-labelledby="request-tab-fill">
                                                 
                                                 <div class="card-body card-dashboard">
                                                     <div class="table-responsive">
@@ -694,7 +694,7 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
+                                            </div> --}}
 
                                             <div class="tab-pane" id="approval-fill" role="tabpanel" aria-labelledby="approval-tab-fill">
                                                 
