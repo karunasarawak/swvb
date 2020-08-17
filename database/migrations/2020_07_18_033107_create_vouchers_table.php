@@ -27,6 +27,10 @@ class CreateVouchersTable extends Migration
             $table->tinyInteger('voucher_status')->nullable();
             $table->timestamps();
         });
+
+        DB::table('vouchers')->insert(array(
+            ['accom_id'=>1, 'voucher_no'=> 'CV10001', 'no_occupancy'=>2, 'night'=>'2', 'cv_start_date'=>"2020-10-10", 'cv_exp_date'=>"2020-11-11", 'start_day'=>1, 'end_day'=>4, 'has_used'=>0, 'voucher_status'=>1]
+            ));
     }
 
     /**

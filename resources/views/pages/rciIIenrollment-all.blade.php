@@ -12,11 +12,11 @@
 <!-- Zero configuration table -->
 <section>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12"></div>
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="col card-title text-white">RCI Enrollment<a href="{{ url('/communicationlog/new') }}" class="btn btn-outline-white round text-white float-right">Upload CSV</a></h4>                 
+                        <h4 class="col card-title text-white">External Memberships<a href="{{ url('/communicationlog/new') }}" class="btn btn-outline-white round text-white float-right">Upload CSV</a></h4>                 
                     </div>
                 </div>
                 <div class="card-content">
@@ -25,33 +25,42 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="dbr-tab-fill" data-toggle="tab" href="#dbr-fill" role="tab"
+                                <a class="nav-link active" id="rci-tab-fill" data-toggle="tab" href="#rci-fill" role="tab"
                                 aria-controls="dbr-fill" aria-selected="true">
                                 RCI
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="rmh-tab-fill" data-toggle="tab" href="#rmh-fill" role="tab"
+                                <a class="nav-link" id="ii-tab-fill" data-toggle="tab" href="#ii-fill" role="tab"
                                 aria-controls="rmh-fill" aria-selected="false">
                                 II
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="rmh-tab-fill" data-toggle="tab" href="#rmh-fill" role="tab"
+                                <a class="nav-link" id="bsm-tab-fill" data-toggle="tab" href="#bsm-fill" role="tab"
                                 aria-controls="rmh-fill" aria-selected="false">
                                 BSM
                                 </a>
-                            </li>   
-                        
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="ppv-tab-fill" data-toggle="tab" href="#ppv-fill" role="tab"
+                                aria-controls="rmh-fill" aria-selected="false">
+                                PPV
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="approval-tab-fill" data-toggle="tab" href="#approval-fill" role="tab"
+                                aria-controls="rmh-fill" aria-selected="false">
+                                Approval
+                                </a>
+                            </li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content pt-1">
-                            <div class="tab-pane active" id="dbr-fill" role="tabpanel" aria-labelledby="dbr-tab-fill">
-                                
+                            <div class="tab-pane active" id="rci-fill" role="tabpanel" aria-labelledby="rci-tab-fill">
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
-
                                         <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
@@ -65,8 +74,7 @@
                                                     <th class="text-white">Communication Channel</th>
                                                     <th class="text-white">Request Date</th>
                                                     <th class="text-white">Remarks</th>
-                                                    <th class="text-white">Attachment</th>
-                                                    
+                                                    <th class="text-white">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -76,6 +84,7 @@
                                                     <td>Yakub Sebastian</td>
                                                     <td>RM 247.30</td>
                                                     <td>Point Offset</td>
+                                                    <td>03 June 2020</td>
                                                     <td>03 June 2020</td>
                                                     <td>Active</td>
                                                    
@@ -90,6 +99,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    <td>-</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -110,6 +120,7 @@
                                                     <td>RM 247.30</td>
                                                     <td>Point Offset</td>
                                                     <td>03 June 2020</td>
+                                                    <td>03 June 2020</td>
                                                     <td>Active</td>
                                                     
                                                     <td>
@@ -123,6 +134,7 @@
                                                         </div>
                                                         </div>
                                                     </td>
+                                                    <td>-</td>
                                                     <td><div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -140,6 +152,7 @@
                                                     <td>Iola</td>
                                                     <td>Iola</td>
                                                     <td>06 November 2019</td>
+                                                    <td>03 June 2020</td>
                                                     <td>08:31 PM</td>
                                                     <td>Jameson Knight</td>
                                                     <td>
@@ -169,9 +182,11 @@
                                                     <td>1000035</td>
                                                     <td>Zorita</td>
                                                     <td>Zorita</td>
+                                                    <td>03 June 2020</td>
                                                     <td>11 June 2018</td>
                                                     <td>07:18 PM</td>
                                                     <td>Reed Meyer</td>
+                                                    <td>-</td>
                                                     <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -199,6 +214,7 @@
                                                     <td>1000036</td>
                                                     <td>Denton</td>
                                                     <td>Denton</td>
+                                                    <td>03 June 2020</td>
                                                     <td>13 March 2020</td>
                                                     <td>09:30 PM</td>
                                                     <td>Joseph Sanford</td>
@@ -213,6 +229,7 @@
                                                         </div>
                                                         </div>
                                                     </td>
+                                                    <td>-</td>
                                                     <td><div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -230,6 +247,7 @@
                                                     <td>1000037</td>
                                                     <td>Maris</td>
                                                     <td>Maris</td>
+                                                    <td>03 June 2020</td>
                                                     <td>21 January 2020</td>
                                                     <td>11:09 AM</td>
                                                     <td>Daniel Matthews</td>
@@ -254,6 +272,7 @@
                                                         </div>
                                                         </div>
                                                     </td>
+                                                    <td>-</td>
                                                     
                                                 </tr>
                                                 <tr>
@@ -285,6 +304,7 @@
                                                         </div>
                                                         </div>
                                                     </td>
+                                                    <td>-</td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="{{url('/refund/details')}}">CN10013902</a></td>
@@ -348,6 +368,7 @@
                                                         </div>
                                                         </div>
                                                     </td>
+                                                    <td>-</td>
                                                     
                                                 </tr>
                                                 <tr>
@@ -417,13 +438,11 @@
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="tab-pane" id="rmh-fill" role="tabpanel" aria-labelledby="rmh-tab-fill">
-                                
+
+                            <div class="tab-pane" id="ii-fill" role="tabpanel" aria-labelledby="ii-tab-fill">
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
-
                                         <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
@@ -796,14 +815,11 @@
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
 
-                            <div class="tab-pane" id="approval-fill" role="tabpanel" aria-labelledby="approval-tab-fill">
-                                
+                            <div class="tab-pane" id="bsm-fill" role="tabpanel" aria-labelledby="bsm-tab-fill">  
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
-
                                         <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
@@ -1011,7 +1027,430 @@
                                         </table>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="tab-pane" id="ppv-fill" role="tabpanel" aria-labelledby="ppv-tab-fill">
+                                <div class="card-body card-dashboard">
+                                    <div class="table-responsive">
+                                        <table class="table tours-all">
+                                            <thead class="bg-swvb-dark">
+                                                <tr>
+                                                    <th class="text-white">Title</th>
+                                                    <th class="text-white">Requested By</th>
+                                                    <th class="text-white">Date Requested</th>
+                                                    <th class="text-white">Attachment</th>
+                                                    <th class="text-white">Receipt No.</th>
+                                                    <th class="text-white"></th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    
+                                                    </td>
+                                                    <td>
+                                                    
+                                                    </td>
+                                                    
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000032</td>
+                                                    <td>1000032</td>
+                                                    <td>Elizabeth</td>
+                                                    <td>Elizabeth</td>
+                                                    <td>27 April 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000033</td>
+                                                    <td>1000033</td>
+                                                    <td>Todd</td>
+                                                    <td>Todd</td>
+                                                    <td>06 January 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000034</td>
+                                                    <td>1000034</td>
+                                                    <td>Iola</td>
+                                                    <td>Iola</td>
+                                                    <td>06 November 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000035</td>
+                                                    <td>1000035</td>
+                                                    <td>Zorita</td>
+                                                    <td>Zorita</td>
+                                                    <td>11 June 2018</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000036</td>
+                                                    <td>1000036</td>
+                                                    <td>Denton</td>
+                                                    <td>Denton</td>
+                                                    <td>13 March 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000037</td>
+                                                    <td>1000037</td>
+                                                    <td>Maris</td>
+                                                    <td>Maris</td>
+                                                    <td>21 January 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1000038</td>
+                                                    <td>1000038</td>
+                                                    <td>Cecilia</td>
+                                                    <td>Cecilia</td>
+                                                    <td>26 November 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1000039</td>
+                                                    <td>1000039</td>
+                                                    <td>Buckminster</td>
+                                                    <td>Buckminster</td>
+                                                    <td>10 March 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000040</td>
+                                                    <td>1000040</td>
+                                                    <td>Hadley</td>
+                                                    <td>Hadley</td>
+                                                    <td>28 October 2018</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000041</td>
+                                                    <td>1000041</td>
+                                                    <td>Malachi</td>
+                                                    <td>Malachi</td>
+                                                    <td>22 January 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000042</td>
+                                                    <td>1000042</td>
+                                                    <td>Yael</td>
+                                                    <td>Yael</td>
+                                                    <td>04 September 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="approval-fill" role="tabpanel" aria-labelledby="approval-tab-fill">
+                                <div class="card-body card-dashboard">
+                                    <div class="table-responsive">
+                                        <table class="table tours-all">
+                                            <thead class="bg-swvb-dark">
+                                                <tr>
+                                                    <th class="text-white">Title</th>
+                                                    <th class="text-white">Requested By</th>
+                                                    <th class="text-white">Date Requested</th>
+                                                    <th class="text-white">Attachment</th>
+                                                    <th class="text-white">Receipt No.</th>
+                                                    <th class="text-white"></th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    
+                                                    </td>
+                                                    <td>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" class="form-control" id="iconLeft2">
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-search"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    
+                                                    </td>
+                                                    <td>
+                                                    
+                                                    </td>
+                                                    
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000032</td>
+                                                    <td>1000032</td>
+                                                    <td>Elizabeth</td>
+                                                    <td>Elizabeth</td>
+                                                    <td>27 April 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000033</td>
+                                                    <td>1000033</td>
+                                                    <td>Todd</td>
+                                                    <td>Todd</td>
+                                                    <td>06 January 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000034</td>
+                                                    <td>1000034</td>
+                                                    <td>Iola</td>
+                                                    <td>Iola</td>
+                                                    <td>06 November 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000035</td>
+                                                    <td>1000035</td>
+                                                    <td>Zorita</td>
+                                                    <td>Zorita</td>
+                                                    <td>11 June 2018</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000036</td>
+                                                    <td>1000036</td>
+                                                    <td>Denton</td>
+                                                    <td>Denton</td>
+                                                    <td>13 March 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000037</td>
+                                                    <td>1000037</td>
+                                                    <td>Maris</td>
+                                                    <td>Maris</td>
+                                                    <td>21 January 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1000038</td>
+                                                    <td>1000038</td>
+                                                    <td>Cecilia</td>
+                                                    <td>Cecilia</td>
+                                                    <td>26 November 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1000039</td>
+                                                    <td>1000039</td>
+                                                    <td>Buckminster</td>
+                                                    <td>Buckminster</td>
+                                                    <td>10 March 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000040</td>
+                                                    <td>1000040</td>
+                                                    <td>Hadley</td>
+                                                    <td>Hadley</td>
+                                                    <td>28 October 2018</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000041</td>
+                                                    <td>1000041</td>
+                                                    <td>Malachi</td>
+                                                    <td>Malachi</td>
+                                                    <td>22 January 2020</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>1000042</td>
+                                                    <td>1000042</td>
+                                                    <td>Yael</td>
+                                                    <td>Yael</td>
+                                                    <td>04 September 2019</td>
+                                                    <td> 
+                                                        <button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
+                                                            <a href="{{url('/receipt/new')}}">New Receipt</a>
+                                                        </button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         
                         </div>

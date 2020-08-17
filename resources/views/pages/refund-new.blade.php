@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title text-white">New Refund</h4>
+                    <h4 class="card-title text-white ml-1">New Refund</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -26,13 +26,13 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="row pt-1">
-                            <div class="col-sm-6 ml-1">
+                            <div class="col-sm-6 ">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Member</p>
                             </div>
                             
                         </div>
                         <div class="row">
-                            <div class="col ml-1">
+                            <div class="col ">
                                 <div class="row">
                                     <div class="col-sm-6">Membership No.
                                     <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
@@ -61,7 +61,7 @@
                             
                         </div>
                         <div class="row">
-                            <div class="col ml-1">
+                            <div class="col ">
                                 <div class="row">
                                     <div class="col-sm-6">Payment Voucher
                                         <input type="number" name="name" class="form-control" placeholder="payment voucher no." required>  
@@ -90,10 +90,10 @@
 
                         
                         <div class="row pt-1">
-                            <div class="col-sm-6 ml-1">
+                            <div class="col-sm-6 ">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Subject To</p>
                             </div>
-                            <div class="card-body card-dashboard pt-1">
+                            
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
@@ -107,7 +107,7 @@
                                                         </div>
                                                     </fieldset>
                                                 </th>
-                                                <th class="text-white">Invoice</th>
+                                                <th class="text-white">Receipt</th>
                                                 <th class="text-white">Date</th>
                                                 <th class="text-white">Description</th>
                                                 <th class="text-white">Amount</th>
@@ -157,7 +157,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                           
 
                         </div>
                         <a href="{{url('/refund')}}">

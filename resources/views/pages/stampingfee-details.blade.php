@@ -30,7 +30,7 @@
             <div class="card-body">
                 <div class="row pt-1">
                     <div class="col-9 col-md-9">
-                        <p class="h5 swvb-blue">Batch 80</p>
+                        <p class="h5 swvb-blue">Batch {{ $payload['batchDetail']->sfb_id }}</p>
                     </div>
 
 
@@ -48,6 +48,13 @@
                 <div class="row pt-1">
                     <div class="col">
                         <div class="row">
+                            <p class="col">Status</p>
+                            <p class="col font-weight-bold black" x-show="original"></p>
+                            <p class="col" x-cloak x-show="edit">
+                                <input  type="text" name="salutation" class="form-control" placeholder="Date Request" data-validation-required-message="Please write the company name"  required>
+                            </p>
+                        </div>
+                        <div class="row">
                             <p class="col">Date Request</p>
                             <p class="col font-weight-bold black" x-show="original">01 April 2020</p>
                             <p class="col" x-cloak x-show="edit">
@@ -61,14 +68,6 @@
                                 <input  type="text" name="salutation" class="form-control" placeholder="request by" data-validation-required-message="Please write the company name"  required>
                             </p>
                         </div>
-                        <div class="row">
-                            <p class="col">Request Date</p>
-                            <p class="col font-weight-bold black" x-show="original">01 April 2020</p>
-                            <p class="col" x-cloak x-show="edit">
-                                <input  type="text" name="salutation" class="form-control" placeholder="request date" data-validation-required-message="Please write the company name"  required>
-                            </p>
-                        </div>
-
                     </div>
                     <div class="col">
                         <div class="row">
@@ -96,6 +95,7 @@
                     
                 </div>
 
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addStamp">New Stamp</button>
 
                 <div class="pt-3 table-responsive">
                     <table class="table">
@@ -107,27 +107,42 @@
                                 <th class="text-white">Date of Agreement</th>
                                 <th class="text-white">Package Price (RM)</th>
                                 <th class="text-white">Membership Status</th>
+                                <th class="text-white">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach($payload['stampList'] as $mbr)
+                                <tr>
+                                    <td>{{ $mbr->mbrship_no }}</td>
+                                    <td>{{ $mbr->name1 }}</td>
+                                    <td>{{ $mbr->nric }}</td>
 
-                                <td>305066</td>
-                                <td>01 May 2020</td>
-                                <td>Yakub Instalment 12</td>
-                                <td>200</td>
-                                <td>50</td>
-                                <td>150</td>
-                            </tr>
-                            <tr>
-                                <td>305066</td>
-                                <td>01 May 2020</td>
-                                <td>Yakub Instalment 12</td>
-                                <td>200</td>
-                                <td>50</td>
-                                <td>150</td>
-                            </tr>
-                            
+                                    @if($mbr->agreement_date != null)
+                                        <td>{{ $mbr->agreement_date }}</td>
+                                    @else
+                                        <td>Error</td>
+                                    @endif
+
+                                    <td>{{ $mbr->package_price }}</td>
+
+                                    @if($mbr->mbrship_status == 2)
+                                        <td>Activate</td>
+                                    @else
+                                        <td>Error</td>
+                                    @endif
+
+                                    <td>
+                                        <form action="{{ route('stamp.deleteStamp', $payload['batchDetail']->sfb_id) }}" method="POST">
+                                            @csrf
+                                            @method('patch')
+                                            <input type="hidden" value="{{ $mbr->mbrship_no }}" name="mbrship_no">
+                                            <button type="submit" class="border-0 bg-transparent p-0">
+                                                <i class="bx bx-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -136,8 +151,70 @@
     </div>
 </section>
 
+{{-- Add Stamp Modal --}}
+<div class="modal fade text-left" id="addStamp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">Add Stamp</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <form action="{{ route('stamp.addStamp', $payload['batchDetail']->sfb_id) }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Batch ID</label>
+                        <div class="form-group">
+                            <input type="text" id="batch_id" value="{{ $payload['batchDetail']->sfb_id }}" class="form-control" x-bind:value="pri" readonly>
+                        </div>
+
+                        <label>Membership No.</label>
+                        <select name="mbrship_no" id="mbrship_no" class="select2 form-control" onchange="findMembership()" data-validation-required-message="" required>
+                            <option value="" selected>--</option>
+                            @if($payload['memberships'] != null)
+                                @foreach ($payload['memberships'] as $mbr)
+                                    <option value="{{ $mbr->mbrship_no }}" data-pri="{{ $mbr->name1 }}" data-sec="{{ $mbr->name2 }}" data-exp="{{ $mbr->mbrship_exp }}">
+                                        {{ $mbr->mbrship_no }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <label>Primary Member</label>
+                    <div class="form-group">
+                        <input type="text" id="pri_member" placeholder="" class="form-control" x-bind:value="pri" readonly>
+                    </div>
+
+                    <label>Secondary Member</label>
+                    <div class="form-group">
+                        <input type="text" id="sec_member" name="sec_member" placeholder="" class="form-control" x-bind:value="sec"readonly>
+                    </div>
+
+                    <label>Expriry Date</label>
+                    <div class="form-group">
+                        <input type="date" id="exp_date" name="exp_date" placeholder="" class="form-control" x-bind:value="exp" readonly>
+                    </div>
+                    
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Add</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- pop out modal box for update status -->
-<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog"
+{{-- <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel33" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                   <div class="modal-content">
@@ -245,7 +322,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
                    
 <!-- Form wizard with step validation section end -->
@@ -254,6 +331,21 @@
 
 {{-- vendor scripts --}}
 @section('vendor-scripts')
+<script>
+        function findMembership()
+    {
+        var mbr_no = document.getElementById("mbrship_no");
+
+        var pri = document.getElementById("pri_member");
+        var sec = document.getElementById("sec_member");
+        var exp = document.getElementById("exp_date");
+
+        pri.value = mbr_no.options[mbr_no.selectedIndex].dataset.pri;
+        sec.value = mbr_no.options[mbr_no.selectedIndex].dataset.sec;
+        exp.value = mbr_no.options[mbr_no.selectedIndex].dataset.exp;
+
+    }
+</script>
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script> --}}
 <script src="{{asset('vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>

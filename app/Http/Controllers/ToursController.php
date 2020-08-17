@@ -34,10 +34,10 @@ class ToursController extends Controller
     // $checkLead = DB::table('tours')->get();
 
     $tours_s = DB::table('tours')
-                ->join('leads','leads.lead_id','tours.lead_id1')
-                ->join('salutations','salutations.salutation_id','leads.salutation_id')
-                ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
-                ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+                ->leftJoin('leads','leads.lead_id','tours.lead_id1')
+                ->leftJoin('salutations','salutations.salutation_id','leads.salutation_id')
+                ->leftJoin('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+                ->leftJoin('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
                 ->where('tours.is_archive', '!=',0)
                 ->select('salutations.salutation','tours.tour_id','tours.lead_id1','leads.name',
                 'tours.tour_date','tours.tour_initial_time','tours.tour_time_in','tours.tour_time_out',
@@ -62,8 +62,8 @@ class ToursController extends Controller
 
     $leads = DB::table('leads')
             ->where('lead_id',$lead_id)
-            ->join('salutations','salutations.salutation_id','leads.salutation_id')
-            ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+            ->leftJoin('salutations','salutations.salutation_id','leads.salutation_id')
+            ->leftJoin('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
             ->select('leads.name','leads.lead_id','salutations.salutation','leads.mobile_no','leads.whatsapp_no','leads.credit_card_limit','sales_teams.sales_name')
             ->get();
 
@@ -96,7 +96,7 @@ class ToursController extends Controller
       $breadcrumbs = [["link" => "/", "name" => "Home"],["link" => "/tours","name" => "Tours"],["name" => "Tour Attend Details"]];
   
       $attend = DB::table('tours')
-        ->join('leads','leads.lead_id','tours.lead_id1')
+        ->leftJoin('leads','leads.lead_id','tours.lead_id1')
         ->where('tours.tour_id', $tour_id)
         ->select('leads.name','leads.lead_id','tours.sales_personnel_id','leads.mobile_no','leads.whatsapp_no','leads.salutation_id','tours.tour_month_income','tours.sales_venue_id','tours.tour_id')
         ->get();
@@ -296,33 +296,33 @@ class ToursController extends Controller
     
     // dd($second_lead_id);
     $details = DB::table('tours')
-          ->join('leads','leads.lead_id','tours.lead_id1')
-          ->join('gender','gender.gender_id','leads.gender')
-          ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
-          ->join('religions', 'religions.religion_id','leads.religion_id')
-          ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
-          ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
-          ->join('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
-          ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
+          ->leftJoin('leads','leads.lead_id','tours.lead_id1')
+          ->leftJoin('gender','gender.gender_id','leads.gender')
+          ->leftJoin('maritial_status','maritial_status.maritial_id','leads.marital_status')
+          ->leftJoin('religions', 'religions.religion_id','leads.religion_id')
+          ->leftJoin('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+          ->leftJoin('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+          ->leftJoin('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
+          ->leftJoin('vouchers','vouchers.voucher_id','tours.voucher_id')
           ->where('tour_id', $tour_id)
           ->get();
 
     $sp = DB::table('tours')
-          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+          ->leftJoin('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
           ->where('tour_id', $tour_id)
           ->get();
 
     $sm = DB::table('tours')
-          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
+          ->leftJoin('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
           ->where('tour_id', $tour_id)
           ->get();
 
     if($second_lead_id != null)
     {
       $detail2 = DB::table('leads')->where('lead_id', $second_lead_id)
-      >join('gender', 'gender.gender_id', 'leads.gender')
-      ->join('maritial_status', 'maritial_status.maritial_id', 'leads.marital_status')
-      ->join('religions', 'religions.religion_id', 'leads.religion_id')
+      ->leftJoin('gender', 'gender.gender_id', 'leads.gender')
+      ->leftJoin('maritial_status', 'maritial_status.maritial_id', 'leads.marital_status')
+      ->leftJoin('religions', 'religions.religion_id', 'leads.religion_id')
       ->get();
     }
     else
@@ -349,14 +349,14 @@ class ToursController extends Controller
       ];
 
     $details = DB::table('tours') 
-            ->join('leads','leads.lead_id','tours.lead_id1')
-            ->join('gender','gender.gender_id','leads.gender')
-            ->join('maritial_status','maritial_status.maritial_id','leads.marital_status')
-            ->join('religions', 'religions.religion_id','leads.religion_id')
-            ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
-            ->join('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
-            ->join('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
-            ->join('vouchers','vouchers.voucher_id','tours.voucher_id')
+            ->leftJoin('leads','leads.lead_id','tours.lead_id1')
+            ->leftJoin('gender','gender.gender_id','leads.gender')
+            ->leftJoin('maritial_status','maritial_status.maritial_id','leads.marital_status')
+            ->leftJoin('religions', 'religions.religion_id','leads.religion_id')
+            ->leftJoin('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+            ->leftJoin('sales_teams','sales_teams.sales_team_id','leads.telemarketer_id')
+            ->leftJoin('sales_marketing_agency','sales_marketing_agency.ma_id','tours.tour_marketing_agency')
+            ->leftJoin('vouchers','vouchers.voucher_id','tours.voucher_id')
             ->where('tour_id', $tour_id)
             ->get();
     // dd($details);
@@ -366,9 +366,9 @@ class ToursController extends Controller
     if($lead_id2[0] != null)
     {
       $detail2 = DB::table('leads')->where('lead_id', $lead_id2[0])
-      ->join('gender', 'gender.gender_id', 'leads.gender')
-      ->join('maritial_status', 'maritial_status.maritial_id', 'leads.marital_status')
-      ->join('religions', 'religions.religion_id', 'leads.religion_id')
+      ->leftJoin('gender', 'gender.gender_id', 'leads.gender')
+      ->leftJoin('maritial_status', 'maritial_status.maritial_id', 'leads.marital_status')
+      ->leftJoin('religions', 'religions.religion_id', 'leads.religion_id')
       ->get();
 
       // dd($detail2);
@@ -379,11 +379,11 @@ class ToursController extends Controller
     }
 
     $sp = DB::table('tours')
-          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+          ->leftJoin('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
           ->get();
 
     $sm = DB::table('tours')
-          ->join('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
+          ->leftJoin('sales_teams','sales_teams.sales_team_id','tours.sales_manager_id')
           ->get();
 
 
@@ -400,17 +400,15 @@ class ToursController extends Controller
 
     $pageConfigs = ['pageHeader' => true];
         
-    $insert = Tour::insert(
-      ['lead_id1'=>$lead_id,
-      'sales_personnel_id'=>$request->salesp,
-      'sales_venue_id'=>$request->venue,
-      'tour_date'=>$request->date,
-      'tour_initial_time'=>$request->time,
-      'sales_venue_id'=>$request->venue,
-      'is_archive'=>2
-      // 'tour_countries'=>$request->country,
-      // 'tour_states'=>$request->state,
-      // 'tour_cities'=>$request->city,
+    $insert = Tour::insert([
+        'lead_id1'=>$lead_id,
+        'sales_personnel_id'=>$request->salesp,
+        'sales_venue_id'=>$request->venue,
+        'tour_date'=>$request->date,
+        'tour_initial_time'=>$request->time,
+        'sales_venue_id'=>$request->venue,
+        'tour_state'=>$request->state,
+        'tour_city'=>$request->city,
       ]);
 
       // dd($request);
@@ -424,6 +422,7 @@ class ToursController extends Controller
 
   public function archiveTour(Request $request, $tour_id)
   {
+    
     if($request->archive == 0)
     {
       Tour::where('tour_id', $tour_id)->update(['tours.is_archive'=> 0]);
@@ -434,17 +433,22 @@ class ToursController extends Controller
       Tour::where('tour_id', $tour_id)->update(['tours.is_archive'=> 1]);
       return redirect("tours/archive");
     }
-
-    
   }
   
   public function showAllArchive()
   {
+
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Tours"],["name" => "Archive"]
+    ];
+
    $allArchieve = DB::table('tours')
-            ->join('leads','leads.lead_id','tours.lead_id1')
-            ->join('salutations','salutations.salutation_id','leads.salutation_id')
-            ->join('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
-            ->join('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
+            ->leftJoin('leads','leads.lead_id','tours.lead_id1')
+            ->leftJoin('salutations','salutations.salutation_id','leads.salutation_id')
+            ->leftJoin('sales_venues','sales_venues.sales_venue_id','tours.sales_venue_id')
+            ->leftJoin('sales_teams','sales_teams.sales_team_id','tours.sales_personnel_id')
             ->where('tours.is_archive',0)
             ->select('salutations.salutation','tours.tour_id','tours.lead_id1','leads.name',
             'tours.tour_date','tours.tour_initial_time','tours.tour_time_in','tours.tour_time_out',
@@ -454,7 +458,7 @@ class ToursController extends Controller
 
     $payload = ['allArchive' => $allArchieve];
 
-    return view('pages.tours-archive', ['payload'=>$payload]);
+    return view('pages.tours-archive', ['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'payload'=>$payload]);
   }
 
 }

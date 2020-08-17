@@ -61,7 +61,7 @@
             "i18n": "Contacts",
             "icon": "phone",
             "submenu": [{
-                    "url": "extmembership",
+                    "url": "/enrollment",
                     "name": "All",
                     "i18n": "All",
                     "icon": "bx bx-right-arrow-alt"
@@ -216,7 +216,7 @@
         },
 
         {
-            "url": "cardprintinglist/dispatch",
+            "url": "dispatch",
             "name": "Dispatch",
             "i18n": "Event Logs",
             "icon": "calendar"
@@ -230,12 +230,7 @@
             "icon": "calendar"
         },
 
-        {
-            "url": "admin/branches",
-            "name": "Branches",
-            "i18n": "Event Logs",
-            "icon": "calendar"
-        },
+
 
         {
             "url": "admin/packages",
@@ -327,7 +322,7 @@
         },
 
         {
-            "url": "ictrequest",
+            "url": "admin/ictrequest",
             "name": "ICT Requests",
             "i18n": "Refund",
             "icon": "envelope-pull"
@@ -354,6 +349,25 @@
             ]
         },
 
+        {
+            "url": "#",
+            "name": "Card Terminal",
+            "i18n": "Receipt",
+            "icon": "calculator",
+            "submenu": [{
+                    "url": "admin/ct",
+                    "name": "Card Terminal",
+                    "i18n": "All",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "admin/ctct",
+                    "name": "Charge Type",
+                    "i18n": "Archive",
+                    "icon": "bx bx-right-arrow-alt"
+                }
+            ]
+        },
 
         {
             "url": "eventlogs",

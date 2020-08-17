@@ -23,12 +23,12 @@ class CreateStaffRolesTable extends Migration
 
         DB::table('staff_roles')->insert(
             array(
-                ['role' => 'ACC', 'code'=>'ACC', 'dept_id'=>'ACC'],
-                ['role' => 'CC', 'code'=>'CC', 'dept_id'=>'CC'],
-                ['role' => 'MRE', 'code'=>'MRE', 'dept_id'=>'MRE'],
-                ['role' => 'MRM', 'code'=>'MRM', 'dept_id'=>'MRM'],
-                ['role' => 'ICT', 'code'=>'ICT', 'dept_id'=>'ICT'],
-                ['role' => 'MSE', 'code'=>'MSE', 'dept_id'=>'MSE']
+                ['role' => 'ACC', 'code'=>'ACC', 'dept_id'=>'4'],
+                ['role' => 'CC', 'code'=>'CC', 'dept_id'=>'2'],
+                ['role' => 'MRE', 'code'=>'MRE', 'dept_id'=>'3'],
+                ['role' => 'MRM', 'code'=>'MRM', 'dept_id'=>'4'],
+                ['role' => 'ICT', 'code'=>'ICT', 'dept_id'=>'1'],
+                ['role' => 'MSE', 'code'=>'MSE', 'dept_id'=>'5']
             )
         );
     }

@@ -14,32 +14,37 @@ class AgingReminderController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "All"]
         ];
     
-      
     
-        // if (empty($request->all()))
-        //   {
-        //       $data=Membership::paginate(2);
-    
-        //   }
-        //   else
-        //   {
-        //       $data =DB::table('membership')->Where('')
-        //   }
-    
-        //$leadslist = Leads::all();
-    
+        return view('pages.aging-reminder',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
         
-        //$membership = Membership::join('leads', 'leads.lead_id', '=', 'membership.mbrship_id')->select('membership.*')->get();
-    
-        //$membership = DB::table('')->select('membership.*')->get();
-        //$membership = DB::select('select * from membership');
-    
-        // =['membership'=>$membership, 'membership'=>];
-    
-        // $payload = ['membership' => $membership, 'leads' => $leadslist];
-    
-        return view('pages.agingreminder',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-        //'payload'=>$payload]
       }
+
+      public function occupancyreport(){
+
+        $pageConfigs = ['pageHeader' => true];
+    
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "All"]
+        ];
+    
+    
+        return view('pages.occupancy-report',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+        
+      }
+
+      public function aginreminderdetails(){
+
+        $pageConfigs = ['pageHeader' => true];
+    
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "All"]
+        ];
+    
+    
+        return view('pages.aging-reminder-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+        
+      }
+
+
     
 }

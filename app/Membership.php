@@ -25,6 +25,8 @@ class Membership extends Model
         'package_id',
         'install_schedule_id',
         'overpayment',
+        'has_card',
+        'has_stamped',
         'cc_id_amf',
         'cc_id_install',
         'declaration_no',

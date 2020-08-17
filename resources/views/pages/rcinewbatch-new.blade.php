@@ -10,7 +10,7 @@
 
 @section('content')
 <!-- Form wizard with icon tabs section start -->
-<section class="simple-validation float-sm-left">
+<section class="simple-validation" id="form-control-repeater">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -19,14 +19,14 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="" novalidate>
+                        <form class="form-horizontal" method="" action="" novalidate>
                             @csrf
                             <div class="row pt-1">
                                 <div class="col">
                                     <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Batch #1</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="controls">
@@ -53,95 +53,213 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label for="location">Iventory</label>
-                                            <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                <option value="1">Yes</option>
-                                                <option value="2">No</option>
-
-                                            </select>
-                                
+                                <div class="col-sm-4" >
+                                    <div class="form-group controls">
+                                        <div class="custom-control-inline">
+                                            <div class="radio mr-1 pt-2">
+                                                <input type="radio" name="contract_type" value="1" id="individual1"  @click="edit=true, original=false" checked required>
+                                                <label for="individual1">Inventory</label>
+                                            </div>
+                                            <div class="radio pt-2">
+                                                <input type="radio" name="contract_type" value="2" id="corporate1"  @click="edit=false, original=true" required>
+                                                <label for="corporate1">Direct</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4" >
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Check In</label>
-                                                <input type="date" class="form-control" value="14 July 2020" id="creditcard" name="name"
-                                                data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
+                                            <input type="date" name="install_cc_exp" class="form-control" vallue="01/2020" data-validation-required-message="Please enter the expiry date" required>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+
+                                <div class="col-sm-4" >
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Check Out</label>
-                                                <input type="date" class="form-control" value="14 July 2020" id="creditcard" name="name"
-                                                data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label for="location">Room Type</label>
-                                            <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                <option value="1">Chalet</option>
-                                                <option value="2">John</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label for="location"> Bed Type</label>
-                                            <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                <option value="1">Chalet</option>
-                                                <option value="2">John</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label for="location">Reserve Using</label>
-                                            <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-                                                <option value="1">Member</option>
-                                                <option value="2">John</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Remark</label>
-                                                <input type="text" class="form-control" placeholder="Remarks" id="creditcard" name="name"
-                                                data-validation-required-message="This Name field is required" data-toggle="modal" data-target="#inlineForm" required>
+                                            <input type="date" name="install_cc_exp" class="form-control" vallue="01/2020" data-validation-required-message="Please enter the expiry date" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                
-                            </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="location">Room Type</label>
+                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                    <option value="1">Chalet</option>
+                                                    <option value="2">John</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="location"> Bed Type</label>
+                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                    <option value="1">Chalet</option>
+                                                    <option value="2">John</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="location">Reserve Using</label>
+                                                <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                    <option value="1">Member</option>
+                                                    <option value="2">John</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="creditcard">Remark</label>
+                                                <input type="text" name="install_cc_exp" class="form-control" vallue="01/2020" data-validation-required-message="Please enter the expiry date" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                            </div> -->
                             
+                            <div class="form repeater-defeault">
+                                <div data-repeater-list="group-a">
+                                    <div data-repeater-item>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="location">Travel Agent</label>
+                                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                            <option value="1">Chris</option>
+                                                            <option value="2">John</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="location">Hotel</label>
+                                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                            <option value="1">Damai Beach Resort</option>
+                                                            <option value="2">Riverside Majestic Hotel</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" >
+                                                <div class="form-group controls">
+                                                    <div class="custom-control-inline">
+                                                        <div class="radio mr-1 pt-2">
+                                                            <input type="radio" name="contract_type" value="1" id="individual1"  @click="edit=true, original=false" checked required>
+                                                            <label for="individual1">Inventory</label>
+                                                        </div>
+                                                        <div class="radio pt-2">
+                                                            <input type="radio" name="contract_type" value="2" id="corporate1"  @click="edit=false, original=true" required>
+                                                            <label for="corporate1">Direct</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" >
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Check In</label>
+                                                        <input type="date" name="install_cc_exp" class="form-control" vallue="01/2020" data-validation-required-message="Please enter the expiry date" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" >
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Check Out</label>
+                                                        <input type="date" name="install_cc_exp" class="form-control" vallue="01/2020" data-validation-required-message="Please enter the expiry date" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="location">Room Type</label>
+                                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                            <option value="1">Chalet</option>
+                                                            <option value="2">John</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="location">Reserve Using</label>
+                                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                            <option value="1">Member</option>
+                                                            <option value="2">John</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="location"> Bed Type</label>
+                                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                                            <option value="1">Chalet</option>
+                                                            <option value="2">John</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="creditcard">Remark</label>
+                                                        <input type="text" name="install_cc_exp" class="form-control" vallue="01/2020" data-validation-required-message="Please enter the expiry date" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                class="bx bx-x"></i>
+                                                Delete
+                                            </button>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col p-0">
+                                    <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                        Add
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
                            
                         </form>
-                            <a href="{{url('/receipt/new')}}"><button type="button" class="btn btn-primary text-white m-1" id="btn_add1" >Submit</button></a>
+                            {{--<a href="{{url('/receipt/new')}}"><button type="button" class="btn btn-primary text-white m-1" id="btn_add1" >Submit</button></a>--}}
                             {{-- @livewire('add-attendee-form') --}}
-                            <button type="button" class="btn btn-outline-primary" id="attendeeButton" onclick="addAttendee()">Add Attendee</button>                               
+                            {{--<button type="button" class="btn btn-outline-primary" id="attendeeButton" onclick="addAttendee()">Add Attendee</button>--}}                          
                           
-                            <div id="attendee2" class="d-none select2-advance">
+                            <!-- <div id="attendee2" class="d-none select2-advance">
                                 <form class="form-horizontal" method="" action="" novalidate>
-                            @csrf
+                                @csrf
                                     <div class="row pt-1">
                                         <div class="col">
                                             <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Batch #1</p>
@@ -304,7 +422,7 @@
                                     </div>
                                 </form>
                             </div>
-                        
+                         -->
                     </div>
                 </div>
             </div>
@@ -316,33 +434,18 @@
 
 <!-- Form wizard with step validation section end -->
 @endsection
-<script type="text/javascript">
 
-    function showandhide(){
-         var dp = document.getElementById("method").value  
-
-         var getvalue = document.getElementById("creditc");
-
-         if(dp == "credit card")
-        {
-            dp.show();
-        }
-        else
-        {
-            dp.hide();
-        }
-         
-    }
-</script>
 {{-- vendor scripts --}}
 @section('vendor-scripts')
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script> --}}
 <script src="{{asset('vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
+<script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
 @endsection
 
 {{-- page scripts --}}
 @section('page-scripts')
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
+<script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 @endsection

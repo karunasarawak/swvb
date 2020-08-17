@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="card-body card-dashboard">
-                        <ul class="nav nav-tabs  mt-3" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs  mt-1" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="all-tab-fill" data-toggle="tab" href="#all-fill" role="tab"
                                 aria-controls="all-fill" aria-selected="true">

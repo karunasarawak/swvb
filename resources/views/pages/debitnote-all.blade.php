@@ -35,7 +35,7 @@
                                         <th class="text-white">Reason</th>
                                         <th class="text-white">Issue Date</th>
                                         <th class="text-white">Status</th>
-                                        
+                                        <th class="text-white">Subject to</th>
                                     </tr>
 
                                     
@@ -51,7 +51,7 @@
                                         <td>RM 247.30</td>
                                         <td>03 June 2020</td>
                                         <td>Active</td>
-                                        
+                                        <td>205420000</td>
                                     </tr>
                                     <tr>
                                         <td><a href="{{url('/debitnote/details')}}">74</a></td>
@@ -63,7 +63,7 @@
                                         <td>RM 247.30</td>
                                         <td>03 June 2020</td>
                                         <td>Active</td>
-                                       
+                                        <td>205420000</td>
                                     </tr>
                                     <tr>
                                         <td><a href="{{url('/debitnote/details')}}">74</a></td>
@@ -75,7 +75,7 @@
                                         <td>RM 247.30</td>
                                         <td>03 June 2020</td>
                                         <td>Active</td>
-                                      
+                                        <td>205420000</td>
                                     </tr>
                                     <tr>
                                         <td><a href="{{url('/debitnote/details')}}">74</a></td>
@@ -87,7 +87,7 @@
                                         <td>RM 247.30</td>
                                         <td>03 June 2020</td>
                                         <td>Active</td>
-                                      
+                                        <td>205420000</td>
                                     </tr>
                                     <tr>
                                         <td><a href="{{url('/debitnote/details')}}">74</a></td>
@@ -99,7 +99,7 @@
                                         <td>RM 247.30</td>
                                         <td>03 June 2020</td>
                                         <td>Active</td>
-                                       
+                                        <td>205420000</td>
                                     </tr>
                                 
                                 </tbody>

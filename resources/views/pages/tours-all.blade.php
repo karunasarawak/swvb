@@ -100,7 +100,7 @@
 
                                                                 
                                                                 <!-- Haven decided to attend -->
-                                                                @if($tours->tour_attend == null)
+                                                                @if($tours->tour_attend == 0)
                                                                     <td>
                                                                         <div class="custom-control-inline">
                                                                             <button class="border-0 bg-transparent" data-toggle="modal" data-target="#addCall">                                                                    

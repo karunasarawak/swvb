@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Points $ Entitlements')
+@section('title','Points & Entitlements')
 
 {{-- page style --}}
 @section('page-styles')
@@ -10,12 +10,12 @@
 
 @section('content')
 <!-- Form wizard with icon tabs section start -->
-<section class="simple-validation">
+<section class="simple-validation" id="basic-touchspin">
     <div class="row">
         <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-swvb-cyan">
-            <h4 class="card-title text-white">Points $ Entitlements</h4>
+            <h4 class="card-title text-white">Points & Entitlements</h4>
             </div>
             <div class="card-content">
             <div class="card-body">
@@ -80,17 +80,7 @@
                             
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="controls">
-                            <label>Whatsapp</label>
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="+60 12 345 6789" id="whatsapp" name="whatsapp"
-                                data-validation-required-message="This Whatsapp field is required" required>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
@@ -125,19 +115,55 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
-                            <label for="location">Telemarkerter</label>
-                            <select class="custom-select form-control" id="telemarkerter" name="telemarkerter"
-                            data-validation-required-message="Please select a telemarketer." required>
-                                <option value="">--</option>
-                                <option value="McClara">McClara</option>
-                                <option value="Mark">Mark</option>
-                                <option value="John">John</option>
-                                <option value="Son">Son</option>
-                            </select>
+                            <label>Remarks</label>
+                            <div class="position-relative">
+                                <input type="text" class="form-control" placeholder="Remarks" id="whatsapp" name="whatsapp"
+                                data-validation-required-message="This Whatsapp field is required" required>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="row pt-1 pl-1">
+                        <div class="col-sm-12">
+                            <p class="h6 swvb-blue font-weight-bold pb-2">Points/Entitlements</p>
+                        </div>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="controls">
+                                <div class="d-inline-block mb-1 mr-1">
+                                    <input type="number" class="touchspin" value="0">
+                                </div>
+                                <label>pts</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="controls">
+                                <div class="d-inline-block mb-1 mr-1">
+                                    <input type="number" class="touchspin" value="0">
+                                </div>
+                                <label>WD</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="controls">
+                                <div class="d-inline-block mb-1 mr-1">
+                                    <input type="number" class="touchspin" value="0">
+                                </div>
+                                <label>WE</label>
+                            </div>
+                        </div>
+                    </div>
+                    
                 <button type="submit" class="btn btn-outline-primary round m-2">Save</button>
                 </form>
             </div>
@@ -156,10 +182,11 @@
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script> --}}
 <script src="{{asset('vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
+<script src="{{asset('vendors/js/forms/spinner/jquery.bootstrap-touchspin.js')}}"></script>
 @endsection
 
 {{-- page scripts --}}
 @section('page-scripts')
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
-@endsection
+<script src="{{asset('js/scripts/forms/number-input.js')}}"></script>

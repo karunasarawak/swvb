@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-content">
                         <div class="px-2 pt-1">
-                             
+                        <button type="button" class="btn btn-primary"><a href="{{ url('/acceventlogs') }}" class="text-white">Account Event Logs</a></button>(This button is for demostration purpose only, account has different format)
                         </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
@@ -39,16 +39,16 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="text-white">ID</th>
-                                        <th class="text-white">Member-Ship</th>
+                                        <th class="text-white">Membership</th>
                                         <th class="text-white">Name</th>
                                         <th class="text-white">Type</th>
                                         <th class="text-white">Category</th>
                                         <th class="text-white">Title</th>
-                                        
-                                        <th class="text-white">Latest Updated By</th>
-                                        <th class="text-white">Date Updated</th>
                                         <th class="text-white">Date Created</th>
                                         <th class="text-white">Created By</th>
+                                        <th class="text-white">Last Called Date</th>
+                                        <th class="text-white">Latest Called By</th>
+                                        <th class="text-white">Next Call Date</th>
                                     </tr>
                                     <tbody>
                                         <tr class="row-link" onclick="location.href='{{ url('/eventlogs/details') }}'">

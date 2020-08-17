@@ -28,11 +28,11 @@
                                     <div class="controls">
                                         <label for="mbrship_id">Membership No</label>
                                         <select name="mbrship_id" id="mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member" 
-                                        onchange="checkdigit()" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
+                                            onchange="checkdigit()" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
                                             <option value="" disabled selected>Membership No</option>
                                             @if(isset($payload))    
                                                 @foreach($payload['memberships'] as $membership)
-                                            <option value="{{$membership->mbrship_id}}" data-number="{{$membership->reservation->rsvn_no}}" data-name="{{$membership->lead->name}}">{{$membership->mbrship_no}}</option>
+                                            <option value="{{$membership->mbrship_id}}" data-number="{{$membership->reservation['rsvn_no']}}" data-name="{{$membership->lead->name}}">{{$membership->mbrship_no}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -52,12 +52,13 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                    <div class="controls">
+                                        <div class="controls">
                                             <!-- <label>digit</label> -->
                                             <input type="hidden" class="form-control" placeholder="" id="demo"  disabled>
                                         </div>
                                     </div>
                                 </div>
+
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="controls">

@@ -324,6 +324,4 @@ class LeadsController extends Controller
 
     return view('pages.leads-archive',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
-
- 
 }

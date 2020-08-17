@@ -212,6 +212,7 @@
                                         <th class="text-white">Category</th>
                                         <th class="text-white">Title</th>
                                         <th class="text-white">Date Created</th>
+                                        <th class="text-white">Initial Schedule</th>
                                         <th class="text-white">Created By</th>
                                         <th class="text-white">Date Updated</th>
                                         <th class="text-white">Last Updated By</th>
@@ -228,6 +229,7 @@
                                         <td>{{$event->eventLogCategory->el_cat_name}}</td>
                                         <td>{{$event->title}}</td>
                                         <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->created_at)->format('d-m-Y')}}</td>
+                                        <td></td>
                                         <td>{{$event->created_by}}</td>
                                         <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->updated_at)->format('d-m-Y')}}</td>
                                         <td>{{$event->last_updated_by}}</td>
@@ -237,12 +239,12 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                <button class="btn btn-outline-primary w-40" onclick="hiddenRow({{$loop->iteration}})">
-                                                    <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> Show</a>
+                                                <button class="btn btn-outline-primary" onclick="hiddenRow({{$loop->iteration}})">
+                                                    <a class="dropdown-item" ><i class="bx bx-edit-alt mr-1"></i> Show</a>
                                                 </button>
                                                 <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#leadsaddcall" 
                                                 onclick="getEventID({{$event->el_id}}, {{$event->lead_id}})">
-                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> Add Call</a>
+                                                    <a class="dropdown-item" ><i class="bx bx-trash mr-1"></i> Add Call</a>
                                                 </button>
                                                 </div>
                                             </div>

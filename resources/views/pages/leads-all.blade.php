@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body card-dashboard">
 
-                        <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill" role="tab"
                                 aria-controls="home-fill" aria-selected="true">
@@ -171,7 +171,6 @@
                                 </div>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>

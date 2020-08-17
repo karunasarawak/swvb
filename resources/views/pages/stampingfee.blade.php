@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Stamping Fee')
+@section('title','Stamping Fee List')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -15,186 +15,63 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title text-white">Stamping Fee Listing</h4>
+                    <div class="card-title">
+                        <div class="row">
+                            <h4 class="text white col">Stamping Fee Batch List
+                                <a href="{{ route('stamp.ready') }}">
+                                    <button type="button" class="btn btn-outline-white round text-white ml-2">Create New Batch</button>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content">
                     
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        
                                         <th class="text-white">Batch No.</th>
                                         <th class="text-white">No of Members</th>
                                         <th class="text-white">Stamping Fee</th>
                                         <th class="text-white">Penalty</th>
                                         <th class="text-white">Total Stamping Fee</th>
-                                        
                                         <th class="text-white">Date of Request</th>
                                         <th class="text-white">Date of Approved</th>
                                         <th class="text-white">Date send for stamping</th>
                                         <th class="text-white">Date of Received</th>
-                                    
                                         <th class="text-white">Status</th>
                                         <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
-                               
                                 <tbody>
-                                   
-                                    <tr>
-                                        <td><a href="{{ url('/report/stampingfeedetails') }}">B0001</a></td>
-                                        <td>02</td>                        
-                                        <td>RM 200</td>
-                                        <td>01 April 2020</td>
-                                        <td>Chris</td>
-                                        <td>Wilson</td>
-                                        <td>Wilson</td>
-                                        <td>01 April 2020</td>
-                                        <td>01 April 2020</td>
-                                        <td><select name="pri_postal1" class="select2 form-control" required>
-                                                <option>--</option>
-                                                <option value="98000">PENDING</option>
-                                                <option value="sibu">Sibu</option>
-                                                <option value="miri">Miri</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
-                                                    </button>
+                                    @foreach($payload['list'] as $list)
+                                        <tr>
+                                            <td><a href="{{ route('stamp.details',$list->sfb_id) }}">{{ $list->sfb_id }}</a></td>
+                                            <td></td>                        
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
+                                                            <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr> 
-                                    <tr>
-                                        <td><a href="{{ url('/report/stampingfeedetails') }}">B0001</a></td>
-                                        <td>02</td>                        
-                                        <td>RM 200</td>
-                                        <td>01 April 2020</td>
-                                        <td>Chris</td>
-                                        <td>Wilson</td>
-                                        <td>Wilson</td>
-                                        <td>01 April 2020</td>
-                                        <td>01 April 2020</td>
-                                        <td><select name="pri_postal1" class="select2 form-control" required>
-                                                <option>--</option>
-                                                <option value="98000">PENDING</option>
-                                                <option value="sibu">Sibu</option>
-                                                <option value="miri">Miri</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr> 
-                                    <tr>
-                                        <td><a href="{{ url('/report/stampingfeedetails') }}">B0001</a></td>
-                                        <td>02</td>                        
-                                        <td>RM 200</td>
-                                        <td>01 April 2020</td>
-                                        <td>Chris</td>
-                                        <td>Wilson</td>
-                                        <td>Wilson</td>
-                                        <td>01 April 2020</td>
-                                        <td>01 April 2020</td>
-                                        <td><select name="pri_postal1" class="select2 form-control" required>
-                                                <option>--</option>
-                                                <option value="98000">PENDING</option>
-                                                <option value="sibu">Sibu</option>
-                                                <option value="miri">Miri</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr> 
-                                    <tr>
-                                        <td><a href="{{ url('/report/stampingfeedetails') }}">B0001</a></td>
-                                        <td>02</td>                        
-                                        <td>RM 200</td>
-                                        <td>01 April 2020</td>
-                                        <td>Chris</td>
-                                        <td>Wilson</td>
-                                        <td>Wilson</td>
-                                        <td>01 April 2020</td>
-                                        <td>01 April 2020</td>
-                                        <td><select name="pri_postal1" class="select2 form-control" required>
-                                                <option>--</option>
-                                                <option value="98000">PENDING</option>
-                                                <option value="sibu">Sibu</option>
-                                                <option value="miri">Miri</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr> 
-                                    <tr>
-                                        <td><a href="{{ url('/report/stampingfeedetails') }}">B0001</a></td>
-                                        <td>02</td>                        
-                                        <td>RM 200</td>
-                                        <td>01 April 2020</td>
-                                        <td>Chris</td>
-                                        <td>Wilson</td>
-                                        <td>Wilson</td>
-                                        <td>01 April 2020</td>
-                                        <td>01 April 2020</td>
-                                        <td><select name="pri_postal1" class="select2 form-control" required>
-                                                <option>--</option>
-                                                <option value="98000">PENDING</option>
-                                                <option value="sibu">Sibu</option>
-                                                <option value="miri">Miri</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr> 
-                                  
+                                            </td>
+                                        </tr> 
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

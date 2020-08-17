@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Packages')
+@section('title','Accommodations')
 
 {{-- vendor style --}}
 @section('vendor-styles')

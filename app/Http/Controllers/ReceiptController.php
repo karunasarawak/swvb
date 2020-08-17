@@ -8,6 +8,8 @@ use App\Membership;
 
 use App\Terminal;
 
+use App\Bank;
+
 class ReceiptController extends Controller
 {
     public function index(){
@@ -31,7 +33,9 @@ class ReceiptController extends Controller
 
         $terminals = Terminal::all();
 
-        $payload = ['memberships'=>$memberships, 'terminals'=>$terminals];
+        $banks = Bank::all();
+
+        $payload = ['memberships'=>$memberships, 'terminals'=>$terminals, 'banks'=>$banks];
     
         return view('pages.receipt-new',['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
       }

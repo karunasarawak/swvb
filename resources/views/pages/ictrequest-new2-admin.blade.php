@@ -11,7 +11,7 @@
 @section('content')
 <!-- Form wizard with icon tabs section start -->
 <section class="simple-validation" id="form-repeater-wrapper">
-    <div class="row">
+    <div class="row" x-data="{name: ''}">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                    <form  method="POST" action="" novalidate>
+                    <form  method="POST" action="{{route('store.acc')}}" novalidate>
                         @csrf
                         
                         <div class="row pt-3">
@@ -27,11 +27,12 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label>Membership No.</label>
-                                        <select name="mbrship_id" id="mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member" onchange="checkdigit()" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
+                                        <select name="acc_mbrship_id" id="acc_mbrship_id" class="custom-select form-control" data-validation-required-message="Please select a member" onchange="linkrefer()" x-ref="selectBox" @change="name=$refs.selectBox.options[$refs.selectBox.selectedIndex].dataset.name" required>
                                             <option value="" disabled selected>Membership No</option>
                                             @if(isset($payload))
                                                 @foreach($payload['memberships'] as $membership)
-                                            <option value="{{$membership->mbrship_id}}" data-name="{{$membership->lead->name}}" data-number="{{$membership->rsvn_no}}">{{$membership->mbrship_no}}</option>
+                                                    
+                                            <option value="{{$membership->mbrship_id}}" data-name="{{$membership->lead->name}}" data-number="{{$membership->reservation['rsvn_no']}}">{{$membership->mbrship_no}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -42,7 +43,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" id="name" x-bind:value="name" disabled>
+                                        <input type="text" class="form-control" placeholder="Name" id="acc_name" x-bind:value="name" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -57,6 +58,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="controls">
@@ -74,7 +76,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label>Verified By</label>
-                                        <select class="custom-select form-control required" id="requested_by" name="requested_by" data-validation-required-message="Please select a package type" required>
+                                        <select class="custom-select form-control required" id="verified_by" name="requested_by" data-validation-required-message="Please select a package type" required>
                                             <option value="" disabled selected>Select a staff</option> 
                                             @foreach($payload['staff'] as $staff)
                                             <option value="{{$staff->staff_id}}">{{$staff->staff_name}}</option>
@@ -87,7 +89,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label>Approved By</label>
-                                        <select class="custom-select form-control required" id="requested_by" name="requested_by" data-validation-required-message="Please select a package type" required>
+                                        <select class="custom-select form-control required" id="requested_by" name="approved_by" data-validation-required-message="Please select a package type" required>
                                             <option value="" disabled selected>Select a staff</option> 
                                             @foreach($payload['staff'] as $staff)
                                             <option value="{{$staff->staff_id}}">{{$staff->staff_name}}</option>
@@ -214,7 +216,7 @@
 
 
                         <!-- EVC Poe Expiry Date Extention -->
-                        <div class="row">
+                        <div class="row" id="basic-checkbox">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="controls">
@@ -222,25 +224,25 @@
                                         <ul class="list-unstyled mb-0">
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio1">
-                                                        <label for="radio1">Guest Certificate Fee</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox21">
+                                                        <label for="checkbox21">Guest Certificate Fee</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio1">
-                                                        <label for="radio1">Reservation Admin Fee</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox22">
+                                                        <label for="checkbox22">Reservation Admin Fee</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio2">
-                                                        <label for="radio2">Internal Affiliation Fee</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox23">
+                                                        <label for="checkbox23">Internal Affiliation Fee</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
@@ -255,49 +257,49 @@
                                         <ul class="list-unstyled mb-0">
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio1">
-                                                        <label for="radio1">Waiver of Reservation Admin Fee</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                                        <label for="checkbox2">Waiver of Reservation Admin Fee</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio1">
-                                                        <label for="radio1">Discount of Reactivation Fee</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox3">
+                                                        <label for="checkbox3">Discount of Reactivation Fee</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio2">
-                                                        <label for="radio2">Cancellation of Membership</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox4">
+                                                        <label for="checkbox4">Cancellation of Membership</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio2">
-                                                        <label for="radio2">Booking Cancellation</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox5">
+                                                        <label for="checkbox5">Booking Cancellation</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-5 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio2">
-                                                        <label for="radio2">Duplicate of Invoice</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox6">
+                                                        <label for="checkbox6">Duplicate of Invoice</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
-                                                    <div class="radio">
-                                                        <input type="radio" name="bsradio" id="radio2">
-                                                        <label for="radio2">Others</label>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="checkbox-input" id="checkbox7">
+                                                        <label for="checkbox7">Others</label>
                                                     </div>
                                                 </fieldset>
                                             </li>
@@ -362,5 +364,6 @@
 @section('page-scripts')
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
+<script src="{{asset('assets/js/select_onchange.js')}}"></script>
 <script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 @endsection

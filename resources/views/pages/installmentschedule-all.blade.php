@@ -26,7 +26,7 @@
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
 
-                            <table class="table tours-all">
+                            <table class="table tours-all" style="width:100%;">
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Payment Schedule No.</th>

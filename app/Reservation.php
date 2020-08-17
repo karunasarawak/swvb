@@ -13,6 +13,7 @@ class Reservation extends Model
         'accom_id',
         'voucher_id',
         'invoice_id',
+        'rsvn_no',
         'communication_channel',
         'check_in',
         'check_out',

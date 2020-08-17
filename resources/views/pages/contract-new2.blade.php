@@ -295,6 +295,33 @@
                     </div>
               </div>
           </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="controls">
+                <label>Installment 1</label>
+                <input type="number" class="form-control" placeholder="--" readonly>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="controls">
+                <label>Date</label>
+                <input type="date" class="form-control" placeholder="--" readonly>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="controls">
+                <label>Rounding</label>
+                <input type="number" class="form-control" placeholder="--" readonly>
+              </div>
+            </div>
+          </div>
       </div>
     <div class="row">
       <div class="col-sm-8">
@@ -577,7 +604,7 @@
     </div>
     <!-- Installment end -->
 
-    <div class="row pt-1">
+    <div class="row pt-1 pb-5">
       <div class="col-12">
         <h6 class="py-50">Assignment</h6>
       </div>
@@ -642,6 +669,8 @@
           </div>
         </div>
     </div>
+
+    <button type="button" class="btn btn-primary m-1" id="btn_add1" >Preview</button>
   </section>
 </fieldset>
   
@@ -657,48 +686,8 @@
           </button>
         </div>
         <div class="modal-body">
-        <section id="form-repeater-wrapper">
-          <!-- form default repeater -->
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                
-                <div class="card-content">
-                  <div class="card-body">
-                    <form class="form repeater-default">
-                      <div data-repeater-list="group-a">
-                        <div data-repeater-item>
-                          <div class="row justify-content-between">
-                          <label for="Email">Down Payment </label>
-                            <div class="col-md-2 col-sm-12 form-group">    
-                              <input type="number" class="form-control" id="Email" placeholder="Enter amount of down payment">
-                            </div>
-                            
-                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                              <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                  class="bx bx-x"></i>
-                                Delete
-                              </button>
-                            </div>
-                          </div>
-                          <hr>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col p-0">
-                          <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
-                            Add
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--/ form default repeater -->
-        </section>
+       
+        
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light-secondary" data-dismiss="modal">

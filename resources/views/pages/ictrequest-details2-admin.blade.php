@@ -35,7 +35,7 @@
                                 <div class="col ml-5">
                                     <div class="row">
                                         <p class="col">Membership No.</p>
-                                        <p class="col font-weight-bold black" x-show="o"></p>
+                                        <p class="col font-weight-bold black" x-show="o">1234567</p>
                                         <p class="col" x-cloak x-show="e">
                                         <select class="custom-select form-control required" id="salutation" name="salutation" required>
                                             
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="row">
                                         <p class="col">Member Name</p>
-                                        <p class="col font-weight-bold black" x-show="o"></p>
+                                        <p class="col font-weight-bold black" x-show="o">John Doe</p>
                                         <p class="col" x-cloak x-show="e">
                                             <input  type="text" name="name" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
                                         </p>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row pt-1">
                                 <div class="col">
                                     <div class="card-content">
                                         <div class="card-body">

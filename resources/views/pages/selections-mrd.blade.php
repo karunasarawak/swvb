@@ -31,10 +31,10 @@
                                     <table class="table tours-all">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white" style="width:50%">Reservation Type<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus white"></i></button></th>
-                                                <th class="text-white" style="width:50%">Payment Unit</th>
-                                                <th class="text-white" style="width:50%">Status</th>
-                                                
+                                                <th class="text-white">Reservation Type<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus white"></i></button></th>
+                                                <th class="text-white">Payment Unit</th>
+                                                <th class="text-white">Status</th>
+                                                <th class="text-white">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -42,7 +42,7 @@
                                             <tr>
                                                 <td>Erman</td>
                                                 <td>ICT</td>
-                                                
+                                                <td>Active</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -60,7 +60,7 @@
                                             <tr>
                                                 <td>Darween</td>
                                                 <td>ICT</td>
-                                                
+                                                <td>Active</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -79,7 +79,7 @@
                                             <tr>
                                                 <td>Ali</td>
                                                 <td>CCO</td>
-                                                
+                                                <td>Active</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -98,7 +98,7 @@
                                             <tr>
                                                 <td>Claudia</td>
                                                 <td>ICT</td>
-                                                
+                                                <td>Active</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"

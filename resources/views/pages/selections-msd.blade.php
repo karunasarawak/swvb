@@ -146,10 +146,10 @@
                             <table class="table tours-all">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white" style="width:50%">ID<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus white"></i></button></th>
-                                        <th class="text-white" style="width:50%" >Telemarketer</th>
-                                        <th class="text-white" style="width:30%">Status</th>
-                                        
+                                        <th class="text-white">ID<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus white"></i></button></th>
+                                        <th class="text-white" >Telemarketer</th>
+                                        <th class="text-white">Status</th>
+                                        <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,7 +157,7 @@
                                     <tr>
                                         <td>Erman</td>
                                         <td>ICT</td>
-                                        
+                                        <td>Active</td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -165,9 +165,8 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i>EDIT</a>
                                                     </button>
-                                                   
                                                 </div>
                                             </div>
                                         </td>
@@ -175,25 +174,7 @@
                                     <tr>
                                         <td>Erman</td>
                                         <td>ICT</td>
-                                        
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Erman</td>
-                                        <td>ICT</td>
-                                        
+                                        <td>Active</td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -211,7 +192,7 @@
                                     <tr>
                                         <td>Erman</td>
                                         <td>ICT</td>
-                                        
+                                        <td>Active</td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -229,61 +210,7 @@
                                     <tr>
                                         <td>Erman</td>
                                         <td>ICT</td>
-                                        
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                   
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Erman</td>
-                                        <td>ICT</td>
-                                        
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                   
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Erman</td>
-                                        <td>ICT</td>
-                                        
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                   
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Erman</td>
-                                        <td>ICT</td>
-                                        
+                                        <td>Active</td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -301,7 +228,79 @@
                                     <tr>
                                         <td>Erman</td>
                                         <td>ICT</td>
-                                        
+                                        <td>Active</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                   
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>Active</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                   
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>Active</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                   
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>Active</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erman</td>
+                                        <td>ICT</td>
+                                        <td>Active</td>
                                         <td>
                                             <div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"

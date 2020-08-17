@@ -25,50 +25,54 @@
                         <div class="card-content">
                             <div class="card-body card-dashboard">
                                 <div class="row pt-1">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Member's Information</p>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-6">
                                         <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Last Point Allocation</p>
                                     </div>
-                                    <div class="col ">
+                                    <div class="col-sm-3 pl-4">
                                         <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Status</p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-sm-3">
                                         <div class="row">
-                                            <p class="col">Saluation</p>
-                                            <p class="col font-weight-bold black">Mr</p>
+                                            <p class="col-sm-6">Salutation</p>
+                                            <p class="col-sm-6 font-weight-bold black">Mr</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Name</p>
-                                            <p class="col font-weight-bold black">John Doe</p>
+                                            <p class="col-sm-6">Name</p>
+                                            <p class="col-sm-6 font-weight-bold black">John Doe</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Mobile Contact</p>
-                                            <p class="col font-weight-bold black">+6012 345 6798</p>
+                                            <p class="col-sm-6">Mobile Contact</p>
+                                            <p class="col-sm-6 font-weight-bold black">+6012 345 6798</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Whatsapp</p>
-                                            <p class="col font-weight-bold black">+6012 345 6798</p>
+                                            <p class="col-sm-6">Whatsapp</p>
+                                            <p class="col-sm-6 font-weight-bold black">+6012 345 6798</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Package</p>
-                                            <p class="col font-weight-bold black">Pearl Package</p>
+                                            <p class="col-sm-6">Package</p>
+                                            <p class="col-sm-6 font-weight-bold black">Pearl Package</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Ext. Membership</p>
-                                            <p class="col font-weight-bold black">-</p>
+                                            <p class="col-sm-6">Ext. Membership</p>
+                                            <p class="col-sm-6 font-weight-bold black">-</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Status</p>
-                                            <p class="col font-weight-bold black">Active</p>
+                                            <p class="col-sm-6">Status</p>
+                                            <p class="col-sm-6 font-weight-bold black">Active</p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col-sm-6">Entitlement</p>
+                                            <p class="col-sm-6 font-weight-bold black">3WD 3WE</p>
                                         </div>
 
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col-sm-6">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="table-responsive">
@@ -79,6 +83,7 @@
                                                                 <th class="text-white">Pts</th>
                                                                 <th class="text-white">Allocated</th>
                                                                 <th class="text-white">Expiry</th>
+                                                                <th class="text-white">Balance</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -87,30 +92,35 @@
                                                                 <td>10,000</td>
                                                                 <td>01.07.2020</td>
                                                                 <td>01.07.2020</td>
+                                                                <td>3WD 1WE</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>12</td>
                                                                 <td>10,000</td>
                                                                 <td>01.07.2020</td>
                                                                 <td>01.07.2020</td>
+                                                                <td>3WD 1WE</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>11</td>
                                                                 <td>10,000</td>
                                                                 <td>01.07.2020</td>
                                                                 <td>01.07.2020</td>
+                                                                <td>3WD 1WE</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>10</td>
                                                                 <td>10,000</td>
                                                                 <td>01.07.2020</td>
                                                                 <td>01.07.2020</td>
+                                                                <td>3WD 1WE</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>9</td>
                                                                 <td>10,000</td>
                                                                 <td>01.07.2020</td>
                                                                 <td>01.07.2020</td>
+                                                                <td>3WD 1WE</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -119,46 +129,29 @@
                                         </div>
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col-sm-3 pl-4">
                                         <div class="row">
-                                            <p class="col">Paid (%))</p>
+                                            <p class="col-sm-7">Paid (%)</p>
                                             <p class="col font-weight-bold black">80%</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">AMF Outstanding</p>
+                                            <p class="col-sm-7">AMF Outstanding</p>
                                             <p class="col font-weight-bold black">RM 50</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Installment Outstanding</p>
+                                            <p class="col-sm-7">Installment Outstanding</p>
                                             <p class="col font-weight-bold black">RM 50</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Other Outstanding</p>
+                                            <p class="col-sm-7">Other Outstanding</p>
                                             <p class="col font-weight-bold black">RM 50</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Reservation Fee</p>
-                                            <p class="col font-weight-bold black">RM 20</p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Membership Card Fee</p>
-                                            <p class="col font-weight-bold black">RM 10</p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Transfer Fee</p>
-                                            <p class="col font-weight-bold black">RM 50</p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Administration Fee</p>
-                                            <p class="col font-weight-bold black">RM 20</p>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <p class="col">Total Outstanding</p>
+                                            <p class="col-sm-7">Total Outstanding</p>
                                             <p class="col font-weight-bold black">RM 70</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Over Payment</p>
+                                            <p class="col-sm-7">Over Payment</p>
                                             <p class="col font-weight-bold black">RM 100</p>
                                         </div>
 
@@ -260,10 +253,10 @@
                                     </select>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="form-group controls">
+                           {{{-- <divclass="form --}}}-group controls">
                                             <label>Amount</label>
                                             <input type="number" name="name" class="form-control" placeholder="Name" required>
-                                        </div>
+                                        </divclass=>
                                     </div>  
                                     <div class="col-sm-6">
                                         <div class="form-group controls">

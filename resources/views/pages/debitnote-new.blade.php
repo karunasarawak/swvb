@@ -49,6 +49,17 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="mbrship_name">Add Bill To (Opt.)</label>
+                                                <input type="text" class="form-control" name="mbrship_name" placeholder="Name" id="mbrship_name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
                                 </div>
                                 
                                 <div class="row pt-1">
@@ -61,7 +72,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="controls">
-                                                <label for="item_name">Item</label>
+                                                <label for="item_name">Item Name</label>
                                                 <select name="mbrship_id" id="mbrship_id" class="select2 custom-select form-control" 
                                                 data-validation-required-message="Please select a member" onchange="setInputName()" required>
                                                     <option value="" disabled selected>Extra Service Charges</option>
@@ -236,7 +247,7 @@
                             </div>
                             <div class="row pt-1">
                                 <div class="col-sm-6 ml-1">
-                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Subject To</p>
+                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Attach To</p>
                                 </div>
                             <div class="card-body card-dashboard pt-1">
                                 <div class="table-responsive">

@@ -33,7 +33,7 @@
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white" style="width:50%">Charge Type</th>
-                                        <th class="text-white" style="width:50%">Abbreviation</th>
+                                        <th class="text-white" style="width:50%">Code</th>
                                         <th class="text-white" style="width:50%">Action</th>
                                         
                                     </tr>

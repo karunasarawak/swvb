@@ -29,116 +29,116 @@
                                     <tr>
                                         <th class="text-white">ICT Ref No.</th>
                                         <th class="text-white">Description</th>
-                                        <th class="text-white">Department</th>
-                                        <th class="text-white">Requested By</th>
-                                        <th class="text-white">Request Date / Time</th>
+                                        <th class="text-white">Requested Department</th>
+                                        <th class="text-white">Requested Staff</th>
+                                        <th class="text-white">Request Date/Time</th>
+                                        <th class="text-white">Attachment</th>
                                         <th class="text-white">Verified By</th>
                                         <th class="text-white">Approved By</th>
                                         <th class="text-white">Resolved By</th>
-                          
+                                        <th class="text-white">Resolved Dateline</th>
+                                        <th class="text-white">ICT Remarks</th>
                                         <th class="text-white">Status</th>
-                                        
                                         <th class="text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                    @if(isset($payload))
-                        @foreach($payload['ict'] as $ict)   
-
-                             @if(isset($payload['ict']))
-                                    <tr>
-                                            <!-- if use relationship, table->model function name->column -->
-                                        <td><a href="{{ route('pt.details', $ict->pict_req_id)}}">{{$ict->pict_req_id}}</a></td>
-                                        <td>{{$ict->ictMembership}}</td>
-                                        <td>{{$ict->department->dept}}</td>
-                                        <td>{{$ict->reqstaff->staff_name}}</td>
-                                        <td>{{$ict->pict_req_created_at}}</td>
-                                        <td>{{$ict->verifystaff->staff_name}}</td>
-                                        <td>{{$ict->approvestaff->staff_name}}</td>
-                                        <td>{{$ict->pict_processed}}</td>
-                                        @if ($ict->pict_req_status == "0")
-                                            <?php $status = "Pending Verify"; ?>
-                                        @elseif ($ict->pict_req_status == "1")
-                                            <?php $status = "Pending Approval"; ?>
-                                        @elseif ($ict->pict_req_status == "2")
-                                            <?php $status = "Pending Resolve"; ?>
-                                        @elseif ($ict->pict_req_status == "3")
-                                            <?php $status = "Resolved"; ?>
-                                        @elseif ($ict->pict_req_status == "4")
-                                            <?php $status = "Rejected"; ?>
+                                    @if(isset($payload))
+                                        @foreach($payload['ict'] as $ict)   
+                                            @if(isset($payload['ict']))
+                                                <tr>
+                                                    <!-- if use relationship, table->model function name->column -->
+                                                    <td><a href="{{ route('pt.details', $ict->pict_req_id)}}">{{$ict->pict_req_id}}</a></td>
+                                                    <td>{{$ict->membership->mbrship_no}}</td>
+                                                    <td>{{$ict->request->department->dept}}</td>
+                                                    <td>{{$ict->reqstaff->staff_name}}</td>
+                                                    <td>{{$ict->pict_req_created_at}}</td>
+                                                    <td>{{$ict->verifystaff->staff_name}}</td>
+                                                    <td></td>
+                                                    <td>{{$ict->approvestaff->staff_name}}</td>
+                                                    <td>{{$ict->pict_processed}}</td>
+                                                    @if ($ict->pict_req_status == "0")
+                                                        <?php $status = "Pending Verify"; ?>
+                                                    @elseif ($ict->pict_req_status == "1")
+                                                        <?php $status = "Pending Approval"; ?>
+                                                    @elseif ($ict->pict_req_status == "2")
+                                                        <?php $status = "Pending Resolve"; ?>
+                                                    @elseif ($ict->pict_req_status == "3")
+                                                        <?php $status = "Resolved"; ?>
+                                                    @elseif ($ict->pict_req_status == "4")
+                                                        <?php $status = "Rejected"; ?>
+                                                    @endif
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{$status}}</td>
+                                                    @if($ict->pict_req_status==0)    
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                                </span>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <!-- <button class="bg-transparent border-0"  >
+                                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                                    </button>
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
+                                                                    </button> -->
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                                    </button>
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> VERIFY</a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    @elseif($ict->pict_req_status==1)
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                                </span>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                                    </button>
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> APPROVE</a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>  
+                                                    @elseif($ict->pict_req_status==2)
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                                </span>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
+                                                                    </button>
+                                                                    <button class="bg-transparent border-0" >
+                                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> RESOLVE</a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>  
+                                                    @elseif($ict->pict_req_status==3)
+                                                        <td>
+                                                            
+                                                        </td>  
+                                                    </tr>
+                                                    @elseif($ict->pict_req_status==4)
+                                                        <td>
+                                                            
+                                                        </td>  
+                                                    </tr>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         @endif
-                                        <td>{{$status}}</td>
-                                        
-                                    @if($ict->pict_req_status==0)    
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <!-- <button class="bg-transparent border-0"  >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> VIEW</a>
-                                                    </button> -->
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> VERIFY</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    @elseif($ict->pict_req_status==1)
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> APPROVE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>  
-                                    @elseif($ict->pict_req_status==2)
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.reject', $ict->pict_req_id)}}" ><i class="bx bx-pen mr-1"></i> REJECT</a>
-                                                    </button>
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="{{route('ict.status', ['ict_id'=>$ict->pict_req_id, 'ict_status'=>$ict->pict_req_status])}}" ><i class="bx bx-pen mr-1"></i> RESOLVE</a>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>  
-                                    @elseif($ict->pict_req_status==3)
-                                        <td>
-                                            
-                                        </td>  
-                                    </tr>
-                                    @elseif($ict->pict_req_status==4)
-                                        <td>
-                                            
-                                        </td>  
-                                    </tr>
-                                    @endif
-                                @endif
-
-                        @endforeach
-                    @endif
-                                    
                                 </tbody>
                             </table>
                         </div>

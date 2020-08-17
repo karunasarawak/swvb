@@ -41,6 +41,7 @@ class ReservationController extends Controller
         $payload['salute']=DB::table('salutations')->get();
         $payload['membership']=DB::table('memberships')->get();
         $payload['vouchers']=DB::table('vouchers')->get();
+        $payload['nationalities']=DB::table('nationalities')->get();
         $rsvntype=$request->session()->get('rsvntype');
         if(empty($rsvntype)){
           $rsvntype='hotel';
@@ -124,16 +125,22 @@ class ReservationController extends Controller
       public function memberdetail($id){
         $md=Membership::where('mbrship_id',$id)->first();
 
-        
         $s=DB::table('salutations')->where('salutation_id',$md['lead']->salutation_id)->first();
         $md['lead']->salutation=$s->salutation;
+        if(!empty($md->lead_id2)){
+          $md['lead2']=DB::table('leads')->where('lead_id',$md->lead_id2)->first();
+          $s=DB::table('salutations')->where('salutation_id',$md['lead2']->salutation_id)->first();
+          $md['lead2']->salutation=$s->salutation;
+        }
         $md['package']=DB::table('packages')->where('package_id',$md->package_id)->first();
         $md['installment_schedule']=DB::table('installment_schedule')->where('install_schedule_id',$md->install_schedule_id)->first();
        // $md['entpoint']=DB::table('ent_point_schedule')->where('mbrship_id',$md->mbrship_id)->get();
         echo json_encode($md);
       }
       public function test(){
-        dd(DB::select('select * from vouchers'));
+        print_r(DB::select('select * from accommodations '));
+      print_r(DB::select('show tables'));
+      //
         //dd(DB::select('desc reservation_types'));
       } 
 }

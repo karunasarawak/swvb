@@ -509,7 +509,7 @@ class MembershipController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
     ];
 
-    return view('pages.entitlementmanagement',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
   public function entitlementh(){
@@ -534,16 +534,16 @@ class MembershipController extends Controller
     return view('pages.entitlementmanagement-advanced',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
-  public function offset(){
+  // public function offset(){
 
-    $pageConfigs = ['pageHeader' => true];
+  //   $pageConfigs = ['pageHeader' => true];
 
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
-    ];
+  //   $breadcrumbs = [
+  //     ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
+  //   ];
 
-    return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
+  //   return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  // }
 
   public function create2ndMembership(){
 

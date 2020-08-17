@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Selections - ACC & CCD')
+@section('title','Card Terminal')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -29,7 +29,7 @@
                         </div>
                         <div class="table-responsive">
 
-                            <table class="table tours-all">
+                            <table class="table tours-all" style="width:100%;">
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white expanded" style="width:30%">TID</th>

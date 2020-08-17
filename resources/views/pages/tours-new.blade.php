@@ -150,56 +150,10 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label>Country</label>
-                                                <div class="position-relative">
-                                                    <select name="country" id="country" class="custom-select form-control" required 
-                                                    data-validation-required-message="Please select a country">
-                                                        <option value="">--</option>
-                                                        @foreach($payload['countries'] as $country)
-                                                            <option value="{{$country->id}}">{{$country->short_code}} - {{$country->country_name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                    
-
-                                    <!-- <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label>State</label>
-                                                <div class="position-relative">
-                                                    <select name="state" class="custom-select form-control" required>
-                                                        <option>--</option>
-                                                        @foreach($payload['states'] as $states)
-                                                            <option value="{{$states->id}}">{{$states->state_name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                    
 
 
-                                    <!-- <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label>City</label>
-                                                <div class="position-relative">
-                                                <select name="city" class="select2 form-control" required>
-                                                    <option>--</option>
-                                                    @foreach($payload['cities'] as $city)
-                                                        <option value="{{$city->city_id}}">{{$city->city_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
@@ -210,6 +164,39 @@
                                                     <option>--</option>
                                                     @foreach($payload['salesp'] as $salesp)
                                                         <option value="{{$salesp->sales_team_id}}">{{$salesp->sales_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>State</label>
+                                                <div class="position-relative">
+                                                    <select name="state" id="state" class="custom-select form-control" onchange="filterCity()" required>
+                                                        <option>--</option>
+                                                        @foreach($payload['states'] as $states)
+                                                            <option value="{{$states->id}}">{{$states->state_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>City</label>
+                                                <div class="position-relative">
+                                                <select name="city" class="select2 form-control" required>
+                                                    <option>--</option>
+                                                    @foreach($payload['cities'] as $city)
+                                                        <option value="{{$city->city_id}}">{{$city->city_name}}</option>
                                                     @endforeach
                                                 </select>
                                                 </div>
@@ -231,6 +218,7 @@
 
 
 <script type="text/javascript">
+
 $(document).on('save','form#newtours',function(event){
 	event.preventDefault();
 	var sel = $("#country").val();
@@ -239,6 +227,13 @@ $(document).on('save','form#newtours',function(event){
 		return false;
 	}
 });
+
+function filterCity()
+{
+     var state = document.getElementById("state").value;
+     
+
+}
 </script>
 {{-- vendor scripts --}}
 

@@ -15,7 +15,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">Batch Payment - 1000114 Details<a href="{{ url('/iiru/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
+                    <div class="row">
+                        <h4 class="col card-title text-white">
+                            <span>Batch Payment - 1000114 Details</span>
+                            <span class="offset-2">VISA</span>
+                            <button class="btn btn-outline-white round mr-1 text-white bx bx-download"></button>
+                            <button class="btn btn-outline-white round mr-1 text-white bx bx-printer"></button>
+                            <span class="offset-1">MASTER</span>
+                            <button class="btn btn-outline-white round mr-1 text-white bx bx-download"></button>
+                            <button class="btn btn-outline-white round mr-1 text-white bx bx-printer"></button>
+                        </h4>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body ">

@@ -371,13 +371,13 @@
                                         <div class="card-body card-dashboard">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">AMF<i class="bx bx-pencil"></i></p>
+                                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto">AMF<i class="bx bx-pencil"></i></p>
                                                 </div>
                                                 <div class="col">
                                                     <p class="h7 swvb-blue m-0 font-weight-bold">Outstanding Item<i class="bx bx-pencil"></i></p>
                                                 </div>
                                                 <div class="col">
-                                                    <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary ">Pay Now</a>
+                                                    <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary mb-3">Pay Now</a>
                                                 </div>
                                             </div>
 
@@ -445,7 +445,7 @@
                                             <div class="row pt-1">
                                                 <div class="col">
                                                     <div class="rol">
-                                                        <p class="h7 swvb-blue font-weight-bold col">Credit Card<button class="btn btn-primary round float-right mb-1" data-toggle="modal" data-target="#inlineForm5">Edit</button></p>
+                                                        <p class="h7 swvb-blue font-weight-bold col">Credit Card<button class="btn btn-primary round float-right mb-1" data-toggle="modal" data-target="#inlineForm5">Add Credit Card</button></p>
                                                         
                                                     </div>
                                                     <div class="table-responsive">
@@ -1034,7 +1034,7 @@
         <div class="col-md-4 float-right-top">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title  text-white">Members' Menu</h4>
+                    <h4 class="card-title  text-white"> Menu</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -1073,6 +1073,37 @@
                                         <a href="{{ url('/membership/new') }}" type="button" class="w-100 btn btn-primary ">View Previous Members</a>
                                     </div>
                                 </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="{{ url('/invoice/{inv_id}/details') }}" type="button" class="w-100 btn btn-primary "> Invoice</a>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="{{ url('/receipt/details') }}" type="button" class="w-100 btn btn-primary "> Receipt</a>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="{{ url('/debitnote/details') }}" type="button" class="w-100 btn btn-primary "> Debit Note</a>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="{{ url('/creditnote/{inv_id}/details') }}" type="button" class="w-100 btn btn-primary "> Credit Note</a>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="{{ url('/refund/details') }}" type="button" class="w-100 btn btn-primary "> Refund</a>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="{{ url('/contra/details') }}" type="button" class="w-100 btn btn-primary "> Contra</a>
+                                    </div>
+                                </div>
+                                
                             </div>
                         
                     </div>
@@ -1251,8 +1282,8 @@
 <div class="modal fade text-left" id="inlineForm1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Update Status</h4>
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">Update Status</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>
@@ -1287,61 +1318,13 @@
     </div>
 </div>
 
-<!-- update status Modal for status: peding
-<div class="modal fade text-left" id="inlineForm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-swvb-cyan">
-                <h4 class="modal-title text-white" id="myModalLabel33">Update Status</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="bx bx-x"></i>
-                </button>
-            </div>
-            <form action="#">
-                <div class="modal-body">
-                    <label>Deceased</label>
-                    <div class="form-group">
-                        <input type="radio" name="Deceased" id="deceased" placeholder="Deceased" class="form-control">
-                    </div>
-                    <label>Active</label>
-                    <div class="form-group">
-                        <input type="radio" name="Deceased" id="Active" placeholder="Active" class="form-control">
-                    </div>
-                    <label>Withdrawal</label>
-                    <div class="form-group">
-                        <input type="radio" name="Deceased" id="Withdrawal" placeholder="Withdrawal" class="form-control">
-                    </div>
-                    <label>Cancellation</label>
-                    <div class="form-group">
-                        <input type="radio" name="Deceased" id="Cancellation" placeholder="Cancellation" class="form-control">
-                    </div>
-                    <label>Suspend</label>
-                    <div class="form-group">
-                        <input type="radio" name="Deceased" id="Suspend" placeholder="Suspend" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">login</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
-
 
 <!--update status Modal for status: Suspend-->
 <div class="modal fade text-left" id="inlineForm3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Update Status</h4>
+        <div class="modal-content ">
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">Update Status</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>
@@ -1376,9 +1359,9 @@
 <!--update status Modal for status: Suspend-->
 <div class="modal fade text-left" id="inlineForm5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">New Credit Card</h4>
+        <div class="modal-content ">
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">New Credit Card</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>
@@ -1436,8 +1419,8 @@
 <div class="modal fade text-left" id="inlineForm5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">New Credit Card</h4>
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">New Credit Card</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>

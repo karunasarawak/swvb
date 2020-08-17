@@ -31,7 +31,7 @@
                                         <th class="text-white">Membership No.</th>
                                         <th class="text-white">Name</th>
                                         <th class="text-white">Amount</th>
-                                        <th class="text-white">Balance</th>
+                                        <th class="text-white">Prepayment</th>
                                         <th class="text-white">Issue Date</th>
                                         <th class="text-white">Status</th>
                                         <th class="text-white">Creator</th>

@@ -63,8 +63,8 @@
                                                                         
                                                                         <th class="text-white" rowspan="2">Nett No. of Package</th>
                                                                         <th class="text-white" rowspan="2">AMF</th>
-                                                                        <th class="text-white" rowspan="2">Points</th>
-                                                                        <th class="text-white" colspan="2">Status</th>
+                                                                        <th class="text-white" colspan="2">Points</th>
+                                                                        <th class="text-white" rowspan="2">Status</th>
                                                                         <th class="text-white" rowspan="2">Action</th>
 
                                                                         

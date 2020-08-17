@@ -19,14 +19,13 @@
                 </div>
                 <div class="card-content">
                     <div class="px-2 pt-1">
-                         <a href="" class="btn btn-outline-primary round mr-1 mb-1" >Add<i class="bx bx-plus-medical"></i></a>
+                         <a  class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#addvoucher">Add<i class="bx bx-plus-medical"></i></a>
                         <a href="" class="btn btn-outline-primary round mr-1 mb-1" >Active</a> 
                         <a href="" class="btn btn-outline-primary round mr-1 mb-1">Archive</a> 
                     </div>
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-
-                            <table class="table tours-all" style="width:100%;">
+                            <table class="table tours-all" style="width:100%;overflow:hidden;">
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Vouchers No.</th>
@@ -71,21 +70,22 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0 dropdown-item" data-toggle="modal" data-target="#inlineForm100"
+                                                        <button class="bg-transparent border-0 " data-toggle="modal" data-target="#inlineForm100"
                                                         onclick="edit('{{$voucher->voucher_id}}','{{$voucher->cv_exp_date}}','{{$voucher->night}}','{{$voucher->no_occupancy}}','{{$voucher->accom_id}}')">
-                                                            <i class="bx bx-edit-alt mr-1"></i> EDIT
+                                                            <a class="dropdown-item"><i class="bx bx-edit-alt mr-1"></i> Edit</a>
                                                         </button>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> PRINT</a>
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-printer mr-1"></i> Print</a>
                                                         <form action="{{route('vouchers.archive', $voucher->voucher_id)}}" method="POST">
                                                             @csrf 
                                                             @method('patch')
-                                                            <button type="submit" class="bg-transparent border-0 dropdown-item">
-                                                                <i class="bx bx-edit-alt mr-1"></i> Archieve
+                                                            <button type="submit" class="bg-transparent border-0 ">
+                                                                <a class="dropdown-item"><i class="bx bx-edit-alt mr-1"></i> Archieve</a>
                                                             </button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </td>
+                                           
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -100,7 +100,7 @@
 
 
 <!--login form Modal -->
-<div class="modal fade text-left" id="inlineForm100" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+<!-- <div class="modal fade text-left" id="addvoucher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-blue">
@@ -109,59 +109,112 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{route('vouchers.edit')}}" method="POST">
-                @csrf
-                @method('patch')
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input id="voucher_id" type="hidden" name="voucher_id" class="form-control" required>    
-                    </div>
+            
+        </div>
+    </div>
+</div> -->
 
-                    <label>Expiry Date</label>
-                    <div class="form-group">
-                        <input id="exp_date" type="date" name="exp_date" class="form-control" required>    
-                    </div>
+<div class="modal fade" id="addvoucher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+            <h5 class="modal-title text-white" id="exampleModalLongTitle">Scrolling Modal</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+            </div>
+            <div class="modal-body">
+                    <form action="{{route('vouchers.edit')}}" method="POST">
+                        @csrf
+                        @method('patch')
+                        <div class="modal-body">
+                        
 
-                    <label>No. of Stay</label>
-                    <div class="form-group">
-                        <select id="stay" name="stay" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                            <option value="">--</option>
-                            <option value="1">2D1N</option>
-                            <option value="2">3D2N</option>
-                        </select>
-                    </div>
+                            <label>Hotel</label>
+                            <div class="form-group">
+                                <select id="stay" name="stay" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                                    <option value="">--</option>
+                                    <option value="1">2D1N</option>
+                                    <option value="2">3D2N</option>
+                                </select>
+                            </div>
 
-                    <label>No. of Occupancy</label>
-                    <div class="form-group">
-                        <select id="occup" name="occup" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                            <option value="">--</option>
-                            <option value="2">2</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                            <label>Block-out Season</label>
+                            <div class="form-group">
+                                <select id="stay" name="stay" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                                    <option value="">--</option>
+                                    <option value="1">Peak</option>
+                                    <option value="2">Non-peak</option>
+                                    <option value="2">PH</option>
+                                </select>
+                            </div>
 
-                    <label>Hotel</label>
-                    <div class="form-group">
-                        <select id="hotel" name="hotel" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                            <option value="">--</option>
-                            <option value="1">Grand Margherita Hotel</option>
-                            <option value="2">Damai Beach Resort</option>
-                        </select>
-                    </div>
-                </div>
+                            <label>Room</label>
+                            <div class="form-group">
+                                <select id="occup" name="occup" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                                    <option value="">--</option>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ml-1">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Save</span>
-                    </button>
-                </div>
+                            <label>Start Day</label>
+                            <div class="form-group">
+                                <select id="hotel" name="hotel" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                                    <option value="" disabled>--</option>
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                    <option value="7">Sunday</option>
+                                </select>
+                            </div>
 
-            </form>
+                            <label>End Day</label>
+                            <div class="form-group">
+                                <select id="hotel" name="hotel" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                                    <option value="" disabled>--</option>
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                    <option value="7">Sunday</option>
+                                </select>
+                            </div>
+
+                            <label>Valid Until</label>
+                            <div class="form-group">
+                                <input id="exp_date" type="date" name="exp_date" class="form-control" required>    
+                            </div>
+
+                            <label>Night</label>
+                            <div class="form-group">
+                                <select id="hotel" name="hotel" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                                    <option value="">--</option>
+                                    <option value="1">Grand Margherita Hotel</option>
+                                    <option value="2">Damai Beach Resort</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Close</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Save</span>
+                            </button>
+                        </div>
+
+                    </form>
+            </div>
+            
         </div>
     </div>
 </div>

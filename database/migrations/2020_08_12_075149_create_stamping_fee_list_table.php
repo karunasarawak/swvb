@@ -16,7 +16,7 @@ class CreateStampingFeeListTable extends Migration
         Schema::create('stamping_fee_list', function (Blueprint $table) {
             $table->id('sfl_id');
             $table->integer('sfb_id')->length(11)->nullable();
-            $table->integer('mbrship_id')->length(11)->nullable();
+            $table->integer('mbrship_no')->length(11)->nullable();
             $table->timestamps();
         });
     }

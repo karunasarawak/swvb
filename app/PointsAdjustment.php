@@ -18,6 +18,9 @@ class PointsAdjustment extends Model
         'req_type',
     ];
 
-    
+    public function membership()
+    {
+        return $this->hasMany('App\Membership', 'mbrship_id', 'mbrship_id');
+    }
   
 }

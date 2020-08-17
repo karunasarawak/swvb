@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ICTRequestPoint extends Model
 {
     protected $fillable =[
-        'ict_req_id',
-        'staff_id',
+        'pict_req_id',
         'rsvn_id',
         'use_year',
-        'mbrship_id',
+        'pict_mbrship_id',
         'pict_req_by',
         'pict_verifier',
         'pict_approval',
@@ -41,14 +40,14 @@ class ICTRequestPoint extends Model
         return $this->belongsTo('App\Staff', 'pict_req_by', 'staff_id');
     }
 
-    public function department()
-    {
-        return $this->hasMany('App\Department', 'dept_id', 'staff_id');
-    }
+    // public function department()
+    // {
+    //     return $this->hasMany('App\Department', 'dept_id', 'staff_id');
+    // }
 
     public function membership()
     {
-        return $this->belongsTo('App\Membership', 'mbrship_id', 'mbrship_id');
+        return $this->belongsTo('App\Membership', 'pict_mbrship_id', 'mbrship_id');
     }
 
     public function reservation()
@@ -57,6 +56,15 @@ class ICTRequestPoint extends Model
     }
 
 
+    public function pointsadjustment()
+    {
+        return $this->hasMany('App\PointsAdjustment', 'pict_req_id', 'pict_req_id');
+    }
 
-
+    public function request()
+    {
+        return $this->belongsTo('App\Staff', 'pict_req_by', 'staff_id');
+    }
 }
+
+                

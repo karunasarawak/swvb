@@ -60,28 +60,25 @@
                                         <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
-                                                    <th class="text-white">Batch</th>
+                                                    <th class="text-white">Year</th>
                                                     <th class="text-white">Create Date</th>
                                                     <th class="text-white">Prepared By</th>
                                                     <th class="text-white">Verified By</th>
-                                                    <th class="text-white">Verified Date</th>
                                                     <th class="text-white">Approved By</th>
                                                     <th class="text-white">Approved Date</th>
                                                     <th class="text-white">II:RU List</th>
                                                     <th class="text-white">Reservation Request</th>
-                                                    
+                                                    <th class="text-white">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><a href="{{url('/extmembership/details')}}">74</a></td>
-                                                    <td>205420000</td>
-                                                    <td>Yakub Sebastian</td>
+                                                    <td><a href="{{url('/extmembership/details')}}">2020</a></td>
                                                     <td>RM 247.30</td>
                                                     <td>Point Offset</td>
                                                     <td>03 June 2020</td>
                                                     <td>Active</td>
-                                                   
+                                                    <td></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -104,36 +101,58 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i>VERIFY</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i>APPROVE</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('/extmembership/details')}}">CN10013902</a></td>
-                                                    <td>205420000</td>
+                                                    <td><a href="{{url('/extmembership/details')}}">2019</a></td>
+                                                    <td>1</td>
                                                     <td>Yakub Sebastian</td>
                                                     <td>RM 247.30</td>
                                                     <td>Point Offset</td>
                                                     <td>03 June 2020</td>
                                                     <td>Active</td>
-                                                    
+                                                    <td></td>
                                                     <td>
                                                         <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        </div>
+                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            </div>
                                                         </div>
                                                     </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            </div>
                                                         </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i>VERIFY</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i>APPROVE</a>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -430,21 +449,15 @@
                                         <table class="table tours-all">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
-                                                    <th class="text-white">Batch</th>
-                                                    <th class="text-white">RSVN No.</th>
-                                                    <th class="text-white">Name</th>
-                                                    <th class="text-white">Contact No.</th>
-                                                    <th class="text-white">Email</th>
-                                                    <th class="text-white">Country</th>
+                                                    <th class="text-white">Year</th>
                                                     <th class="text-white">Create Date</th>
                                                     <th class="text-white">Prepared By</th>
-                                                    <th class="text-white">Verified 1</th>
+                                                    <th class="text-white">Verified By</th>
                                                     <th class="text-white">Approved By</th>
-                                                    <th class="text-white">Signature</th>
                                                     <th class="text-white">Approved Date</th>
                                                     <th class="text-white">II:RU List</th>
                                                     <th class="text-white">Reservation Request</th>
-                                                    <th class="text-white">Status</th>
+                                                    <th class="text-white">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -452,18 +465,22 @@
                                                                                        
                                                 <tr>
                                                     <td>1000032</td>
-                                                    <td>1000032</td>
-                                                    <td>Elizabeth</td>
-                                                    <td>Elizabeth</td>
                                                     <td>27 April 2019</td>
+                                                    <td>Elizabeth</td>
                                                     <td>03:05 AM</td>
                                                     <td>Charles Dean</td>
-                                                    <td>1000032</td>
-                                                    <td>1000032</td>
-                                                    <td>Elizabeth</td>
-                                                    <td>Elizabeth</td>
                                                     <td>27 April 2019</td>
-                                                    <td>03:05 AM</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"

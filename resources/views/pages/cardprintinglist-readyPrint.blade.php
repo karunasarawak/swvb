@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Card Printing List')
+@section('title','Ready to Print')
 
 {{-- page style --}}
 @section('page-styles')
@@ -17,7 +17,7 @@
                 <div class="card-header bg-swvb-cyan">
                     <div class="card-title">
                         <div class="row">
-                            <h4 class="text white col">Card Printing Ready to Print List
+                            <h4 class="text white col">Ready to Print Listing
                                 <a href="" class="btn btn-outline-white round text-white float-right">Download</a>
                             </h4>
                         </div>
@@ -28,13 +28,28 @@
                         <div class="table-responsive pt-3">
                             <form action={{ route('card.create') }} method="POST">
                                 @csrf
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label>Supplier</label>
+                                            <select name="supplier" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
+                                                <option value="">--</option>
+                                                @foreach($payload['supplier'] as $supplier)
+                                                    <option value="{{ $supplier->supplier_id }}">{{ $supplier->supplier_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <table class="table tours-all">
                                     <thead class="bg-swvb-dark">
                                         <tr>
-                                            <th><fieldset>
+                                            <th>
+                                                <fieldset>
                                                     <div class="checkbox">
                                                         <input type="checkbox" class="checkbox-input" id="pri_check" name="pri_check" onclick="checkAll()">
-                                                        <label for="pri_check"></label>
+                                                        <label for="pri_check" class="text-white">Select ALl</label>
                                                     </div>
                                                 </fieldset>
                                             </th>
@@ -52,7 +67,7 @@
                                                 <fieldset>
                                                     <div class="checkbox">
                                                         <input type="checkbox" class="checkbox-input" name="check{{ $loop->iteration }}" value="{{ $mbrship->mbrship_no }}" id="checkbox{{ $loop->iteration }}" >
-                                                        <label for="checkbox{{ $loop->iteration }}"></label>
+                                                        <label for="checkbox{{ $loop->iteration }}">Select</label>
                                                     </div>
                                                 </fieldset>
                                             </td>
@@ -70,10 +85,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
-                                
-                                <button type="submit" class=" btn btn-primary float-right" id="btn_add1">Create</button>
-                                
+                                </div>
+                                    <button style="margin-right:2.5%;" type="submit" class=" btn btn-primary float-right" id="btn_add1">Create</button>
+                                </div>
                             </form>
                         </div>
                     </div>

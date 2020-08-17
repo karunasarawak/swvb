@@ -27,7 +27,7 @@ class CreateDepartmentsTable extends Migration
                 ['dept' => 'MRD'],
                 ['dept' => 'ACC'],
                 ['dept' => 'CCD'],
-              
+                ['dept' => 'Management'],
             )
         );
         

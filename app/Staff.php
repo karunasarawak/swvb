@@ -21,5 +21,9 @@ class Staff extends Model
         return $this->hasMany('App\Lead');
     }
 
-   
+    public function department()
+    {
+        return $this->belongsTo('App\Department', 'staff_id', 'dept_id');
+    }
+
 }

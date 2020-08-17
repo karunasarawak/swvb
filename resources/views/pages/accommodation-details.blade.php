@@ -67,6 +67,18 @@
                                             <p class="col font-weight-bold black">Open</p>
                                         </div>
                                         <div class="row">
+                                            <p class="col">Address 2</p>
+                                            <p class="col font-weight-bold black">...</p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col">Address 3</p>
+                                            <p class="col font-weight-bold black">...</p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col">Address 4</p>
+                                            <p class="col font-weight-bold black">...</p>
+                                        </div>
+                                        <div class="row">
                                             <p class="col">Postcode</p>
                                             <p class="col font-weight-bold black">01 May 2020</p>
                                         </div>
@@ -122,38 +134,65 @@
                                             <p class="col font-weight-bold black">01/2024</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col">Provided Breakfast (RM)</p>
-                                            <p class="col font-weight-bold black">100</p>
+                                            <div class="col">
+                                                <p>Provided Breakfast</p>
+                                            </div>
+                                            <div class="col">
+                                                <div class="custom-control-inline">
+                                                    <div class="col radio mr-1">
+                                                        <input type="radio" name="Breakfast" id="Yes3" checked="" required>
+                                                        <label for="Yes3">Yes</label>
+                                                    </div>
+                                                    <div class="col radio">
+                                                        <input type="radio" name="Breakfast" id="No3" checked="">
+                                                        <label for="No3">No</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form repeater-default">
-                                                <div data-repeater-list="group-a">
-                                                    <div data-repeater-item>
-                                                        <div class="row justify-content-between">
-                                                            <div class="col-md-4  form-group">
-                                                                <label for="Email">Number of Pax </label>
-                                                                <input type="number" class="form-control" id="Email" placeholder="Enter number of pax">
-                                                            </div>
-                                                           
-                                                            <div class="col-md-6  form-group">
-                                                                <label for="password">Breakfast Price Per Pax (RM)</label>
-                                                                <input type="password" class="form-control" id="password" placeholder="Enter price per pax">
-                                                            </div>
-                                                            
-                                                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                                                <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                                                    class="bx bx-x"></i>
-                                                                    Delete
-                                                                </button>
+                                            <div class="col">
+                                                <div class="form repeater-default">
+                                                    <div data-repeater-list="group-a">
+                                                        <div data-repeater-item>
+                                                            <div class="row justify-content-between">
+                                                                <div class="col-md-4">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <label for="Email">Number of Pax </label>
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <input type="number" class="form-control w-1" id="Email" placeholder="0">
+                                                                                </div>
+                                                                                <p>-</p>
+                                                                                <div class="col">
+                                                                                    <input type="number" class="form-control w-1" id="Email" placeholder="0">
+                                                                                </div>  
+                                                                            </div>              
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                                <div class="col-md-6  form-group">
+                                                                    <label for="password">Breakfast Price Per Pax (RM)</label>
+                                                                    <input type="password" class="form-control" id="password" placeholder="Enter price per pax">
+                                                                </div>
+                                                                
+                                                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                                    <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                                        class="bx bx-x"></i>
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col p-0">
-                                                        <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
-                                                            Add
-                                                        </button>
+                                                    <div class="form-group">
+                                                        <div class="col p-0">
+                                                            <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                                                Add
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

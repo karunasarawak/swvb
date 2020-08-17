@@ -10,7 +10,7 @@
 
 @section('content')
 <!-- Form wizard with icon tabs section start -->
-<section class="simple-validation float-sm-left">
+<section class="simple-validation">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -47,19 +47,16 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <p class="col">Reason</p>
-                                    <p class="col font-weight-bold black">Reasonable Reason</p>
+                                    <p class="col">P.V. Member</p>
+                                    <p class="col font-weight-bold black">-</p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Amount</p>
                                     <p class="col font-weight-bold black">RM 500</p>
                                 </div>
+                                
                                 <div class="row">
-                                    <p class="col">Banked in to</p>
-                                    <p class="col font-weight-bold black">RHB Bank</p>
-                                </div>
-                                <div class="row">
-                                    <p class="col">Remark</p>
+                                    <p class="col">Reason</p>
                                     <p class="col font-weight-bold black">-</p>
                                 </div>
                             </div>
@@ -77,7 +74,12 @@
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th></th>
+                                                <th><fieldset>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-input" id="checkboxxx">
+                                                            <label for="checkboxxx"></label>
+                                                        </div>
+                                                    </fieldset></th>
                                                 <th class="text-white">Invoice</th>
                                                 <th class="text-white">Date</th>
                                                 <th class="text-white">Description</th>

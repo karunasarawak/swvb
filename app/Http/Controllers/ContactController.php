@@ -112,11 +112,7 @@ class ContactController extends Controller
 
 
       // dd($leads);
-
-
-
-
-        
+   
 //for dropdown select and display all exisitin data from databases
     $salutation = Salutation::all();
 

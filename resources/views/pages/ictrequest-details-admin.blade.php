@@ -18,7 +18,7 @@
                
                     <div class="card-header bg-swvb-cyan">
                         <div class="row">
-                            <h4 class="col card-title text-white ml-4">Points/Entitlement Adjustment Details</h4>
+                            <h4 class="col card-title text-white ml-2">Points/Entitlement Adjustment Details</h4>
                                
                         </div>
                         
@@ -28,10 +28,10 @@
                             
                         
                             <div class="row pt-3">
-                                <div class="col ml-5">
+                                <div class="col ml-3">
                                     <div class="row">
                                         <p class="col">Membership No.</p>
-                                        <p class="col font-weight-bold black" x-show="o">{{$payload['members']->mbrship_no}}</p>
+                                        <p class="col font-weight-bold black" x-show="o">{{$payload['ict']->membership['mbrship_no']}}</p>
                                         <p class="col" x-cloak x-show="e">
                                         <select class="custom-select form-control required" id="salutation" name="salutation" required>
                                             
@@ -42,14 +42,14 @@
                                 
                                     <div class="row">
                                         <p class="col">Member Name</p>
-                                        <p class="col font-weight-bold black" x-show="o">{{$payload['members']->name}}</p>
+                                        <p class="col font-weight-bold black" x-show="o">{{$payload['ict']->lead['name']}}</p>
                                         <p class="col" x-cloak x-show="e">
                                             <input  type="text" name="name" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
                                         </p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Reservation No.</p>
-                                        <p class="col font-weight-bold black" x-show="o">{{$payload['members']->rsvn_no}}</p>
+                                        <p class="col font-weight-bold black" x-show="o">{{$payload['ict']->reservation['rsvn_no']}}</p>
                                         <p class="col" x-cloak x-show="e">
                                         <select class="custom-select form-control required" id="gender" name="gender" required>
                                             
@@ -65,7 +65,7 @@
 
                             <div class="row pt-1">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2 pl-5">CAI Points Reinstate/Adjustment<button type="button" class="border-0 bg-transparent" x-show="o" @click="e=true, o=false">                                                           
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pl-3">CAI Points Reinstate/Adjustment<button type="button" class="border-0 bg-transparent" x-show="o" @click="e=true, o=false">                                                           
                                             <i class="bx bx-pencil "></i>
                                         </button>
                                     </p>
@@ -78,7 +78,7 @@
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive pt-3">
-                                                <table class="table tours-all">
+                                                <table class="table ">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Use Year</th>
@@ -111,45 +111,49 @@
                             </div>
 
                             <div class="col">
-                                    <p class="h6 swvb-blue ml-2 font-weight-bold my-auto pb-2">EVC POE Reinstate<i class="bx bx-pencil"></i></p>
+                                    <p class="h6 swvb-blue ml-2 font-weight-bold my-auto">EVC POE Reinstate<i class="bx bx-pencil"></i></p>
                                 </div>
 
                             <div class="row">
                                
                                 <div class="col">
-                                    <div class="table-responsive pt-3">
-                                        <table class="table">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">POE</th>
-                                                    <th class="text-white">Entitlement (WE)</th>
-                                                    <th class="text-white">Entitlement (WD)</th>
-                                                    <th class="text-white">Proposed Expiry Date</th>
-                                                </tr>
-                                            </thead>
-                                            @if(isset($payload))
-                                                @foreach($payload['pointadj2'] as $pt2) 
-                                            <tbody>
-                                           
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="table-responsive pt-3">
+                                                <table class="table">
+                                                    <thead class="bg-swvb-dark">
                                                         <tr>
-
-                                                            <td>{{$pt2->poe_year}}</td>
-                                                            <td>{{$pt2->we}}</td>
-                                                            <td>{{$pt2->wd}}</td>
-                                                            <td>{{$pt2->expiry_date}}</td>
-                                                            
+                                                            <th class="text-white">POE</th>
+                                                            <th class="text-white">Entitlement (WE)</th>
+                                                            <th class="text-white">Entitlement (WD)</th>
+                                                            <th class="text-white">Proposed Expiry Date</th>
                                                         </tr>
-                                                @endforeach
-                                            @endif
-                                               
-                                            </tbody>
-                                        </table>
+                                                    </thead>
+                                                    @if(isset($payload))
+                                                        @foreach($payload['pointadj2'] as $pt2) 
+                                                    <tbody>
+                                                
+                                                                <tr>
+
+                                                                    <td>{{$pt2->poe_year}}</td>
+                                                                    <td>{{$pt2->we}}</td>
+                                                                    <td>{{$pt2->wd}}</td>
+                                                                    <td>{{$pt2->expiry_date}}</td>
+                                                                    
+                                                                </tr>
+                                                        @endforeach
+                                                    @endif
+                                                    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="row pt-1 ml-3">
+                            <div class="row pt-1 ml-1">
                                 <div class="col">
                                     <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Points Expiry Date Extention<i class="bx bx-pencil"></i></p>
                                 </div>
@@ -162,7 +166,7 @@
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table tours-all">
+                                                <table class="table ">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Use Year</th>
@@ -229,18 +233,17 @@
 
                            
                         
-                            <div class="row pt-1 ml-3">
+                            <div class="row pt-1 ml-1 pb-2">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Add Member Loyatly Reward<i class="bx bx-pencil"></i></p>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto">EVC Add Member Loyatly Reward<i class="bx bx-pencil"></i></p>
                                 </div>
-                                
                             </div>
-                            <div class="row ml-3">
+                            <div class="row">
                                 <div class="col">
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table leads-all">
+                                                <table class="table">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Membership No.</th>
@@ -250,8 +253,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                            @if(isset($payload))
-                                                @foreach($payload['pointadj5'] as $pt5) 
+                                                @if(isset($payload))
+                                                    @foreach($payload['pointadj5'] as $pt5) 
                                                         <tr>
                                                             <td>{{$pt5->mbrship_no}}</td>
                                                             <td>{{$pt5->wd}}</td>
@@ -259,8 +262,8 @@
                                                             <td>{{$pt5->expiry_date}}</td>
                                                             
                                                         </tr>
-                                                @endforeach
-                                            @endif
+                                                    @endforeach
+                                                @endif
                                                        
                                                     </tbody>
                                                 </table>
@@ -269,6 +272,54 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <section id="form-repeater-wrapper">
+                                    <!-- form default repeater -->
+                                      
+                                    <!--/ form default repeater -->
+                                     <div class="row">
+                                        <div class="col">
+                                          <div class="card">
+                                            <div class="card-header">
+                                              <h4 class="card-title">
+                                                Attachments
+                                              </h4>
+                                            </div>
+                                            <div class="card-content">
+                                              <div class="card-body">
+                                                <div class="form repeater-default">
+                                                    <div data-repeater-list="group-a">
+                                                        <div data-repeater-item>
+                                                            <div class="row justify-content-between">
+                                                                <form action="" class="m-2" method="POST" enctype='multipart/form-data'>
+                                                                    @csrf
+                                                                    <input type='file' name='file'>
+                                                                </form>
+                                                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                                                                    <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                                                        class="bx bx-x"></i>
+                                                                      Delete
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col p-0">
+                                                        <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
+                                                            Add Attachments
+                                                        </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                     </div>
+                                  </section>
+                            </div>
+
                         </div>
                     </div>
                 </form>
@@ -301,10 +352,13 @@
 <script src="{{asset('vendors/js/pickers/pickadate/legacy.js')}}"></script>
 <script src="{{asset('vendors/js/pickers/daterange/daterangepicker.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
+<script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
+
 @endsection
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/datatables/datatable.js')}}"></script>
+<script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 <script src="{{asset('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>

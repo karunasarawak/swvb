@@ -15,15 +15,24 @@ class CreateStampingFeeBatch extends Migration
     {
         Schema::create('stamping_fee_batch', function (Blueprint $table) {
             $table->id('sfb_id');
-            $table->tinyInteger('batch_no')->nullable();
+
             $table->integer('sfb_req_by')->nullable();
-            $table->integer('sfb_approved_by')->nullable();
-            $table->decimal('penalty')->nullable();
             $table->date('sfb_req_at')->nullable();
+
+            $table->integer('sfb_approved_by')->nullable();
             $table->date('sfb_approved_at')->nullable();
+
+            $table->decimal('penalty')->nullable();
+            $table->tinyInteger('sfb_status')->default(0);
+
             $table->date('sfb_sent_at')->nullable();
-            $table->tinyInteger('sfb_status')->nullable();
+
             $table->timestamps();
+            
+            
+
+            
+            
         });
     }
 

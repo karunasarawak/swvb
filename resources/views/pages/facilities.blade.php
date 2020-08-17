@@ -26,13 +26,13 @@
                             <div class="card-body card-dashboard">
                                 <div class="table-responsive">
 
-                                    <table class="table tours-all">
+                                    <table class="table tours-all" style="width:100%;">
                                         <thead class="bg-swvb-dark">
                                             <tr>
-                                                <th class="text-white" style="width:30%">Facility</th>
-                                                <th class="text-white" style="width:30%">Required field</th>
-                                                <th class="text-white" style="width:30%">Status</th>
-                                                <th class="text-white" style="width:30%">Action</th>
+                                                <th class="text-white" >Facility</th>
+                                                <th class="text-white" >Required field</th>
+                                                <th class="text-white" >Status</th>
+                                                <th class="text-white" >Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

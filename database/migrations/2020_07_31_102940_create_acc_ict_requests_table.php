@@ -15,10 +15,8 @@ class CreateAccIctRequestsTable extends Migration
     {
         Schema::create('acc_ict_requests', function (Blueprint $table) {
             $table->id('aict_req_id');
-            
             $table->integer('aict_mbrship_id')->length(11)->nullable();
             $table->integer('aict_rsvn_id')->length(11)->nullable();
-            
             $table->integer('aict_requested_by')->length(11)->nullable();
             $table->integer('aict_verifier')->length(11)->nullable();
             $table->integer('aict_approval')->length(11)->nullable();
@@ -28,10 +26,6 @@ class CreateAccIctRequestsTable extends Migration
             $table->date('aict_date_verified')->length(11)->nullable();
             $table->date('aict_date_approved')->length(11)->nullable();
             $table->date('aict_date_processed')->length(11)->nullable();
-            
-            
-            
-            
             $table->string('aict_remarks', 255)->nullable();
             $table->string('aict_other_remarks', 255)->nullable();
             $table->tinyInteger('aict_req_status')->length(1)->nullable();

@@ -14,7 +14,7 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form class="form repeater-default">
+            <form class="form repeater-defeault">
               <div data-repeater-list="group-a">
                 <div data-repeater-item>
                   <div class="row justify-content-between">

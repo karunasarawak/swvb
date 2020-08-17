@@ -64,11 +64,11 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <label for="location">Collected By</label>
-                                        <select name="package_id" id="packagetype" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
+                                        <select name="collected_by" id="collected_by" class="custom-select form-control" onchange="methodChanger()" data-validation-required-message="Please select a package type" required>
                                             <option value="MSCHQ">MSCHQ</option>
                                             <option value="OTP-AMEX">OTP-AMEX</option>
                                             <option value="OTP-VISA/MASTER">OTP-VISA/MASTER</option>
-                                            <option value="MPRC">MPRC</option>
+                                            <option value="MRPC">MRPC</option>
                                             <option value="SALES AGENT">SALES AGENT</option>
                                             
 
@@ -84,9 +84,14 @@
                                     <div class="controls">
                                         <label>Method</label>
                                         <select name="method" id="method" class="custom-select form-control" onchange="creditCardSection()" data-validation-required-message="Please select a package type" required>
-                                            <option value="internetbanking">Internet Banking</option>
-                                            <option value="creditcard" >Credit Card</option>
-                                            <option value="cheque">Cheque</option>
+                                            <option value="Cheque">Cheque</option>
+                                            <option value="Credit Card">Credit Card</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="DuitNow">DuitNow</option>
+                                            <option value="e-Debit">e-Debit</option>
+                                            <option value="FPX">FPX</option>
+                                            <option value="IBG">IBG</option>
+                                            <option value="JomPAY">JomPAY</option>
                                         </select>     
                                     </div>
                                 </div>
@@ -97,10 +102,11 @@
                                     <div class="controls">
                                         <label>Bank in to</label>
                                         <select name="salutation1" class="custom-select form-control" data-validation-required-message="Please select a salutation." required>
-                                            <option value="Mr.">RHB Bank</option>
-                                            <option value="Ms.">May Bank</option>
-                                            <option value="Dr.">Cimb Bank</option>
-                                            <option value="Dr.">Public Bank</option>
+                                            @if(isset($payload))
+                                                @foreach($payload['banks'] as $bank)
+                                            <option value="{{$bank->bank_id}}">{{$bank->bank_name}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -120,6 +126,13 @@
                                         <input type="number" class="form-control required" placeholder="5000" id="income" name="income">
                                         <div class="form-control-position">RM</div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4" id="ccshow">
+                                <div class="form-group">
+                                    <label for="income">Clearance Date</label>
+                                    <input type="text" class="form-control" id="tax_note" name="tax_note" readonly>
                                 </div>
                             </div>
                         </div>
@@ -162,11 +175,11 @@
                                 <div class="form-group controls">
                                     <label class="d-block">Card Isssuer Bank</label>
                                     <select name="salutation1" class="custom-select form-control" data-validation-required-message="Please select a card issuer bank." required>
-          
-                                        <option value="Mr.">RHB Bank</option>
-                                        <option value="Ms.">Cimb Bank</option>
-                                        <option value="Dr.">May Bank</option>
-                                        <option value="Dr.">Public Bank</option>
+                                            @if(isset($payload))
+                                                @foreach($payload['banks'] as $bank)
+                                            <option value="{{$bank->bank_id}}">{{$bank->bank_name}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                 </div>
                             </div>
@@ -190,22 +203,6 @@
                                 <div class="form-group">
                                     <label>Bank Charges</label>
                                     <input type="text" class="form-control" id="bank_charges" name="bank_charges" placeholder="6.00 %" readonly>
-                                </div>
-                            </div>
-
-                            <!-- credit card option -->
-                            <div class="col-md-4" id="ccshow">
-                                <div class="form-group">
-                                    <label for="income">Charge Date</label>
-                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="01 May 2020">
-                                </div>
-                            </div>
-
-                            <!-- credit card option -->
-                            <div class="col-md-4" id="ccshow">
-                                <div class="form-group">
-                                    <label for="income">Clearance Date</label>
-                                    <input type="text" class="form-control" id="tax_note" name="tax_note" value="30 May 2020">
                                 </div>
                             </div>
                         </div>
@@ -334,32 +331,51 @@
             </div>
 
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
         <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
             <i class="bx bx-x d-block d-sm-none"></i>
             <span class="d-none d-sm-block">Save</span>
         </button>
     
-        </div>
+        </div> -->
     </form>
     </div>
 </div>
 </div>
 
-<!-- <script>
- function changemethod() {
-    var m = document.getElementById("method").value;    
-    var s = document.getElementById("ccshow").value;
+<script>
 
-    s.style.display = "hidden";
-
-    if (m == 'creditcard')
-    {
-        s.style.visibility = 'visible';
+function methodChanger() {
+    var selectCollectedBy = document.getElementById('collected_by');
+    var selectMethod = document.getElementById('method');
+    var length = selectMethod.options.length;
+    for (i = length-1; i >= 0; i--) {
+        selectMethod.options[i] = null;
     }
- }
 
-</script> -->
+    var methodArray = ["Cheque", "Credit Card", "Cash", "DuitNow", "e-Debit", "FPX", "IBG", "JomPAY"];
+
+    if(selectCollectedBy.options[selectCollectedBy.selectedIndex].value == "OTP-AMEX" || selectCollectedBy.options[selectCollectedBy.selectedIndex].value == "OTP-VISA/MASTER"){
+        var option = document.createElement("option");
+        option.text = "IBG";
+        option.value = "IBG";
+        selectMethod.appendChild(option);
+    } else if (selectCollectedBy.options[selectCollectedBy.selectedIndex].value == "MRPC"){
+        var option = document.createElement("option");
+        option.text = "Credit Card";
+        option.value = "Credit Card";
+        selectMethod.appendChild(option);
+    } else {
+        for (i = 0; i < methodArray.length; i++){
+        var option = document.createElement("option");
+        option.text = methodArray[i];
+        option.value = methodArray[i];
+        selectMethod.appendChild(option);
+        }
+    }
+}
+
+</script>
 
 <!-- Form wizard with step validation section end -->
 @endsection

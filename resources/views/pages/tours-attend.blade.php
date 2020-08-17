@@ -81,7 +81,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="dob1">DOB</label>
-                        <input type="date" class="form-control" id="dob1" name="dob1" value="" required>
+                        <input type="date" class="form-control" id="dob1" name="dob1" value="" >
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -136,7 +136,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="occupation1">Occupation/Designation</label>
-                        <input type="text" class="form-control" value="" id="occupation1" name="occupation1" placeholder="--" required>
+                        <input type="text" class="form-control" value="" id="occupation1" name="occupation1" placeholder="--" >
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -152,7 +152,7 @@
                     <div class="form-group">
                       <label for="occupation1">Mobile No.</label>
                       <input type="number" class="form-control" placeholder="--" id="mobileno1" name="mobileno1" value="{{$payload['attend']->mobile_no}}"
-                        data-validation-required-message="This mobile field is required" required>
+                        data-validation-required-message="This mobile field is required" >
                     </div>
                   </div>
 
@@ -160,7 +160,7 @@
                     <div class="form-group">
                       <label for="occupation1">Whatsapp</label>
                       <input type="number" class="form-control" placeholder="--" id="whatsapp1" name="whatsapp1" value="{{$payload['attend']->whatsapp_no}}"
-                        data-validation-required-message="This Whatsapp field is required" required>
+                        data-validation-required-message="This Whatsapp field is required" >
                     </div>
                   </div>
 
@@ -175,7 +175,7 @@
                     <div class="form-group">
                       <label for="occupation1">Office No.</label>
                       <input type="number" class="form-control" placeholder="--" id="officeno1" name="officeno1"
-                        data-validation-required-message="This Name field is required" required>
+                        data-validation-required-message="This Name field is required" >
                     </div>
                   </div>
 
@@ -183,7 +183,7 @@
                     <div class="form-group">
                       <label for="occupation1">Primary Email</label>
                       <input type="text" class="form-control" placeholder="--" id="pemail1" name="pemail1"
-                        data-validation-required-message="This Primary Email field is required" required>
+                        data-validation-required-message="This Primary Email field is required" >
                     </div>
                   </div>
 
@@ -191,7 +191,7 @@
                     <div class="form-group">
                       <label for="occupation1">Alternate Email</label>
                       <input type="text" class="form-control" placeholder="--" id="aemail1" name="aemail1"
-                        data-validation-required-message="This Alternate Email field is required" required>
+                        data-validation-required-message="This Alternate Email field is required" >
                     </div>
                   </div>
 
@@ -212,7 +212,7 @@
                       <div class="form-group controls">
                         <div class="custom-control-inline">
                           <div class="radio mr-1">
-                            <input type="radio" name="lead_status" value="1" id="elead" checked="" @click="edit=true, original=false" required>
+                            <input type="radio" name="lead_status" value="1" id="elead" checked="" @click="edit=true, original=false" >
                             <label for="elead">Existing Lead</label>
                           </div>
                           <div class="radio">
@@ -240,7 +240,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-md-4" x-show="original">
+                    <div class="col-md-4" >
                       <div class="form-group">
                         <label for="salutation1">Salutation </label>
                         <select class="custom-select form-control required hid" id="salutation2" name="salutation2"  data-validation-required-message="This Primary Email field is required">
@@ -250,14 +250,14 @@
                           </select>
                       </div>
                     </div>
-                    <div class="col-md-4" x-show="original">
+                    <div class="col-md-4" >
                       <div class="form-group">
                         <label for="name1">Name </label>
                         <input type="text" class="form-control required hid" id="name2" name="name2"
                           placeholder="--"  data-validation-required-message="This Primary Email field is required">
                       </div>
                     </div>
-                    <div class="col-md-4" x-show="original">
+                    <div class="col-md-4" >
                       <div class="form-group">
                         <label for="gender1">Gender</label>
                         <select class="custom-select form-control required hid" id="gender2" name="gender2"  data-validation-required-message="This Primary Email field is required">
@@ -268,7 +268,7 @@
                       </div>
                     </div>
                 </div>
-                <div class="row" x-show="original">
+                <div class="row" >
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="nric1">NRIC PassPort No.</label>
@@ -298,7 +298,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row" x-show="original">
+                <div class="row" >
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="race1">Race</label>
@@ -333,8 +333,8 @@
                     </div>
                   </div>
                 </div>
-                <h4 class="card-title" x-show="original">Occupation Information</h4>
-                <div class="row" x-show="original">
+                <h4 class="card-title" >Occupation Information</h4>
+                <div class="row" >
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="occupation1">Occupation/Designation</label>
@@ -412,7 +412,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="salesvenue">Sales Venue</label>
-                        <select name="venue1" class="custom-select" required>
+                        <select name="venue1" class="custom-select" >
                           @foreach($payload['venue'] as $venue)
                             @if($payload['attend']->sales_venue_id == $venue->sales_venue_id)
                               <option value="{{$venue->sales_venue_id}}" selected>{{$venue->venue_name}}</option>
@@ -449,13 +449,12 @@
                       </div>
                     </div>
                   </div>
-                  
 
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="income">No. of Children</label>
                       <div class="position-relative has-icon-left">
-                        <select name="no_child1" class="custom-select" required>
+                        <select name="no_child1" class="custom-select" >
                           <option value="">--</option>
                           <option value="0">00</option>
                           <option value="1">01</option>
@@ -473,7 +472,7 @@
                       <label for="income">Tour Outcome</label>
                          <div class="row ml-1">
                            <div class="radio mr-1">
-                              <input type="radio" name="tourOutcome1" id="qt" value="1" checked="" required>
+                              <input type="radio" name="tourOutcome1" id="qt" value="1" checked="" >
                               <label for="qt">QT</label>
                             </div>
                         
@@ -500,7 +499,7 @@
                     <div class="form-group">
                       <label for="income">Remarks</label>
                       
-                        <input type="text" class="form-control required" placeholder="" id="remark" name="remark" required>
+                        <input type="text" class="form-control required" placeholder="" id="remark" name="remark" >
                      
                     </div>
                   </div>
@@ -512,7 +511,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="cvno">Sales Personnel</label>
-                      <select name="salesp1" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                      <select name="salesp1" class="custom-select" data-validation-required-message="Please select a salutation." >
                         <option value="">--</option>
                         @foreach($payload['salesp'] as $salesp)
                           @if($payload['attend']->sales_personnel_id == $salesp->sales_team_id)
@@ -527,7 +526,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label>Sales Manager</label>
-                        <select name="salesm1" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                        <select name="salesm1" class="custom-select" data-validation-required-message="Please select a salutation." >
                           <option value=""disabled selected>Select a sales manager</option>
                           @foreach($payload['salesm'] as $salesm)
                             <option value="{{$salesm->sales_team_id}}">{{$salesm->sales_name}}</option>
@@ -539,7 +538,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                     <label for="cvexpirydate">Marketing Agency</label>
-                      <select name="ma1" class="custom-select" data-validation-required-message="Please select a salutation." required>
+                      <select name="ma1" class="custom-select" data-validation-required-message="Please select a salutation." >
                         <option value=""disabled selected>Select a marketing agency</option>
                         @foreach($payload['ma'] as $ma)
                           <option value="{{$ma->ma_id}}">{{$ma->ma_name}}</option>
@@ -559,7 +558,7 @@
                                       
                                     <div class="col">
                                       <div class="radio mr-1">
-                                        <input type="radio" name="acv" id="yes" checked=""  @click="edit=true, original=false" value="1" required>
+                                        <input type="radio" name="acv" id="yes" checked=""  @click="edit=true, original=false" value="1" >
                                         <label for="yes">Yes</label>
                                       </div>
                                     </div>  
@@ -579,7 +578,7 @@
                       <div class="col-sm-4" x-show="edit">
                         <div class="form-group controls">
                           <label>Accomodation</label>
-                          <select name="accom1" class="custom-select" required>
+                          <select name="accom1" class="custom-select" >
                             <option value=""disabled selected>Select a accomodation</option>
                             <option value="1">Grand Margherita Hotel</option>
                             <option value="2">Damai Beach Resort</option>
@@ -589,7 +588,7 @@
                       <div class="col-sm-4" x-show="edit">
                         <div class="form-group controls">
                           <label>No of Stay</label>
-                          <select name="stay1" class="custom-select" required>
+                          <select name="stay1" class="custom-select" >
                             <option value=""disabled selected>Select number of stay</option>
                             <option value="2">3D2N</option>
                             <option value="1">2D1N</option>
@@ -599,7 +598,7 @@
                       <div class="col-sm-4" x-show="edit">
                         <div class="form-group controls">
                           <label>No of Occupancy</label>
-                          <select name="occup1" class="custom-select" required>
+                          <select name="occup1" class="custom-select" >
                             <option value=""disabled selected>Select number of occupancy</option>   
                             <option value="2">2</option>
                             <option value="4">4</option>
@@ -609,13 +608,13 @@
                       <div class="col-sm-4" x-show="edit">
                         <div class="form-group controls">
                           <label>CV Date</label>
-                          <input type="date" name="cv_start1" class="form-control" value="01 June 2020" required>
+                          <input type="date" name="cv_start1" class="form-control" value="01 June 2020" >
                         </div>
                       </div>
                       <div class="col-sm-4" x-show="edit">
                         <div class="form-group controls">
                           <label>CV Expiry</label>
-                          <input type="date" name="cv_exp1" class="form-control" value="01 June 2020" required>
+                          <input type="date" name="cv_exp1" class="form-control" value="01 June 2020" >
                         </div>
                       </div>
 
@@ -645,7 +644,7 @@
                                      <div class="row"> 
                                         <div class="col">
                                           <div class="radio mr-1">
-                                            <input type="radio" name="contract" id="y" checked=""  value="1" required>
+                                            <input type="radio" name="contract" id="y" checked=""  value="1" >
                                             <label for="y">Yes</label>
                                           </div>
                                         </div>  
@@ -663,7 +662,7 @@
                   
                 </div>
               </fieldset>
-              <button type="submit" class="btn btn-primary m-1" id="btn_add1" >Save</button>
+              <button type="submit" class="btn btn-primary" id="btn_add1" >Save</button>
             </form>
           </div>
         </div>

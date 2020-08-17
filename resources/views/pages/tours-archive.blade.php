@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Tours')
+@section('title','Archive Tours')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title text-white">All Tours</h4>
+                    <h4 class="card-title text-white">Archive Tours</h4>
                 </div>
                 <div class="card-content">
                     <div class="px-2">
@@ -31,7 +31,6 @@
                                         <th class="text-white">Lead ID</th>
                                         <th class="text-white">Tour ID</th>
                                         <th class="text-white">Name</th>
-                                        <th class="text-white">Attendee(s)</th>
                                         <th class="text-white">Date</th>
                                         <th class="text-white">Time In</th>
                                         <th class="text-white">Time Out</th>
@@ -48,7 +47,6 @@
                                             <td>{{ $archive->lead_id1 }}</td>
                                             <td>{{ $archive->tour_id }}</td>
                                             <td>{{ $archive->salutation }} {{ $archive->name }}</td>
-                                            <td>???</td>
                                             <td>{{ $archive->tour_date }}</td>
                                             @if($archive->tour_time_in != null)
                                                 <td>{{ Carbon\Carbon::createFromFormat('H:i:s', $archive->tour_time_in)->format('h:i A') }}</td>
@@ -66,27 +64,25 @@
                                             <td></td>
                                             <td>{{ $archive->sales_name }}</td>
 
-                                            @if($archive->is_archive == null)
+                                            @if($archive->tour_attend == null)
                                                 <td>Haven Attended</td>
-                                            @elseif($archive->is_archive == 1)
+                                            @elseif($archive->tour_attend == 1)
                                                 <td>Attended</td>
-                                            @elseif($archive->is_archive == 2)
+                                            @elseif($archive->tour_attend == 2)
                                                 <td>Not Attended</td>
                                             @else
                                                 <td>Unknown</td>
                                             @endif
 
                                             <td>
-                                                <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                    <i class="bx bx-check-circle bx-md m-0 success"></i>
-                                                </button>
-                                                <button class="border-0 bg-transparent p-0" data-toggle="modal" data-target="#addCall">
-                                                    <i class="bx bx-x-circle bx-md m-0 danger"></i>
-                                                </button>
-                                            </td>
-                                            <td><button class="btn btn-outline-primary round" data-toggle="modal" data-target="#addCall">
-                                                    Reactivate
-                                                </button>
+                                                <form action="{{ route('tours.archive', $archive->tour_id) }}" method="POST">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <input type="hidden" value="1" name="archive">
+                                                    <button class="bg-transparent border-0" type="submit" class="dropdown-item">
+                                                        <a class="dropdown-item"> Archive</a>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

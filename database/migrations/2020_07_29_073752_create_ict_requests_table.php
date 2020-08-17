@@ -15,7 +15,6 @@ class CreateIctRequestsTable extends Migration
     {
         Schema::create('ict_requests', function (Blueprint $table) {
             $table->id('pict_req_id')->length(11);
-            $table->integer('pict_staff_id')->length(11)->nullable();
             $table->integer('rsvn_id')->length(11)->nullable();
             $table->integer('pict_mbrship_id')->length(11)->nullable();
             $table->integer('pict_req_by')->length(11)->nullable();

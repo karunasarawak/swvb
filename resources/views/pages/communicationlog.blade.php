@@ -25,7 +25,7 @@
                     <div class="card-body card-dashboard">
                         <div class="table-responsive pt-1">
 
-                            <table class="table tours-all">
+                            <table class="table tours-all" style="width:100%;">
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white">Membership No.</th>

@@ -50,17 +50,20 @@ class CreateLeadsTable extends Migration
 
             $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
+
             
         });
 
-        $current = date('Y-m-d H:i:s');
+        // $current = date('Y-m-d H:i:s');
+      
 
         DB::table('leads')->insert(
             array(
-                ['salutation_id' => 1, 'name' => 'John Doe', 'mobile_no' => '01234567890', 'whatsapp_no' => '01234567890', 'credit_card_limit'=> 1000, 'telemarketer_id'=> 1, 'created_at'=> $current, 'updated_at'=>$current],
-                ['salutation_id' => 2, 'name' => 'Mary Jane', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2, 'created_at'=> $current, 'updated_at'=>$current],
-                ['salutation_id' => 1, 'name' => 'Arthur', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 1, 'created_at'=> $current, 'updated_at'=>$current],
-                ['salutation_id' => 2, 'name' => 'Morgan', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 2000, 'telemarketer_id'=> 2, 'created_at'=> $current, 'updated_at'=>$current],
+                ['salutation_id' => 1, 'name' => 'John Doe', 'mobile_no' => '01234567890', 'whatsapp_no' => '01234567890', 'credit_card_limit'=> 1000, 'telemarketer_id'=> 1, 'created_at'=>  "2020-10-05 14:20:20", 'updated_at'=> "2020-10-05 14:20:20"],
+                ['salutation_id' => 2, 'name' => 'Mary Jane', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 9000, 'telemarketer_id'=> 2, 'created_at'=>  "2020-10-05 14:20:20", 'updated_at'=> "2020-10-05 14:20:20"],
+                ['salutation_id' => 1, 'name' => 'Arthur King', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 3000, 'telemarketer_id'=> 1, 'created_at'=>  "2020-10-05 14:20:20", 'updated_at'=> "2020-10-05 14:20:20"],
+                ['salutation_id' => 2, 'name' => 'Morgan Diana', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 6000, 'telemarketer_id'=> 2, 'created_at'=>  "2020-10-05 14:20:20", 'updated_at'=> "2020-10-05 14:20:20"],
+                ['salutation_id' => 1, 'name' => 'Paul Walker', 'mobile_no' => '019876543210', 'whatsapp_no' => '019876543210', 'credit_card_limit'=> 5000, 'telemarketer_id'=> 3, 'created_at'=>  "2020-10-05 14:20:20", 'updated_at'=> "2020-10-05 14:20:20"],
             )
         );
     }

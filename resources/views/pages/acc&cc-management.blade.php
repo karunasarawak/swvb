@@ -25,93 +25,6 @@
                         
                             <div class="card-body card-dashboard">
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <p class="h7 swvb-blue ml-3 font-weight-bold my-auto pt-2">Basic Informations</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-1 pl-3">
-                                    <div class="col">
-                                        <div class="row">
-                                                <p class="col">Address Line 1</p>
-                                                <p class="col font-weight-bold black" x-show="original">12345 0000</p>
-                                                <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="12345 0000" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        <div class="row">
-                                                <p class="col">Address Line 2</p>
-                                                <p class="col font-weight-bold black" x-show="original">234561000</p>
-                                                <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="234561000" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Address Line 3</p>
-                                            <p class="col font-weight-bold black" x-show="original">John Doe</p>
-                                            <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="John Doe" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Address Line 4</p>
-                                            <p class="col font-weight-bold black" x-show="original">John Doe</p>
-                                            <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="John Doe" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Postcode</p>
-                                            <p class="col font-weight-bold black" x-show="original">John Doe</p>
-                                            <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="John Doe" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Country</p>
-                                            <p class="col font-weight-bold black" x-show="original">John Doe</p>
-                                            <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="John Doe" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <p class="col">Contact No.</p>
-                                            <p class="col font-weight-bold black" x-show="original">12 Month</p>
-                                            <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="Supplier" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <p class="col">Fax No.</p>
-                                            <p class="col font-weight-bold black" x-show="original">RM 1000</p>
-                                            <p class="col" x-cloak x-show="edit">
-                                                <input  type="number" name="salutation" class="form-control" placeholder="RM 1000" data-validation-required-message="Please write the company name"  required>
-                                            </p>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <button type="button" class=" btn btn-primary float-right" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-2 ">
-                                    <button type="submit" class="btn btn-primary float-right" x-show="edit" x-cloak >                                                                    
-                                        Save
-                                    </button>
-                                </div>
-                                <div class="col ">
-                                    <button type="button" class="btn btn-primary float-right" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                                <div class="row">
                                     <div class="col-sm-10">
                                         <p class="h7 swvb-blue ml-3 font-weight-bold my-auto pt-2">Invoice Items</p>
                                     </div>
@@ -177,7 +90,7 @@
                                         </table>
                                     </div>
                                 </div>
-
+                            </div>
                             <button type="button" class="btn btn-primary m-1 ml-3" id="btn_add1" onclick="showContact2()">Reschedule</button>
                         </form>
                     </div>

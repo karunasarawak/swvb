@@ -10,204 +10,192 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section x-data="{ e: false, o:true}">
-    <div class="row">
-        <form action="" method="" >
-                    @csrf
-                    
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-swvb-cyan">
-                        <div class="row">
-                            <h4 class="card-title text-white ml-2">Roles<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
-                        </div>    
-                    </div>
-                    <div class="card-content">
-                                <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
-                                    <button type="submit" class="col btn btn-primary" x-show="e" x-cloak >                                                                   
-                                        Save
-                                    </button>
-                                </p>
-                                <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
-                                    <button type="button" class="col btn btn-primary" x-show="e" x-cloak @click="e=false, o=true">                                                                  
-                                        Close
-                                    </button>
-                                </p>
-                        <div class="card-body card-dashboard">
-                            <div class="table-responsive">
-
-                                <table class="table tabletours-all">
-                                    <thead class="bg-swvb-dark">
-                                        <tsr>
-                                            <th class="text-white">Roles</th>
-                                            <th class="text-white" >Code</th>
-                                            <th class="text-white">Department</th>
-                                            <th class="text-white">Status</th>
-                                            <th class="text-white" >Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            @if(isset($payload))
-                                @foreach($payload['roles'] as $staffs)
-                                    @if(isset($payload['roles']))
-                                        <tr>
-                                            <td><p x-show="o">{{$staffs->role}}</p><p class="col" x-cloak x-show="e">
-                                                <select class="custom-select form-control required" id="" name="" required>
-                                                    
-                                               
-                                                </select>
-                                                </p>
-                                            </td>
-                                            <td><p x-show="o">{{$staffs->code}}</p>
-                                                <p class="col" x-cloak x-show="e">
-                                                    <input  type="text" name="" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
-                                                </p></td>
-                                            <td>{{$staffs->dept_id}}
-                                            </td>
-                                            @if ($staffs->is_active == "0")
-                                                <?php $status = "Deactive"; ?>
-                                            @elseif ($staffs->is_active == "1")
-                                                <?php $status = "Active"; ?>
-                                            @endif
-                                            <td>{{$status}}</td>
-                                            @if($staffs->is_active == 1)
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button type="button" class="bg-transparent border-0" x-show="o" @click="e=true, o=false">
-                                                            <a class="dropdown-item"  ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                        </button>
-                                                        <button type="button" class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                        </button>
-                                                        <button type="button" class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="{{route('staff.status',['role_id'=>$staffs->role_id, 'is_active'=>$staffs->is_active])}}" ><i class="bx bx-archived mr-1"></i> DEACTIVATE</a>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            @elseif($staffs->is_active == 0)
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button type="button" class="bg-transparent border-0" x-show="o" @click="e=true, o=false">
-                                                            <a class="dropdown-item"  ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                        </button>
-                                                        <button type="button" class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                        </button>
-                                                        <button type="button" class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="{{route('staff.status',['role_id'=>$staffs->role_id, 'is_active'=>$staffs->is_active])}}" ><i class="bx bx-archived mr-1"></i> ACTIVATE</a>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endif
-                             @endif
-
-                        @endforeach
-                    @endif
-                   
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+<section >
+    <div class="row">                    
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-swvb-cyan">
+                    <div class="row">
+                        <h4 class="card-title text-white ml-2">Roles<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addroles"><i class="bx bx-plus"></i></button></h4>
+                    </div>    
                 </div>
-                <div class="card">
-                    <div class="card-header bg-swvb-cyan">
-                        <div class="row">
-                            <h4 class="card-title text-white ml-2">Users<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
-                        </div>    
-                    </div>
-                    <div class="card-content">
-                        
-                        <div class="card-body card-dashboard">
-                            <div class="table-responsive">
+                <div class="card-content">
+                            
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
 
-                                <table class="table tours-all">
-                                    <thead class="bg-swvb-dark">
-                                        <tr>
-                                            <th class="text-white">Staff</th>
-                                            <th class="text-white">Role</th>
-                                            <th class="text-white">Code</th>
-                                            <th class="text-white">Email</th>
-                                            <th class="text-white">Status</th>
-                                            <th class="text-white">Signature</th>
-                                            <th class="text-white">Action</th>
+                            <table class="table tours-all" style="width:100%;">
+                                <thead class="bg-swvb-dark">
+                                    <tr>
+                                        <th class="text-white">Roles</th>
+                                        <th class="text-white" >Code</th>
+                                        <th class="text-white">Department</th>
+                                        <th class="text-white">Status</th>
+                                        <th class="text-white" >Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        @if(isset($payload))
+                            @foreach($payload['roles'] as $staffs)
+                                @if(isset($payload['roles']))
+                                    <tr>
+                                        <td><p x-show="o">{{$staffs->role}}</p><p class="col" x-cloak x-show="e">
+                                            <select class="custom-select form-control required" id="" name="" required>
+                                                
                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            @if(isset($payload))
-                                @foreach($payload['roles'] as $staffs)
-                                    @if(isset($payload['roles']))         
-                                        <tr>
-                                            <td>{{$staffs->staff_name}}</td>
-                                            <td>{{$staffs->role}}</td>
-                                            <td>{{$staffs->role}}</td>
-                                            <td>erman@saraworldwide.com</td>
-                                            <td>{{$staffs->is_active}}</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" data-toggle="modal"
-                                                            data-target="#signature">
-                                                            <a class="dropdown-item"><i class="bx bx-pen mr-1"></i> UPLOAD</a>
-                                                        </button>
-                                                    </div>
-                                                </div></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
-                                                        </button>
-                                                        <button class="bg-transparent border-0" >
-                                                            <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> DISABLE</a>
-                                                        </button>
-                                                    </div>
+                                            </select>
+                                            </p>
+                                        </td>
+                                        <td><p x-show="o">{{$staffs->code}}</p>
+                                            <p class="col" x-cloak x-show="e">
+                                                <input  type="text" name="" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
+                                            </p></td>
+                                        <td>{{$staffs->dept_id}}
+                                        </td>
+                                        @if ($staffs->is_active == "0")
+                                            <?php $status = "Deactive"; ?>
+                                        @elseif ($staffs->is_active == "1")
+                                            <?php $status = "Active"; ?>
+                                        @endif
+                                        <td>{{$status}}</td>
+                                        @if($staffs->is_active == 1)
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button type="button" class="bg-transparent border-0" x-show="o" @click="e=true, o=false">
+                                                        <a class="dropdown-item"  ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                    <button type="button" class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
+                                                    </button>
+                                                    <button type="button" class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="{{route('staff.status',['role_id'=>$staffs->role_id, 'is_active'=>$staffs->is_active])}}" ><i class="bx bx-archived mr-1"></i> DEACTIVATE</a>
+                                                    </button>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                
-                                @endforeach
-                            @endif
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </div>
+                                        </td>
+                                        @elseif($staffs->is_active == 0)
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button type="button" class="bg-transparent border-0" x-show="o" @click="e=true, o=false">
+                                                        <a class="dropdown-item"  ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                    <button type="button" class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="{{ url('/roledetails') }}" ><i class="bx bx-download mr-1"></i> SET PRIVILEGED</a>
+                                                    </button>
+                                                    <button type="button" class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="{{route('staff.status',['role_id'=>$staffs->role_id, 'is_active'=>$staffs->is_active])}}" ><i class="bx bx-archived mr-1"></i> ACTIVATE</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                        @endif
+                                @endif
+
+                            @endforeach
+                        @endif
+                
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+            <div class="card">
+                <div class="card-header bg-swvb-cyan">
+                    <div class="row">
+                        <h4 class="card-title text-white ml-2">Users<button class="btn btn-outline-white round mr-1 ml-1 text-white" data-toggle="modal" data-target="#addusers"><i class="bx bx-plus"></i></button></h4>
+                    </div>    
+                </div>
+                <div class="card-content">
+                    
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+
+                            <table class="table tours-all" style="width:100%;">
+                                <thead class="bg-swvb-dark">
+                                    <tr>
+                                        <th class="text-white">Staff</th>
+                                        <th class="text-white">Role</th>
+                                        <th class="text-white">Code</th>
+                                        <th class="text-white">Email</th>
+                                        <th class="text-white">Status</th>
+                                        <th class="text-white">Signature</th>
+                                        <th class="text-white">Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        @if(isset($payload))
+                            @foreach($payload['roles'] as $staffs)
+                                @if(isset($payload['roles']))         
+                                    <tr>
+                                        <td>{{$staffs->staff_name}}</td>
+                                        <td>{{$staffs->role}}</td>
+                                        <td>{{$staffs->role}}</td>
+                                        <td>erman@saraworldwide.com</td>
+                                        <td>{{$staffs->is_active}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#newsignature">
+                                                        <a class="dropdown-item"><i class="bx bx-pen mr-1"></i> UPLOAD</a>
+                                                    </button>
+                                                    <button class="bg-transparent border-0" data-toggle="modal"
+                                                        data-target="#signature">
+                                                        <a class="dropdown-item"><i class="bx bx-pen mr-1"></i> CHANGE SIGNATURE</a>
+                                                    </button>
+                                                </div>
+                                            </div></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
+                                                    </button>
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> RESET PASSWORD</a>
+                                                    </button>
+                                                    
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> ARCHIVED</a>
+                                                    </button>
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-archived mr-1"></i> DISABLE</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+                            
+                            @endforeach
+                        @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!--update status Modal for status: Suspend-->
+<!-- user -->
 <div class="modal fade text-left" id="addusers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -258,7 +246,7 @@
     </div>
 </div>
 
-<!--update status Modal for status: Suspend-->
+<!-- Role -->
 <div class="modal fade text-left" id="addroles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -300,12 +288,53 @@
     </div>
 </div>
 
+<!-- new signature -->
+<div class="modal fade text-left" id="newsignature" tabindex="-1" role="dialog" aria-labelledby="newsignature" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h4 class="modal-title text-white" id="myModalLabel33">New Signature</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <form action="{{route('signature.create')}}" method="POST" novalidate>
+                @csrf
+                
+                <div class="modal-body">    
+                    
+                    <div class="col-lg-6 col-md-12">
+                        <fieldset class="form-group">
+                            <label for="basicInputFile">With Browse button</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+
+<!-- change signature -->
 <div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Signature</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Change Signature</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
@@ -317,7 +346,7 @@
                             <strong>{{$message}}</strong>
                         </div>
                     @endif
-                        <form method="POST" action="{{route('signature')}}" >
+                        <form method="POST" action="{{route('signature.modify')}}" >
                             @csrf
                             <div class="col-md-12">
                                 <label class="" for="">Signature</label>

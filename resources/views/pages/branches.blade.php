@@ -28,6 +28,7 @@
                                 <thead class="bg-swvb-dark">
                                     <tr>
                                         <th class="text-white" style="width:50%">Collected By</th>
+                                        <th class="text-white" style="width:50%">Clearance date</th>
                                         <th class="text-white" style="width:10%">Status</th>
                                         <th class="text-white">Action</th>
                                     </tr>
@@ -36,8 +37,8 @@
                                     
                                     <tr>
                                         <td>IT Admin</td>
+                                        <td>IT Admin</td>
                                         <td>ICT</td>
-                                        
                                         <td><div class="dropdown">
                                                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -52,6 +53,7 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>IT Admin</td>
                                         <td>IT Admin</td>
                                         <td>ICT</td>
                                         
@@ -69,6 +71,7 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>IT Admin</td>
                                         <td>IT Admin</td>
                                         <td>ICT</td>
                                         

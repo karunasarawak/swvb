@@ -60,82 +60,48 @@ class CreateMembershipsTable extends Migration
 
         DB::table('memberships')->insert(array(
             [
-                'lead_id1' => 1,
-                'lead_id2' => null,
-
-                'package_id' => 1,
-                
-                'cc_id_amf' => 1,
-                'cc_id_install' => 1,
-
-                'mro' => 1,
-                'cco' => 2,
-                
-                'mbrship_no' => '100010000',
-                'pri_addr_id' => 1,
-                'alt_addr_id' => null,
-                
-                'contract_type' => 0,
-                'comp_id' => null,
-                'prefer_lang' => 'English',
-                
-                'application_no' => 'APP 8374',
-                'application_date' => '2020-08-11',
-                'agreement_no' => '8234',
-                'agreement_date' => '2020-08-22',
-                
-                'mbrship_term' => 30,
-                'mbrship_exp' => '2050-08-22',
-                            
-                'declaration_no' => '',
-                'install_auto' => 1,
-                'amf_auto' => 1,
-                'overpayment' => 200,
-
-                'has_card' => 0,
-                'has_stamped' => 0,
-                
-                'mbrship_status' => 1,
-                'mbrship_remarks' => '-',
+                'lead_id1' => 1, 'lead_id2' => null, 'package_id' => 1, 'cc_id_amf' => 1, 'cc_id_install' => 1,'mro' => 1, 'cco' => 2,
+                'mbrship_no' => '100010000','pri_addr_id' => 1,'alt_addr_id' => null,
+                'contract_type' => 0,'comp_id' => null,'prefer_lang' => 'English',
+                'application_no' => 'APP 8374','application_date' => '2020-08-11','agreement_no' => '8234','agreement_date' => '2020-08-22',
+                'mbrship_term' => 30,'mbrship_exp' => '2050-08-22',       
+                'declaration_no' => '','install_auto' => 1,'amf_auto' => 1,'overpayment' => 200,
+                'has_card' => 0,'has_stamped' => 0,
+                'mbrship_status' => 1,'mbrship_remarks' => '-',
             ],
             [
-                'lead_id1' => 2,
-                'lead_id2' => null,
-
-                'package_id' => 1,
-                
-                'cc_id_amf' => 1,
-                'cc_id_install' => 1,
-
-                'mro' => 1,
-                'cco' => 2,
-                
-                'mbrship_no' => '200010000',
-                'pri_addr_id' => 1,
-                'alt_addr_id' => null,
-                
-                'contract_type' => 0,
-                'comp_id' => null,
-                'prefer_lang' => 'English',
-                
-                'application_no' => 'APP 8374',
-                'application_date' => '2020-08-11',
-                'agreement_no' => '8234',
-                'agreement_date' => '2020-08-22',
-                
-                'mbrship_term' => 30,
-                'mbrship_exp' => '2050-08-22',
-                            
-                'declaration_no' => '',
-                'install_auto' => 1,
-                'amf_auto' => 1,
-                'overpayment' => 200,
-
-                'has_card' => 0,
-                'has_stamped' => 0,
-                
-                'mbrship_status' => 1,
-                'mbrship_remarks' => '-',
+                'lead_id1' => 2, 'lead_id2' => null, 'package_id' => 1, 'cc_id_amf' => 1, 'cc_id_install' => 1,'mro' => 1, 'cco' => 2,
+                'mbrship_no' => '200010000','pri_addr_id' => 1,'alt_addr_id' => null,
+                'contract_type' => 0,'comp_id' => null,'prefer_lang' => 'English',
+                'application_no' => 'APP 8374','application_date' => '2020-08-11','agreement_no' => '8234','agreement_date' => '2020-08-22',
+                'mbrship_term' => 30,'mbrship_exp' => '2050-08-22',       
+                'declaration_no' => '','install_auto' => 1,'amf_auto' => 1,'overpayment' => 200,
+                'has_card' => 0,'has_stamped' => 0,
+                'mbrship_status' => 1,'mbrship_remarks' => '-',
+            ],
+            [
+                'lead_id1' => 3,'lead_id2' => 4,
+                'package_id' => 1,'cc_id_amf' => 1,'cc_id_install' => 1,
+                'mro' => 1,'cco' => 2,
+                'mbrship_no' => '300010000','pri_addr_id' => 1,'alt_addr_id' => null,
+                'contract_type' => 0,'comp_id' => null,'prefer_lang' => 'English',
+                'application_no' => 'APP 8374','application_date' => '2020-08-11','agreement_no' => '8234','agreement_date' => '2020-08-22',
+                'mbrship_term' => 30,'mbrship_exp' => '2050-08-22',          
+                'declaration_no' => '','install_auto' => 1,'amf_auto' => 1,'overpayment' => 200,
+                'has_card' => 0,'has_stamped' => 0,
+                'mbrship_status' => 2,'mbrship_remarks' => '-',
+            ],
+            [
+                'lead_id1' => 4,'lead_id2' => 5,
+                'package_id' => 1,'cc_id_amf' => 1,'cc_id_install' => 1,
+                'mro' => 1,'cco' => 2,
+                'mbrship_no' => '400010000','pri_addr_id' => 1,'alt_addr_id' => null,
+                'contract_type' => 0,'comp_id' => null,'prefer_lang' => 'English',
+                'application_no' => 'APP 8374','application_date' => '2020-08-11','agreement_no' => '8234','agreement_date' => '2020-08-22',
+                'mbrship_term' => 30,'mbrship_exp' => '2050-08-22',          
+                'declaration_no' => '','install_auto' => 1,'amf_auto' => 1,'overpayment' => 200,
+                'has_card' => 0,'has_stamped' => 0,
+                'mbrship_status' => 2,'mbrship_remarks' => '-',
             ],
         ));
     }

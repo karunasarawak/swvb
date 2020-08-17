@@ -15,7 +15,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title text-white ml-3">Contra Detail</h4>
+                    <div class="row">
+                        <h4 class="col card-title text-white ml-2">CR-123456
+                        <button class="btn btn-outline-white offset-8 round text-white bx bx-printer"></button>
+                        <button class="btn btn-outline-white round text-white bx bx-download"></button>
+                        <button class="btn btn-outline-white round text-white bx bx-pencil"></button>
+                        </h4>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -25,7 +31,7 @@
                         
                 <div class="card-content">
                     <div class="card-body card-dashboard">
-                        <div class="row pt-2 pl-1">
+                        <div class="row pt-2">
                             <div class="col-sm-4">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Travel Agent</p>
                             </div>
@@ -36,7 +42,7 @@
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Contract With</p>
                             </div>
                         </div>
-                        <div class="row pl-1">
+                        <div class="row ">
                             <div class="col">
                                 <div class="row">
                                     <p class="col">Travel Agent</p>
@@ -79,10 +85,10 @@
 
                         
                         <div class="row pt-1">
-                            <div class="col-sm-6 pl-2">
+                            <div class="col-sm-6 ">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Contra With</p>
                             </div>
-                            <div class="card-body card-dashboard pt-1">
+                          
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
@@ -131,7 +137,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                        
 
                         </div>
                         <a href="{{url('/refund')}}" class="btn btn-primary text-white m-1">Create</a>

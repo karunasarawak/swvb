@@ -15,12 +15,13 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">Batch Payment<a href="{{ url('/iiru/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
+                    <h4 class="col card-title text-white">Batch Payment <a href="" class="btn btn-outline-white round text-white ml-1 bx bx-printer float-right"></a>
+                            <a href="" class="btn btn-outline-white round text-white bx bx-download float-right"></a><a href="{{ url('/iiru/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-md-2">
+                            <!-- <div class="col-md-2">
                                 <div class="form-group pt-1">
                                     <label >Filter Year</label>
                                     <select name="membershipfilter" class="select2 form-control" required>
@@ -30,11 +31,11 @@
                                     <option value="membershipfilter4">Suspended</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs mt-" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="dbr-tab-fill" data-toggle="tab" href="#dbr-fill" role="tab"
                                 aria-controls="dbr-fill" aria-selected="true">

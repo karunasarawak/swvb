@@ -10,14 +10,13 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section class="float-left">
-    <div class="row" >
-        <div class="col-md-8">
+<section class="float-left" id="form-repeater-wrapper" >
+    <div class="row">
+        <div class="container-fluid col-md-8" style="overflow:hidden;">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
                         <h4 class="col card-title text-white">Manage Entitlement - Advanced</h4>
-                           
                     </div>
                 </div>
                 <div class="card-content">
@@ -29,11 +28,12 @@
                                         <th class="text-white">Select</th>
                                         <th class="text-white">Year</th>
                                         <th class="text-white">Entitlement</th>
-                                        <th class="text-white">Team/POE</th>
-                                        <th class="text-white">AMF</th>
+                                        <th class="text-white">AMF Amount</th>
                                         <th class="text-white">Invoice No.</th>
+                                        <th class="text-white">AMF</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     <tr>
                                         <td>
@@ -48,7 +48,8 @@
                                         <td>Self Collection</td>
                                         <td>01 April 2020</td>
                                         <td>Sent for Printing</td>
-                                        
+                                        <td>INV12345</td>
+                                        <td>PAID</td>
                                     </tr>
                                     
                                     <tr>
@@ -64,7 +65,8 @@
                                         <td>Self Collection</td>
                                         <td>01 April 2020</td>
                                         <td>Sent for Printing</td>
-                                        
+                                        <td>INV12345</td>
+                                        <td>PAID</td>
                                     </tr>
                                     
                                     <tr>
@@ -80,7 +82,8 @@
                                         <td>Self Collection</td>
                                         <td>01 April 2020</td>
                                         <td>Sent for Printing</td>
-                                        
+                                        <td>INV12345</td>
+                                        <td>PAID</td>
                                     </tr>
                   
                                 </tbody>
@@ -117,11 +120,7 @@
                                             <input type="text" class="form-control" id="item_name" name="item_name" placeholder="3D 2N" disabled>   
                                         </div>
                                     </div>
-                                </div>
-
-                                
-
-                                
+                                </div>   
                             </div>
 
                             <div class="row">
@@ -170,25 +169,63 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <div class="row pt-1">
+                                                <div class="col">
+                                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Upload</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <form class="form repeater-default">
+                                                        <div data-repeater-list="group-a">
+                                                            <div data-repeater-item>
+                                                                <div class="row justify-content-between">
+                                                                    <div class="col-lg-6 col-md-12">
+                                                                        <fieldset class="form-group">
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-2 col-sm-12 form-group">
+                                                                        <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
+                                                                            <i class="bx bx-x"></i>Delete
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col p-0">
+                                                                <button class="btn btn-primary" data-repeater-create type="button">
+                                                                    <i class="bx bx-plus"></i>Add
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                  </form>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         
-
-                                
-                            
                             <button type="button" class="btn btn-primary float-right m-1 mb-5" id="btn_add1" data-toggle="modal" data-target="#offsetreminder">Save</button>  
-                            
-                            
                         </div>
 
                     </div>
                 </div>     
             </div>   
         </div>
-        
-        
-        
-        <div class="col-md-4 float-right-top">
-            
+         
+        <div class="col-md-4 float-right-top" >
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <h4 class="card-title  text-white">Current Membership Info</h4>
@@ -223,6 +260,7 @@
                         </div>
                     </div>
             </div>
+
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <h4 class="card-title  text-white">ICT Request</h4>
@@ -240,10 +278,21 @@
                                         <a href="{{ url('/installment/amfall') }}" type="button" class="w-100 btn btn-primary ">AMF Schedule</a>
                                     </div>
                                 </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="" type="button" class="w-100 btn btn-primary ">Add Entitlement</a>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <a href="" type="button" class="w-100 btn btn-primary ">Restore Entitlement</a>
+                                    </div>
+                                </div>
                                 
                             </div>
                         </div>
                     </div>
+            </div>
         </div>
 
     </div>
@@ -288,7 +337,6 @@
 
 <!--/ Zero configuration table -->
 
-
 @endsection
 {{-- vendor scripts --}}
 @section('vendor-scripts')
@@ -303,6 +351,7 @@
 <script src="{{asset('vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
 <script src="{{asset('vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
 <script src="{{asset('vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
 
 @endsection
 {{-- page scripts --}}
@@ -311,4 +360,5 @@
 <script src="{{asset('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="{{asset('js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 @endsection

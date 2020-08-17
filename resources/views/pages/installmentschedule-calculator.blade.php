@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                            <div class="card-body card-dashboard pt-2">
+                            <div class="card-dashboard pt-2">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group">
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" style="width:100%;">
                                         <thead class="bg-swvb-dark">
                                             <tr>
                                                 <th class="text-white">No.</th>
