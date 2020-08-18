@@ -12,7 +12,7 @@ class ContraController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Ext Membership"],["name" => "Details"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Contra"],["name" => "All"]
         ];
     
         return view('pages.contra-all', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
@@ -24,7 +24,7 @@ class ContraController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Ext Membership"],["name" => "Details"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Contra"],["name" => "New"]
         ];
     
         return view('pages.contra-new', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
@@ -35,7 +35,7 @@ class ContraController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Ext Membership"],["name" => "Details"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Contra"],["name" => "Details"]
         ];
     
         return view('pages.contra-details', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);

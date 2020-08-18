@@ -16,7 +16,7 @@
         <div class=" card-header bg-swvb-cyan">
             <div class="card-title">
                 <div class="row">
-                    <div class="col-10" style="">
+                    <div class="col-10"></div>
                         <h4 class="col text-white" style="">Stamping Fee List Details</h4>
                     </div>
                     <div class="col-2">
@@ -51,42 +51,42 @@
                             <p class="col">Status</p>
                             <p class="col font-weight-bold black" x-show="original"></p>
                             <p class="col" x-cloak x-show="edit">
-                                <input  type="text" name="salutation" class="form-control" placeholder="Date Request" data-validation-required-message="Please write the company name"  required>
+                                <input type="text" name="status" class="form-control" placeholder="Date Request" data-validation-required-message="Please write the company name"  required>
                             </p>
                         </div>
                         <div class="row">
                             <p class="col">Date Request</p>
-                            <p class="col font-weight-bold black" x-show="original">01 April 2020</p>
+                            <p class="col font-weight-bold black" x-show="original">{{ $payload['batchDetail']->sfb_req_at }}</p>
                             <p class="col" x-cloak x-show="edit">
-                                <input  type="text" name="salutation" class="form-control" placeholder="Date Request" data-validation-required-message="Please write the company name"  required>
+                                <input  type="text" name="request_date" class="form-control" placeholder="Date Request" data-validation-required-message="Please write the company name"  required>
                             </p>
                         </div>
                         <div class="row">
                             <p class="col">Request By</p>
-                            <p class="col font-weight-bold black" x-show="original">John Doe</p>
+                            <p class="col font-weight-bold black" x-show="original">{{ $payload['batchDetail']->sfb_req_by }}</p>
                             <p class="col" x-cloak x-show="edit">
-                                <input  type="text" name="salutation" class="form-control" placeholder="request by" data-validation-required-message="Please write the company name"  required>
+                                <input  type="text" name="request_by" class="form-control" placeholder="request by" data-validation-required-message="Please write the company name"  required>
                             </p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="row">
                             <p class="col">Checked By</p>
-                            <p class="col font-weight-bold black" x-show="original">Chris</p>
+                            <p class="col font-weight-bold black" x-show="original">???</p>
                             <p class="col" x-cloak x-show="edit">
                                 <input  type="text" name="salutation" class="form-control" placeholder="checked by" data-validation-required-message="Please write the company name"  required>
                             </p>
                         </div>
                         <div class="row">
                             <p class="col">Approved By</p>
-                            <p class="col font-weight-bold black" x-show="original">Wilson</p>
+                            <p class="col font-weight-bold black" x-show="original">{{ $payload['batchDetail']->sfb_approved_by }}</p>
                             <p class="col" x-cloak x-show="edit">
                                 <input  type="text" name="salutation" class="form-control" placeholder="approved by" data-validation-required-message="Please write the company name"  required>
                             </p>
                         </div>
                         <div class="row">
                             <p class="col">Approved Date</p>
-                            <p class="col font-weight-bold black" x-show="original">02 April 2020</p>
+                            <p class="col font-weight-bold black" x-show="original">{{ $payload['batchDetail']->sfb_approved_at }}</p>
                             <p class="col" x-cloak x-show="edit">
                                 <input  type="text" name="salutation" class="form-control" placeholder="approved date" data-validation-required-message="Please write the company name"  required>
                             </p>
@@ -110,6 +110,7 @@
                                 <th class="text-white">Action</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             @foreach($payload['stampList'] as $mbr)
                                 <tr>
@@ -172,7 +173,7 @@
 
                         <label>Membership No.</label>
                         <select name="mbrship_no" id="mbrship_no" class="select2 form-control" onchange="findMembership()" data-validation-required-message="" required>
-                            <option value="" selected>--</option>
+                            <option value="" data-pri="" data-sec="" data-exp="" selected>--</option>
                             @if($payload['memberships'] != null)
                                 @foreach ($payload['memberships'] as $mbr)
                                     <option value="{{ $mbr->mbrship_no }}" data-pri="{{ $mbr->name1 }}" data-sec="{{ $mbr->name2 }}" data-exp="{{ $mbr->mbrship_exp }}">
@@ -344,6 +345,14 @@
         sec.value = mbr_no.options[mbr_no.selectedIndex].dataset.sec;
         exp.value = mbr_no.options[mbr_no.selectedIndex].dataset.exp;
 
+    }
+
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';  
+    
+    if(exist)
+    {
+      alert(msg);
     }
 </script>
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>

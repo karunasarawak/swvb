@@ -31,7 +31,7 @@ class CreateToursTable extends Migration
             $table->integer('tour_state')->nullable();
             $table->integer('tour_city')->nullable();
 
-        $table->string('tour_marketing_agency', 60)->nullable()
+            $table->string('tour_marketing_agency', 60)->nullable();
             $table->tinyInteger('tour_no_of_children')->nullable();
             $table->tinyInteger('tour_outcome')->nullable();
             $table->string('tour_remarks', 255)->nullable();

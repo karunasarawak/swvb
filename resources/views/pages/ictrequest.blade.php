@@ -159,7 +159,7 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{route('ict.bring')}}" method="GET" novalidate>
+            <form action="{{route('ict.bring')}}" method="POST" novalidate>
             @csrf
                 <div class="modal-body">
                     <label>Request</label>

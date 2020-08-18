@@ -19,13 +19,16 @@ class CreateStampingFeeBatch extends Migration
             $table->integer('sfb_req_by')->nullable();
             $table->date('sfb_req_at')->nullable();
 
+            $table->integer('sfb_check_by')->nullable();
+            $table->date('sfb_check_at')->nullable();
+
             $table->integer('sfb_approved_by')->nullable();
             $table->date('sfb_approved_at')->nullable();
 
+            $table->date('sfb_sent_at')->nullable();
+
             $table->decimal('penalty')->nullable();
             $table->tinyInteger('sfb_status')->default(0);
-
-            $table->date('sfb_sent_at')->nullable();
 
             $table->timestamps();
             

@@ -54,5 +54,10 @@ class Membership extends Model
         return $this->hasOne('App\Reservation', 'mbrship_id', 'mbrship_id');
     }
 
+    public function ictrequestpoint()
+    {
+        return $this->hasOne('App\ICTRequestPoint', 'mbrship_id', 'pict_mbrship_id');
+    }
+
 
 }

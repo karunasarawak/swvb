@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use PDF;
+use Excel;
 use App\Leads;
 use App\Membership;
 use App\StampingFeeList;
-
+use App\StampingFeeBatch;
+use App\Exports\StampingFeeExport;
 use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
@@ -23,19 +26,6 @@ class ReportController extends Controller
       ];
 
       return view('pages.activitylog',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-    
-    public function stampingfeedetails()
-    {
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Installment Schedule"],["name" => "Installment Schedule Details"]
-      ];
-
-
-      return view('pages.stampingfee-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 
     public function download()
@@ -198,29 +188,25 @@ class ReportController extends Controller
 
     public function addNewStamp(Request $request, $batch_id)
     {
-      $check = DB::table('stamping_fee_list')->where([
-        'sfl_id'=>$batch_id,
-        'mbrship_no'=>$request->mbrship_no
-      ])->get();
+      // dd($request->mbrship_no);
+      $check = DB::table('stamping_fee_list')->where([['sfb_id',$batch_id],['mbrship_no',$request->mbrship_no]])->get();
 
-      Membership::where('mbrship_no',$mbrship_no)->update(['has_stamped'=>1]);
+      Membership::where('mbrship_no',$request->mbrship_no)->update(['has_stamped'=>1]);
 
-      if(count($check) == true)
+      if(count($check))
       {
-        // dd($check[0]);
         return redirect()->back()->with('alert','The membership exist in this list already');
-
       }
-      else if(count($check) == false)
+      else
       {   
         DB::table('stamping_fee_list')->insert([
-              'sfl_id'=>$batch_id,
+              'sfb_id'=>$batch_id,
               'mbrship_no'=>$request->mbrship_no
             ]);
         
-        Membership::where('mbrship_no',$request->mrship_no)->update(['has_stamped'=>1]);
+        Membership::where('mbrship_no',$request->mbrship_no)->update(['has_stamped'=>1]);
 
-        return redirect("report/stampingfee/".$batch_no."/details");
+        return redirect("report/stampingfee/".$batch_id."/details");
 
       }
       
@@ -228,12 +214,62 @@ class ReportController extends Controller
 
     public function deleteStamp(Request $request, $batch_no)
     {
-      dd($request->mbrship_no);
+      // dd($request->mbrship_no);
       StampingFeeList::where([['sfb_id', $batch_no],['mbrship_no',$request->mbrship_no]])->delete();
 
       Membership::where('mbrship_no',$request->mbrship_no)->update(['has_stamped'=>0]);
     
       return redirect("report/stampingfee/".$batch_no."/details");
+    }
+
+    public function changeStatus(Request $request)
+    {
+      if($request->status_no == 1)
+      {
+          StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
+            'sfb_status'=>1, 
+            'sfb_req_at'=>$request->request_date
+            ]);
+      }
+      else if ($request->status_no == 2)
+      {
+        StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
+          'sfb_status'=>2, 
+          'sfb_check_at'=>$request->check_date
+          ]);
+      }
+      else if ($request->status_no == 3)
+      {
+        StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
+          'sfb_status'=>3, 
+          'sfb_approved_at'=>$request->approved_date
+          ]);
+      }
+      else if ($request->status_no == 4)
+      {
+        StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
+          'sfb_status'=>4, 
+          'sfb_sent_at'=>$request->sent_date
+          ]);
+      }
+      else
+      {
+          dd("Failed");
+      }
+
+      return redirect("report/stampingfee/");
+    }
+
+    public function exportExcel(Request $request, $batch_id)
+    {
+      return Excel::download(new StampingFeeExport($request->batch_id), 'stamping.xlsx');
+    }
+
+    public static function countResult($batch_id)
+    {
+      $result = DB::table('stamping_fee_list')->where('sfb_id', $batch_id)->get();
+
+      return count($result);
     }
 
 }

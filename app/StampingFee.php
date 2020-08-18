@@ -10,13 +10,15 @@ class StampingFee extends Model
         'sfb_id',
         'sfl_id',
         'sfb_req_by',
-        'sfb_approved_by',
-        'penalty',
         'sfb_req_at',
+        'sfb_approved_by',
         'sfb_approved_at',
+        'sfb_req_at',
+        'sfb_req_by',
+        'penalty',
         'sfb_sent_at',
         'sfb_status'
     ];
-    protected $table = 'stamping_fee_bacth';
-    
+          
+  protected $table = 'stamping_fee_batch';
 }

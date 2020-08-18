@@ -48,7 +48,6 @@
                                                 <th class="text-white">Verified 1 Date</th>
                                                 <th class="text-white">Verified 2</th>
                                                 <th class="text-white">Verified 2 Date</th>
-                                                <th class="text-white">Signature</th>
                                                 <th class="text-white">Approved Date</th>
                                                 <th class="text-white">II:RU List</th>
                                                 <th class="text-white">Reservation Request</th>
@@ -64,6 +63,7 @@
                                                 <td>Point Offset</td>
                                                 <td>03 June 2020</td>
                                                 <td>Active</td>
+                                                <td>System</td>
                                                 <td>System</td>
                                                 <td>
                                                         <div class="dropdown">

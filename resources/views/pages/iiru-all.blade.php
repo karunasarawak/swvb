@@ -66,6 +66,7 @@
                                                     <th class="text-white">Verified By</th>
                                                     <th class="text-white">Approved By</th>
                                                     <th class="text-white">Approved Date</th>
+                                                    <th class="text-white">Status</th>
                                                     <th class="text-white">II:RU List</th>
                                                     <th class="text-white">Reservation Request</th>
                                                     <th class="text-white">Action</th>
@@ -77,8 +78,9 @@
                                                     <td>RM 247.30</td>
                                                     <td>Point Offset</td>
                                                     <td>03 June 2020</td>
-                                                    <td>Active</td>
                                                     <td></td>
+                                                    <td></td>
+                                                    <td>Active</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -121,7 +123,6 @@
                                                     <td>Point Offset</td>
                                                     <td>03 June 2020</td>
                                                     <td>Active</td>
-                                                    <td></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -455,14 +456,13 @@
                                                     <th class="text-white">Verified By</th>
                                                     <th class="text-white">Approved By</th>
                                                     <th class="text-white">Approved Date</th>
+                                                    <th class="text-white">Status</th>
                                                     <th class="text-white">II:RU List</th>
                                                     <th class="text-white">Reservation Request</th>
                                                     <th class="text-white">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-
-                                                                                       
+                                            <tbody>                               
                                                 <tr>
                                                     <td>1000032</td>
                                                     <td>27 April 2019</td>
@@ -470,6 +470,7 @@
                                                     <td>03:05 AM</td>
                                                     <td>Charles Dean</td>
                                                     <td>27 April 2019</td>
+                                                    <td>Active</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -533,7 +534,6 @@
                                                         </div>
                                                     </div>
                                                     </td>
-                                                    
                                                 </tr>
                                                 <tr>
                                                     <td>1000034</td>

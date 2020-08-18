@@ -8,9 +8,13 @@
 @endsection
 {{-- page-styles --}}
 
+@php 
+    use App\Http\Controllers\ReportController;
+@endphp
+
 @section('content')
 <!-- Zero configuration table -->
-<section>
+<section id="table-chechbox">
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -25,8 +29,8 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-content">
-                    
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
                             <table class="table tours-all">
@@ -49,26 +53,103 @@
                                     @foreach($payload['list'] as $list)
                                         <tr>
                                             <td><a href="{{ route('stamp.details',$list->sfb_id) }}">{{ $list->sfb_id }}</a></td>
-                                            <td></td>                        
+                                            <td>@php echo ReportController::countResult($list->sfb_id) @endphp</td>
+                                            <td>RM 20</td>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>RM @php echo ReportController::countResult($list->sfb_id)*20 @endphp</td>
+
+                                            @if($list->penalty != null)
+                                                <td>RM {{ $list->penalty }} </td>
+                                            @else
+                                                <td></td>
+                                            @endif
+                                            
+                                            <td>{{ $list->sfb_req_at }}</td>
+                                            <td>{{ $list->sfb_approved_at }}</td>
+                                            <td>{{ $list->sfb_sent_at }}</td>
+
+                                            @if($list->sfb_status == 0)
+                                                <td>Pending to Request</td>
+                                            @elseif($list->sfb_status == 1)
+                                                <td>Pending to Approve</td>
+                                            @elseif($list->sfb_status == 2)
+                                                <td>Pending to Be Sent</td>
+                                            @else
+                                                <td>Sent</td>
+                                            @endif
+                                            
                                             <td>
+                                                @if($list->sfb_status == 4)
+                                                    <span></span>
+                                                @else
+                                                    <div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <form action="{{ route('stamp.export', $list->sfb_id) }}" method="GET">
+                                                                <input type="hidden" value="{{ $list->sfb_id }}" name="batch_id">
+                                                                <button class="bg-transparent border-0">
+                                                                    <a class="dropdown-item">
+                                                                        <i class="bx bx-send mr-1"></i>Download
+                                                                    </a>
+                                                                </button>
+                                                            </form>
+                                                            
+                                                            
+
+                                                            @if($list->sfb_status == 0)
+                                                                <button class="bg-transparent border-0" data-toggle="modal" data-target="#request" onclick="getBatchID({{ $list->sfb_id }})">
+                                                                    <a class="dropdown-item"><i class="bx bx-send mr-1"></i>Request</a>
+                                                                </button>
+                                                            @elseif($list->sfb_status == 1)
+                                                                <button class="bg-transparent border-0" data-toggle="modal" data-target="#check" onclick="getBatchID({{ $list->sfb_id }}">
+                                                                    <a class="dropdown-item"><i class="bx bx-send mr-1"></i>Check</a>
+                                                                </button>
+                                                            @elseif($list->sfb_status == 2)
+                                                                <button class="bg-transparent border-0" data-toggle="modal" data-target="#approve" onclick="getBatchID({{ $list->sfb_id }}">
+                                                                    <a class="dropdown-item"><i class="bx bx-send mr-1"></i>Approve</a>
+                                                                </button>
+                                                            @elseif($list->sfb_status == 3)
+                                                                <button class="bg-transparent border-0" data-toggle="modal" data-target="#sent" onclick="getBatchID({{ $list->sfb_id }}">
+                                                                    <a class="dropdown-item"><i class="bx bx-send mr-1"></i>Sent</a>
+                                                                </button>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endif 
+                                            </td>
+                                            
+                                            <td>
+                                            @if($list->sfb_status == 4)
+                                                    <span></span>
+                                                @else
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="bg-transparent border-0" data-toggle="modal" data-target="#addCall">
-                                                            <a class="dropdown-item" href="#" ><i class="bx bx-trash mr-1"></i> DELETE</a>
-                                                        </button>
+                                                        <a class="dropdown-item" href="{{ route('stamp.export', $list->sfb_id ) }}"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                    @if($list->sfb_status == 0)
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#request" onclick="getBatchID({{ $list->sfb_id }})">
+                                                        <a class="dropdown-item" ><i class="bx bx-trash mr-1"></i> Request</a>
+                                                    </button>
+                                                    @elseif($list->sfb_status == 1)
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#check" onclick="getBatchID({{ $list->sfb_id }}">
+                                                        <a class="dropdown-item" ><i class="bx bx-trash mr-1"></i> Check</a>
+                                                    </button>
+                                                    @elseif($list->sfb_status == 2)
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#approve" onclick="getBatchID({{ $list->sfb_id }}">
+                                                        <a class="dropdown-item" ><i class="bx bx-trash mr-1"></i> Approve</a>
+                                                    </button>
+                                                    @elseif($list->sfb_status == 3)
+                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#sent" onclick="getBatchID({{ $list->sfb_id }}">
+                                                        <a class="dropdown-item"><i class="bx bx-send mr-1"></i>Sent</a>
+                                                    </button>
                                                     </div>
-                                                </div>
+                                                    @endif
+                                                </div> 
+                                            @endif  
                                             </td>
                                         </tr> 
                                     @endforeach
@@ -82,95 +163,217 @@
     </div>
 </section>
 
-<!-- pop out modal box for update status -->
-<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+<!-- Request Modal-->
+<div class="modal fade" id="request" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">UPDATE STATUS</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="bx bx-x"></i>
-                    </button>
+            <div class="modal-header bg-swvb-blue">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
             </div>
-            <form action="#">
+
+            <form action="{{ route('stamp.changeStatus') }}"method="POST">
+                @csrf
+                @method('patch')
                 <div class="modal-body">
-                    <div class="form-group controls">       
-
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <div class="controls">
-                                <label>TourID</label>
-                                    <input type="text" class="form-control" value="" id="tourid" name="tourid"
-                                    data-validation-required-message="This Name field is required" required>
-                            </div>
-                        </div>
+                    <label>Batch ID</label>
+                    <div class="form-group">
+                        <input type="number" name="batch_id" id="batch_id_request" class="form-control">
                     </div>
 
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <div class="controls">
-                                <label>Date</label>
-                                    <input type="date" class="form-control" value="01 June 2020" id="date" name="date"
-                                    data-validation-required-message="This Name field is required" required>
-                            </div>
-                        </div>
+                    <label>Status</label>
+                    <div class="form-group">
+                        <input type="text" name="status_no" value="1" class="form-control">
                     </div>
-                            
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                                <div class="controls">
-                                    <label>Initial Scheduled Time</label>
-                                        <div class="position-relative has-icon-left">
-                                            <input type="time" class="form-control" placeholder="1:00 PM" id="card_limit" name="card_limit"
-                                            data-validation-required-message="This Credit Card Limit field is required" required>
-                                                
-                                        </div>
-                                </div>
+
+                    <div class="form-group">
+                        <div class="controls">
+                            <label>Penalty</label>
+                            <input type="number" name="penalty" class="form-control" placeholder="--" required>
                         </div>
                     </div>
 
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                                <div class="controls">
-                                    <label>Venue</label>
-                                        <div class="position-relative has-icon-left">
-                                            <select name="venue" class="custom-select" data-validation-required-message="Please select a venue." required>
-                                                <option value="">--</option>
-                                                @if(isset($venues))
-                                                    @foreach($venues as $venue)
-                                                        <option value="">{{$venue-> venue}}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <label>Request Date</label>
+                            <input type="date" name="request_date" class="form-control" placeholder="--" required>
                         </div>
                     </div>
-                       
-                    </div>
+
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
 
-                     
-                      <div class="modal-footer">
-                           <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                                  <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Save</span>
-                           </button>
-                           
-                           <button type="button" class="close btn btn-light-secondary" data-dismiss="modal" aria-label="close">
-                                  <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
-                           </button>
-                      </div>
-            </form>
-        </div>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Submit</span>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
+{{-- Check Modal --}}
+<div class="modal fade" id="check" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+
+            <form action=""method="POST">
+                @csrf
+                @method('patch')
+                <div class="modal-body">
+                    <label>Batch ID</label>
+                    <div class="form-group">
+                        <input type="number" name="batch_id" id="batch_id_request" class="form-control">
+                    </div>
+
+                    <label>Status</label>
+                    <div class="form-group">
+                        <input type="text" name="status_no" value="2" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="controls">
+                            <label>Check Date</label>
+                            <input type="date" name="check_date" class="form-control" placeholder="--" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Submit</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- Approve Modal --}}
+<div class="modal fade" id="approve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+
+            <form action=""method="POST">
+                @csrf
+                @method('patch')
+                <div class="modal-body">
+                    <label>Batch ID</label>
+                    <div class="form-group">
+                        <input type="number" name="batch_id" id="batch_id_request" class="form-control">
+                    </div>
+
+                    <label>Status</label>
+                    <div class="form-group">
+                        <input type="text" name="status_no" value="3" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="controls">
+                            <label>Approved Date</label>
+                            <input type="date" name="approve_date" class="form-control" placeholder="--" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Submit</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- Sent Modal --}}
+<div class="modal fade" id="sent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-blue">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+
+            <form action=""method="POST">
+                @csrf
+                @method('patch')
+                <div class="modal-body">
+                    <label>Batch ID</label>
+                    <div class="form-group">
+                        <input type="number" name="batch_id" id="batch_id_request" class="form-control">
+                    </div>
+
+                    <label>Status</label>
+                    <div class="form-group">
+                        <input type="text" name="status_no" value="4" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="controls">
+                            <label>sent Date</label>
+                            <input type="date" name="sent_date" class="form-control" placeholder="--" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Submit</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <script>
-    function tokenModal($id)
+    function getBatchID(batch_id)
     {
-        alert($id);
+        console.log(batch_id);
+        var request = document.getElementById("batch_id_request");
+
+        request.value = batch_id;
     }
 </script>
 

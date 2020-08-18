@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\ICTRequestAcc;
 use App\Membership;
 use App\Staff_Roles;
 use App\Staff;
 use App\PointsAdjustment;
 use App\ICTRequestPoint;
+use App\BasicPermission;
 use App\AccountAdjustment;
 use DB;
 
@@ -39,6 +41,7 @@ class UsersRolesController extends Controller
         
 
         $payload = ['ict'=>$ict];
+      
         // dd($payload);
     
         return view('pages.ictrequest', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
@@ -56,7 +59,7 @@ class UsersRolesController extends Controller
           return redirect('admin/newictrequestacc');
         }
          
-        return view('pages.ictrequest', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
+        return redirect('admin/ictrequest');
       }
 
 
@@ -105,7 +108,7 @@ class UsersRolesController extends Controller
        
           $staff = DB::table('staff')->get();
 
-          // $pointsadjustment = PointsAdjustments::all();
+        
 
           $memberships = Membership::all();
                 // DB::table('memberships')
@@ -116,7 +119,7 @@ class UsersRolesController extends Controller
 
           $payload = ['memberships'=>$memberships,
                       'staff'=>$staff, 
-                      // 'pointsadj'=>$pointsadjustment
+                     
                   ];  
 
           // dd($memberships);
@@ -198,12 +201,6 @@ class UsersRolesController extends Controller
           }
              
 
-         
-          // $req_id = DB::table('points_adjustments')
-          // ->where('pict_req_id', )
-          // ->update(['pict_req_id'=>$pict_req_id]);
-
-              // PointsAdjustments::insert($req_id); 
               PointsAdjustment::insert($cai); 
               PointsAdjustment::insert($evcreinstate); 
               PointsAdjustment::insert($evcexp); 
@@ -218,7 +215,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "All"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "New"]
         ];
     
         // $staff = DB::table('staff')->get();
@@ -239,7 +236,7 @@ class UsersRolesController extends Controller
                     'memberships'=>$memberships
                 ];  
 
-        // dd($acc);
+        // dd($staff);
 
 
         return view('pages.ictrequest-new2-admin', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
@@ -250,7 +247,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "All"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "Points Adjustments Details"]
         ];
  
         // $memberships = DB::table('ict_requests')
@@ -260,7 +257,7 @@ class UsersRolesController extends Controller
         // ->where('ict_requests.pict_req_id', $id)
         // ->select('memberships.mbrship_no', 'leads.name', 'reservations.rsvn_no')
         // ->get();
-        $ict = ICTRequestPoint::all(); 
+        $ict = ICTRequestPoint::where('pict_req_id', $id)->get(); 
 
         $pointsadjustmenttype1 = DB::table('points_adjustments')
         ->join('ict_requests', 'ict_requests.pict_req_id', 'points_adjustments.pict_req_id')
@@ -298,16 +295,60 @@ class UsersRolesController extends Controller
         ->get();
 
         
+
         $payload = ['pointadj1' => $pointsadjustmenttype1,
                     'pointadj2' => $pointsadjustmenttype2,
                     'pointadj3' => $pointsadjustmenttype3,
                     'pointadj4' => $pointsadjustmenttype4,
                     'pointadj5' => $pointsadjustmenttype5,
-                    'ict'=> $ict[0]
+                    'ict'=> $ict[0],
+                    
         ];
-        // dd($memberships); 
+        // dd($membership); 
     
         return view('pages.ictrequest-details-admin', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+      }
+
+      public function updatepoint(Request $request, $id){
+
+
+        $updatereq1 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','1'])->update([
+                'poe_year'=>$request->poe_year1,
+                'wd'=>$request->wd1,
+                'we'=>$request->we1,
+                'expiry_date'=>$request->expiry_date1,
+        ]);
+
+        $updatereq2 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','2'])->update([
+                'poe_year'=>$request->poe_year2,
+                'wd'=>$request->wd2,
+                'we'=>$request->we2,
+                'expiry_date'=>$request->expiry_date2,
+        ]);
+
+        $updatereq3 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','3'])->update([
+          'poe_year'=>$request->poe_year3,
+          
+          'expiry_date'=>$request->expiry_date3,
+        ]);
+
+        $updatereq4 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','3'])->update([
+          'poe_year'=>$request->poe_year4,
+          'wd'=>$request->wd4,
+          'we'=>$request->we4,
+          'expiry_date'=>$request->expiry_date4,
+        ]);
+
+        $updatereq5 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','3'])->update([
+          
+          'wd'=>$request->wd5,
+          'we'=>$request->we5,
+          'expiry_date'=>$request->expiry_date5,
+        ]);
+
+        $request->file->storage('public');
+
+        
       }
 
       
@@ -358,7 +399,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "All"]
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "Account Adjustments Details"]
         ];
     
         
@@ -373,7 +414,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Users & Roles"],["name" => "All"]
         ];
 
           $roles = DB::table('staff_roles')
@@ -420,7 +461,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Users & Roles"],["name" => "Role Details"]
         ];
 
           $staff = Staff::all();
@@ -435,7 +476,7 @@ class UsersRolesController extends Controller
                     );
       
               $payload = ['module'=>$module,
-                          'staff'=>$staff
+                          'staff'=>$staff[0]
                           
             ];
 
@@ -444,27 +485,43 @@ class UsersRolesController extends Controller
         return view('pages.roles-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
       }
 
-      public function storerolecheckbox(Request $request){
+      public function storerolecheckbox(Request $request, $id){
 
+          $p = $request->all();
+          $module = array('Leads', 'Tours', 'Vouchers', 'StampingFeeRequest', 'Membership',
+                            'Contract','PointsEntitlement','ExternalMemberships','PaymentDetails',
+                            'Method','Credentials','Installment&AMFSchedule', 'DeckDispatch', 'Supplier',
+                            'Member','AccountStatement', 'MSD', 'Report1','Report2', 'Report3', 'MRD',
+                            'Report4','Activate', 'BeBack','Withdraw','Cancel','Suspend', 'Terminate','Transfer',
+                            'Deceased','UpgradeDowngrade', 'Repurchase'    
+                );
 
+          for ($i = 0; $i < sizeof($module); $i++){
 
-            foreach($request->permission as $p)
-          {
-              $split = explode("-",$p);
-              $module = $split[0];
-              $permission = $split[1];
-          }
-
-          DB::table("basic_permissions")->insert([
-            'module'=>$request->$module,
-            'permission'=>$request->$permission
-          ]);
-
-
-            //  $payload = ['staff'=>$staff]; 
-
-            // dd($payload);
-
+            $permission = "";
+        
+            $c = $module[$i] . "_C";
+            $v = $module[$i] . "_V";
+            $e = $module[$i] . "_E";
+            
+            if(Request::get($c)){
+                $permission .= "c";
+            }
+        
+            if(Request::get($v)){
+                $permission .= "v";
+            }
+            
+            if(Request::get($e)){
+                $permission .= "e";
+            }
+        
+            BasicPermission::insert([
+                ['module' => $module[$i], 'permission' => $permission, 'staff_id' => $id]
+            ]);
+        
+        }
+            // dd($c);
             return redirect('roledetails');
       }
 
@@ -487,7 +544,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Users & Roles"],["name" => "Basic Permissions"]
         ];
 
 
@@ -504,7 +561,7 @@ class UsersRolesController extends Controller
         ];
 
         $folderpath = public_path('upload/');
-
+        
         $image_parts = explode(";base64,", $request->signed);
 
         $image_type_aux = explode("/image", $image_parts[0]);
@@ -528,11 +585,12 @@ class UsersRolesController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
         ];
 
-        // $request->image->store('images', 'public');
+        $request->image->store('images', 'public');
 
-        dd(request()->all());
+        // return "Signature Uploaded";
+        // dd($request->image);
     
-        return view('pages.users&roles',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+        return redirect('userroles')->with('message','Signature Uploaded Successfully');
       }
 
       public function approvals(){
@@ -540,7 +598,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Approvals"],["name" => "All"]
         ];
 
         $row = array('ICT Requests', 'Special Reservation Requests','Expired Voucher Usage Request','RCI Bulk Banking
@@ -559,7 +617,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Selections - MSD"],["name" => "All"]
         ];
     
         return view('pages.selections-msd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -570,7 +628,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Selections - MRD"],["name" => "All"]
         ];
     
         return view('pages.selections-mrd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -581,7 +639,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodation"],["name" => "Details"]
         ];
     
         return view('pages.accommodation-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -589,6 +647,12 @@ class UsersRolesController extends Controller
 
       public function unitdetails(){
     
+        $pageConfigs = ['pageHeader' => true];
+    
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodation"],["name" => "Unit Type Details"]
+        ];
+
         return view('pages.accommodation-unittypedetails',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
 
@@ -597,7 +661,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Facilities"],["name" => "All"]
         ];
     
         return view('pages.facilities',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -608,7 +672,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Facilities"],["name" => "Facilities Details"]
         ];
     
         return view('pages.facilities-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -619,7 +683,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Event Logs"],["name" => "All"]
         ];
     
         return view('pages.eventlogs-admin',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -630,7 +694,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Selections - ACC & CCD"],["name" => "All"]
         ];
     
         return view('pages.selections-accccd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -641,7 +705,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Selection ICT"],["name" => "All"]
         ];
     
         return view('pages.selections-ict',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -652,7 +716,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Card Terminal"],["name" => "All"]
         ];
     
         return view('pages.card-terminal',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -663,21 +727,21 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Card Terminal"],["name" => "Charge Type"]
         ];
     
         return view('pages.cardterminal-chargetype',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
 
-      public function acccc(){
+      public function accccd(){
     
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "ACC & CC Management"],["name" => "Invoice Header"]
         ];
     
-        return view('pages.acc&cc-management',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+        return view('pages.selections-accccd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
 
       public function accccdn(){
@@ -685,10 +749,10 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Selections ACC & CCD"],["name" => "All"]
         ];
     
-        return view('pages.selections-accccd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+        return view('pages.selections-acc&ccd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
 
 
@@ -697,7 +761,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Tax & interest"],["name" => "All"]
         ];
     
         return view('pages.tax-interests',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -708,7 +772,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Branches"],["name" => "All"]
         ];
     
         return view('pages.branches',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -716,25 +780,14 @@ class UsersRolesController extends Controller
          
       }
  
-      public function dnsettings(){
-    
-        $pageConfigs = ['pageHeader' => true];
-    
-        $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
-        ];
-    
-        return view('pages.selections-acc&ccd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-
-         
-      }
+     
 
       public function contactsetup(){
     
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Contacts Set Up"]
         ];
     
         return view('pages.contact-setup',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);     
@@ -745,7 +798,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Attachments"],["name" => "All"]
         ];
     
         return view('pages.attachments',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);     
@@ -756,7 +809,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Receipts"],["name" => "New Receipts"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Point Entitlements"],["name" => "All"]
         ];
     
         return view('pages.points&entitlements-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);     
@@ -778,7 +831,7 @@ class UsersRolesController extends Controller
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodations"],["name" => "All"]
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Packages"],["name" => "All"]
         ];
     
         return view('pages.packages',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);     

@@ -16,8 +16,8 @@ class CreateBasicPermissionsTable extends Migration
         Schema::create('basic_permissions', function (Blueprint $table) {
             $table->id('bpermission_id');
             $table->integer('staff_id')->length(11);
-            $table->string('module', 20)->nullable();
-            $table->string('permission', 20)->nullable();
+            $table->string('module', 200)->nullable();
+            $table->string('permission', 200)->nullable();
             $table->timestamps();
         });
     }

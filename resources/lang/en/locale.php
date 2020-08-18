@@ -192,5 +192,7 @@ return [
   "Credit Note" => "Credit Note",
   "Debit Note" => "Debit Note",
   "Contra" => "Contra",
+  "RCI Bulk Banking" => "RCI Bulk Banking",
+  "RCI Deposit" => "RCI Deposit",
 ];
 ?>

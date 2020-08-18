@@ -618,7 +618,7 @@
                 <div class="row">
                     <div class="col">
                       <div class="form repeater-default">
-                        <div data-repeater-list="group-a">
+                        <div data-repeater-list="room">
                           <div data-repeater-item>
                             <div class="row justify-content-between">
                               <div class="col-sm-6">
@@ -816,7 +816,7 @@
                         <div class="card-content">
                           <div class="card-body">
                               <div class="form repeater-default">
-                                  <div data-repeater-list="group-a">
+                                  <div data-repeater-list="guest">
                                       <div data-repeater-item>
                                           <div class="row justify-content-between">
                                             <div class="row">
@@ -1201,7 +1201,7 @@
      $('#accom_remark').val(accd['accom_remarks']);
   });
 
-  $('#ci').mouseup(function(){
+  $('#ci').change(function(){
     setTimeout(function(){ci(accd);},1000);
   });
 
@@ -1264,7 +1264,49 @@
   });
 
   function ci(accd){
-    alert(accd['cxl_deadline']);
+    if($('#ci').val()){
+      var book_date=$('#booking_received_date').val();
+      var booktime=new  Date(book_date).getTime();
+      var citime=new Date($('#ci').val()).getTime();
+      var diff=(citime-booktime)/24/3600000;
+      var diffc=diff;
+      if(accd['cxl_deadline_unit']==1){
+        diffc/=30;
+      }else if(accd['cxl_deadline_unit']==2){
+        diffc/=365;
+      }
+      if(diffc>accd['cxl_deadline']){
+        var c=confirm('Guaranteed Booking, confirmed?');
+        if(!c){
+          $('#ci').val('');
+          return;
+        }
+      }
+      var diffm=diff;
+      if(accd['min_lead_time_unit']==1){
+        diffm/=30;
+      }else if(accd['min_lead_time_unit']==2){
+        diffm/=365;
+      }
+
+      if(diffm < accd['min_lead_time']){
+        alert('Too early to check in');
+        $('#ci').val('');
+      }else{
+
+        var diffm=diff;
+        if(accd['max_lead_time_unit']==1){
+          diffm/=30;
+        }else if(accd['max_lead_time_unit']==2){
+          diffm/=365;
+        }
+
+        if(diffm > accd['max_lead_time']){
+          alert('Too late to check in');
+        $('#ci').val('');
+        }
+      }
+    }
   }
 </script>
 @endsection

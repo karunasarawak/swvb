@@ -29,7 +29,7 @@
                             <div class="card-body card-dashboard">
                                 <div class="table-responsive">
 
-                                    <table class="table tours-all">
+                                    <table class="table tours-all table-bordered">
                                         <thead class="bg-swvb-dark">
                                         <tr>
                                                 <th colspan="11"></th>

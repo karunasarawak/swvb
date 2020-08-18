@@ -213,8 +213,8 @@
                         </div>
                     </div>
                 </div>
-
-            <div class="card"></div>
+            </div>
+            <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <h4 class="card-title  text-white">ICT Request</h4>
                 </div>

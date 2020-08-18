@@ -11,51 +11,47 @@
 @section('content')
 <!-- Zero configuration table -->
 <section>
-    <div class="row" >
+    <div class="row" x-data="{ e: false, o: true }">
         <div class="col-md-12">
             <div class="card">
                 <!-- must use form and route method to submit data -->
-               
+                <form action="{{route('pt.update', $payload['ict']->pict_req_id)}}" class="m-2" method="POST" enctype='multipart/form-data'>
+                    @csrf
                     <div class="card-header bg-swvb-cyan">
-                        <div class="row">
-                            <h4 class="col card-title text-white ml-2">Points/Entitlement Adjustment Details</h4>
-                               
-                        </div>
+                            <div class="row">
+                                <h4 class="col card-title text-white ml-2">Points/Entitlement Adjustment Details
+
+                                @if ($payload['ict']->pict_req_status == 0)
+                                <button type="button" class="btn btn-outline-white round ml-2" x-show="o" @click="e = true, o = false">Edit</button>
+                                <div class="float-right" x-show="e" x-cloak>
+                                    <button type="submit" class="btn btn-outline-white round mr-1">Save</button>
+                                    <button type="button" class="btn btn-outline-white round" @click="e = false, o = true">Close</button>
+                                </div>
+                                </h4>
+                                @endif  
+
+                            </div>
                         
                     </div>
                     <div class="card-content">
                         <div class="card-body card-dashboard">
-                            
-                        
                             <div class="row pt-3">
                                 <div class="col ml-3">
                                     <div class="row">
                                         <p class="col">Membership No.</p>
-                                        <p class="col font-weight-bold black" x-show="o">{{$payload['ict']->membership['mbrship_no']}}</p>
-                                        <p class="col" x-cloak x-show="e">
-                                        <select class="custom-select form-control required" id="salutation" name="salutation" required>
-                                            
+                                        <p class="col font-weight-bold black">{{$payload['ict']->membership['mbrship_no']}}</p>
                                         
-                                        </select>
-                                        </p>
                                     </div>
                                 
                                     <div class="row">
                                         <p class="col">Member Name</p>
-                                        <p class="col font-weight-bold black" x-show="o">{{$payload['ict']->lead['name']}}</p>
-                                        <p class="col" x-cloak x-show="e">
-                                            <input  type="text" name="name" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
-                                        </p>
+                                        <p class="col font-weight-bold black" >{{$payload['ict']->membership->lead['name']}}</p>
+                                        
                                     </div>
                                     <div class="row">
                                         <p class="col">Reservation No.</p>
-                                        <p class="col font-weight-bold black" x-show="o">{{$payload['ict']->reservation['rsvn_no']}}</p>
-                                        <p class="col" x-cloak x-show="e">
-                                        <select class="custom-select form-control required" id="gender" name="gender" required>
-                                            
-                                           
-                                        </select>
-                                        </p>
+                                        <p class="col font-weight-bold black" >{{$payload['ict']->membership->reservation['rsvn_no']}}</p>
+                                       
                                     </div>
                                 </div>
                                 
@@ -65,20 +61,18 @@
 
                             <div class="row pt-1">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pl-3">CAI Points Reinstate/Adjustment<button type="button" class="border-0 bg-transparent" x-show="o" @click="e=true, o=false">                                                           
-                                            <i class="bx bx-pencil "></i>
-                                        </button>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pl-3">CAI Points Reinstate/Adjustment
                                     </p>
                                 </div>
                                
                             </div>
-
+                            
                             <div class="row">
                                 <div class="col">
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive pt-3">
-                                                <table class="table ">
+                                                <table class="table table-bordered">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Use Year</th>
@@ -94,10 +88,10 @@
                                            
                                                         <tr>
 
-                                                            <td>{{$pt1->poe_year}}</td>
-                                                            <td>{{$pt1->wd}}</td>
-                                                            <td>{{$pt1->we}}</td>
-                                                            <td>{{$pt1->expiry_date}}</td>
+                                                            <td><p x-show="o">{{$pt1->poe_year}}</p><p x-cloak x-show="e"><input  type="number" name="poe_year1" class="form-control" value="{{$pt1->poe_year}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt1->wd}}</p><p x-cloak x-show="e"><input  type="number" name="wd1" class="form-control" value="{{$pt1->wd}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt1->we}}</p><p x-cloak x-show="e"><input  type="number" name="we1" class="form-control" value="{{$pt1->we}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt1->expiry_date}}</p><p x-cloak x-show="e"><input  type="date1" name="expiry_date" class="form-control" value="{{$pt1->expiry_date}}" required></p></td>
                                                             
                                                         </tr>
                                                 @endforeach
@@ -111,7 +105,7 @@
                             </div>
 
                             <div class="col">
-                                    <p class="h6 swvb-blue ml-2 font-weight-bold my-auto">EVC POE Reinstate<i class="bx bx-pencil"></i></p>
+                                    <p class="h6 swvb-blue ml-2 font-weight-bold my-auto">EVC POE Reinstate</p>
                                 </div>
 
                             <div class="row">
@@ -120,7 +114,7 @@
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive pt-3">
-                                                <table class="table">
+                                                <table class="table table-bordered">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">POE</th>
@@ -135,10 +129,10 @@
                                                 
                                                                 <tr>
 
-                                                                    <td>{{$pt2->poe_year}}</td>
-                                                                    <td>{{$pt2->we}}</td>
-                                                                    <td>{{$pt2->wd}}</td>
-                                                                    <td>{{$pt2->expiry_date}}</td>
+                                                                    <td><p x-show="o">{{$pt2->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year2" class="form-control" value="{{$pt2->poe_year}}" required></p></td>
+                                                                    <td><p x-show="o">{{$pt2->we}}</p><p x-cloak x-show="e"><input type="number" name="we2" class="form-control" value="{{$pt2->we}}" required></p></td>
+                                                                    <td><p x-show="o">{{$pt2->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd2" class="form-control" value="{{$pt2->wd}}" required></p></td>
+                                                                    <td><p x-show="o">{{$pt2->expiry_date}}</p><p x-cloak x-show="e"><input type="date2" name="expiry_date" class="form-control" value="{{$pt2->expiry_date}}" required></p></td>
                                                                     
                                                                 </tr>
                                                         @endforeach
@@ -155,10 +149,10 @@
 
                             <div class="row pt-1 ml-1">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Points Expiry Date Extention<i class="bx bx-pencil"></i></p>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Points Expiry Date Extention</p>
                                 </div>
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Add Bonus Entitlement<i class="bx bx-pencil"></i></p>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">EVC Add Bonus Entitlement</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -166,7 +160,7 @@
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table ">
+                                                <table class="table table-bordered">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Use Year</th>
@@ -180,9 +174,9 @@
                                                 @foreach($payload['pointadj3'] as $pt3) 
                                                         <tr>
 
-                                                            <td>{{$pt3->poe_year}}</td>
+                                                            <td><p x-show="o">{{$pt3->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year3" class="form-control" value="{{$pt3->poe_year}}" required></p></td>
                                                             
-                                                            <td>{{$pt3->expiry_date}}</td>
+                                                            <td><p x-show="o">{{$pt3->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date3" class="form-control" value="{{$pt3->expiry_date}}" required></p></td>
                                                             
                                                         </tr>
                                                 @endforeach
@@ -199,7 +193,7 @@
                                         <div class="card-content">
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table ">
+                                                    <table class="table table-bordered">
                                                         <thead class="bg-swvb-dark">
                                                             <tr>
                                                                 <th class="text-white">POE</th>
@@ -213,10 +207,10 @@
                                                 @foreach($payload['pointadj4'] as $pt4) 
                                                         <tr>
 
-                                                            <td>{{$pt4->poe_year}}</td>
-                                                            <td>{{$pt4->we}}</td>
-                                                            <td>{{$pt4->wd}}</td>
-                                                            <td>{{$pt4->expiry_date}}</td>
+                                                            <td><p x-show="o">{{$pt4->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year4" class="form-control" value="{{$pt4->poe_year}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt4->we}}</p><p x-cloak x-show="e"><input type="number" name="we4" class="form-control" value="{{$pt4->we}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt4->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd4" class="form-control" value="{{$pt4->wd}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt4->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date" class="form-control" value="{{$pt4->expiry_date}}" required></p></td>
                                                             
                                                         </tr>
                                                 @endforeach
@@ -235,7 +229,7 @@
                         
                             <div class="row pt-1 ml-1 pb-2">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto">EVC Add Member Loyatly Reward<i class="bx bx-pencil"></i></p>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto">EVC Add Member Loyatly Reward</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -243,7 +237,7 @@
                                     <div class="card-content">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table class="table table-bordered">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Membership No.</th>
@@ -256,10 +250,12 @@
                                                 @if(isset($payload))
                                                     @foreach($payload['pointadj5'] as $pt5) 
                                                         <tr>
-                                                            <td>{{$pt5->mbrship_no}}</td>
-                                                            <td>{{$pt5->wd}}</td>
-                                                            <td>{{$pt5->we}}</td>
-                                                            <td>{{$pt5->expiry_date}}</td>
+                                                            <td>{{$pt5->mbrship_no}}
+                                                            
+                                                            </td>
+                                                            <td><p x-show="o">{{$pt5->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd5" class="form-control" value="{{$pt5->wd}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt5->we}}</p><p x-cloak x-show="e"><input type="number" name="we5" class="form-control" value="{{$pt5->we}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt5->expiry_date}}</p><p x-cloak x-show="e"><input type="number" name="expiry_date5" class="form-control" value="{{$pt5->expiry_date}}" required></p></td>
                                                             
                                                         </tr>
                                                     @endforeach
@@ -291,10 +287,9 @@
                                                     <div data-repeater-list="group-a">
                                                         <div data-repeater-item>
                                                             <div class="row justify-content-between">
-                                                                <form action="" class="m-2" method="POST" enctype='multipart/form-data'>
-                                                                    @csrf
+                                                                
                                                                     <input type='file' name='file'>
-                                                                </form>
+                                                               
                                                                 <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
                                                                     <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
                                                                         class="bx bx-x"></i>

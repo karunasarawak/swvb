@@ -5,6 +5,21 @@
 {{-- vendor style --}}
 @section('vendor-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+  
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
+<style>
+        .kbw-signature { width: 100%; height: 200px;}
+        #sig canvas{
+            width: 100% !important;
+            height: auto;
+        }
+</style>
 @endsection
 {{-- page-styles --}}
 
@@ -298,16 +313,16 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{route('signature.create')}}" method="POST" novalidate>
+            <form action="{{route('signature.create')}}" method="POST" enctype="multipart/form-data" novalidate>
                 @csrf
                 
                 <div class="modal-body">    
                     
                     <div class="col-lg-6 col-md-12">
                         <fieldset class="form-group">
-                            <label for="basicInputFile">With Browse button</label>
+                            <label for="basicInputFile">Upload Your Signature Images</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                             </div>
                         </fieldset>
@@ -318,7 +333,7 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="submit" class="btn btn-primary ml-1">
+                    <button type="submit" value="upload" class="btn btn-primary ml-1">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Save</span>
                     </button>
@@ -333,31 +348,29 @@
 <div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Change Signature</h5>
+            <div class="modal-header bg-swvb-blue">
+                <h5 class="modal-title text-white" id="exampleModalCenterTitle">Change Signature</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
             </div>
                 <div class="modal-body">
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            <strong>{{$message}}</strong>
+                        <div class="alert alert-success  alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">×</button>  
+                            <strong>{{ $message }}</strong>
                         </div>
                     @endif
                         <form method="POST" action="{{route('signature.modify')}}" >
                             @csrf
                             <div class="col-md-12">
-                                <label class="" for="">Signature</label>
+                                <label class="" for="">Signature:</label>
                                 <br/>
-                                <div id="sig"></div>
+                                <div id="sig" ></div>
                                 <br/>
                                 <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                                <textarea id="signature64" name="signed" style="display:none"></textarea>
+                                <textarea id="signature64" name="signed" style="display: none"></textarea>
                             </div>
-                            <br/>
-                            <button class="btn btn-success">Save</button>
                         </form>
                 </div>
             <div class="modal-footer">
@@ -375,7 +388,12 @@
 </div>
 
 <script type="text/javascript">
-
+    var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+    $('#clear').click(function(e) {
+        e.preventDefault();
+        sig.signature('clear');
+        $("#signature64").val('');
+    });
 </script>
 <!--/ Zero configuration table -->
 @endsection

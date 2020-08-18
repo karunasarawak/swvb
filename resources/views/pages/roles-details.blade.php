@@ -14,9 +14,9 @@
 <div class="row">
         <div class="col-12">
             <div class="card">
-                <form action="{{route('role.details')}}" method="Get" novaliate>
-                    @csrf
-
+                
+                
+                    
                     <div class="card-header bg-swvb-cyan">
                         <div class="row">
                             <h4 class="card-title text-white ml-2">Role Details</h4>
@@ -63,7 +63,7 @@
                         </div>
 
                     </div>
-                </form>
+                
             </div>
             
         </div>
@@ -77,8 +77,9 @@
                     </div>    
                 </div>
                 <div class="card-content">
-                    <form action="{{route('role.checkbox')}}" method="POST" novalidate>   
+                    <form action="{{route('role.checkbox',$payload['staff']->staff_id)}}" method="POST" novalidate>   
                         @csrf
+                        
                         <div class="card-body card-dashboard">
                             <div class="pt-2 table table-responsive">
                                 <div class="row">
@@ -124,7 +125,7 @@
                                                 @if(isset($payload))
                                                     @foreach($payload['module'] as $l)
                                                     <?php
-                                                        $moduleName = str_replace(' ','',$l); 
+                                                        $moduleName = str_replace(str_split('/ '),'',$l); 
                                                     ?>
                                                     <tr>    
                                                 
@@ -140,21 +141,21 @@
                                                         </td>
                                                         <td><fieldset>
                                                             <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" name="permission[]"  value="{{$moduleName}}_c" class="custom-control-input bg-primary cbInput{{$moduleName}}"  name="{{$moduleName}}_c" id="{{$moduleName}}2">
+                                                                <input type="checkbox" name="{{$moduleName}}_c"  value="{{$moduleName}}_c" class="custom-control-input bg-primary cbInput{{$moduleName}}"  name="{{$moduleName}}_c" id="{{$moduleName}}2">
                                                                 <label class="custom-control-label" for="{{$moduleName}}2"></label>
                                                             </div>
                                                             </fieldset>
                                                         </td>
                                                         <td><fieldset>
                                                             <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" name="permission[]"  value="{{$moduleName}}_v" class="custom-control-input bg-primary cbInput{{$moduleName}}"  name="{{$moduleName}}_v" id="{{$moduleName}}3">
+                                                                <input type="checkbox" name="{{$moduleName}}_v"  value="{{$moduleName}}_v" class="custom-control-input bg-primary cbInput{{$moduleName}}"  name="{{$moduleName}}_v" id="{{$moduleName}}3">
                                                                 <label class="custom-control-label" for="{{$moduleName}}3"></label>
                                                             </div>
                                                             </fieldset>
                                                         </td>
                                                         <td><fieldset>
                                                             <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" name="permission[]"  value="{{$moduleName}}_e" class="custom-control-input bg-primary cbInput{{$moduleName}}"  name="{{$moduleName}}_e" id="{{$moduleName}}4">
+                                                                <input type="checkbox" name="{{$moduleName}}_v"  value="{{$moduleName}}_e" class="custom-control-input bg-primary cbInput{{$moduleName}}"  name="{{$moduleName}}_e" id="{{$moduleName}}4">
                                                                 <label class="custom-control-label" for="{{$moduleName}}4"></label>
                                                             </div>
                                                             </fieldset>

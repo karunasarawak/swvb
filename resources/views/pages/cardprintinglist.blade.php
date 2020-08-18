@@ -21,7 +21,7 @@
                                 <a href="{{ route('card.ready') }}">
                                     <button type="button" class="btn btn-outline-white round text-white ml-2">Create New Batch</button>
                                 </a>
-                                <a href="" class="btn btn-outline-white round text-white float-right">Download</a>
+                                {{-- <a href="" class="btn btn-outline-white round text-white float-right">Download</a> --}}
                             </h4>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                                                                 <a class="dropdown-item" ><i class="bx bx-envelope mr-1"></i> Receive</a>
                                                             </button>
                                                         @else
-                                                            <button class="bg-transparent border-0" data-toggle="modal" data-target="#receive">
-                                                                <a class="dropdown-item"><i class="bx bx-trash mr-1"></i>Archive</a>
+                                                            <button class="bg-transparent border-0">
+                                                                <a class="dropdown-item"><i class="bx bx-trash mr-1"></i>Download</a>
                                                             </button>
                                                         @endif
                                                     </div>

@@ -65,9 +65,11 @@
                                         <label>Requested By</label>
                                         <select class="custom-select form-control required" id="requested_by" name="requested_by" data-validation-required-message="Please select a package type" required>
                                             <option value="" disabled selected>Select a staff</option> 
+                                    
                                             @foreach($payload['staff'] as $staff)
                                             <option value="{{$staff->staff_id}}">{{$staff->staff_name}}</option>
                                             @endforeach
+                                       
                                         </select>
                                     </div>
                                 </div>

@@ -21,7 +21,6 @@ Route::get('/membership/{lead_id}/{tour_id}/new', 'MembershipController@createMe
 Route::get('/membership/new', 'MembershipController@create2ndMembership');
 Route::post('/membership/new', 'MembershipController@storeMembers')->name('members.store');//name only for posting
 
-
 Route::get('/membership/archive', 'MembershipController@archive');
 Route::get('/membership/{tour_id}/details', 'MembershipController@showMembers');
 Route::get('/membership/details', 'MembershipController@redirect')->name('members.redirect');
@@ -109,6 +108,11 @@ Route::post('/report/stampingfee/new', 'ReportController@createBatch')->name('st
 Route::get('/report/stampingfee/{batch_id}/details', 'ReportController@showBatchDetail')->name('stamp.details');  
 Route::post('/report/stampingfee/{batch_id}/new', 'ReportController@addNewStamp')->name('stamp.addStamp');  
 Route::patch('/report/stampingfee/{batch_id}/new', 'ReportController@deleteStamp')->name('stamp.deleteStamp');  
+Route::patch('/report/stampingfee', 'ReportController@changeStatus')->name('stamp.changeStatus');
+
+Route::get('/report/stampingfee/{batch_id}', 'ReportController@exportExcel')->name('stamp.export');  
+
+
 
 
 
@@ -129,7 +133,7 @@ Route::post('/cardprintinglist/{batch_id}/new', 'CardPrintingController@addNewCa
 Route::patch('/cardprintinglist/{batch_no}/details', 'CardPrintingController@deleteCard')->name('card.deleteCard');
 Route::patch('/cardprintinglist', 'CardPrintingController@changeStatus')->name('card.changeStatus');
 
-Route::get('/dispatch', 'CardPrintingController@dispatch');
+Route::get('/dispatch', 'CardPrintingController@cpdispatch');
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');
@@ -159,45 +163,48 @@ Route::post('/taskassign', 'TaskAssignmentController@uploadCSV');
 
 Route::get('/approval', 'ApprovalController@index');
 
-Route::get('/extmembership', 'ExtMembershipController@index');
-Route::get('/extmembership/details', 'ExtMembershipController@IIdetails');
+
+Route::get('/extmemberships', 'ExtMembershipController@index');
+Route::get('/extmembership/enrollment/details', 'ExtMembershipController@enrolldetails');
+Route::get('/extmembership/rcienrollment/newbatch', 'ExtMembershipController@rcinewbatch')->name('rcienrollbatch.new');
+Route::get('/extmembership/iienrollment/newbatch', 'ExtMembershipController@iinewbatch')->name('iienrollbatch.new');;
+Route::get('/extmembership/enrollment/batch/details', 'ExtMembershipController@enrolldetails');
+
+Route::get('/extmembership/iiru', 'ExtMembershipController@iiruall');
+Route::get('/extmembership/iiru/new', 'ExtMembershipController@iirunew')->name('iiru.new');
+Route::get('/extmembership/iiru/details', 'ExtMembershipController@iirudetails');
+
 Route::get('/extmembership/rcibb', 'ExtMembershipController@rcibball');
-Route::get('/extmembership/rcibb/new', 'ExtMembershipController@rcinew')->name('rcibb.new');
+Route::get('/extmembership/rcibb/new', 'ExtMembershipController@rcibbnew')->name('rcibb.new');
 Route::get('/extmembership/rcibb/details', 'ExtMembershipController@rcibbdetails');
 
-Route::get('/iiru/new', 'ExtMembershipController@newIIRUBatch');
-Route::get('/iiru/details', 'ExtMembershipController@IIdetails');
-
-Route::get('/enrollment', 'ExtMembershipController@enrollment');
-Route::get('/extmembership/rcinewenroll', 'ExtMembershipController@rcinewenroll');
-Route::get('/extmembership/iinewenroll', 'ExtMembershipController@IInewenroll');
 
 Route::get('/aging', 'AgingReminderController@index');
 Route::get('/agingdetails', 'AgingReminderController@aginreminderdetails');
 Route::get('/occupancy-report', 'AgingReminderController@occupancyreport');
 Route::get('/tourismtax', 'AgingReminderController@tourismtax');
 
-Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest')->name('ict.bring');
+Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest');
+Route::post('/admin/ictrequest', 'UsersRolesController@ictredirect')->name('ict.bring');
 Route::get('/admin/{ict_id}/{ict_status}/ictrequest', 'UsersRolesController@changestatus')->name('ict.status');
 Route::get('/admin/{ict_req_id}/ictrequest', 'UsersRolesController@rejectstatus')->name('ict.reject');
 Route::get('/admin/newictrequestpoint', 'UsersRolesController@newictrequestpoint')->name('new.points');
 Route::post('/admin/newictrequestpoint', 'UsersRolesController@storeictrequestpoint')->name('store.points');
 
 Route::get('/admin/newictrequestacc', 'UsersRolesController@newictrequestacc');
-Route::post('/admin/newictrequestacc', 'UsersRolesController@newictrequestacc')->name('store.acc');
+Route::post('/admin/newictrequestacc', 'UsersRolesController@storeictrequestacc')->name('store.acc');
 Route::get('/admin/ictaccdetails', 'UsersRolesController@ictrequestaccdetails');
-Route::get('/admin/{pict_req_detail_id}/ictptdetails', 'UsersRolesController@ictrequestptdetails')->name('pt.details');
+Route::get('/admin/{pict_req_id}/ictptdetails', 'UsersRolesController@ictrequestptdetails')->name('pt.details');
+Route::patch('/admin/{pict_req_id}/ictptdetails', 'UsersRolesController@updatepoint')->name('pt.update');
 Route::get('/userroles', 'UsersRolesController@userroles');
 Route::post('/roles/new', 'UsersRolesController@newroles')->name('new.roles');
 Route::get('/userroles/{role_id}/{is_active}', 'UsersRolesController@activation')->name('staff.status');
 Route::post('/staff/new', 'UsersRolesController@newusersstaff')->name('new.staff');
 
 Route::get('/roledetails', 'UsersRolesController@roledetails')->name('role.details');
-Route::post('/roledetails', 'UsersRolesController@storerolecheckbox')->name('role.checkbox');
-Route::post('/userroles', 'UsersRolesController@modifysignature')->name('signature.modify');
-Route::post('/userroles', 'UsersRolesController@createsignature')->name('signature.create');
-
-
+Route::post('/roledetails/{staff_id}', 'UsersRolesController@storerolecheckbox')->name('role.checkbox');
+Route::post('/signature/modify', 'UsersRolesController@modifysignature')->name('signature.modify');
+Route::post('/signature/new', 'UsersRolesController@createsignature')->name('signature.create');
 
 Route::get('/admin/approvals', 'UsersRolesController@approvals');
 Route::get('/admin/taxinterest', 'UsersRolesController@taxinterest');
@@ -208,6 +215,7 @@ Route::get('/admin/attachments', 'UsersRolesController@attachments');
 Route::get('/admin/msd', 'UsersRolesController@selectionmsd');
 Route::get('/admin/mrd', 'UsersRolesController@selectionmrd');
 Route::get('/admin/accmd', 'UsersRolesController@accommodation');
+Route::get('/admin/branches', 'UsersRolesController@branches');
 Route::get('/admin/accmdetails', 'UsersRolesController@accommodationdetails');
 Route::get('/admin/unitdetails', 'UsersRolesController@unitdetails');
 Route::get('/admin/facilities', 'UsersRolesController@facilities');
@@ -216,7 +224,7 @@ Route::get('/admin/eventlogs', 'UsersRolesController@eventlogs');
 Route::get('/admin/selectionaccccd', 'UsersRolesController@selectionaccccd');
 Route::get('/admin/selectionict', 'UsersRolesController@selectionict');
 Route::get('/admin/ct', 'UsersRolesController@cardterminal');
-Route::get('/admin/ctct', 'UsersRolesController@cardterminalchargdetype');
+Route::get('/admin/ctct', 'UsersRolesController@cardterminalchargetype');
 
 Route::get('/admin/acc&cc', 'UsersRolesController@accccdn');
 Route::get('/admin/contactsetup', 'UsersRolesController@contactsetup');

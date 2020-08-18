@@ -23,60 +23,46 @@
                         <div class="card-body card-dashboard">
                             <div class="table-responsive">
 
-                                <table class="table tours-all">
+                                <table class="table tours-all table-bordered">
                                     <thead class="bg-swvb-dark">
                                         <tr>
+                                            <th class="text-white" rowspan="2">No</th>
                                             <th class="text-white">SWVB (Office Use)</th>
-                                            <th class="text-white">Week No.</th>
+                                            <th class="text-white" rowspan="2">Week No.</th>
                                             
-                                            <th class="text-white">Check In</th>
-                                            <th class="text-white">Check Out</th>
-                                            <th class="text-white">Unit Size</th>
-                                            <th class="text-white">Room No.</th>
+                                            <th class="text-white" rowspan="2">Check-in Day</th>
+                                            <th class="text-white" rowspan="2">Check-out Day</th>
+                                            <th class="text-white" rowspan="2">Unit Size</th>
+                                            
                                             <th class="text-white" colspan="2">Capacity</th>
                                             
-                                            <th class="text-white" colspan="6">SWVB(Office Use)</th>
-                                            
-                                            
-                                            
-                                            
+                                            <th class="text-white" colspan="3">SWVB(Office Use)</th>  
+                                      
+                                            <th class="text-white" rowspan="2">Action</th>
                                         </tr>
                                         <tr>
-                                            <th class="text-white">RHU Ref</th>
-                                            <th class="text-white">Guest Name</th>
-                                            <th class="text-white">Hotel $ Resort</th>
-                                            <th class="text-white"></th>
-                                            <th class="text-white"></th>
-                                            <th class="text-white"> </th>
-                                            <th class="text-white"> </th>
+                                        <th class="text-white">RHU Ref</th>                                           
                                             <th class="text-white">Private</th>
                                             <th class="text-white">Non-Private</th>
                                             <th class="text-white">Unit Type</th>
                                             <th class="text-white">No of Unit</th>
                                             <th class="text-white">Confirmation No.</th>
-                                            <th class="text-white">Reservation & Request</th>
-                                            
-                                            <th class="text-white">Action</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            
+                                            <td>RUH/II/RA/20/053</td>
+                                            <td>1</td>
+                                            <td>1/5/2020</td>
+                                            <td>1/12/2020</td>
+                                            <td>Point Offset</td>
+                                            <td>1 Bedroom</td>
+                                            <td>Sleep 2</td>
+                                            <td>Sleep 4<</td>
+                                            <td>Chalet</td>
+                                            <td>2-Connecting</td>
+                                            <td>188273 & 188286</td>
+                                           
                                             <td>
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -104,40 +90,7 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            
+                                           
                                             <td>
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -166,39 +119,7 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            
+                                          
                                             <td>
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -227,8 +148,34 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
+                                           
+                                            <td>
+                                                <div class="dropdown">
+                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+
+                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
+                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
+                                                    </div>
+                                                </div>
+                                            
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <td >74
+                                            </td>
+                                            <td >205420000</td>
+                                            <td >Yakub Sebastian</td>
+                                            <td >RM 247.30</td>
                                             <td >Point Offset</td>
                                             <td >03 June 2020</td>
+                                            <td >Active</td>
+                                            <td >System<</td>
+                                            <td >205420000</td>
+                                            <td >Yakub Sebastian</td>
+                                            <td >RM 247.30</td>
                                             
                                             <td>
                                                 <div class="dropdown">
@@ -258,8 +205,35 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
+                                           
+                                            <td>
+                                                <div class="dropdown">
+                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+
+                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
+                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
+                                                    </div>
+                                                </div>
+                                            
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                        <td >74
+                                            </td>
+                                            <td >205420000</td>
+                                            <td >Yakub Sebastian</td>
+                                            <td >RM 247.30</td>
                                             <td >Point Offset</td>
                                             <td >03 June 2020</td>
+                                            <td >Active</td>
+                                            <td >System<</td>
+                                            <td >205420000</td>
+                                            <td >Yakub Sebastian</td>
+                                            <td >RM 247.30</td>
                                             
                                             <td>
                                                 <div class="dropdown">
@@ -289,8 +263,6 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
                                             
                                             <td>
                                                 <div class="dropdown">
@@ -320,8 +292,6 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
                                             
                                             <td>
                                                 <div class="dropdown">
@@ -351,8 +321,6 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
                                             
                                             <td>
                                                 <div class="dropdown">
@@ -382,9 +350,6 @@
                                             <td >205420000</td>
                                             <td >Yakub Sebastian</td>
                                             <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"

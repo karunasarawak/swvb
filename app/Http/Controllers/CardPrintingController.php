@@ -204,4 +204,20 @@ class CardPrintingController extends Controller
       return redirect("cardprintinglist");
     }
 
+    public function generatePDF()
+    {
+      $batchDetail = DB::table('card_printing_batch')->where('cpb_id',$batch_id)->get();
+    }
+
+    public function cpdispatch(){
+    
+      $pageConfigs = ['pageHeader' => true];
+  
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Dispatch"],["name" => "All"]
+      ];
+  
+      return view('pages.dispatch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+
 }
