@@ -35,31 +35,21 @@
                                         <th class="text-white">Event Log ID</th>
                                         <th class="text-white">Remark</th>
                                         <th class="text-white">Status</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                    <tr>
-                                        <td>New reservation</td>
-                                        <td>ICT</td>
-                                        <td>Active</td>
-                                        <td>ICT</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-pen mr-1"></i> EDIT</a>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>                                
+                                    @foreach($dispatch as $disp)
+                                        <tr>
+                                            <td>{{ $disp->consignment_note }}</td>
+                                            <td>{{ $disp->mbrship_no }}</td>
+                                            <td>{{ $disp->el_title }}</td>
+                                            <td>{{ $disp->el_type_name }}</td>
+                                            <td>{{ $disp->el_cat_name }}</td>
+                                            <td>{{ $disp->el_id }}</td>
+                                            <td>{{ $disp->remarks }}</td>
+                                            <td>{{ $disp->status }}</td>
+                                        </tr>
+                                    @endforeach                              
                                 </tbody>
                             </table>
                         </div>
@@ -76,23 +66,19 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-blue">
-                <h4 class="modal-title text-white" id="myModalLabel33">Upload</h4>
+                <h4 class="modal-title text-white" id="myModalLabel33">Upload CSV</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            {{-- <form action="{{ route('leads.upload')}}" class="m-2" method="POST" enctype='multipart/form-data'>
-                {{ csrf_field() }}
-                <input type='file' name='file'>
-                <input type='submit' name='submit' value='Import'>
-            </form> --}}
-
-            <form action="#">
+            <form action="{{ route('dispatch.upload') }}" method="POST">
+                @csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <div class="controls">
-                            <input type='file' name='file'>
-                            <input type='submit' name='submit' value='Import'>
+                    <div class="form-group controls">
+                        <div class="custom-file">
+                            <lable>Uploads</lable>
+                            <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
                 </div>
@@ -101,9 +87,8 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Save</span>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>Save
                     </button>
                 </div>
             </form>

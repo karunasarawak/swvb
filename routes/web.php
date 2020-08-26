@@ -146,7 +146,8 @@ Route::get('/cardprintinglist/{batch_id}', 'CardPrintingController@exportExcel')
 
 // Route::get('/dispatch', 'CardPrintingController@dispatch');
 
-Route::get('/dispatch', 'DispatchController@dispatch');
+Route::get('/dispatch', 'DispatchController@index');
+Route::post('/dispatch', 'DispatchController@uploadCSV')->name('dispatch.upload');
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');

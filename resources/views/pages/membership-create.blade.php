@@ -200,6 +200,7 @@
         var duration=parseFloat($('.duration :selected').html());
         var interst_month=parseFloat(interest/duration);
         var installment=parseFloat(net/duration);
+        $('.minstallment').val(installment.toFixed(2));
         var date=new Date();
         var day=date.getDate();
         var month=date.getMonth();

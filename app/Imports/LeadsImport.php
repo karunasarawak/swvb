@@ -31,22 +31,3 @@ class LeadsImport implements ToModel
     }
 }
 
-// class LeadsImport implements ToModel, WithHeadingRow
-// {
-//     /**
-//     * @param array $row
-//     *
-//     * @return \Illuminate\Database\Eloquent\Model|null
-//     */
-//     public function model(array $row)
-//     {
-//         return new Leads([
-//             'salutation_id'     => $row['salutation'],
-//             'name'              => $row['name'],
-//             'mobile_no'         => $row['mobile_no'], 
-//             'whatsapp_no'       => $row['whatsapp_no'],
-//             'credit_card_limit' => $row['credit_card_limit'],
-//             'telemarketer_id'   => $row['telemarketer']
-//         ]);
-//     }
-// }

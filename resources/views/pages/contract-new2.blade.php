@@ -423,6 +423,15 @@
           </div>
           
           <div class="col-md-8">
+            <div class="form-group">
+              <div class="controls">
+                <label>Monthly Installment</label>
+                  <div class="position-relative has-icon-left">
+                    <input type="number" name="minstallment" class="form-control minstallment" value="0" placeholder="--" data-validation-required-message="Please write the installment" required>
+                    <div class="form-control-position">RM</div>
+                  </div>
+              </div>
+            </div>
               <div class="table table-responsive pt-3">
                   <table class="table tours-all" id="installtable" style="width:100%;">
                     <thead class="bg-swvb-dark">

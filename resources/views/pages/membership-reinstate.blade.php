@@ -8,6 +8,10 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
 @endsection
 
+@php
+    use App\Http\Controlllers\Calculations;
+@endphp
+
 @section('content')
 <!-- Form wizard with icon tabs section start -->
 <section class="simple-validation" >
@@ -60,7 +64,7 @@
                                         <div class="controls">
                                             <label>Amount Due At Reinstatement</label>
                                             <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="--" onkeyup="calcPayable()" id="amt_due" name="amt_due"
+                                                <input type="number" class="form-control" placeholder="--" value="{{number_format(Calculations::getTotalOutstanding($payload['membership']->mbrship_id),2)}}" onkeyup="calcPayable()" id="amt_due" name="amt_due"
                                                 data-validation-required-message="The amount of late payment penalty charge" required>
                                                 <div class="form-control-position">RM</div>
                                             </div>
@@ -158,6 +162,18 @@
                                             <div class="position-relative has-icon-left">
                                                 <input type="number" class="form-control" placeholder="--" id="total" name="total"
                                                 data-validation-required-message="This Name field is required" readonly>
+                                                <div class="form-control-position">RM</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Total Amount Payable</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="hidden" class="form-control" placeholder="--" id="total" name="total"
+                                                data-validation-required-message="This Name field is required" >
                                                 <div class="form-control-position">RM</div>
                                             </div>
                                         </div>

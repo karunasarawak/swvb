@@ -37,8 +37,10 @@
              <div class="form-group controls" x-cloak x-show="original">
                <label>Existing Lead</label>
                <select class="form-control"  id="exist_lead" name="exist_lead">
-                 @if($payload['lead2'] != null)
-                   <option value="{{ $payload['lead2']->lead_id }}" selected>{{ $payload['lead2']->lead_id }} - {{ $payload['lead2']->name }}</option>
+                 @if(!empty($payload['allLead'] ))
+                  @foreach($payload['allLead'] as $al)
+                   <option value="{{ $al->lead_id }}" selected>{{ $al->lead_id }} - {{ $al->name }}</option>
+                   @endforeach
                  @else 
                    <option value="">--</option>
                  @endif
@@ -54,7 +56,7 @@
                  <select name="sec_salute" id="sec_salute"  class="custom-select" data-validation-required-message="Please select a salutation." required>
                    <option value="">--</option>
                      @foreach($payload['salute'] as $salute)
-                       @if($payload['lead2'] != null && $payload['lead2']->salutation_id == $salute->salutation_id)
+                       @if(!empty($payload['lead2']->id) && $payload['lead2']->salutation_id == $salute->salutation_id)
                          <option value="{{ $salute->salutation_id }}" selected>{{ $salute->salutation }}</option>
                        @else
                          <option value="{{ $salute->salutation_id }}">{{ $salute->salutation }}</option>
@@ -67,7 +69,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Name</label>
-                 @if($payload['lead2'] != null)
+                 @if(!empty($payload['lead2']->lead_id))
                    <input type="text" name="sec_name" id="sec_name" class="form-control" value="{{ $payload['lead2']->name }}" required>
                  @else
                    <input type="text" name="sec_name" id="sec_name" class="form-control" placeholder="--" required>
@@ -81,7 +83,7 @@
                <select name="sec_gender" id="sec_gender"  class="custom-select" data-validation-required-message="Please select a salutation." required>
                  <option value="">--</option>
                    @foreach($payload['gender'] as $gender)
-                     @if($payload['lead2']!= null && $payload['lead']->gender)
+                     @if(!empty($payload['lead2']->lead_id) && $payload['lead']->gender)
                        <option value="{{ $gender->gender_id}}" selected>{{ $gender->gender_name }}</option>
                      @else
                        <option value="{{ $gender->gender_id }}">{{ $gender->gender_name }}</option>
@@ -94,7 +96,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>NRIC/Passport</label>
-                 @if($payload['lead2'] != null)
+                 @if(!empty($payload['lead2']->lead_id))
                    <input type="text" name="sec_nric" id="sec_nric" class="form-control" value="{{ $payload['lead2']->nric }}" required>
                  @else
                    <input type="text" name="sec_nric" id="sec_nric" class="form-control" placeholder="--" required>
@@ -105,7 +107,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>DOB</label>
-               @if($payload['lead2'] != null)
+               @if(!empty($payload['lead2']->lead_id))
                  <input type="date" name="sec_dob" id="sec_dob" class="form-control" value="{{ $payload['lead2']->dob }}" required>
                @else
                  <input type="date" name="sec_dob" id="sec_dob" class="form-control" placeholder="--" required>
@@ -119,7 +121,7 @@
                <select name="sec_maritual" id="sec_maritual"  class="custom-select" required>
                  <option value="">--</option>
                  @foreach($payload['maritual'] as $maritual)
-                   @if($payload['lead2'] != null && $payload['lead2']->marital_status == $maritual->maritial_id)
+                   @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->marital_status == $maritual->maritial_id)
                      <option value="{{ $maritual->maritial_id }}" selected>{{ $maritual->maritial_name }}</option>
                    @else
                      <option value="{{ $maritual->maritial_id }}" selected>{{ $maritual->maritial_name }}</option>
@@ -135,7 +137,7 @@
                <select name="sec_race" id="sec_race" class="custom-select" required>
                    <option>--</option>
                    @foreach($payload['race'] as $race)
-                     @if($payload['lead2'] != null && $payload['lead2']->ethnicity_id == $race->race_id)
+                     @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->ethnicity_id == $race->race_id)
                        <option value="{{ $race->race_id }}" selected>{{ $race->race_name }}</option>
                      @else
                        <option value="{{ $race->race_id }}">{{ $race->race_name }}</option>
@@ -151,7 +153,7 @@
                <select name="sec_religion" id="sec_religion" class="custom-select" required>
                  <option value="">--</option>
                  @foreach($payload['religion'] as $religion)
-                   @if($payload['lead2'] != null && $payload['lead2']->religion_id == $religion->religion_id)
+                   @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->religion_id == $religion->religion_id)
                      <option value="{{ $religion->religion_id }}" selected>{{ $religion->religion }}</option>
                    @else
                      <option value="{{ $religion->religion_id }}">{{ $religion->religion }}</option>
@@ -167,7 +169,7 @@
                <select name="sec_nation" id="sec_nation" class="custom-select" required>
                  <option>--</option>
                  @foreach($payload['nation'] as $nation)
-                   @if($payload['lead2'] != null && $payload['lead2']->nationality == $nation->nation_id)
+                   @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->nationality == $nation->nation_id)
                      <option value="{{ $nation->nation_id }}" selected>{{ $nation->nation }}</option>
                    @else
                      <option value="{{ $nation->nation_id }}">{{ $nation->nation}}</option>
@@ -223,7 +225,7 @@
            <div class="col-sm-6">
              <div class="form-group controls">
                <label>Occupation/Designation</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->occupation != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->occupation != null)
                    <input type="text" name="sec_occup" id="sec_occup" class="form-control" value="{{ $payload['lead2']->occupation }}" required>
                  @else
                    <input type="text" name="sec_occup" id="sec_occup" class="form-control" placeholder="--" required>
@@ -234,7 +236,7 @@
            <div class="col-sm-6">
              <div class="form-group controls">
                <label>Employer/Company</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->company != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->company != null)
                    <input type="text" name="sec_company" id="sec_company" class="form-control" value="{{ $payload['lead2']->company }}" required>
                  @else
                    <input type="text" name="sec_company" id="sec_company" class="form-control" placeholder="--" required>
@@ -251,7 +253,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Mobile</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->mobile_no != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->mobile_no != null)
                    <input type="number" name="sec_mobile" id="sec_mobile" class="form-control" value="{{ $payload['lead2']->mobile_no }}" required>
                  @else
                    <input type="number" name="sec_mobile" id="sec_mobile" class="form-control" placeholder="--" required>
@@ -262,7 +264,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Whatsapp</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->whatsapp_no != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->whatsapp_no != null)
                    <input type="number" name="sec_whatsapp" id="sec_whatsapp" class="form-control" value="{{ $payload['lead2']->whatsapp_no }}" required>
                  @else
                    <input type="number" name="sec_whatsapp" id="sec_whatsapp" class="form-control" placeholder="--" required>
@@ -273,7 +275,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Home No.</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->home_no != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->home_no != null)
                    <input type="number" name="sec_home" id="sec_home" class="form-control" value="{{ $payload['lead2']->home_no }}" required>
                  @else
                    <input type="number" name="sec_home" id="sec_home" class="form-control" placeholder="--" required>
@@ -284,7 +286,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Office No.</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->office_no != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->office_no != null)
                    <input type="number" name="sec_office" id="sec_office" class="form-control" value="{{ $payload['lead2']->office_no }}" required>
                  @else
                    <input type="number" name="sec_office" id="sec_office" class="form-control" placeholder="--" required>
@@ -295,7 +297,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Primary email</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->primary_email != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->primary_email != null)
                    <input type="email" name="sec_pemail" id="sec_pemail" class="form-control" value="{{ $payload['lead2']->primary_email }}" required>
                  @else
                    <input type="email" name="sec_pemail" id="sec_pemail" class="form-control" placeholder="--" required>
@@ -306,7 +308,7 @@
            <div class="col-sm-4">
              <div class="form-group controls">
                <label>Alternate email</label>
-                 @if($payload['lead2'] != null && $payload['lead2']->alt_email != null)
+                 @if(!empty($payload['lead2']->lead_id) && $payload['lead2']->alt_email != null)
                    <input type="email" name="sec_aemail" id="sec_aemail" class="form-control" value="{{ $payload['lead2']->alt_email }}" required>
                  @else
                    <input type="email" name="sec_aemail" id="sec_aemail" class="form-control" placeholder="--" required>

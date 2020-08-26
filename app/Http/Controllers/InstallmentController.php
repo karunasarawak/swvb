@@ -58,6 +58,17 @@ class InstallmentController extends Controller
         ->get();
         $paid=0;
         $payload['total_dp']=0;
+
+        $payload['invoices']=DB::table('invoices')
+        ->where('type', 'Installment')
+        ->where('mbrship_id', $id)->whereDate('issue_date', '<=', date('Y-m-d'))->get();
+        $j=1;
+         $date = date('Y-m-d');
+        $current_installment_amt = DB::table('invoices')
+        ->where('type', 'Installment')
+        ->where('mbrship_id', $id)
+        ->whereDate('issue_date', '<=', $date)
+        ->sum('total');
         foreach($payload['downpayments'] as $dp){
           if(!empty($dp->receipt_id)){
             $paid+=$dp->dpymt;
@@ -66,11 +77,16 @@ class InstallmentController extends Controller
         }
         $net=$payload['installment']->net_price;
         $net-=$payload['total_dp'];
-     
+        $current_net_paid=$current_installment_amt*100/($payload['installment']->admin_charges+100);
+
+        $payload['final_net']=$net-$current_net_paid;
+      
         $payload['admin_charge']=round($payload['installment']->admin_charges/100*$net,2);
         $payload['admin_charge_month']=round($payload['admin_charge']/$payload['installment']->install_duration,2);
         $payload['installamt']=round(($net+$payload['admin_charge'])/$payload['installment']->install_duration,2);
         $payload['final_net']=$payload['installment']->net_price;
+        $payload['term']=floor($current_net_paid/$payload['installamt']);
+       /*
         $payload['schedules']= DB::table('installment_ent_point_schedules')
         ->leftjoin('invoices','installment_ent_point_schedules.inv_id','invoices.inv_id')
         ->leftjoin('invoices_receipts','invoices_receipts.inv_id','invoices.inv_id')
@@ -85,7 +101,9 @@ class InstallmentController extends Controller
 
           }
         }
-        $payload['max_term']=$s->term;
+        */
+
+        
         $payload['paid']=$paid/$payload['installment']->net_price*100;
         $payload['packages']=DB::table('packages')->get();
         $interest=DB::table('installment_interests')->orderBy('instal_duration','ASC')->get();

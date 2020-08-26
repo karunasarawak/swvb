@@ -31,7 +31,7 @@
     </div>
 
         {{-- <label>Lead ID 2</label> --}}
-        @if($payload['lead2'] != null)
+        @if(!empty($payload['lead2']->lead_id ))
           <input type="hidden" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="{{$payload['lead2']->lead_id}}" required>
         @else
           <input type="hidden" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="" required>

@@ -235,32 +235,41 @@
                                                 </tr>
                                                
                                                 @endforeach
-                                                @foreach($payload['schedules'] as $s)
-
+                                                @php
+                                                    $tn=1;
+                                                    $pad=date('d M Y',strtotime($s->projected_allocated_date));
+                                                @endphp
+                                                @foreach($payload['invoices'] as $s)
+                                                @php
+                                                    $pad=date('d M Y',strtotime($s->projected_allocated_date.'+1month'));
+                                                @endphp
                                                 <tr class="freeze">
                                                     <td>{{$tn++}}</td>
                                                      <td class="expanded">{{$s->inv_no}}</td>
-                                                    <td>{{date('d M Y',strtotime($s->projected_alloc_date))}}</td>
-                                                    <td>{{date('d M Y',strtotime($s->alloc_date))}}</td>
+                                                     <td>{{date('d M Y',strtotime($pad))}}</td>
+                                                    <td>{{date('d M Y',strtotime($s->issue_date))}}</td>
                                                     <td>@if($s->issue_date) {{date('d M Y',strtotime($s->issue_date))}} @endif</td>
-                                                    <td class="expanded">Installment {{$s->term}}</td>
-                                                     <td>RM {{$payload['installamt']-$payload['admin_charge_month']}}</td>
+                                                    <td class="expanded">Downpayment {{$dn++}}</td>
+                                                     <td>RM {{$s->dpymt}}</td>
                                                     <!-- <td class="expanded">RM 1000</td>
                                                     <td class="expanded">RM 1000</td>
                                                     <td class="expanded">250</td>-->
-                                                    <td>{{$payload['admin_charge_month']}}</td>
-                                                    <td>{{$payload['admin_charge_month']+$payload['installamt']}}</td>
-                                                    <td>{{$net-=$payload['installamt']}}</td>
+                                                    <td></td>
+                                                    <td>{{$s->dpymt}}</td>
+                                                    <td>{{$net-=$s->dpymt}}</td>
+
                                                 </tr>
+                                               
                                                 @endforeach
-                                                @php
-                                                    $term=$s->term+1;
-                                                @endphp
+                                                
                                                 @while($term<$payload['installment']->install_duration)
-                                                <tr class="freeze">
+                                                @php
+                                                    $pad=date('d M Y',strtotime($s->projected_allocated_date.'+1month'));
+                                                 @endphp
+                                                <tr>
                                                     <td>{{$tn++}}</td>
                                                      <td class="expanded"></td>
-                                                    <td>{{date('d M Y',strtotime($s->projected_alloc_date.'+1month'))}}</td>
+                                                    <td>{{date('d M Y',strtotime($pad.'+1month'))}}</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td class="expanded">Installment {{$term++}}</td>
