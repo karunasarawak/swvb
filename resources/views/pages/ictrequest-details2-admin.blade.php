@@ -35,26 +35,23 @@
                                 <div class="col ml-5">
                                     <div class="row">
                                         <p class="col">Membership No.</p>
-                                        <p class="col font-weight-bold black" x-show="o">1234567</p>
-                                        <p class="col" x-cloak x-show="e">
-                                        <select class="custom-select form-control required" id="salutation" name="salutation" required>
-                                            
+                                        <p class="col font-weight-bold black" >{{$payload['acc']->membership['mbrship_no']}}</p>
                                         
-                                        </select>
-                                        </p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Member Name</p>
-                                        <p class="col font-weight-bold black" x-show="o">John Doe</p>
-                                        <p class="col" x-cloak x-show="e">
-                                            <input  type="text" name="name" class="form-control" value="" placeholder="Name" data-validation-required-message="Please write the company name"  required>
-                                        </p>
+                                        <p class="col font-weight-bold black" >{{$payload['acc']->membership->lead['name']}}</p>
                                     </div>
-                                    
+                                    <div class="row">
+                                        <p class="col">Reservation No.</p>
+                                        <p class="col font-weight-bold black" >{{$payload['acc']->reservation['rsvn_no']}}</p>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="row pt-1">
+                            
+                              
+                      
+                            <div class="row pt-3">
                                 <div class="col">
                                     <div class="card-content">
                                         <div class="card-body">
@@ -69,55 +66,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                @if(isset($payload))
+                                                    @foreach($payload['details'] as $d)
                                                         <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
+                                                            <td>{{$d->inv_item_type_id}}</td>
+                                                            <td>{{$d->unit_price}}</td>
+                                                            <td>{{$d->rounding}}</td>
+                                                            <td>{{$d->total_price}}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>1234 0000</td>
-                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -140,8 +99,8 @@
                                                 <table class="table leads-all">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
-                                                            <th class="text-white">No.</th>
-                                                            <th class="text-white">Reservation No.</th>
+                                                            
+                                                            
                                                             <th class="text-white">Document Type</th>
                                                             <th class="text-white">Original Inv No. / OR No.</th>
                                                             <th class="text-white">Unit Price (RM)</th>
@@ -152,73 +111,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                @if(isset($payload))
+                                                    @foreach($payload['details'] as $d)
                                                         <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>Item 01</td>
+                                                            
+                                                            <td>{{$d->acc_ict_req_type}}</td>
+                                                            @if ($d->acc_ict_req_type == "1" && "2")
+                                                            <td>{{$d->invoice['inv_no']}}</td>
+                                                            @elseif($d->acc_ict_req_type == "3")
+                                                            <td>{{$d->receipt['receipt_no']}}</td>
+                                                            @endif
+                                                            <td>{{$d->unit_price}}</td>
+                                                            <td>{{$d->rounding}}</td>
+                                                            <td>{{$d->total_price}}</td>
+                                                            <td>{{$d->reason}}</td>
+                                                            <td>{{$d->remarks}}</td>
+                                                            
+                                                            
                                                         </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>Item 01</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>Item 01</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>Item 01</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>Item 01</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode A</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>1234 0000</td>
-                                                            <td>Mode B</td>
-                                                            <td>01 April 2020</td>
-                                                            <td>Item 01</td>
-                                                            <td>Item 01</td>
-                                                        </tr>
-                                                    
+                                                    @endforeach
+                                                @endif
+                                                       
                                                     </tbody>
                                                 </table>
                                             </div>

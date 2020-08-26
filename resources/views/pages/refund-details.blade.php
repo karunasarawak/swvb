@@ -25,7 +25,7 @@
                         
                 <div class="card-content">
                     <div class="card-body card-dashboard">
-                        <div class="row pt-1 pl-1">
+                        <div class="row pt-1 ">
                             <div class="col-sm-6">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Member</p>
                             </div>
@@ -33,7 +33,7 @@
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Details</p>
                             </div>
                         </div>
-                        <div class="row pl-1">
+                        <div class="row ">
                             <div class="col">
                                 <div class="row">
                                     <p class="col">Membership No.</p>
@@ -41,6 +41,14 @@
                                 </div>
                                 <div class="row">
                                     <p class="col">Name</p>
+                                    <p class="col font-weight-bold black">John Doe</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Agreement No.</p>
+                                    <p class="col font-weight-bold black">213123</p>
+                                </div>
+                                 <div class="row">
+                                    <p class="col">Primary Member</p>
                                     <p class="col font-weight-bold black">John Doe</p>
                                 </div>
 
@@ -54,22 +62,65 @@
                                     <p class="col">Amount</p>
                                     <p class="col font-weight-bold black">RM 500</p>
                                 </div>
-                                
+                                <div class="row">
+                                    <p class="col">Membership Purchased</p>
+                                    <p class="col font-weight-bold black">Yes</p>
+                                </div>
                                 <div class="row">
                                     <p class="col">Reason</p>
                                     <p class="col font-weight-bold black">-</p>
                                 </div>
                             </div>
-                            
+
                         </div>
 
-
+                        <div class="row pt-1">
+                            <div class="col-sm-6 ">
+                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Finance Department</p>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Approval Details</p>
+                            </div>
+                        </div>  
+                        
+                        <div class="row ">
+                            <div class="col">
+                                <div class="row">
+                                    <p class="col">Clearance Date</p>
+                                    <p class="col font-weight-bold black">03 June 2020</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Clearance Amount</p>
+                                    <p class="col font-weight-bold black">RM 500</p>
+                                </div>
+                                 <div class="row">
+                                    <p class="col">Bank</p>
+                                    <p class="col font-weight-bold black">Public Bank</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <p class="col">Requested By</p>
+                                    <p class="col font-weight-bold black">Erman</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Checked By</p>
+                                    <p class="col font-weight-bold black">Priscilla</p>
+                                </div>
+                                 <div class="row">
+                                    <p class="col">Verified By</p>
+                                    <p class="col font-weight-bold black">Dennis</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col">Processed By</p>
+                                    <p class="col font-weight-bold black">Samuel</p>
+                                </div>
+                            </div>
+                        </div>
+                            
                         
                         <div class="row pt-1">
-                            <div class="col-sm-6 pl-2">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Subject To</p>
-                            </div>
-                            <div class="card-body card-dashboard pt-1">
+    
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
@@ -123,8 +174,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-
+                        
                         </div>
                         <a href="{{url('/refund')}}" class="btn btn-primary text-white m-1">Create</a>
                 </form>
@@ -238,7 +288,6 @@
                 <div class="px-2">
                         <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Cancel</a>
                         <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Confirm</a>
-                    
                 </div>
             </div>
         </div>

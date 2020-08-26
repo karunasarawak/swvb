@@ -13,6 +13,7 @@ class CreateInvoiceItems extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id('inv_itm_id')->length(11);
             $table->foreignId('inv_id');
@@ -24,6 +25,39 @@ class CreateInvoiceItems extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
+
+        DB::table('invoice_items')->insert(array(
+            [
+                'inv_id' => 1,
+                'inv_itm_type_id' => 2,
+                'item_name' => 'Installment',
+                'amount' => 230,
+            ],
+            [
+                'inv_id' => 2,
+                'inv_itm_type_id' => 2,
+                'item_name' => 'Installment',
+                'amount' => 230,
+            ],
+            [
+                'inv_id' => 3,
+                'inv_itm_type_id' => 2,
+                'item_name' => 'Installment',
+                'amount' => 230,
+            ],
+            [
+                'inv_id' => 4,
+                'inv_itm_type_id' => 4,
+                'item_name' => 'Admin Charges',
+                'amount' => 50,
+            ],
+            [
+                'inv_id' => 5,
+                'inv_itm_type_id' => 2,
+                'item_name' => 'Installment',
+                'amount' => 50,
+            ],
+        ));
     }
 
     /**
@@ -33,6 +67,7 @@ class CreateInvoiceItems extends Migration
      */
     public function down()
     {
+        // Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('invoice_items');
     }
 }

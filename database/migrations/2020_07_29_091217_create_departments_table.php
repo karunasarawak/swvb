@@ -16,7 +16,7 @@ class CreateDepartmentsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('departments', function (Blueprint $table) {
             $table->id('dept_id');
-            $table->string('dept');
+            $table->string('dept')->nullable();
             $table->timestamps();
         });
 

@@ -1,5 +1,5 @@
 <!-- body content of step 1 first member start -->
-<fieldset x-data="{ edit: true, original:false}" >  <!-- basic start -->
+<ieldset x-data="{ edit: true, original:false}" >  <!-- basic start -->
   <section id="form-repeater-wrapper">  
     <div class="row pt-1" >
       <div class="col-12">
@@ -269,21 +269,42 @@
               <div class="form repeater-default">
                     <div data-repeater-list="group1">
                         <div data-repeater-item>
-                            <div class="row justify-content-between">
-                                <div class="col-md-6 form-group">
-                                    <label for="Email">Down Payment </label>
-                                    <input type="number" name="poe_year1" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
-                                </div>
-                                
-                                
-                                <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                                  <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                      class="bx bx-x"></i>
-                                      Delete
-                                  </button>
-                                </div>
+                          <div class="row justify-content-between">
+
+                            <div class="col-sm-4">
+                              <label for="Email">Down Payment 1</label>
+                              <input type="number" name="poe_year1" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
                             </div>
-                            <hr>
+
+                            <div class="col-sm-4">
+                              <div class="form-group controls">
+                                <label>Paid</label>               
+                                <div class="custom-control-inline">
+                                  <div class="radio mr-1">
+                                    <input type="radio" name="amfcc" value="1" id="ccy" @click="xcc=false, paid=true" required>
+                                    <label for="ccy">Yes</label>
+                                  </div>
+                                  <div class="radio">
+                                    <input type="radio" name="amfcc" value="0" id="ccn" @click="xcc=true, paid=false">
+                                    <label for="ccn">No</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="col-md-6 form-group" x-show="paid">
+                              <label for="Email">Paid date</label>
+                              <input type="number" name="poe_year1" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
+                            </div>
+
+                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
+                              <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
+                                  class="bx bx-x"></i>
+                                  Delete
+                              </button>
+                            </div>
+                          </div>
+                          <hr>
                         </div>
                     </div>
                     <div class="form-group">
@@ -296,14 +317,7 @@
               </div>
           </div>
 
-          <div class="col-sm-4">
-            <div class="form-group">
-              <div class="controls">
-                <label>Installment 1</label>
-                <input type="number" class="form-control" placeholder="--" readonly>
-              </div>
-            </div>
-          </div>
+          
 
           <div class="col-sm-4">
             <div class="form-group">
@@ -329,9 +343,9 @@
           <div class="col-sm-6">
             <div class="form-group">
               <div class="controls">
-                <label>Installation Duration</label>
-                <select name="duration" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
-                  <option value="" disabled selected>Select a installation duration</option>
+                <label>Installment Duration</label>
+                <select name="duration" class="select2 form-control" data-validation-required-message="Please select a installment duration" required>
+                  <option value="" disabled selected>Select a installament duration</option>
                   <!-- 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72 -->
                   <option value="6">6 Month</option>
                   <option value="12">12 Month</option>
@@ -357,7 +371,7 @@
                 <label>Admin Charges</label>
                 <div class="position-relative has-icon-right">
                   <input type="number" name="charges" class="form-control" placeholder="--" readonly>
-                  <div class="form-control-position">%</div>
+                  <div class="form-control-position">RM</div>
                 </div>
               </div>
             </div>

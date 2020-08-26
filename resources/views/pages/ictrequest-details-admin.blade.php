@@ -15,24 +15,27 @@
         <div class="col-md-12">
             <div class="card">
                 <!-- must use form and route method to submit data -->
-                <form action="{{route('pt.update', $payload['ict']->pict_req_id)}}" class="m-2" method="POST" enctype='multipart/form-data'>
+                <form action="{{route('pt.update', $payload['ict']->pict_req_id)}}" class="m-2" method="POST" >
                     @csrf
-                    <div class="card-header bg-swvb-cyan">
+                    <!-- enctype='multipart/form-data' -->
+                    @method('patch')
+                        <div class="card-header bg-swvb-cyan">
                             <div class="row">
-                                <h4 class="col card-title text-white ml-2">Points/Entitlement Adjustment Details
+                                <div class="card-title">
+                                    <h4 class="col text-white ml-2">Points/Entitlement Adjustment Details
 
-                                @if ($payload['ict']->pict_req_status == 0)
-                                <button type="button" class="btn btn-outline-white round ml-2" x-show="o" @click="e = true, o = false">Edit</button>
-                                <div class="float-right" x-show="e" x-cloak>
-                                    <button type="submit" class="btn btn-outline-white round mr-1">Save</button>
-                                    <button type="button" class="btn btn-outline-white round" @click="e = false, o = true">Close</button>
+                                    @if ($payload['ict']->pict_req_status == 0)    
+                                    <button type="button" class="btn btn-outline-white round ml-2" x-show="o" @click="e = true, o = false">Edit</button>
+                                    <div class="float-right" x-show="e" x-cloak>
+                                        <button type="submit" class="btn btn-outline-white round mr-1">Save</button>
+                                        <button type="button" class="btn btn-outline-white round" @click="e = false, o = true">Close</button>
+                                    </div>
+                                    </h4>
+                                    @endif  
                                 </div>
-                                </h4>
-                                @endif  
-
                             </div>
                         
-                    </div>
+                        </div>
                     <div class="card-content">
                         <div class="card-body card-dashboard">
                             <div class="row pt-3">
@@ -58,13 +61,13 @@
                                
                             </div>
 
-
+                    
+                       
                             <div class="row pt-1">
                                 <div class="col">
                                     <p class="h6 swvb-blue m-0 font-weight-bold my-auto pl-3">CAI Points Reinstate/Adjustment
                                     </p>
                                 </div>
-                               
                             </div>
                             
                             <div class="row">
@@ -76,24 +79,26 @@
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Use Year</th>
-                                                            <th class="text-white">Entitlement (WD)</th>
-                                                            <th class="text-white">Entitlement (WE)</th>
+                                                            <th class="text-white">Points</th>
+                                                            
                                                             <th class="text-white">Proposed Expiry Date</th>
                                                             
                                                         </tr>
                                                     </thead>
                                             @if(isset($payload))
-                                                @foreach($payload['pointadj1'] as $pt1) 
+                                                @foreach($payload['pointadj1'] as $pt1)
+                                                    @if($pt1->points != "") 
                                                     <tbody>
                                            
                                                         <tr>
 
-                                                            <td><p x-show="o">{{$pt1->poe_year}}</p><p x-cloak x-show="e"><input  type="number" name="poe_year1" class="form-control" value="{{$pt1->poe_year}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt1->wd}}</p><p x-cloak x-show="e"><input  type="number" name="wd1" class="form-control" value="{{$pt1->wd}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt1->we}}</p><p x-cloak x-show="e"><input  type="number" name="we1" class="form-control" value="{{$pt1->we}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt1->expiry_date}}</p><p x-cloak x-show="e"><input  type="date1" name="expiry_date" class="form-control" value="{{$pt1->expiry_date}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt1->poe_year}}</p><p x-cloak x-show="e"><input  type="number" name="poe_year1" class="form-control" value="{{$pt1->poe_year}}" ></p></td>
+                                                            <td><p x-show="o">{{$pt1->points}}</p><p x-cloak x-show="e"><input  type="number" name="points1" class="form-control" value="{{$pt1->points}}" ></p></td>
+                                                            
+                                                            <td><p x-show="o">{{$pt1->expiry_date}}</p><p x-cloak x-show="e"><input  type="date1" name="expiry_date1" class="form-control" value="{{$pt1->expiry_date}}" ></p></td>
                                                             
                                                         </tr>
+                                                    @endif
                                                 @endforeach
                                             @endif
                                                     </tbody>
@@ -103,7 +108,10 @@
                                     </div>
                                 </div>
                             </div>
+                       
+                   
 
+                        @if(isset($payload['pointadj2']))
                             <div class="col">
                                     <p class="h6 swvb-blue ml-2 font-weight-bold my-auto">EVC POE Reinstate</p>
                                 </div>
@@ -125,16 +133,20 @@
                                                     </thead>
                                                     @if(isset($payload))
                                                         @foreach($payload['pointadj2'] as $pt2) 
+                                                            @if($pt2->we != "")
                                                     <tbody>
                                                 
                                                                 <tr>
 
-                                                                    <td><p x-show="o">{{$pt2->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year2" class="form-control" value="{{$pt2->poe_year}}" required></p></td>
-                                                                    <td><p x-show="o">{{$pt2->we}}</p><p x-cloak x-show="e"><input type="number" name="we2" class="form-control" value="{{$pt2->we}}" required></p></td>
-                                                                    <td><p x-show="o">{{$pt2->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd2" class="form-control" value="{{$pt2->wd}}" required></p></td>
-                                                                    <td><p x-show="o">{{$pt2->expiry_date}}</p><p x-cloak x-show="e"><input type="date2" name="expiry_date" class="form-control" value="{{$pt2->expiry_date}}" required></p></td>
+                                                                    <td><p x-show="o">{{$pt2->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year2" class="form-control" value="{{$pt2->poe_year}}" ></p></td>
+                                                                    <td><p x-show="o">{{$pt2->we}}</p><p x-cloak x-show="e"><input type="number" name="we2" class="form-control" value="{{$pt2->we}}" ></p></td>
+                                                                    <td><p x-show="o">{{$pt2->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd2" class="form-control" value="{{$pt2->wd}}" ></p></td>
+                                                                    <td><p x-show="o">{{$pt2->expiry_date}}</p><p x-cloak x-show="e"><input type="date2" name="expiry_date" class="form-control" value="{{$pt2->expiry_date}}" ></p></td>
                                                                     
                                                                 </tr>
+                                                            @else
+
+                                                            @endif
                                                         @endforeach
                                                     @endif
                                                     
@@ -145,7 +157,9 @@
                                     </div>
                                 </div>
                             </div>
+                        
 
+                        @endif
 
                             <div class="row pt-1 ml-1">
                                 <div class="col">
@@ -174,9 +188,9 @@
                                                 @foreach($payload['pointadj3'] as $pt3) 
                                                         <tr>
 
-                                                            <td><p x-show="o">{{$pt3->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year3" class="form-control" value="{{$pt3->poe_year}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt3->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year3" class="form-control" value="{{$pt3->poe_year}}" ></p></td>
                                                             
-                                                            <td><p x-show="o">{{$pt3->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date3" class="form-control" value="{{$pt3->expiry_date}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt3->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date3" class="form-control" value="{{$pt3->expiry_date}}" ></p></td>
                                                             
                                                         </tr>
                                                 @endforeach
@@ -207,10 +221,10 @@
                                                 @foreach($payload['pointadj4'] as $pt4) 
                                                         <tr>
 
-                                                            <td><p x-show="o">{{$pt4->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year4" class="form-control" value="{{$pt4->poe_year}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt4->we}}</p><p x-cloak x-show="e"><input type="number" name="we4" class="form-control" value="{{$pt4->we}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt4->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd4" class="form-control" value="{{$pt4->wd}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt4->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date" class="form-control" value="{{$pt4->expiry_date}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt4->poe_year}}</p><p x-cloak x-show="e"><input type="number" name="poe_year4" class="form-control" value="{{$pt4->poe_year}}" ></p></td>
+                                                            <td><p x-show="o">{{$pt4->we}}</p><p x-cloak x-show="e"><input type="number" name="we4" class="form-control" value="{{$pt4->we}}" ></p></td>
+                                                            <td><p x-show="o">{{$pt4->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd4" class="form-control" value="{{$pt4->wd}}" ></p></td>
+                                                            <td><p x-show="o">{{$pt4->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date4" class="form-control" value="{{$pt4->expiry_date}}" ></p></td>
                                                             
                                                         </tr>
                                                 @endforeach
@@ -253,9 +267,9 @@
                                                             <td>{{$pt5->mbrship_no}}
                                                             
                                                             </td>
-                                                            <td><p x-show="o">{{$pt5->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd5" class="form-control" value="{{$pt5->wd}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt5->we}}</p><p x-cloak x-show="e"><input type="number" name="we5" class="form-control" value="{{$pt5->we}}" required></p></td>
-                                                            <td><p x-show="o">{{$pt5->expiry_date}}</p><p x-cloak x-show="e"><input type="number" name="expiry_date5" class="form-control" value="{{$pt5->expiry_date}}" required></p></td>
+                                                            <td><p x-show="o">{{$pt5->wd}}</p><p x-cloak x-show="e"><input type="number" name="wd5" class="form-control" value="{{$pt5->wd}}" ></p></td>
+                                                            <td><p x-show="o">{{$pt5->we}}</p><p x-cloak x-show="e"><input type="number" name="we5" class="form-control" value="{{$pt5->we}}" ></p></td>
+                                                            <td><p x-show="o">{{$pt5->expiry_date}}</p><p x-cloak x-show="e"><input type="date" name="expiry_date5" class="form-control" value="{{$pt5->expiry_date}}" ></p></td>
                                                             
                                                         </tr>
                                                     @endforeach

@@ -6,95 +6,115 @@
     Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
+======================={{{  ========== }} }}=========================================================*/
 
 $(document).ready(function() {
 
     /****************************************
-    *       js of zero configuration        *
-    ****************************************/
+     *       js of zero configuration        *
+     ****************************************/
 
-   $.fn.dataTable.moment('DD MMMM YYYY');
+    $.fn.dataTable.moment('DD MMMM YYYY');
 
-   $('.zero-configuration').DataTable();
+    $('.zero-configuration').DataTable();
 
-   $('.leads-all').DataTable({
-    columns: [
-        { data: "id", class: "text-center" },
-        { data: "name", class: "text-center" },
-        { data: "createDate", class: "text-center" },
-        { data: "createTime", class: "text-center" },
-        { data: "telemarketer", class: "text-center" },
-        { data: "proceed", class: "text-center" },
-        { data: "action", class: "text-center" }
-    ],
-    columnDefs: [{
-        targets: 2,
-        render: $.fn.dataTable.render.moment('DD MMMM YYYY','Do MMM YYYY')
-    }],
-    "dom": '<"d-flex justify-content-between"<"d-flex"<"add_lead"><"upload_csv">><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
-    "displayLength": 10,
-    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-  });
+    $('.leads-all').DataTable({
+        columns: [
+            { data: "id", class: "text-center" },
+            { data: "name", class: "text-center" },
+            { data: "createDate", class: "text-center" },
+            { data: "createTime", class: "text-center" },
+            { data: "telemarketer", class: "text-center" },
+            { data: "proceed", class: "text-center" },
+            { data: "action", class: "text-center" }
+        ],
+        columnDefs: [{
+            targets: 2,
+            render: $.fn.dataTable.render.moment('DD MMMM YYYY', 'Do MMM YYYY')
+        }],
+        "dom": '<"d-flex justify-content-between"<"d-flex"<"add_lead"><"upload_csv">><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
+        "displayLength": 10,
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+        ]
+    });
 
-  $('.leads-archive').DataTable({
-    columns: [
-        { data: "id", class: "text-center" },
-        { data: "name", class: "text-center" },
-        { data: "createDate", class: "text-center" },
-        { data: "createTime", class: "text-center" },
-        { data: "telemarketer", class: "text-center" },
-        { data: "proceed", class: "text-center" },
-        { data: "action", class: "text-center" }
-    ],
-    columnDefs: [{
-        targets: 2,
-        render: $.fn.dataTable.render.moment('DD MMMM YYYY','Do MMM YYYY')
-    }],
-    "dom": '<"d-flex justify-content-between"<"d-flex"<><>><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
-    "displayLength": 10,
-    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-  });
+    $('.leads-archive').DataTable({
+        columns: [
+            { data: "id", class: "text-center" },
+            { data: "name", class: "text-center" },
+            { data: "createDate", class: "text-center" },
+            { data: "createTime", class: "text-center" },
+            { data: "telemarketer", class: "text-center" },
+            { data: "proceed", class: "text-center" },
+            { data: "action", class: "text-center" }
+        ],
+        columnDefs: [{
+            targets: 2,
+            render: $.fn.dataTable.render.moment('DD MMMM YYYY', 'Do MMM YYYY')
+        }],
+        "dom": '<"d-flex justify-content-between"<"d-flex"<><>><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
+        "displayLength": 10,
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+        ]
+    });
 
-  $('.membership-show').DataTable({
-    columns: [
-        { data: "id", class: "text-center" },
-        { data: "name", class: "text-center" },
-        { data: "createDate", class: "text-center" },
-        { data: "createTime", class: "text-center" },
-        { data: "telemarketer", class: "text-center" },
-        { data: "proceed", class: "text-center" },
-        { data: "action", class: "text-center" }
-    ],
-    columnDefs: [{
-        targets: 2,
-        render: $.fn.dataTable.render.moment('DD MMMM YYYY','Do MMM YYYY')
-    }],
-    "dom": '<"d-flex justify-content-between"<"d-flex"<"add_lead"><"upload_csv">><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
-    "displayLength": 10,
-    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-  });
+    $('.membership-show').DataTable({
+        columns: [
+            { data: "id", class: "text-center" },
+            { data: "name", class: "text-center" },
+            { data: "createDate", class: "text-center" },
+            { data: "createTime", class: "text-center" },
+            { data: "telemarketer", class: "text-center" },
+            { data: "proceed", class: "text-center" },
+            { data: "action", class: "text-center" }
+        ],
+        columnDefs: [{
+            targets: 2,
+            render: $.fn.dataTable.render.moment('DD MMMM YYYY', 'Do MMM YYYY')
+        }],
+        "dom": '<"d-flex justify-content-between"<"d-flex"<"add_lead"><"upload_csv">><"d-flex"<"mr-2"l>f>>rt<"bottom"ip><"clear">',
+        "displayLength": 10,
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+        ]
+    });
 
 
-  $('.call-log').DataTable({
-    "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
-    "displayLength": 10,
-    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-  });
+    $('.call-log').DataTable({
+        "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
+        "displayLength": 10,
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+        ]
+    });
 
-  $('.tours-all').DataTable({
-    "scrollX": true,
-    "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
-    "displayLength": 10,
-    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-  });
+    $('.tours-all').DataTable({
+        "scrollX": true,
+        "scrollY": "800px",
+        "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
+        "displayLength": 10,
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+        ]
+    });
 
-  $('.membership-show').DataTable({
-    "scrollX": true,
-    "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
-    "displayLength": 10,
-    "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
-  });
+    $('.membership-show').DataTable({
+        "scrollX": true,
+        "scrollY": "800px",
+        "dom": '<"d-flex justify-content-end"<"mr-2"l>f>rt<"bottom"ip><"clear">',
+        "displayLength": 10,
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+        ]
+    });
 
     /********************************************
      *      js of DataTables custom toolbar      *
@@ -141,50 +161,48 @@ $(document).ready(function() {
         var currentOrder = groupingTable.order()[0];
         if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
             groupingTable.order([2, 'desc']).draw();
-        }
-        else {
+        } else {
             groupingTable.order([2, 'asc']).draw();
         }
     });
 
     /*************************************
-    *       js of complex headers        *
-    *************************************/
+     *       js of complex headers        *
+     *************************************/
 
     $('.complex-headers').DataTable();
 
 
     /*****************************
-    *       js of Add Row        *
-    ******************************/
+     *       js of Add Row        *
+     ******************************/
 
     var t = $('.add-rows').DataTable();
     var counter = 2;
 
-    $('#addRow').on( 'click', function () {
-        t.row.add( [
-            counter +'.1',
-            counter +'.2',
-            counter +'.3',
-            counter +'.4',
-            counter +'.5'
-        ] ).draw( false );
+    $('#addRow').on('click', function() {
+        t.row.add([
+            counter + '.1',
+            counter + '.2',
+            counter + '.3',
+            counter + '.4',
+            counter + '.5'
+        ]).draw(false);
 
         counter++;
     });
 
 
     /**************************************************************
-    * js of Tab for COLUMN SELECTORS WITH EXPORT AND PRINT OPTIONS *
-    ***************************************************************/
+     * js of Tab for COLUMN SELECTORS WITH EXPORT AND PRINT OPTIONS *
+     ***************************************************************/
 
-    $('.dataex-html5-selectors').DataTable( {
+    $('.dataex-html5-selectors').DataTable({
         dom: 'Bfrtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: 'copyHtml5',
                 exportOptions: {
-                    columns: [ 0, ':visible' ]
+                    columns: [0, ':visible']
                 }
             },
             {
@@ -195,11 +213,11 @@ $(document).ready(function() {
             },
             {
                 text: 'JSON',
-                action: function ( e, dt, button, config ) {
+                action: function(e, dt, button, config) {
                     var data = dt.buttons.exportData();
 
                     $.fn.dataTable.fileSave(
-                        new Blob( [ JSON.stringify( data ) ] ),
+                        new Blob([JSON.stringify(data)]),
                         'Export.json'
                     );
                 }
@@ -214,11 +232,11 @@ $(document).ready(function() {
     });
 
     /**************************************************
-    *       js of scroll horizontal & vertical        *
-    **************************************************/
+     *       js of scroll horizontal & vertical        *
+     **************************************************/
 
-    $('.scroll-horizontal-vertical').DataTable( {
-        "scrollY": 200,
+    $('.scroll-horizontal-vertical').DataTable({
+        "scrollY": "800px",
         "scrollX": true
     });
 });

@@ -59,5 +59,10 @@ class Membership extends Model
         return $this->hasOne('App\ICTRequestPoint', 'mbrship_id', 'pict_mbrship_id');
     }
 
+    public function package()
+    {
+        return $this->hasOne('App\Package', 'package_id', 'package_id');
+    }
+
 
 }

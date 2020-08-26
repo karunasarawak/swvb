@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">RCI:BB - Batch 73 Detail</h4>
+                    <h4 class="col card-title text-white">RCI:BB - Batch {{$payload['r'][0]->batch->batch_no}} @if(!empty($payload['r'][0]->batch->sub_batch))-{{$payload['r'][0]->batch->sub_batch}}@endif Detail</h4>
                     
                 </div>
                 <div class="card-content">
@@ -76,35 +76,38 @@
                                            
                                         </thead>
                                         <tbody>
+                                            @foreach($payload['r'] as $r)
                                             <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
+                                                <td>{{$r->batch->batch_no}} @if(!empty($r->batch->sub_batch))-{{$r->batch->sub_batch}} @endif</td>
+                                                <td>{{$r->resort_id}}</td>
+                                                <td></td>
+                                                <td>{{$r->unit_size}}</td>
+                                                <td>{{$r->max}}/{{$r->privacy}}</td>
+                                                <td>{{$r->week_no}}</td>
 
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
+                                                <td>{{date('Y',strtotime($r->reservation->check_in))}}</td>
+                                                <td>{{date('d M Y',strtotime($r->reservation->check_in))}}</td>
+                                                <td>{{date('d M Y',strtotime($r->reservation->check_out))}}</td>
+                                                <td>{{$r->reservation->rsvn_no}}</td>
+                                                <td>{{date('d M Y',strtotime($r->deposit_date))}}</td>
 
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
 
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
+                                                <td>{{$r->travel_detail}}</td>
+                                                
+                                                <td></td>
+                                                <td></td>
 
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
+                                                <td>{{$r->ict_ref_no}}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+
+                                                <td>{{$r->deposit_no}}</td>
+                                                <td>{{$r->nexoft_ref}}</td>
+                                                <td></td>
                                                 
                                                 <td> <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -118,416 +121,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/refund/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>Point Offset</td>
-
-                                                <td>RM 247.30</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td> <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-
-                                                            <button class="bg-transparent border-0"><a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" ></i> SPLIT WEEK</a></button>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @endforeach
+                                            
                                         </tbody>
                                     </table>
                                 </div>

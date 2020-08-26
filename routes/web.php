@@ -16,25 +16,28 @@ Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
 Route::get('/membership', 'MembershipController@index');
-
 Route::get('/membership/{lead_id}/{tour_id}/new', 'MembershipController@createMembership')->name('members.createPage');
 Route::get('/membership/new', 'MembershipController@create2ndMembership');
 Route::post('/membership/new', 'MembershipController@storeMembers')->name('members.store');//name only for posting
-
 Route::get('/membership/archive', 'MembershipController@archive');
-Route::get('/membership/{tour_id}/details', 'MembershipController@showMembers');
-Route::get('/membership/details', 'MembershipController@redirect')->name('members.redirect');
-Route::get('/membership/transfer', 'MembershipController@transfer')->name('members.transfer');    
-Route::get('/membership/withdraw', 'MembershipController@withdrawMembership');
-Route::get('/membership/updowngrade', 'MembershipController@updowngrade')->name('members.updowngrade');
-Route::get('/membership/repurchase', 'MembershipController@repurchase');
-Route::get('/membership/reinstate', 'MembershipController@reinstate');
+Route::post('/membership/savesecondary/{id}/{type}', 'MembershipController@savemember')->name('members.savesecondary');//name only for posting
+
+Route::get('/membership/{mbrship_id}/detail', 'MembershipController@showMemberDetails')->name('membership.details');
+
+Route::get('/membership/{mbrship_id}/transfer', 'MembershipController@transfer')->name('membership.transfer');    
+Route::get('/membership/{mbrship_id}/withdraw', 'MembershipController@withdrawMembership');
+Route::get('/membership/{mbrship_id}/updowngrade', 'MembershipController@updowngrade')->name('membership.updowngrade');
+Route::get('/membership/{mbrship_id}/repurchase', 'MembershipController@repurchase');
+Route::get('/membership/{mbrship_id}/reinstate', 'MembershipController@reinstate');
+Route::post('/membership/{mbrship_id}/reinstate', 'MembershipController@storereinstate')->name('reinstate.get');
+Route::get('/membership/{mbrship_id}/details', 'MembershipController@redirect')->name('members.redirect');
+
 // Route::get('/membership/pthistory', 'MembershipController@pthistory');
 Route::get('/membership/offset', 'MembershipController@entitlementm');
 
 Route::get('/membership/eh', 'MembershipController@entitlementh');
 
-Route::get('/membership/advance', 'MembershipController@advanceent');
+Route::get('/membership/advance', 'MembershipController@advance');
 // Route::get('/membership/offset', 'MembershipController@offset');
 
 Route::get('/contacts', 'ContactController@index');
@@ -93,7 +96,8 @@ Route::get('/creditnote/{inv_id}/details', 'CreditNotesController@viewCreditNote
 
 Route::get('/installment', 'InstallmentController@index');  
 Route::get('/installment/new', 'InstallmentController@newRefund');
-Route::get('/installment/details', 'InstallmentController@details');
+Route::get('/installment/{id}/details', 'InstallmentController@details')->name('installment.detail');  
+Route::post('/installment/{id}/save', 'InstallmentController@save')->name('installment.save');  
 Route::get('/installment/calculator', 'InstallmentController@calculator');
 Route::get('/installment/amfall', 'InstallmentController@amfall');
 Route::get('/installment/amfdetails', '@amfdetails');
@@ -110,11 +114,10 @@ Route::post('/report/stampingfee/{batch_id}/new', 'ReportController@addNewStamp'
 Route::patch('/report/stampingfee/{batch_id}/new', 'ReportController@deleteStamp')->name('stamp.deleteStamp');  
 Route::patch('/report/stampingfee', 'ReportController@changeStatus')->name('stamp.changeStatus');
 
-Route::get('/report/stampingfee/{batch_id}', 'ReportController@exportExcel')->name('stamp.export');  
-
-
-
-
+Route::get('/report/stampingfee/{batch_id}', 'ReportController@exportExcel')->name('stamp.export');
+Route::get('/report/stampingfee/{batch_id}/{batch_no}', 'ReportController@exportExcel_LHDN')->name('stamp.export_LHDN');  
+Route::get('/report/accstatement', 'ReportController@accstatement');  
+Route::get('/report/accstatement/details', 'ReportController@accstatementdetails');  
 
 Route::get('/report/activitylog', 'ReportController@activitylog');
 Route::get('/report/stampingfeedetails', 'ReportController@stampingfeedetails');
@@ -122,8 +125,13 @@ Route::get('/report/calculator', 'ReportController@calculator');
 Route::get('/report/stampingfeedprintdownload', 'ReportController@download');
 
 Route::get('/eventlogs', 'EventLogsController@index');
-Route::get('/acceventlogs', 'AccEventLogsController@index');
-Route::get('/eventlogs/details', 'EventLogsController@details');
+Route::get('/eventlogs/{event_id}/details', 'EventLogsController@eventDetails')->name('event.details');
+Route::patch('/eventlogs', 'EventLogsController@eventUpdate')->name('event.update');
+Route::post('/eventlogs', 'EventLogsController@eventCreate')->name('event.create');
+
+Route::post('/eventlogs/{event_id}', 'EventLogsController@upload')->name('event.upload');
+Route::get('/eventlogs/{filename}', 'EventLogsController@download')->name('event.download');
+
 
 Route::get('/cardprintinglist', 'CardPrintingController@showCardBatch')->name('card.batch');
 Route::post('/cardprintinglist/new', 'CardPrintingController@createBatch')->name('card.create');
@@ -132,6 +140,8 @@ Route::get('/cardprintinglist/{batch_id}/details', 'CardPrintingController@showC
 Route::post('/cardprintinglist/{batch_id}/new', 'CardPrintingController@addNewCard')->name('card.addCard');
 Route::patch('/cardprintinglist/{batch_no}/details', 'CardPrintingController@deleteCard')->name('card.deleteCard');
 Route::patch('/cardprintinglist', 'CardPrintingController@changeStatus')->name('card.changeStatus');
+
+Route::get('/cardprintinglist/{batch_id}', 'CardPrintingController@exportExcel')->name('card.export');
 
 Route::get('/dispatch', 'CardPrintingController@cpdispatch');
 
@@ -143,7 +153,7 @@ Route::get('/reservations/fdetails', 'ReservationController@facilitydetails');
 Route::get('/reservation', 'ReservationController@reservationredirect')->name('rsvn.bring');
 Route::get('/rtest','ReservationController@test');
 Route::get('/getmemberdetail/{id}','ReservationController@memberdetail');
-
+Route::get('/getroom/{id}','ReservationController@getroom');
 
 Route::get('/batchpayment', 'BatchPaymentController@index');
 Route::get('/batchpayment/details', 'BatchPaymentController@details');
@@ -155,6 +165,7 @@ Route::get('/communicationlog/new', 'CommunicationLogController@newLog');
 Route::get('/ictrequest', 'IctRequestController@index');
 
 Route::get('/inventory', 'InventoryController@index');
+Route::get('/inventory1', 'InventoryController@indexrefer');
 
 Route::get('/offsetreminder', 'InventoryController@offset');
 //Task Assignment
@@ -172,17 +183,18 @@ Route::get('/extmembership/enrollment/batch/details', 'ExtMembershipController@e
 
 Route::get('/extmembership/iiru', 'ExtMembershipController@iiruall');
 Route::get('/extmembership/iiru/new', 'ExtMembershipController@iirunew')->name('iiru.new');
-Route::get('/extmembership/iiru/details', 'ExtMembershipController@iirudetails');
+Route::patch('/extmembership/iiru/new', 'ExtMembershipController@iirusavenew');
+Route::get('/extmembership/iiru/edit/{id}', 'ExtMembershipController@iiruedit')->name('iiru.edit');
+Route::patch('/extmembership/iiru/edit/{id}', 'ExtMembershipController@iirusaveold');
+Route::get('/extmembership/iiru/details/{id}', 'ExtMembershipController@iirudetails');
 
 Route::get('/extmembership/rcibb', 'ExtMembershipController@rcibball');
 Route::get('/extmembership/rcibb/new', 'ExtMembershipController@rcibbnew')->name('rcibb.new');
-Route::get('/extmembership/rcibb/details', 'ExtMembershipController@rcibbdetails');
-
-
-Route::get('/aging', 'AgingReminderController@index');
-Route::get('/agingdetails', 'AgingReminderController@aginreminderdetails');
-Route::get('/occupancy-report', 'AgingReminderController@occupancyreport');
-Route::get('/tourismtax', 'AgingReminderController@tourismtax');
+Route::patch('/extmembership/rcibb/new', 'ExtMembershipController@rcibbsavenew');
+Route::get('/extmembership/rcibb/details/{id}', 'ExtMembershipController@rcibbdetails');
+Route::get('/extmembership/rcibb/new', 'ExtMembershipController@rcibbnew')->name('rcibb.new');
+Route::patch('/extmembership/rcibb/new', 'ExtMembershipController@rcibbsavenew');
+Route::get('/extmembership/rcibb/details/{id}', 'ExtMembershipController@rcibbdetails');
 
 Route::get('/admin/ictrequest', 'UsersRolesController@ictrequest');
 Route::post('/admin/ictrequest', 'UsersRolesController@ictredirect')->name('ict.bring');
@@ -190,10 +202,10 @@ Route::get('/admin/{ict_id}/{ict_status}/ictrequest', 'UsersRolesController@chan
 Route::get('/admin/{ict_req_id}/ictrequest', 'UsersRolesController@rejectstatus')->name('ict.reject');
 Route::get('/admin/newictrequestpoint', 'UsersRolesController@newictrequestpoint')->name('new.points');
 Route::post('/admin/newictrequestpoint', 'UsersRolesController@storeictrequestpoint')->name('store.points');
-
+    
 Route::get('/admin/newictrequestacc', 'UsersRolesController@newictrequestacc');
 Route::post('/admin/newictrequestacc', 'UsersRolesController@storeictrequestacc')->name('store.acc');
-Route::get('/admin/ictaccdetails', 'UsersRolesController@ictrequestaccdetails');
+Route::get('/admin/ictaccdetails', 'UsersRolesController@ictrequestaccdetails')->name('acc.details');
 Route::get('/admin/{pict_req_id}/ictptdetails', 'UsersRolesController@ictrequestptdetails')->name('pt.details');
 Route::patch('/admin/{pict_req_id}/ictptdetails', 'UsersRolesController@updatepoint')->name('pt.update');
 Route::get('/userroles', 'UsersRolesController@userroles');
@@ -201,30 +213,13 @@ Route::post('/roles/new', 'UsersRolesController@newroles')->name('new.roles');
 Route::get('/userroles/{role_id}/{is_active}', 'UsersRolesController@activation')->name('staff.status');
 Route::post('/staff/new', 'UsersRolesController@newusersstaff')->name('new.staff');
 
-Route::get('/roledetails', 'UsersRolesController@roledetails')->name('role.details');
-Route::post('/roledetails/{staff_id}', 'UsersRolesController@storerolecheckbox')->name('role.checkbox');
-Route::post('/signature/modify', 'UsersRolesController@modifysignature')->name('signature.modify');
+Route::get('/pt&ent_management', 'PointAndEntitlementManagementController@index');
 Route::post('/signature/new', 'UsersRolesController@createsignature')->name('signature.create');
 
-Route::get('/admin/approvals', 'UsersRolesController@approvals');
-Route::get('/admin/taxinterest', 'UsersRolesController@taxinterest');
-
-Route::get('/admin/packages', 'UsersRolesController@packages');
-Route::get('/admin/pt-entitlement', 'UsersRolesController@ptentitlement');
-Route::get('/admin/attachments', 'UsersRolesController@attachments');
-Route::get('/admin/msd', 'UsersRolesController@selectionmsd');
-Route::get('/admin/mrd', 'UsersRolesController@selectionmrd');
-Route::get('/admin/accmd', 'UsersRolesController@accommodation');
-Route::get('/admin/branches', 'UsersRolesController@branches');
-Route::get('/admin/accmdetails', 'UsersRolesController@accommodationdetails');
-Route::get('/admin/unitdetails', 'UsersRolesController@unitdetails');
-Route::get('/admin/facilities', 'UsersRolesController@facilities');
-Route::get('/admin/facilitiesd', 'UsersRolesController@facilitiesdetails');
-Route::get('/admin/eventlogs', 'UsersRolesController@eventlogs');
-Route::get('/admin/selectionaccccd', 'UsersRolesController@selectionaccccd');
-Route::get('/admin/selectionict', 'UsersRolesController@selectionict');
-Route::get('/admin/ct', 'UsersRolesController@cardterminal');
-Route::get('/admin/ctct', 'UsersRolesController@cardterminalchargetype');
+Route::get('/aging', 'AgingReminderController@index');
+Route::get('/agingdetails', 'AgingReminderController@aginreminderdetails');
+Route::get('/occupancy-report', 'AgingReminderController@occupancyreport');
+Route::get('/tourismtax', 'AgingReminderController@tourismtax');
 
 Route::get('/admin/acc&cc', 'UsersRolesController@accccdn');
 Route::get('/admin/contactsetup', 'UsersRolesController@contactsetup');
@@ -250,50 +245,6 @@ Route::get('/content-typography','ContentController@typographyContent');
 Route::get('/content-text-utilities','ContentController@textUtilitiesContent');
 Route::get('/content-syntax-highlighter','ContentController@contentSyntaxHighlighter');
 Route::get('/content-helper-classes','ContentController@contentHelperClasses');
-Route::get('/colors','ContentController@colorContent');
-// icons
-Route::get('/icons-livicons','IconsController@liveIcons');
-Route::get('/icons-boxicons','IconsController@boxIcons');
-// card
-Route::get('/card-basic','CardController@basicCard');
-Route::get('/card-actions','CardController@actionCard');
-Route::get('/widgets','CardController@widgets');
-// component route
-Route::get('/component-alerts','ComponentController@alertComponenet');
-Route::get('/component-buttons-basic','ComponentController@buttonComponenet');
-Route::get('/component-breadcrumbs','ComponentController@breadcrumbsComponenet');
-Route::get('/component-carousel','ComponentController@carouselComponenet');
-Route::get('/component-collapse','ComponentController@collapseComponenet');
-Route::get('/component-dropdowns','ComponentController@dropdownComponenet');
-Route::get('/component-list-group','ComponentController@listGroupComponenet');
-Route::get('/component-modals','ComponentController@modalComponenet');
-Route::get('/component-pagination','ComponentController@paginationComponenet');
-Route::get('/component-navbar','ComponentController@navbarComponenet');
-Route::get('/component-tabs-component','ComponentController@tabsComponenet');
-Route::get('/component-pills-component','ComponentController@pillComponenet');
-Route::get('/component-tooltips','ComponentController@tooltipsComponenet');
-Route::get('/component-popovers','ComponentController@popoversComponenet');
-Route::get('/component-badges','ComponentController@badgesComponenet');
-Route::get('/component-pill-badges','ComponentController@pillBadgesComponenet');
-Route::get('/component-progress','ComponentController@progressComponenet');
-Route::get('/component-media-objects','ComponentController@mediaObjectComponenet');
-Route::get('/component-spinner','ComponentController@spinnerComponenet');
-Route::get('/component-bs-toast','ComponentController@toastsComponenet');
-// extra component
-Route::get('/ex-component-avatar','ExComponentController@avatarComponent');
-Route::get('/ex-component-chips','ExComponentController@chipsComponent');
-Route::get('/ex-component-divider','ExComponentController@dividerComponent');
-// form elements
-Route::get('/form-inputs','FormController@inputForm');
-Route::get('/form-input-groups','FormController@inputGroupForm');
-Route::get('/form-number-input','FormController@numberInputForm');
-Route::get('/form-select','FormController@selectForm');
-Route::get('/form-radio','FormController@radioForm');
-Route::get('/form-checkbox','FormController@checkboxForm');
-Route::get('/form-switch','FormController@switchForm');
-Route::get('/form-textarea','FormController@textareaForm');
-Route::get('/form-quill-editor','FormController@quillEditorForm');
-Route::get('/form-file-uploader','FormController@fileUploaderForm');
 Route::get('/form-date-time-picker','FormController@datePickerForm');
 Route::get('/form-layout','FormController@formLayout');
 Route::get('/form-wizard','FormController@formWizard');

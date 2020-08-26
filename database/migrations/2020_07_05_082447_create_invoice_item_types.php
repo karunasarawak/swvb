@@ -24,6 +24,7 @@ class CreateInvoiceItemTypes extends Migration
 
         DB::table('invoice_item_types')->insert(
             array(
+                ['item' => 'Downpayment'],
                 ['item' => 'Installment'],
                 ['item' => 'AMF'],
                 ['item' => 'Admin Charges'],

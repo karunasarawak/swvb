@@ -50,321 +50,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>RUH/II/RA/20/053</td>
-                                            <td>1</td>
-                                            <td>1/5/2020</td>
-                                            <td>1/12/2020</td>
-                                            <td>Point Offset</td>
-                                            <td>1 Bedroom</td>
-                                            <td>Sleep 2</td>
-                                            <td>Sleep 4<</td>
-                                            <td>Chalet</td>
-                                            <td>2-Connecting</td>
-                                            <td>188273 & 188286</td>
-                                           
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
+                                    @foreach($payload['ir'] as $ir)
+                                        @foreach($ir->reservation->room as $room)
+                                            <tr>
+                                                <td>{{$ir->iiru_id}}</td>
+                                                <td>{{$ir->ruh_ref_no}}</td>
+                                                <td>{{date('W', strtotime($ir->reservation->check_in))}}</td>
+                                                <td>{{date('d M Y',strtotime($ir->reservation->check_in))}}</td>
+                                                <td>{{date('d M Y',strtotime($ir->reservation->check_out))}}</td>
+                                                <td></td>
+                                                <td>Sleep {{$payload['unit_types'][$room->unit_type_id]->min_pax}}</td>
+                                                <td>Sleep {{$payload['unit_types'][$room->unit_type_id]->max_pax}}</td>
+                                                <td>{{$payload['unit_types'][$room->unit_type_id]->unit_type}}</td>
+                                                <td>{{$room->room_no}}</td>
+                                                <td>{{$ir->exchange_no}}</td>
+                                            
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
 
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
+                                                            <a class="dropdown-item" href="{{url('extmembership/iiru/edit/'.$room->rsvn_room_id)}}" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
+                                                            <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                           
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                          
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                           
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                           
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                        <td >74
-                                            </td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td >Point Offset</td>
-                                            <td >03 June 2020</td>
-                                            <td >Active</td>
-                                            <td >System<</td>
-                                            <td >205420000</td>
-                                            <td >Yakub Sebastian</td>
-                                            <td >RM 247.30</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original" @click="edit=true, original=false"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#" ><i class="bx bx-edit-alt mr-1" x-show="original"></i> DOWNLOAD RESERVATION REQUEST</a>
-                                                    </div>
-                                                </div>
-                                            
-                                            </td>
                                                 
-                                        </tr>
+                                                </td>
+                                            </tr>   
+                                        @endforeach
+                                      
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

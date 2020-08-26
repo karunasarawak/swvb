@@ -8,7 +8,7 @@ class BasicPermission extends Model
 {
     protected $fillable = [
             'bpermission_id',
-            'staff_id',
+            'role_id',
             'module',
             'permission'
     ];

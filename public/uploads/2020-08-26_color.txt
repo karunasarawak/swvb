@@ -1,0 +1,7 @@
+ cloudyBlue = "#b3c0ce",
+    armyColor = "#2B411C",
+    lightArmy = "#708238",
+    purpleColor = "#81007F",
+    lightPurple = "DE73FF",
+    peachColor = "#FFCBA4",
+    lightPeach = "#FF9E3";

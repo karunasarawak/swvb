@@ -20,8 +20,8 @@
                         <h4 class="col-md-10 card-title text-white">Installment Schedule Calculator</h4>
                         
                         <div class="col-2 ">
-                            <a href="" class="btn btn-outline-white round text-white ml-1 bx bx-printer float-right"></a>
-                            <a href="" class="btn btn-outline-white round text-white bx bx-download float-right"></a>
+                            <a onclick="printtable();" class="btn btn-outline-white round text-white ml-1 bx bx-printer float-right"></a>
+                            <a onclick="csv();" class="btn btn-outline-white round text-white bx bx-download float-right"></a>
                         </div>
                     </div>
                     
@@ -33,131 +33,107 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>Package</label>
-                                                <select name="membershipfilter" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" required>
-                                                <option value="membershipfilter1">Sapphire - Full</option>
-                                                <option value="membershipfilter2">Active</option>
-                                                <option value="membershipfilter3">Withdrawal</option>
-                                                <option value="membershipfilter4">Suspended</option>
+                                                <select name="membershipfilter" class="select2 form-control  round mr-1 mb-1 package"  onchange="package();" required>
+                                                <option value="" disabled selected>Please select a package</option>
+                                                @include('includes.option_from_array',['array'=>$payload['packages']])
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label >Installment Plan</label>
-                                                <select name="membershipfilter" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" required>
-                                                <option value="membershipfilter1">12 Month</option>
-                                                <option value="membershipfilter2">Active</option>
-                                                <option value="membershipfilter3">Withdrawal</option>
-                                                <option value="membershipfilter4">Suspended</option>
+                                            <label>Package Price</label>
+                                                <input type="number" name="company_contact" class="form-control round price"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label >Installment Duration</label>
+                                            <select name="membershipfilter" class="select2 form-control  round mr-1 mb-1 duration" required>
+                                                @include('includes.option_from_array',['data'=>$payload['interest'],'array'=>$payload['interest_durations']])
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label>Downpayment</label>
-                                                <button type="button" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" data-toggle="modal" data-target="#adddpwnpayment">Add</button>
+                                            <label>Admin Charge (%)</label>
+                                            <select name="membershipfilter" class="select2 form-control  round mr-1 mb-1 interest" required>
+                                                @include('includes.option_from_array',['array'=>$payload['interests']])
+                                            </select>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Downpayment 1</label>
+                                                <input type="number" name="company_contact" class="form-control round dp"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label >Membership Price</label>
-                                                <select name="membershipfilter" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" required>
-                                                <option value="membershipfilter1">RM 5000</option>
-                                                <option value="membershipfilter2">Active</option>
-                                                <option value="membershipfilter3">Withdrawal</option>
-                                                <option value="membershipfilter4">Suspended</option>
-                                            </select>
+                                            <label>Downpayment 2</label>
+                                                <input type="number" name="company_contact" class="form-control round dp"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
                                         </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Downpayment 3</label>
+                                                <input type="number" name="company_contact" class="form-control round dp"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Downpayment 4</label>
+                                                <input type="number" name="company_contact" class="form-control round dp"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Downpayment 5</label>
+                                                <input type="number" name="company_contact" class="form-control round dp"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Downpayment 6</label>
+                                                <input type="number" name="company_contact" class="form-control round dp"  placeholder="--" data-validation-required-message="Please enter the down payment 1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label >Total Outstanding (Loan)</label>
+                                                <input type="number" name="company_contact" class="form-control round outstanding" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label >Rounding</label>
+                                                <input type="number"  name="company_nob" class="form-control round rounding" placeholder="Rounding" value="0.00" data-validation-required-message="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary mt-2" onclick="installment();">Calculate</button>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table" style="width:100%;">
+                                    <table class="table" id="installtable" style="width:100%;">
                                         <thead class="bg-swvb-dark">
                                             <tr>
                                                 <th class="text-white">No.</th>
                                                 <th class="text-white">Projected Date</th>
                                                 <th class="text-white">Item</th>
-                                                <th class="text-white">Installment</th>
                                                 <th class="text-white">Admin Charges</th>
+                                                <th class="text-white">Installment</th>
                                                 <th class="text-white">Balance</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                            </tr>
-                                            <tr>
-                                               
-                                                <td></td>
-                                                <td></td>
-                                                <td>Adjustment</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>-30.50</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <th></th>
-                                                <th></th>
-                                                <th>Total</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>8,000.30</th>
-                                                
-                                            </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
 
-                        <button type="button" class="btn btn-primary m-1" id="btn_add1" onclick="showContact2()">Reschedule</button>
+                       
                 
                 </div>
             </div>
@@ -210,4 +186,135 @@
 @section('page-scripts')
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
+<script>
+    var price=JSON.parse('<?php echo json_encode($payload['prices']);?>');
+    var interest=JSON.parse('<?php echo json_encode($payload['interest_rates']);?>');
+    function package(){
+        $('.price').val(price[$('.package').val()]);
+    }
+    $('.duration').change(function(){
+        $('.interest').val(interest[$('.duration').val()]);
+    });
+
+    $('.form-control').keyup(function(){
+        calculate();
+    });
+
+    $('.form-control').mouseup(function(){
+        calculate();
+    });
+   
+    function calculate(){
+        if($('.price').val()){
+            var price=parseFloat($('.price').val());
+            $('.dp').each(function(){
+                if($(this).val()){
+                    price-=$(this).val();
+                }
+            });
+            var totalprice=price*(100+parseFloat($('.interest').val()))/100;
+        
+            $('.outstanding').val(totalprice);
+        }
+        
+    }
+
+
+    function installment(){
+        var net=parseFloat($('.outstanding').val())+parseFloat($('.rounding').val());
+        var total=net;
+        var interest=net*parseFloat($('.interest').val())/(100+parseFloat($('.interest').val()));
+       
+        var duration=parseFloat($('.duration :selected').html());
+        var interst_month=parseFloat(interest/duration);
+        var installment=parseFloat(net/duration);
+        var date=new Date();
+        var day=date.getDate();
+        var month=date.getMonth();
+        var year=date.getFullYear();
+        var options = { month: 'short'};
+        var mon=date.toLocaleDateString('en-US', options);
+        var fulldate=day+' '+mon+' '+year;
+        net=net.toFixed(2);
+        var interestsum=parseFloat(0.00)+0;
+
+        var tbody='<tr><td></td><td>'+fulldate+'</td><td>Total Outstanding(Loan)+Rounding</td><td></td><td></td><td>'+net+'</td></tr>';
+        for(var i=1;i<=duration;i++){
+            month++;
+            if(month==12){
+                month=0;
+                year+=1;
+                date.setYear(year);
+            }
+            date.setMonth(month);
+            month=date.getMonth();
+            year=date.getFullYear();
+            mon=date.toLocaleDateString('en-US', options);
+            fulldate=day+' '+mon+' '+year;
+            if(i==duration){
+                installment=net;
+                interest_month=interest-interestsum;
+            }
+            interestsum=0+parseFloat(interestsum)+parseFloat(interst_month);
+            net-=installment;
+            tbody+='<tr><td>'+i+'</td><td>'+fulldate+'</td><td>Installment '+i+'</td><td>'+interst_month.toFixed(2)+'</td><td>'+installment.toFixed(2)+'</td><td>'+net.toFixed(2)+'</td></tr>';
+        }
+        tbody+='<th></th><th></th><th>Total</th><th>'+interestsum.toFixed(2)+'</th><th>'+total.toFixed(2)+'</th><th></th>';
+        $('#installtable tbody').html(tbody);
+    }
+
+    function csv() {
+    var filename='PaymentSchedule.csv';
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+        csv.push(row.join(","));        
+    }
+
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+}
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {type: "text/csv"});
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+    function printtable() {
+        var headstr = "<html><head><title></title></head><body><table style='width:100%'>";
+        var footstr = "</table></body>";
+        var newstr = document.all.item('installtable').innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+</script>
 @endsection

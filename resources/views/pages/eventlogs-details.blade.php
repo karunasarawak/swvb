@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Event Logs')
+@section('title','Event Logs Details')
 
 {{-- vendor style --}}
 @section('vendor-styles')
@@ -8,19 +8,19 @@
 @endsection
 {{-- page-styles --}}
 
+@php 
+    use App\Http\Controllers\EventLogsController;
+@endphp
+
 @section('content')
 <!-- Zero configuration table -->
 <section id="popover-triggers">
     <div class="row">
         <div class="col-12">
-            
             <!-- Membership Information -->
-           
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-
-                        <h4 class="card-title text-white">Membership Information</h4>
-
+                    <h4 class="card-title text-white">Membership Information</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -39,24 +39,24 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="row">
-                                    <p class="col">Saluation</p>
-                                    <p class="col font-weight-bold black">Mr</p>
+                                    <p class="col">Salutation</p>
+                                    <p class="col font-weight-bold black">{{ $eventDetail->salutation }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Name</p>
-                                    <p class="col font-weight-bold black">John Doe</p>
+                                    <p class="col font-weight-bold black">{{ $eventDetail->name }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Mobile Contact</p>
-                                    <p class="col font-weight-bold black">+6012 345 6798</p>
+                                    <p class="col font-weight-bold black">{{ $eventDetail->mobile_no }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Whatsapp</p>
-                                    <p class="col font-weight-bold black">+6012 345 6798</p>
+                                    <p class="col font-weight-bold black">{{ $eventDetail->whatsapp_no }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Package</p>
-                                    <p class="col font-weight-bold black">Pearl Package</p>
+                                    <p class="col font-weight-bold black">{{ $eventDetail->package }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Ext. Membership</p>
@@ -64,11 +64,27 @@
                                 </div>
                                 <div class="row">
                                     <p class="col">Status</p>
-                                    <p class="col font-weight-bold black">Active</p>
+                                    @if($eventDetail->mbrship_status == 0)
+                                        <p class="col font-weight-bold black">Pending</p>
+                                    @elseif($eventDetail->mbrship_status == 1)
+                                        <p class="col font-weight-bold black">Be Back</p>
+                                    @elseif($eventDetail->mbrship_status == 2)
+                                        <p class="col font-weight-bold black">Active</p>
+                                    @elseif($eventDetail->mbrship_status == 3)
+                                        <p class="col font-weight-bold black">Suspend</p>
+                                    @elseif($eventDetail->mbrship_status == 4)
+                                        <p class="col font-weight-bold black">Terminate</p>
+                                    @elseif($eventDetail->mbrship_status == 5)
+                                        <p class="col font-weight-bold black">Suspend</p>
+                                    @elseif($eventDetail->mbrship_status == 6)
+                                        <p class="col font-weight-bold black">Deceased</p>
+                                    @elseif($eventDetail->mbrship_status == 6)
+                                        <p class="col font-weight-bold black">Write Off</p>
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-6">Entitlement</p>
-                                    <p class="col-sm-6 font-weight-bold black">3WD 3WE</p>
+                                    <p class="col-sm-6 font-weight-bold black">{{ $eventDetail->package_wd }}WD {{ $eventDetail->package_we }}WE</p>
                                 </div>
 
                             </div>
@@ -76,8 +92,8 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col">
-                                        <div class="table-responsive">
-                                            <table class="table leads-all">
+                                        <div class="table">
+                                            <table class="table leads-all" style="width:100%;">
                                                 <thead class="bg-swvb-dark">
                                                     <tr>
                                                         <th class="text-white">Term</th>
@@ -148,6 +164,22 @@
                                     <p class="col font-weight-bold black">RM 50</p>
                                 </div>
                                 <div class="row">
+                                    <p class="col-sm-7">Reservation Fee</p>
+                                    <p class="col font-weight-bold black">RM 50</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-sm-7">Membership Card Fee</p>
+                                    <p class="col font-weight-bold black">RM 50</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-sm-7">Transfer Fee</p>
+                                    <p class="col font-weight-bold black">RM 50</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-sm-7">Administration Fee</p>
+                                    <p class="col font-weight-bold black">RM 50</p>
+                                </div>
+                                <div class="row">
                                     <p class="col-sm-7">Total Outstanding</p>
                                     <p class="col font-weight-bold black">RM 70</p>
                                 </div>
@@ -155,15 +187,11 @@
                                     <p class="col-sm-7">Over Payment</p>
                                     <p class="col font-weight-bold black">RM 100</p>
                                 </div>
-
                             </div>
                         </div>
-                 </div>  
+                    </div>  
                 </div>  
-                
             </div>    
-            
-
 
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
@@ -188,19 +216,19 @@
                                 <div class="col">
                                     <div class="row">
                                         <p class="col">Type</p>
-                                        <p class="col font-weight-bold black">Complaint</p>
+                                        <p class="col font-weight-bold black">{{ $eventDetail->el_type_name }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Category</p>
-                                        <p class="col font-weight-bold black">RSVN</p>
+                                        <p class="col font-weight-bold black">{{ $eventDetail->el_cat_name }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Title</p>
-                                        <p class="col font-weight-bold black">ABC</p>
+                                        <p class="col font-weight-bold black">{{ $eventDetail->el_title }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col">Description</p>
-                                        <p class="col font-weight-bold black">DEF</p>
+                                        <p class="col font-weight-bold black">{{ $eventDetail->el_remarks }}</p>
                                     </div>
                                     
                                 </div>
@@ -208,43 +236,47 @@
                                     <div class="col">
                                         <div class="row">
                                             <p class="col">Created by</p>
-                                            <p class="col font-weight-bold black">John</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->el_created_by }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Created Date</p>
-                                            <p class="col font-weight-bold black">01 July 2020</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->el_created_at }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Last Updated By</p>
-                                            <p class="col font-weight-bold black">Wilson</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->el_updated_by }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Date Updated</p>
-                                            <p class="col font-weight-bold black">21 July 2020</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->el_updated_at }}</p>
                                         </div>
                                         
                                     </div>
 
                                     <div class="col">
                                         <div class="row">
-                                            <p class="col">Refer to</p>
-                                            <p class="col font-weight-bold black">CC01</p>
+                                            <p class="col">Assign to</p>
+                                            @if($eventDetail->el_assign_type == 1)
+                                                <p class="col font-weight-bold black">{{ $eventDetail->staff_name }}</p>
+                                            @elseif($eventDetail->el_assign_type == 2)
+                                                <p class="col font-weight-bold black">{{ $eventDetail->dept }}</p>
+                                            @endif
                                         </div>
                                         <div class="row">
                                             <p class="col">Date Created</p>
-                                            <p class="col font-weight-bold black">01 June 2020</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->el_created_at }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Date to Resolved</p>
-                                            <p class="col font-weight-bold black">01 July 2020</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->el_to_resolve_at }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Reserve Using</p>
-                                            <p class="col font-weight-bold black">Entitlement</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->reservation_type }}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Communication Channel</p>
-                                            <p class="col font-weight-bold black">Fax</p>
+                                            <p class="col font-weight-bold black">{{ $eventDetail->com_channel }}</p>
                                         </div>
                                         
                                     </div>
@@ -264,10 +296,9 @@
                     <div class="card-body card-dashboard">
                         <div class="row pt-1">
                             <div class="col">
-                                
                                 <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
+                                    <div class="table">
+                                        <table class="table leads-all" style="width:100%;">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
                                                     <th class="text-white">Ref No.</th>
@@ -280,79 +311,83 @@
                                                     <th class="text-white">Deadline to Resolve</th>
                                                     <th class="text-white">Remarks</th>
                                                     <th class="text-white">Action</th>
-                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr >
-                                                    <td>124</td>
-                                                    <td>04 April 2020</td>
-                                                    <td>2:00 pm</td>
-                                                    <td>20 Minute</td>
-                                                    <td>Proceed</td>
-                                                    <td>SMS</td>
-                                                    <td>Proceed</td>
-                                                    <td>01 Aug 2020</td>
-                                                    <td>-</td>
-                                                    <td>
-                                                    <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <button id="select-files" class="btn mb-1"><i class="icon-file2"></i>Upload Attachment</button>
+                                                @foreach($comLog as $com)
+                                                    <tr>
+                                                        <td>{{ $com->cl_id }}</td>
+                                                        <td>{{ $com->init_date }}</td>
+                                                        <td>{{Carbon\Carbon::createFromFormat('H:i:s', $com->start_time)->format('h:i A')}}</td>
+                                                        <td>{{ $com->call_length }} minutes</td>
+                                                        <td>{{ $com->outcome }}</td>
+                                                        <td>{{ $com->com_channel }}</td>
+
+                                                        @if($com->cl_status == 0)
+                                                            <td>Unresolved</td>
+                                                        @elseif ($com->cl_status == 1)
+                                                            <td>Resolved</td>
+                                                        @endif
+
+                                                        <td></td>
+                                                        <td>{{ $com->remarks }}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                                </span>
+                                                                
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#upload" onclick="getCallID({{ $com->cl_id }})">
+                                                                        <a class="dropdown-item"><i class="bx bx bx-upload mr-1"></i>Upload Attachments</a>
+                                                                    </button>
+                                                                    <button class="bg-transparent border-0" data-toggle="modal" data-target="#attach{{ $loop->iteration }}">
+                                                                        <a class="dropdown-item"><i class="bx bx-upload mr-1"></i>Show Attachments</a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        @php $attach = EventLogsController::showAttachments($com->cl_id) @endphp
                                                         
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    </td>
-                                                </tr>
-                                                <tr id="popover-options">
-                                                    <td>124</td>
-                                                    <td>04 April 2020</td>
-                                                    <td>2:00 pm</td>
-                                                    <td>20 Minute</td>
-                                                    <td>Proceed</td>
-                                                    <td>SMS</td>
-                                                    <td>Proceed</td>
-                                                    <td>01 Aug 2020</td>
-                                                    <td>-</td>
-                                                    <td>
-                                                    <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
-                                                        </div>
-                                                    </div>
-                                                </tr>
-                                                <tr id="popover-options">
-                                                    <td>124</td>
-                                                    <td>04 April 2020</td>
-                                                    <td>2:00 pm</td>
-                                                    <td>20 Minute</td>
-                                                    <td>Proceed</td>
-                                                    <td>SMS</td>
-                                                    <td>Proceed</td>
-                                                    <td>01 Aug 2020</td>
-                                                    <td>-</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                            </span>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <div class="custom-file col-sm-2">
-                                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                                                    <label class="custom-file-label" for="inputGroupFile01">Upload Attachment</label>
+                                                        <div class="modal fade text-left" id="attach{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-swvb-cyan">
+                                                                        <h4 class="modal-title text-white" id="myModalLabel33">Attachments</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" a ria-label="Close">
+                                                                            <i class="bx bx-x"></i>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            @foreach($attach as $a)
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group controls">
+                                                                                        <p class="font-weight-bold black">{{ $a->doc_title }}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group controls">
+                                                                                        <p>{{ $a->doc_directory }}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-2">
+                                                                                    <button class="bg-transparent border-0">
+                                                                                        <a class="dropdown-item" href="{{ route('event.download', $a->doc_directory) }}"><i class="bx bx-upload"></i></a>
+                                                                                    </button>
+                                                                                </div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                                
+                                                        
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -368,16 +403,17 @@
             
         </div>                
     </div>   
-</section>                            
-<!-- pop out modal box for update status -->
+</section>  
+
+<!-- pop out modal box for communication log status -->
 <div class="modal fade text-left" id="newcl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-swvb-cyan">
                 <h4 class="modal-title text-white" id="myModalLabel33">New Communication Log</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="bx bx-x"></i>
-                    </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
             </div>
             <form action="#">
                 <div class="modal-body">
@@ -387,7 +423,7 @@
                             <input type="date" name="nric" class="form-control" value="11 July 2020" required>
                         </div>
                     </div>
-                   
+
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Time</label>
@@ -410,51 +446,113 @@
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Status</label>
-                            <input type="text" name="nric" class="form-control" placeholder="Proceed" required>
+                            <input type="text" name="nric" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Deadline to Resolved</label>
-                            <input type="date" name="nric" class="form-control" value="01 Aug 2020" required>
+                            <input type="date" name="nric" class="form-control" required>
                         </div>
                     </div>
-
-                    <div class="col-sm-12">
-                            <fieldset class="form-group">
-                                <label for="basicInputFile">Upload Attachment</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </fieldset>
-                    </div>
-
                 </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                                <span class="d-none d-sm-block">Cancel</span>
-                        </button>
-                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                                <span class="d-none d-sm-block">Save</span>
-                        </button>
-                
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Cancel</span>
+                    </button>
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Save</span>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
+<!--Upload Attachment Modal-->
+<div class="modal fade text-left" id="upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-swvb-cyan">
+                <h4 class="modal-title text-white" id="myModalLabel33">Upload Attachments</h4>
+                <button type="button" class="close" data-dismiss="modal" a ria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <form action="{{ route('event.upload', ['event_id'=> 1]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group controls">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-control" palceholder="--" required>
+                        </div>
+                    </div>
 
-                           
- <script>
+                    <div class="col-sm-12">
+                        <div class="form-group controls">
+                            {{-- <label>Call Log ID</label> --}}
+                            <input type="hidden" name="call_id" class="form-control" id="call_id" required>
+                        </div>
+
+                        <div class="form-group controls">
+                            <label>Uploads</label>
+                            <div class="custom-file">
+                                <input type="file" name="file1" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="form-group controls">
+                            <div class="custom-file">
+                                <input type="file" name="file2" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="form-group controls">
+                            <div class="custom-file">
+                                <input type="file" name="file3" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Cancel</span>
+                    </button>
+                    <button type="submit" class="btn btn-light-secondary">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
     $('#myModal').on('hidden', function(){
         $('#dialog').modalPopover('toggle')
     })
- </script>
+
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    
+    if(exist)
+    {
+      alert(msg);
+    }
+
+    function getCallID(call_id)
+    {
+        // alert(call_id)
+        document.getElementById('call_id').value = call_id;
+    }
+</script>
 <!--/ Zero configuration table -->
 @endsection
 {{-- vendor scripts --}}

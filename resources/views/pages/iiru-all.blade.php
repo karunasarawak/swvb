@@ -7,15 +7,16 @@
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
 @endsection
 {{-- page-styles --}}
-
+@php
+    $status=[0=>'draft',1=>'pending verify',2=>'pending approval',3=>'approved'];
+@endphp
 @section('content')
-<!-- Zero configuration table -->
 <section id="nav-filled">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
-                    <h4 class="col card-title text-white">Interval International Reserve Unit<a href="{{ url('/iiru/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
+                    <h4 class="col card-title text-white">Interval International Reserve Unit<a href="{{ url('/extmembership/iiru/new') }}" class="btn btn-outline-white round ml-2 mr-1 text-white">Create New Batch</a></h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body ">
@@ -73,14 +74,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach($iiru as $d)
+
                                                 <tr>
-                                                    <td><a href="{{url('/extmembership/details')}}">2020</a></td>
-                                                    <td>RM 247.30</td>
-                                                    <td>Point Offset</td>
-                                                    <td>03 June 2020</td>
+                                                    <td><a href="{{url('/extmembership/iiru/details/'.$d->iiru_id)}}">{{$d->year}}</a></td>
+                                                    <td>{{date('d M Y',strtotime($d->created_at))}}</td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td>Active</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{$status[$d->status]}}</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -115,6 +118,8 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                @endforeach
+                                                <!--
                                                 <tr>
                                                     <td><a href="{{url('/extmembership/details')}}">2019</a></td>
                                                     <td>1</td>
@@ -1029,6 +1034,7 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                -->
                                             </tbody>
                                         </table>
                                     </div>

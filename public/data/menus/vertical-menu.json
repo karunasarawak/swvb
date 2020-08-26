@@ -62,32 +62,31 @@
             "icon": "phone",
             "submenu": [{
                     "url": "extmemberships",
-                    "name": "Enrollment",
+                    "name": "All",
                     "i18n": "All",
                     "icon": "bx bx-right-arrow-alt"
                 },
                 {
-                    "url": "enrollments",
-                    "name": "Enrollment",
-                    "i18n": "All",
+                    "url": "extmembership/iiru",
+                    "name": "II Reserve Unit",
+                    "i18n": "Archive",
                     "icon": "bx bx-right-arrow-alt"
                 },
                 {
                     "url": "extmembership/rcibb",
-                    "name": "RCI:BB",
-                    "i18n": "Archive",
-                    "icon": "bx bx-right-arrow-alt"
-                },
-
-                {
-                    "url": "iiru",
-                    "name": "II Reserve Unit",
+                    "name": "RCI Bulk Banking",
                     "i18n": "Archive",
                     "icon": "bx bx-right-arrow-alt"
                 },
                 {
                     "url": "reservations",
                     "name": "II Deposit",
+                    "i18n": "Archive",
+                    "icon": "bx bx-right-arrow-alt"
+                },
+                {
+                    "url": "reservations",
+                    "name": "RCI Deposit",
                     "i18n": "Archive",
                     "icon": "bx bx-right-arrow-alt"
                 }

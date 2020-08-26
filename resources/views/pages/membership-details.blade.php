@@ -10,23 +10,23 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section class="float-left">
+<section>
     <div class="row" x-data="{ edit: false, original:true}">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">  
                     <div class="row">
-                        <h4 class="col card-title text-white">Membership Details - 234560000</h4>
-                            <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
-                                <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
-                                    Save
-                                </button>
-                            </p>
-                            <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
-                                <button class="btn btn-primary" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
-                                    Close
-                                </button>
-                            </p>
+                        <h4 class="col card-title text-white">Membership Details - {{ $payload['memberDetail']->mbrship_no }}</h4>
+                        <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
+                            <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
+                                Save
+                            </button>
+                        </p>
+                        <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
+                            <button class="btn btn-primary" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
+                                Close
+                            </button>
+                        </p>
                     </div>
                 </div>
                 <div class="card-content">
@@ -34,56 +34,51 @@
                         <div class="row pt-1 pl-2" >
                             <div class="col">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Primary Member
-                                    <button class="border-0 bg-transparent" x-show="original" @click="edit=true, original=false">                                                                    
+                                    <button class="border-0 bg-transparent" x-show="original" @click="edit=true,original=false">                                                                    
                                         <i class="bx bx-pencil "></i>
                                     </button>
                                 </p>
-                                <!-- <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
-                                    <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
-                                        Save
-                                    </button>
-                                </p>
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
-                                    <button class="btn btn-primary" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
-                                       Close
-                                    </button>
-                                </p> -->
                             </div>
                             <div class="col">
-                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Contacts & Relationship<button class="border-0 bg-transparent" x-show="original" @click="edit=true, original=false">                                                                    
-                                        <i class="bx bx-pencil "></i>
-                                    </button></p>
+                                <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Contacts & Relationship<button class="border-0 bg-transparent" x-show="original" @click="edit=true,original=false">                                                                    
+                                    <i class="bx bx-pencil "></i>
+                                    </button>
+                                </p>
                             </div>
                         </div>
                         <div class="row pl-2">
                             <div class="col">
                                 <div class="row">
-                                    <p class="col">Saluation</p>
-                                    <p class="col font-weight-bold black" x-show="original">Mr</p>
+                                    <p class="col">Salutation</p>
+                                    <p class="col font-weight-bold black" x-show="original">{{ $payload['memberDetail']->salutation }}</p>
                                     <p class="col" x-cloak x-show="edit">
                                         <input  type="text" name="salutation" class="form-control" placeholder="salutation" data-validation-required-message="Please write the company name"  required>
                                     </p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Name</p>
-                                    <p class="col font-weight-bold black" x-show="original">John Doe</p>
+                                    <p class="col font-weight-bold black" x-show="original">{{ $payload['memberDetail']->name }}</p>
                                     <p class="col" x-cloak x-show="edit">
                                         <input  type="text" name="name" class="form-control" placeholder="name" data-validation-required-message="Please write the company name"  required>
                                     </p>
                                 </div>
-
                             </div>
                             <div class="col">
                                 <div class="row">
                                     <p class="col">Mobile No.</p>
-                                    <p class="col font-weight-bold black" x-show="original">+6012 345 6789</p>
+                                    <p class="col font-weight-bold black" x-show="original">{{ $payload['memberDetail']->mobile_no }}</p>
                                     <p class="col" x-cloak x-show="edit">
                                         <input  type="number" name="mobile no." class="form-control" placeholder="mobile no." data-validation-required-message="Please write the company name"  required>
                                     </p>
                                 </div>
                                 <div class="row">
                                     <p class="col">Contract Type</p>
-                                    <p class="col font-weight-bold black" x-show="original">Individual/Corporate</p>
+                                    @if($payload['memberDetail']->contract_type == 0)
+                                        <p class="col font-weight-bold black" x-show="original">Individual</p>
+                                    @else
+                                        <p class="col font-weight-bold black" x-show="original">Corporate</p>
+                                    @endif
+
                                     <p class="col" x-cloak x-show="edit">
                                     <select name="salutation" class="form-control">
                                         <option value="1" selected>Individual</option>
@@ -91,7 +86,6 @@
                                     </select>
                                     </p>
                                 </div>
-
                             </div>
                         </div>
                         <div class="row pt-1 pl-2">
@@ -117,45 +111,52 @@
                                             <th class="text-white">Action</th>
                                         </tr>
                                     </thead>
-                                <tbody>
-                                    <tr x-data="{ archive: false, active: true }">
-                                        <td>Mr</td>
-                                        <td>Ben</td>
-                                        <td class="expanded">+6012 345 6789</td>
-                                        <td>Wife</td>
-                                        <td>Secondary</td>
-                                        <td><p x-cloak x-show="archive">Archived</p><p x-show="active">Active</p></td>
-                                        <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false">Archive</button></td>
-                                    </tr>
-                                    <tr x-data="{ active: false, inactive: true }">
-                                        <td>Mrs</td>
-                                        <td>Jane</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>Wife</td>
-                                        <td>Secondary</td>
-                                        <td><p x-cloak x-show="active">Acitve</p><p x-show="inactive">Inacitve</p></td>
-                                        <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true">Active</button></td>
-                                    </tr>
-                                    <tr x-data="{ archive: false, active: true }">
-                                        <td>Mr</td>
-                                        <td>Ben</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>Wife</td>
-                                        <td>Secondary</td>
-                                        <td><p x-cloak x-show="archive">Archived</p><p x-show="active">Active</p></td>
-                                        <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false">Archive</button></td>
-                                    </tr>
-                                    <tr x-data="{ active: false, inactive: true }">
-                                        <td>Mrs</td>
-                                        <td>Jane</td>
-                                        <td>+6012 345 6789</td>
-                                        <td>Wife</td>
-                                        <td>Secondary</td>
-                                        <td><p x-cloak x-show="active">Acitve</p><p x-show="inactive">Inacitve</p></td>
-                                        <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true">Active</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    <tbody>
+                                        @foreach($payload['members'] as $m)
+                                        @if($m->is_archive)
+                                            <tr x-data="{ archive: false, active: true }">
+                                                <td>{{$m->salutation}}}</td>
+                                                <td>{{$m->name}}</td>
+                                                <td class="expanded">{{$m->mobile_no}}</td>
+                                                <td>{{$m->relationship}}</td>
+                                                <td>{{$m->mbr_type}}</td>
+                                                <td><p x-cloak x-show="archive">Archived</p><p x-show="active">Active</p></td>
+                                                <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false">Archive</button></td>
+                                            </tr>
+                                        @else
+                                            <tr x-data="{ active: false, inactive: true }">
+                                                <td>{{$m->salutation}}}</td>
+                                                <td>{{$m->name}}</td>
+                                                <td class="expanded">{{$m->mobile_no}}</td>
+                                                <td>{{$m->relationship}}</td>
+                                                <td>{{$m->mbr_type}}</td>
+                                                <td><p x-cloak x-show="active">Acitve</p><p x-show="inactive">Inacitve</p></td>
+                                                <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true">Active</button></td>
+                                            </tr>
+                                        @endif
+                                        @endforeach
+                                        
+                                        <tr x-data="{ archive: false, active: true }">
+                                            <td>Mr</td>
+                                            <td>Ben</td>
+                                            <td>+6012 345 6789</td>
+                                            <td>Wife</td>
+                                            <td>Secondary</td>
+                                            <td><p x-cloak x-show="archive">Archived</p><p x-show="active">Active</p></td>
+                                            <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false">Archive</button></td>
+                                        </tr>
+                                        <tr x-data="{ active: false, inactive: true }">
+                                            <td>Mrs</td>
+                                            <td>Jane</td>
+                                            <td>+6012 345 6789</td>
+                                            <td>Wife</td>
+                                            <td>Secondary</td>
+                                            <td><p x-cloak x-show="active">Acitve</p><p x-show="inactive">Inacitve</p></td>
+                                            <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true">Active</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,69 +165,67 @@
                 <section id="nav-filled">
                     <div class="row pt-1">
                         <div class="col-sm-12">
-                             <section class="card">
-                                 <div class="card-content">
-
-
+                            <section class="card">
+                                <div class="card-content">
                                     <!-- Nav tabs -->
-                                        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="contract-tab-fill" data-toggle="tab" href="#contract-fill" role="tab"
-                                                aria-controls="contract-fill" aria-selected="true">
-                                                Contract
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="payment-tab-fill" data-toggle="tab" href="#payment-fill" role="tab"
-                                                aria-controls="payment-fill" aria-selected="false">
-                                                Payment
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="dispatch-tab-fill" data-toggle="tab" href="#dispatch-fill" role="tab"
-                                                aria-controls="dispatch-fill" aria-selected="false">
-                                                Dispatch
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="externalmembership-tab-fill" data-toggle="tab" href="#externalmembership-fill" role="tab"
-                                                aria-controls="externalmembership-fill" aria-selected="false">
-                                                External Membership
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="pointentitlement-tab-fill" data-toggle="tab" href="#pointentitlement-fill" role="tab"
-                                                aria-controls="pointentitlement-fill" aria-selected="false">
-                                                Point Entitlement
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="requestnotes-tab-fill" data-toggle="tab" href="#requestnotes-fill" role="tab"
-                                                aria-controls="requestnotes-fill" aria-selected="false">
-                                                Status Update
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="remarks-tab-fill" data-toggle="tab" href="#remarks-fill" role="tab"
-                                                aria-controls="remarks-fill" aria-selected="false">
-                                                Remarks
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="email-tab-fill" data-toggle="tab" href="#email-fill" role="tab"
-                                                aria-controls="email-fill" aria-selected="false">
-                                                Email
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="sms-tab-fill" data-toggle="tab" href="#sms-fill" role="tab"
-                                                aria-controls="sms-fill" aria-selected="false">
-                                                SMS
-                                                </a>
-                                            </li>
-                                            
+                                    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="contract-tab-fill" data-toggle="tab" href="#contract-fill" role="tab"
+                                            aria-controls="contract-fill" aria-selected="true">
+                                            Contract
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="payment-tab-fill" data-toggle="tab" href="#payment-fill" role="tab"
+                                            aria-controls="payment-fill" aria-selected="false">
+                                            Payment
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="dispatch-tab-fill" data-toggle="tab" href="#dispatch-fill" role="tab"
+                                            aria-controls="dispatch-fill" aria-selected="false">
+                                            Dispatch
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="externalmembership-tab-fill" data-toggle="tab" href="#externalmembership-fill" role="tab"
+                                            aria-controls="externalmembership-fill" aria-selected="false">
+                                            External Membership
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pointentitlement-tab-fill" data-toggle="tab" href="#pointentitlement-fill" role="tab"
+                                            aria-controls="pointentitlement-fill" aria-selected="false">
+                                            Point Entitlement
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="requestnotes-tab-fill" data-toggle="tab" href="#requestnotes-fill" role="tab"
+                                            aria-controls="requestnotes-fill" aria-selected="false">
+                                            Status Update
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="remarks-tab-fill" data-toggle="tab" href="#remarks-fill" role="tab"
+                                            aria-controls="remarks-fill" aria-selected="false">
+                                            Remarks
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="email-tab-fill" data-toggle="tab" href="#email-fill" role="tab"
+                                            aria-controls="email-fill" aria-selected="false">
+                                            Email
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="sms-tab-fill" data-toggle="tab" href="#sms-fill" role="tab"
+                                            aria-controls="sms-fill" aria-selected="false">
+                                            SMS
+                                            </a>
+                                        </li>
+                                        
 
-                                        </ul>
+                                    </ul>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content pt-1">
@@ -245,793 +244,576 @@
                                                         <div class="col">
                                                             <div class="row">
                                                                 <p class="col">Application No.</p>
-                                                                <p class="col font-weight-bold black">1234 0000</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->application_no }}</p>
                                                             </div>
                                                             <div class="row">
                                                                 <p class="col">Agreement No.</p>
-                                                                <p class="col font-weight-bold black">1234 1234</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->agreement_no }}</p>
                                                             </div>
                                                             <div class="row">
                                                                 <p class="col">Membership No.</p>
-                                                                <p class="col font-weight-bold black">26578940000</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->mbrship_no }}</p>
                                                             </div>
                                                             <div class="row">
                                                                 <p class="col">Application Date</p>
-                                                                <p class="col font-weight-bold black">01 April 2020</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->application_date }}</p>
                                                             </div>
                                                             
                                                             <div class="row">
                                                                 <p class="col">Agreement Date</p>
-                                                                <p class="col font-weight-bold black">01 April 2020</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->agreement_date }}</p>
                                                             </div>
                                                             <div class="row">
                                                                 <p class="col">Membership Expiry</p>
-                                                                <p class="col font-weight-bold black">01 April 2020</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->mbrship_exp }}</p>
                                                             </div>
                                                             <div class="row">
                                                                 <p class="col">Membership Term</p>
-                                                                <p class="col font-weight-bold black">30 Years</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->mbrship_term }}</p>
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <p class="col">Package Type</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->package }}</p>
                                                             </div>
-                                                            
-                                                            
-                                                        </div>
-                                                            <div class="col">
-                                                                <div class="row">
-                                                                    <p class="col">Package Type</p>
-                                                                    <p class="col font-weight-bold black">Pearl Full</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <p class="col">Entitlment</p>
-                                                                    <p class="col font-weight-bold black">Three Weekday, One Weekend</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <p class="col">Entitlment Balance</p>
-                                                                    <p class="col font-weight-bold black">RM 5,00</p>
-                                                                </div>
+                                                            <div class="row">
+                                                                <p class="col">Entitlment</p>
+                                                                <p class="col font-weight-bold black">{{ $payload['memberDetail']->package_wd}}WD {{ $payload['memberDetail']->package_we}}WE</p>
                                                             </div>
+                                                            <div class="row">
+                                                                <p class="col">Entitlment Balance</p>
+                                                                <p class="col font-weight-bold">???</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    </div>
-
-
-                                <!-- Payment tab -->
-                                <div class="tab-pane" id="payment-fill" role="tabpanel" aria-labelledby="payment-tab-fill">
-
-                                    <div class="card-content">
-                                        <div class="card-body card-dashboard">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Schedule No<i class="bx bx-pencil"></i></p>
-                                                </div>
-                                                <div class="col">
-                                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Installment<i class="bx bx-pencil"></i></p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <p class="col">Installment Duration</p>
-                                                        <p class="col font-weight-bold black">12 Month</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Package Price</p>
-                                                        <p class="col font-weight-bold black">RM 5,000</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Addition</p>
-                                                        <p class="col font-weight-bold black">RM 500</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Discount</p>
-                                                        <p class="col font-weight-bold black">RM 50</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Nett Package Price</p>
-                                                        <p class="col font-weight-bold black">RM 3,500</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Down Payment Paid</p>
-                                                        <p class="col font-weight-bold black">RM 1,000</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Admin Charges</p>
-                                                        <p class="col font-weight-bold black">RM 100</p>
-                                                    </div>
-                                                </div>
-
-                                                    <div class="col">
-                                                        <div class="row">
-                                                            <p class="col">Payment to Date</p>
-                                                            <p class="col font-weight-bold black">01 May 2020</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p class="col">Balance Package Price</p>
-                                                            <p class="col font-weight-bold black">RM 5,000</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p class="col">Auto Accrue</p>
-                                                            <p class="col font-weight-bold black">Accrue</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p class="col">Paid (%)</p>
-                                                            <p class="col font-weight-bold black">30%</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p class="col">Outstanding Amount</p>
-                                                            <p class="col font-weight-bold black">RM 500</p>
-                                                        </div>
-                                                    </div>
                                             </div>
                                         </div>
-                                    </div>
 
-
-                                    <div class="card-content">
-                                        <div class="card-body card-dashboard">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto">AMF<i class="bx bx-pencil"></i></p>
-                                                </div>
-                                                <div class="col">
-                                                    <p class="h7 swvb-blue m-0 font-weight-bold">Outstanding Item<i class="bx bx-pencil"></i></p>
-                                                </div>
-                                                <div class="col">
-                                                    <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary mb-3">Pay Now</a>
+                                        <!-- Dispatch tab -->
+                                        <div class="tab-pane" id="dispatch-fill" role="tabpanel" aria-labelledby="dispatch-tab-fill">
+                                            <div class="card-body card-dashboard">
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Mode</th>
+                                                                <th class="text-white">Courier Agent</th>
+                                                                <th class="text-white">Consignment No.</th>
+                                                                <th class="text-white">Dispatch Date</th>
+                                                                <th class="text-white">Dispatch Item</th>
+                                                                <th class="text-white">Date Delivered</th>
+                                                                <th class="text-white">Status</th>
+                                                                <th class="text-white">Remarks</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>APPROVE</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>PENDING</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>APPROVE</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>PENDING</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>APPROVE</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>APPROVE</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>APPROVE</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                <td>PENDING</td>
+                                                                <td>Your Remarks</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <p class="col">Payment Type</p>
-                                                        <p class="col font-weight-bold black">Credit Card</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Next Payment Due</p>
-                                                        <p class="col font-weight-bold black">01 May 2020</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Auto Accrue</p>
-                                                        <p class="col font-weight-bold black">Accrue</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col">Outstanding Amount</p>
-                                                        <p class="col font-weight-bold black">RM 500</p>
-                                                    </div>
+                                        <!-- External Membership -->
+                                        <div class="tab-pane" id="externalmembership-fill" role="tabpanel" aria-labelledby="externalmembership-tab-fill">
+                                            <div class="card-body card-dashboard">
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Entity</th>
+                                                                <th class="text-white">Membership No.</th>
+                                                                <th class="text-white">Start Date</th>
+                                                                <th class="text-white">Expiry Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>011</td>
+                                                                <td>26504070000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>012</td>
+                                                                <td>26504070000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>011</td>
+                                                                <td>26504070000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>012</td>
+                                                                <td>26504070000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>011</td>
+                                                                <td>26504070000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>012</td>
+                                                                <td>26504070000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-
-                                                    <div class="col">
-                                                        <div class="card-body card-dashboard">
-                                                            <div class="table-responsive">
-                                                                <table class="table leads-all">
-                                                                    <thead class="bg-swvb-dark">
-                                                                        <tr>
-                                                                            <th></th>
-                                                                            <th class="text-white">Outstanding Item</th>
-                                                                            <th class="text-white">Outstanding Amount</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td><fieldset>
-                                                                                <div class="checkbox">
-                                                                                    <input type="checkbox" class="checkbox-input" id="checkbox101">
-                                                                                    <label for="checkbox101"></label>
-                                                                                </div>
-                                                                                </fieldset>
-                                                                            </td>
-                                                                            <td>Item 01</td>
-                                                                            <td>RM 1,000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><fieldset>
-                                                                                <div class="checkbox">
-                                                                                    <input type="checkbox" class="checkbox-input" id="checkbox120">
-                                                                                    <label for="checkbox120"></label>
-                                                                                </div>
-                                                                                </fieldset>
-                                                                            </td>
-                                                                            <td>Overpayment</td>
-                                                                            <td>RM 500</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                             </div>
+                                            
+                                        </div>
 
+                                        <!-- Point Entitlement -->
+                                        <div class="tab-pane" id="pointentitlement-fill" role="tabpanel" aria-labelledby="pointentitlement-tab-fill">
+                                            <div class="card-body card-dashboard">
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Amount Transacted</th>
+                                                                <th class="text-white">Date of Transaction</th>
+                                                                <th class="text-white">Description</th>
+                                                                <th class="text-white">Performed by</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>RM 1000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>Online Transfer</td>
+                                                                <td>Chris</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RM 1000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>Bank in</td>
+                                                                <td>Chris</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RM 1000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>Online Transfer</td>
+                                                                <td>Chris</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RM 1000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>Bank in</td>
+                                                                <td>Chris</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RM 1000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>Online Transfer</td>
+                                                                <td>Chris</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RM 1000</td>
+                                                                <td>01 June 2020</td>
+                                                                <td>Bank in</td>
+                                                                <td>Chris</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="px-2">
+                                                    {{-- <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Add New Notes</a>
+                                                    --}}
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <!-- Status Update -->
+                                        <div class="tab-pane" id="requestnotes-fill" role="tabpanel" aria-labelledby="requestnotes-tab-fill">
+                                            <div class="card-body card-dashboard">
                                             <div class="row pt-1">
                                                 <div class="col">
-                                                    <div class="rol">
-                                                        <p class="h7 swvb-blue font-weight-bold col">Credit Card<button class="btn btn-primary round float-right mb-1" data-toggle="modal" data-target="#inlineForm5">Add Credit Card</button></p>
-                                                        
-                                                    </div>
-                                                    <div class="table-responsive">
-                                                        <table class="table leads-all">
-                                                            <thead class="bg-swvb-dark">
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th class="text-white">Card Type</th>
-                                                                    <th class="text-white">Card Issuer</th>
-                                                                    <th class="text-white">Name on Card</th>
-                                                                    <th class="text-white">Expiry</th>
-                                                                    <th class="text-white">For</th>
-                                                                    <th class="text-white">Purpose</th>
-                                                                    <th class="text-white">Status</th>
-                                                                    
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><fieldset>
-                                                                        <div class="checkbox">
-                                                                            <input type="checkbox" class="checkbox-input" id="checkbox101">
-                                                                            <label for="checkbox101"></label>
-                                                                        </div>
-                                                                        </fieldset>
-                                                                    </td>
-                                                                    <td>Item 01</td>
-                                                                    <td>RM 1,000</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>AMF</td>
-                                                                    <td><button class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#inlineForm">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><fieldset>
-                                                                        <div class="checkbox">
-                                                                            <input type="checkbox" class="checkbox-input" id="checkbox120">
-                                                                            <label for="checkbox120"></label>
-                                                                        </div>
-                                                                        </fieldset>
-                                                                    </td>
-                                                                    <td>Overpayment</td>
-                                                                    <td>RM 500</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>Installment</td>
-                                                                    <td><button class="btn btn-outline-primary round mr-1 mb-1" data-toggle="modal" data-target="#inlineForm">Edit</button></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Status Update History</p>
                                                 </div>
                                             </div>
 
-                                        </div>
-                                    </div>
-                                </div>    
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Type</th>
+                                                                <th class="text-white">Request Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Type A</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Type B</td>
+                                                                <td>01 June 2020</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
 
+                                                <div class="row pt-1">
+                                                    <div class="col">
+                                                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Notes</p>
+                                                    </div>
+                                                </div>
 
-                            <!-- Dispatch tab -->
-                            <div class="tab-pane" id="dispatch-fill" role="tabpanel" aria-labelledby="dispatch-tab-fill">
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Mode</th>
-                                                    <th class="text-white">Courier Agent</th>
-                                                    <th class="text-white">Consignment No.</th>
-                                                    <th class="text-white">Dispatch Date</th>
-                                                    <th class="text-white">Dispatch Item</th>
-                                                    <th class="text-white">Date Delivered</th>
-                                                    <th class="text-white">Status</th>
-                                                    <th class="text-white">Remarks</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>APPROVE</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>PENDING</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>APPROVE</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>PENDING</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>APPROVE</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>APPROVE</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>APPROVE</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    <td>PENDING</td>
-                                                    <td>Your Remarks</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <p class="col">Name</p>
+                                                            <p class="col font-weight-bold black">Chris</p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="col">Date & Time</p>
+                                                            <p class="col font-weight-bold black">23 June 2020, 12:15pm</p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="col">Note</p>
+                                                            <p class="col font-weight-bold black">Your Notes Here</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
 
-                            <!-- External Membership -->
-                            <div class="tab-pane" id="externalmembership-fill" role="tabpanel" aria-labelledby="externalmembership-tab-fill">
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Entity</th>
-                                                    <th class="text-white">Membership No.</th>
-                                                    <th class="text-white">Start Date</th>
-                                                    <th class="text-white">Expiry Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>011</td>
-                                                    <td>26504070000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>012</td>
-                                                    <td>26504070000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>011</td>
-                                                    <td>26504070000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>012</td>
-                                                    <td>26504070000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>011</td>
-                                                    <td>26504070000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>012</td>
-                                                    <td>26504070000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-                                
-                            <!-- Point Entitlement -->
-                            <div class="tab-pane" id="pointentitlement-fill" role="tabpanel" aria-labelledby="pointentitlement-tab-fill">
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Amount Transacted</th>
-                                                    <th class="text-white">Date of Transaction</th>
-                                                    <th class="text-white">Description</th>
-                                                    <th class="text-white">Performed by</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>RM 1000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>Online Transfer</td>
-                                                    <td>Chris</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>RM 1000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>Bank in</td>
-                                                    <td>Chris</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>RM 1000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>Online Transfer</td>
-                                                    <td>Chris</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>RM 1000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>Bank in</td>
-                                                    <td>Chris</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>RM 1000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>Online Transfer</td>
-                                                    <td>Chris</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>RM 1000</td>
-                                                    <td>01 June 2020</td>
-                                                    <td>Bank in</td>
-                                                    <td>Chris</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="px-2">
-                                        {{-- <a href="{{asset('leads/new')}}" class="btn btn-outline-primary round mr-1 mb-1">Add New Notes</a>
-                                         --}}
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-                            <!-- Status Update -->
-                            <div class="tab-pane" id="requestnotes-fill" role="tabpanel" aria-labelledby="requestnotes-tab-fill">
-                                <div class="card-body card-dashboard">
-                                  <div class="row pt-1">
-                                      <div class="col">
-                                            <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Status Update History</p>
-                                       </div>
-                                   </div>
-
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Type</th>
-                                                    <th class="text-white">Request Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Type A</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Type B</td>
-                                                    <td>01 June 2020</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Notes</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row">
-                                                <p class="col">Name</p>
-                                                <p class="col font-weight-bold black">Chris</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col">Date & Time</p>
-                                                <p class="col font-weight-bold black">23 June 2020, 12:15pm</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col">Note</p>
-                                                <p class="col font-weight-bold black">Your Notes Here</p>
+                                            
                                             </div>
                                             
                                         </div>
-                                    </div>
 
-                                  
-                                </div>
-                                
-                            </div>
-
-                             <!-- Remarks -->
-                             <div class="tab-pane" id="remarks-fill" role="tabpanel" aria-labelledby="remarks-tab-fill">
-                                <div class="card-body card-dashboard">
-                                  
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Notes</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row">
-                                                <p class="col">Name</p>
-                                                <p class="col font-weight-bold black">Chris</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col">Date & Time</p>
-                                                <p class="col font-weight-bold black">23 June 2020, 12:15pm</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col">Note</p>
-                                                <p class="col font-weight-bold black">Your Notes Here</p>
-                                            </div>
+                                         <!-- Remarks -->
+                                        <div class="tab-pane" id="remarks-fill" role="tabpanel" aria-labelledby="remarks-tab-fill">
+                                            <div class="card-body card-dashboard">
                                             
+                                                <div class="row pt-1">
+                                                    <div class="col">
+                                                        <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Notes</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <p class="col">Name</p>
+                                                            <p class="col font-weight-bold black">Chris</p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="col">Date & Time</p>
+                                                            <p class="col font-weight-bold black">23 June 2020, 12:15pm</p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="col">Note</p>
+                                                            <p class="col font-weight-bold black">Your Notes Here</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <!-- Email tab -->
+                                        <div class="tab-pane" id="email-fill" role="tabpanel" aria-labelledby="email-tab-fill">
+                                            <div class="card-body card-dashboard">
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Item</th>
+                                                                <th class="text-white">Email</th>
+                                                                <th class="text-white">Send Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- SMS tab -->
+                                        <div class="tab-pane" id="sms-fill" role="tabpanel" aria-labelledby="sms-tab-fill">
+                                            <div class="card-body card-dashboard">
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Item</th>
+                                                                <th class="text-white">Mobile No.</th>
+                                                                <th class="text-white">Send Date</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Incentive tab -->
+                                        <div class="tab-pane" id="incentives-fill" role="tabpanel" aria-labelledby="incentives-tab-fill">
+                                            <div class="card-body card-dashboard">
+                                                <div class="table-responsive">
+                                                    <table class="table leads-all">
+                                                        <thead class="bg-swvb-dark">
+                                                            <tr>
+                                                                <th class="text-white">Date</th>
+                                                                <th class="text-white">Event</th>
+                                                                <th class="text-white">Incentive</th>
+                                                                <th class="text-white">Validity</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode A</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1234 0000</td>
+                                                                <td>Mode B</td>
+                                                                <td>01 April 2020</td>
+                                                                <td>Item 01</td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
-                                  
                                 </div>
-                                
-                            </div>
-
-
-                            <!-- Email tab -->
-                            <div class="tab-pane" id="email-fill" role="tabpanel" aria-labelledby="email-tab-fill">
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Item</th>
-                                                    <th class="text-white">Email</th>
-                                                    <th class="text-white">Send Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- SMS tab -->
-                            <div class="tab-pane" id="sms-fill" role="tabpanel" aria-labelledby="sms-tab-fill">
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Item</th>
-                                                    <th class="text-white">Mobile No.</th>
-                                                    <th class="text-white">Send Date</th>
-                                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Incentive tab -->
-                            <div class="tab-pane" id="incentives-fill" role="tabpanel" aria-labelledby="incentives-tab-fill">
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
-                                        <table class="table leads-all">
-                                            <thead class="bg-swvb-dark">
-                                                <tr>
-                                                    <th class="text-white">Date</th>
-                                                    <th class="text-white">Event</th>
-                                                    <th class="text-white">Incentive</th>
-                                                    <th class="text-white">Validity</th>
-                                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode A</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1234 0000</td>
-                                                    <td>Mode B</td>
-                                                    <td>01 April 2020</td>
-                                                    <td>Item 01</td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
+                            </section>
                         </div>
                     </div>
                 </section>
             </div>
-            </div>
         </div>
-        </div>
-        </div>
-        
-        <div class="col-md-4 float-right-top">
+  
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <h4 class="card-title  text-white"> Menu</h4>
@@ -1060,7 +842,7 @@
                                 </div>
                                 <div class="row pt-1">
                                     <div class="col">
-                                        <a href="{{ url('/installment') }}" type="button" class="w-100 btn btn-primary ">Installment Schedule</a>
+                                        <a href="{{ route('installment.detail',$payload['installment']->install_id) }}" type="button" class="w-100 btn btn-primary ">Installment Schedule</a>
                                     </div>
                                 </div>
                                 <div class="row pt-1">
@@ -1113,81 +895,81 @@
                 <div class="card-header bg-swvb-cyan">
                     <h4 class="card-title  text-white">Assignments</h4>
                 </div>
-                    <div class="card-content">
-                        <div class="card-body card-dashboard">
-                            <div class="col">
-                                 <div class="row">
-                                    <div class="col">
-                                        <div class="row pt-1">
-                                            <p class="col">Application No.</p>
-                                            <p class="col font-weight-bold black">1234 0000</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Application Date</p>
-                                            <p class="col font-weight-bold black">01 April 2020</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Agreement No.</p>
-                                            <p class="col font-weight-bold black">1234 1234</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Agreement Date</p>
-                                            <p class="col font-weight-bold black">01 April 2020</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Membership No.</p>
-                                            <p class="col font-weight-bold black">26578940000</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Membership Term</p>
-                                            <p class="col font-weight-bold black">11 April 2020</p>
-                                        </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row pt-1">
+                                        <p class="col">Application No.</p>
+                                        <p class="col font-weight-bold black">{{ $payload['memberDetail']->application_no}}</p>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <p class="col">Application Date</p>
+                                        <p class="col font-weight-bold black">{{ $payload['memberDetail']->application_date}}</p>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <p class="col">Agreement No.</p>
+                                        <p class="col font-weight-bold black">{{ $payload['memberDetail']->agreement_no}}</p>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <p class="col">Agreement Date</p>
+                                        <p class="col font-weight-bold black">{{ $payload['memberDetail']->agreement_date}}</p>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <p class="col">Membership No.</p>
+                                        <p class="col font-weight-bold black">{{ $payload['memberDetail']->mbrship_no}}</p>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <p class="col">Membership Term</p>
+                                        <p class="col font-weight-bold black">{{ $payload['memberDetail']->mbrship_term}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <h4 class="card-title  text-white">Documents</h4>
                 </div>
-                    <div class="card-content">
-                        <div class="card-body card-dashboard">
-                            <div class="col">
-                                <div class="row pt-1">
-                                    <div class="col">
-                                        <p>abc.jpg</p>
-                                        <p>Invoice Detail 23/6/2020</p>
-                                    </div>
-                                    <div class="col">
-                                        <i class="bx bx-download"></i>
-                                        <i class="bx bx-trash"></i>
-                                    </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="col">
+                            <div class="row pt-1">
+                                <div class="col">
+                                    <p>abc.jpg</p>
+                                    <p>Invoice Detail 23/6/2020</p>
                                 </div>
-                                <hr>
-                                <div class="row pt-1">
-                                    <div class="col">
-                                        <p>abc.jpg</p>
-                                        <p>Invoice Detail 23/6/2020</p>
-                                    </div>
-                                    <div class="col">
-                                        <i class="bx bx-download"></i>
-                                        <i class="bx bx-trash"></i>
-                                    </div>
+                                <div class="col">
+                                    <i class="bx bx-download"></i>
+                                    <i class="bx bx-trash"></i>
                                 </div>
-                                <hr>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                        <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary ">Upload</a>
-                                        </div>
-                                    </div>
-    
                             </div>
+                            <hr>
+                            <div class="row pt-1">
+                                <div class="col">
+                                    <p>abc.jpg</p>
+                                    <p>Invoice Detail 23/6/2020</p>
+                                </div>
+                                <div class="col">
+                                    <i class="bx bx-download"></i>
+                                    <i class="bx bx-trash"></i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row pt-1">
+                                <div class="col">
+                                <a href="{{ url('/membership/new') }}" type="button" class="btn btn-primary ">Upload</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                </div>
+            </div>
         </div>
-
     </div>
 </section>
 <!-- Nav Filled Ends -->
@@ -1205,7 +987,7 @@
                 </div>
 
             <!-- form for status of active -->
-            <form action="{{route('members.redirect')}}" method="GET" novalidate>
+            <form action="" method="GET" novalidate>
                             @csrf
                 <div class="modal-body">
                     <div class="form-group controls">
@@ -1492,23 +1274,32 @@
                 <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="#">
+            <form action="{{route('members.savesecondary',[$payload['memberDetail']->mbrship_id,'secondary'])}}" method="post">
+                @csrf
                 <div class="modal-body">
                     <label>Salutation</label>
                     <div class="form-group">
-                        <input type="text" placeholder="Card holder" class="form-control">
+                        <select name="lead['salutation_id']" class="form-control"  data-validation-required-message="Please select the salutation"  required>
+                            <option value="" disable>--</option>
+                            @include('includes.option_from_data',['array'=>$payload['salutations'],'key'=>'salutation_id','value'=>'salutation'])
+                        </select>
                     </div>
                     <label>Name</label>
                     <div class="form-group">
-                        <input type="name" placeholder="Type of card" class="form-control">
+                        <input type="name" name="lead[name]" placeholder="Name" class="form-control" data-validation-required-message="Please input the name"  required>
                     </div>
                     <label>Contact</label>
                     <div class="form-group">
-                        <input type="number" placeholder="Card issuer" class="form-control">
+                        <input type="number" name="lead['mobile_no']" placeholder="Contact" class="form-control" data-validation-required-message="Please input the contact"  required>
                     </div>
                     <label>Relationship</label>
                     <div class="form-group">
-                        <input type="text" placeholder="Name on card" class="form-control">
+                        <select name="member[relationship]" class="form-control" data-validation-required-message="Please select the relationship"  required>
+                            <option value="" disable>--</option>
+                            @foreach(['Spouse','Child','Sibling','Engagemnt','Friend','Others'] as $r)
+                                <option value="{{$r}}">{{$r}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     
          
@@ -1518,7 +1309,7 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                    <button type="submit" class="btn btn-primary ml-1">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Save</span>
                     </button>

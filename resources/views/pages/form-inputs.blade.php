@@ -154,7 +154,6 @@
                                 <input type="file" class="form-control-file" id="basicInputFile">
                             </fieldset>
                         </div>
-                        <div class="col-lg-6 col-md-12">
                             <fieldset class="form-group">
                                 <label for="basicInputFile">With Browse button</label>
                                 <div class="custom-file">

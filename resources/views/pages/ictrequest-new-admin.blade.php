@@ -187,7 +187,7 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Entitlement (WD)</label>
-                                                    <input type="number" name="wd2" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="wd2" class="form-control" id="password" placeholder="Enter wd for entitlement">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Entitlement (WE)</label>

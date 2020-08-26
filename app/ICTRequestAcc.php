@@ -33,7 +33,7 @@ class ICTRequestAcc extends Model
 
     public function reservation()
     {
-        return $this->belongsTo('App\Reservation', 'mbrship_id', 'mbrship_id');
+        return $this->belongsTo('App\Reservation', 'aict_mbrship_id', 'mbrship_id');
     }
 
     public function verifystaff()
@@ -47,6 +47,11 @@ class ICTRequestAcc extends Model
     }
 
     public function reqstaff()
+    {
+        return $this->belongsTo('App\Staff', 'aict_requested_by', 'staff_id');
+    }
+
+    public function request()
     {
         return $this->belongsTo('App\Staff', 'aict_requested_by', 'staff_id');
     }

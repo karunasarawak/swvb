@@ -12,25 +12,26 @@
 <!-- Zero configuration table -->
 <section class="float-left" id="form-repeater-wrapper" >
     <div class="row">
-        <div class="container-fluid col-md-8" style="overflow:hidden;">
+        <div class="col-md-8 container-fluid" style="overflow:hidden;">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row">
-                        <h4 class="col card-title text-white">Manage Entitlement - Advanced</h4>
+                        <h4 class="col card-title text-white">Manage Entitlement - Advance</h4>
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive pt-3">
-                            <table class="table tours-all">
+                            <table class="table">
                                 <thead class="bg-swvb-dark">
                                     <tr>
-                                        <th class="text-white">Select</th>
+                                        <th class="text-white"></th>
                                         <th class="text-white">Year</th>
                                         <th class="text-white">Entitlement</th>
+                                        <th class="text-white">Term/POE</th>
                                         <th class="text-white">AMF Amount</th>
                                         <th class="text-white">Invoice No.</th>
-                                        <th class="text-white">AMF</th>
+                                        <th class="text-white">Invoice Balance</th>
                                     </tr>
                                 </thead>
 
@@ -49,7 +50,8 @@
                                         <td>01 April 2020</td>
                                         <td>Sent for Printing</td>
                                         <td>INV12345</td>
-                                        <td>PAID</td>
+                                        <td>INV12345</td>
+                                        <td>0</td>
                                     </tr>
                                     
                                     <tr>
@@ -66,7 +68,8 @@
                                         <td>01 April 2020</td>
                                         <td>Sent for Printing</td>
                                         <td>INV12345</td>
-                                        <td>PAID</td>
+                                        <td>INV12345</td>
+                                        <td>0</td>
                                     </tr>
                                     
                                     <tr>
@@ -83,15 +86,18 @@
                                         <td>01 April 2020</td>
                                         <td>Sent for Printing</td>
                                         <td>INV12345</td>
-                                        <td>PAID</td>
+                                        <td></td>
+                                        <td>100</td>
                                     </tr>
-                  
+                
                                 </tbody>
                             </table>
 
-                            <div class="row pt-1">
+                            </div>
+
+                            <div class="row pt-2">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Entitlement</p>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-1">Entitlement</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -123,9 +129,9 @@
                                 </div>   
                             </div>
 
-                            <div class="row">
+                            <div class="row pt-1">
                                 <div class="col">
-                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Info</p>
+                                    <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-1">Info</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -185,21 +191,30 @@
                                                         <div data-repeater-list="group-a">
                                                             <div data-repeater-item>
                                                                 <div class="row justify-content-between">
-                                                                    <div class="col-lg-6 col-md-12">
-                                                                        <fieldset class="form-group">
-                                                                            <div class="custom-file">
-                                                                                <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                    <div class="col-10 col-md-12">
+                                                                        <div class="row">
+                                                                            <div class="col-4">
+                                                                                <div class="form-group">
+                                                                                    <div class="custom-file">
+                                                                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </fieldset>
+                                                                            <div class="col-8">
+                                                                                <div class="form-group">
+                                                                                    <input type="textarea" class="form-control" id="remark" placeholder="remark">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    
-                                                                    <div class="col-md-2 col-sm-12 form-group">
+                                                                    <div class="col form-group">
                                                                         <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
                                                                             <i class="bx bx-x"></i>Delete
                                                                         </button>
                                                                     </div>
                                                                 </div>
+                                                                <hr> 
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -209,7 +224,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                  </form>  
+                                                    </form>  
                                                 </div>
                                             </div>
                                         </div>
@@ -218,22 +233,20 @@
                             </div>
                         
                             <button type="button" class="btn btn-primary float-right m-1 mb-5" id="btn_add1" data-toggle="modal" data-target="#offsetreminder">Save</button>  
-                        </div>
-
                     </div>
                 </div>     
             </div>   
         </div>
-         
-        <div class="col-md-4 float-right-top" >
-            <div class="card">
-                <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title  text-white">Current Membership Info</h4>
-                </div>
-                    <div class="card-content">
-                        <div class="card-body card-dashboard">
-                            <div class="col">
-                                 
+
+        <div class="col-md-4">
+            <div class="float-right-top" >
+                <div class="card">
+                    <div class="card-header bg-swvb-cyan">
+                        <h4 class="card-title  text-white">Current Membership Info</h4>
+                    </div>
+                        <div class="card-content">
+                            <div class="card-body card-dashboard">
+                                    
                                 <div class="row pt-1">
                                     <div class="col">
                                         <p class="h6 swvb-blue m-0 font-weight-bold my-auto pb-1 pt-1">Membership Info</p>
@@ -258,19 +271,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
+
+                
             </div>
 
-            <div class="card">
-                <div class="card-header bg-swvb-cyan">
-                    <h4 class="card-title  text-white">ICT Request</h4>
-                </div>
+            <div class="float-right-top" >
+                <div class="card">
+                    <div class="card-header bg-swvb-cyan">
+                        <h4 class="card-title  text-white">View</h4>
+                    </div>
                     <div class="card-content">
                         <div class="card-body card-dashboard">
                             <div class="col">
                                 <div class="row pt-1">
                                     <div class="col text-align-center">
-                                        <a href="{{ url('/membership/new') }}" type="button" class="w-100 btn btn-primary ">Account Status</a>
+                                        <a href="{{ url('/membership/new') }}" type="button" class="w-100 btn btn-primary ">Account Statement</a>
                                     </div>
                                 </div>
                                 <div class="row pt-1">
@@ -278,23 +294,31 @@
                                         <a href="{{ url('/installment/amfall') }}" type="button" class="w-100 btn btn-primary ">AMF Schedule</a>
                                     </div>
                                 </div>
-                                <div class="row pt-1">
-                                    <div class="col">
-                                        <a href="" type="button" class="w-100 btn btn-primary ">Add Entitlement</a>
-                                    </div>
-                                </div>
-                                <div class="row pt-1">
-                                    <div class="col">
-                                        <a href="" type="button" class="w-100 btn btn-primary ">Restore Entitlement</a>
-                                    </div>
-                                </div>
-                                
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="float-right-top" >
+                <div class="card">
+                    <div class="card-header bg-swvb-cyan">
+                        <h4 class="card-title  text-white">ICT requests</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body card-dashboard">
+                            <div class="col">
+                                <div class="row pt-1">
+                                    <div class="col text-align-center">
+                                        <a href="{{ url('/membership/new') }}" type="button" class="w-100 btn btn-primary ">Add or restore entitlement</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </section>
 <!-- Nav Filled Ends -->

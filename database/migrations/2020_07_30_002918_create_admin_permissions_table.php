@@ -16,13 +16,13 @@ class CreateAdminPermissionsTable extends Migration
         Schema::create('adminpermissions', function (Blueprint $table) {
             $table->id('permission_id');
             $table->integer('role_id')->length(11)->nullable();
-            $table->integer('module_id')->length(3)->nullable();
-            $table->tinyInteger('check')->length(1)->nullable();
-            $table->tinyInteger('check2')->length(1)->nullable();
-            $table->tinyInteger('verify')->length(1)->nullable();
-            $table->tinyInteger('verify2')->length(1)->nullable();
-            $table->tinyInteger('approve')->length(1)->nullable();
-            $table->tinyInteger('approve2')->length(1)->nullable();
+            $table->integer('approval_id')->length(3)->nullable();
+            $table->string('approval_name', 50)->nullable();
+            $table->string('actions', 50)->nullable();
+            // $table->tinyInteger('verify')->length(1)->nullable();
+            // $table->tinyInteger('verify2')->length(1)->nullable();
+            // $table->tinyInteger('approve')->length(1)->nullable();
+            // $table->tinyInteger('approve2')->length(1)->nullable();
             $table->timestamps();
         });
     }

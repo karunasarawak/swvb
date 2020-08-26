@@ -176,7 +176,7 @@ td {
 tbody th,
 tbody td {
   text-align: center;
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .table-responsive {

@@ -17,14 +17,7 @@ var CalendarList = [],
     infoLight = "#CCF5F8 ",
     lightColor = "#b3c0ce",
     veryLightBlue = "#e7edf3",
-    c
-cloudyBlue = "#b3c0ce",
-    armyColor = "#2B411C",
-    lightArmy = "#708238",
-    purpleColor = "#81007F",
-    lightPurple = "DE73FF",
-    peachColor = "#FFCBA4",
-    lightPeach = "#FF9E3";
+    cloudyBlue = "#b3c0ce";
 // contructor to create event
 function CalendarInfo() {
     this.id = null;
@@ -58,47 +51,7 @@ function findCalendar(id) {
     calendar = new CalendarInfo();
     id += 1;
     calendar.id = String(id);
-    calendar.name = 'Block MEM';
-    calendar.color = infoColor;
-    calendar.bgColor = infoLight;
-    calendar.dragBgColor = infoColor;
-    calendar.borderColor = infoColor;
-    addCalendar(calendar);
-
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Block RCI BB';
-    calendar.color = primaryColor;
-    calendar.bgColor = primaryLight;
-    calendar.dragBgColor = primaryColor;
-    calendar.borderColor = primaryColor;
-    addCalendar(calendar);
-
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'BlockRCI DS';
-    calendar.color = secondaryColor;
-    calendar.bgColor = secondaryLight;
-    calendar.dragBgColor = secondaryColor;
-    calendar.borderColor = secondaryColor;
-    addCalendar(calendar);
-
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Blocked';
-    calendar.color = successColor;
-    calendar.bgColor = successLight;
-    calendar.dragBgColor = successColor;
-    calendar.borderColor = successColor;
-    addCalendar(calendar);
-
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Block DS';
+    calendar.name = 'Peak';
     calendar.color = warningColor;
     calendar.bgColor = warningLight;
     calendar.dragBgColor = warningColor;
@@ -108,65 +61,75 @@ function findCalendar(id) {
     calendar = new CalendarInfo();
     id += 1;
     calendar.id = String(id);
-    calendar.name = 'BSM';
-    calendar.color = secondaryColor;
-    calendar.bgColor = cloudyBlue;
-    calendar.dragBgColor = secondaryLight;
-    calendar.borderColor = cloudyBlue;
-    addCalendar(calendar);
-
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Close MR';
+    calendar.name = 'Super Peak';
     calendar.color = dangercolor;
     calendar.bgColor = dangerLight;
     calendar.dragBgColor = dangerLight;
     calendar.borderColor = dangercolor;
     addCalendar(calendar);
-
+    
     calendar = new CalendarInfo();
     id += 1;
     calendar.id = String(id);
-    calendar.name = 'Lease Back';
-
+    calendar.name = '';
     calendar.color = primaryColor;
-    calendar.bgColor = veryLightBlue;
-    calendar.dragBgColor = veryLightBlue;
-    calendar.borderColor = primaryLight;
+    calendar.bgColor = primaryLight;
+    calendar.dragBgColor = primaryColor;
+    calendar.borderColor = primaryColor;
     addCalendar(calendar);
 
+    // calendar = new CalendarInfo();
+    // id += 1;
+    // calendar.id = String(id);
+    // calendar.name = 'My Calendar';
+    // calendar.color = infoColor;
+    // calendar.bgColor = infoLight;
+    // calendar.dragBgColor = infoColor;
+    // calendar.borderColor = infoColor;
+    // addCalendar(calendar);
 
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Online Booking';
 
-    calendar.color = armyColor;
-    calendar.bgColor = lightArmy;
-    calendar.dragBgColor = armyColor;
-    calendar.borderColor = armyColor;
-    addCalendar(calendar);
+    // calendar = new CalendarInfo();
+    // id += 1;
+    // calendar.id = String(id);
+    // calendar.name = 'Family';
+    // calendar.color = secondaryColor;
+    // calendar.bgColor = secondaryLight;
+    // calendar.dragBgColor = secondaryColor;
+    // calendar.borderColor = secondaryColor;
+    // addCalendar(calendar);
 
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Reserved';
+    // calendar = new CalendarInfo();
+    // id += 1;
+    // calendar.id = String(id);
+    // calendar.name = 'Friend';
+    // calendar.color = successColor;
+    // calendar.bgColor = successLight;
+    // calendar.dragBgColor = successColor;
+    // calendar.borderColor = successColor;
+    // addCalendar(calendar);
 
-    calendar.color = purpleColor;
-    calendar.bgColor = lightPurple;
-    calendar.dragBgColor = purpleColor;
-    calendar.borderColor = purpleColor;
-    addCalendar(calendar);
 
-    calendar = new CalendarInfo();
-    id += 1;
-    calendar.id = String(id);
-    calendar.name = 'Unused';
 
-    calendar.color = peachColor;
-    calendar.bgColor = lightPeach;
-    calendar.dragBgColor = peachColor;
-    calendar.borderColor = peachColor;
-    addCalendar(calendar);
-})();    cloudyBlue = "#b3c0ce",
+    // calendar = new CalendarInfo();
+    // id += 1;
+    // calendar.id = String(id);
+    // calendar.name = 'etc';
+    // calendar.color = secondaryColor;
+    // calendar.bgColor = cloudyBlue;
+    // calendar.dragBgColor = secondaryLight;
+    // calendar.borderColor = cloudyBlue;
+    // addCalendar(calendar);
+
+
+
+    // calendar = new CalendarInfo();
+    // id += 1;
+    // calendar.id = String(id);
+    // calendar.name = 'Holidays';
+    // calendar.color = primaryColor;
+    // calendar.bgColor = veryLightBlue;
+    // calendar.dragBgColor = veryLightBlue;
+    // calendar.borderColor = primaryLight;
+    // addCalendar(calendar);
+})();

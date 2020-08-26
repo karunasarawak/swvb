@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\Bluprint; 
 use Illuminate\Support\Facades\Schema;
 
 class CreateMembershipsTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
+     * Run the migrations.{{  }}
+     *{{  }}{{  }}{{  }}
      * @return void
      */
     public function up()
@@ -43,7 +43,7 @@ class CreateMembershipsTable extends Migration
             
             $table->integer('mbrship_term')->length(2)->nullable();//get from package table
             $table->date('mbrship_exp')->nullable();
-                      
+
             $table->string('declaration_no', 11)->nullable();
             $table->tinyInteger('install_auto')->length(1)->nullable();
             $table->tinyInteger('amf_auto')->length(1)->nullable();
@@ -67,17 +67,17 @@ class CreateMembershipsTable extends Migration
                 'mbrship_term' => 30,'mbrship_exp' => '2050-08-22',       
                 'declaration_no' => '','install_auto' => 1,'amf_auto' => 1,'overpayment' => 200,
                 'has_card' => 0,'has_stamped' => 0,
-                'mbrship_status' => 1,'mbrship_remarks' => '-',
+                'mbrship_status' => 2,'mbrship_remarks' => '-',
             ],
             [
-                'lead_id1' => 2, 'lead_id2' => null, 'package_id' => 1, 'cc_id_amf' => 1, 'cc_id_install' => 1,'mro' => 1, 'cco' => 2,
+                'lead_id1' => 2, 'lead_id2' => null, 'package_id' => 2, 'cc_id_amf' => 1, 'cc_id_install' => 1,'mro' => 1, 'cco' => 2,
                 'mbrship_no' => '200010000','pri_addr_id' => 1,'alt_addr_id' => null,
                 'contract_type' => 0,'comp_id' => null,'prefer_lang' => 'English',
                 'application_no' => 'APP 8374','application_date' => '2020-08-11','agreement_no' => '8234','agreement_date' => '2020-08-22',
                 'mbrship_term' => 30,'mbrship_exp' => '2050-08-22',       
                 'declaration_no' => '','install_auto' => 1,'amf_auto' => 1,'overpayment' => 200,
                 'has_card' => 0,'has_stamped' => 0,
-                'mbrship_status' => 1,'mbrship_remarks' => '-',
+                'mbrship_status' => 2,'mbrship_remarks' => '-',
             ],
             [
                 'lead_id1' => 3,'lead_id2' => 4,
@@ -93,7 +93,7 @@ class CreateMembershipsTable extends Migration
             ],
             [
                 'lead_id1' => 4,'lead_id2' => 5,
-                'package_id' => 1,'cc_id_amf' => 1,'cc_id_install' => 1,
+                'package_id' => 1,'cc_id_amf' => 1,'cc_id_install' => 2,
                 'mro' => 1,'cco' => 2,
                 'mbrship_no' => '400010000','pri_addr_id' => 1,'alt_addr_id' => null,
                 'contract_type' => 0,'comp_id' => null,'prefer_lang' => 'English',

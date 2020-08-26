@@ -74,7 +74,7 @@
 
       <div class="col-sm-4">
         <div class="form-group controls">
-          <label>Name</label>
+            <label>Name</label>
             @if($payload['lead2'] != null)
               <input type="text" name="sec_name" id="sec_name" class="form-control" value="{{ $payload['lead2']->name }}" required>
             @else

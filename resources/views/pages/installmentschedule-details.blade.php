@@ -18,14 +18,14 @@
                     <div class="row ml-1">
                         <h4 class="col card-title text-white">Installment Schedule Detail</h4>
                         <a href="{{ url('/installment/calculator') }}" class="btn btn-outline-white round text-white">Installment Calculator</a>
-                        <button class="btn btn-outline-white round text-white bx bx-printer ml-1 float-right"></button>
+                        <button onclick="printable();" class="btn btn-outline-white round text-white bx bx-printer ml-1 float-right"></button>
 
-                        <button class="btn btn-outline-white round text-white bx bx-download ml-1 float-right"></button>
+                        <button onclick="csv();" class="btn btn-outline-white round text-white bx bx-download ml-1 float-right"></button>
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form-horizontal" method="" action="" novalidate>
+                    <form class="form-horizontal" method="post" action="{{route('installment.save',$payload['installment']->install_id)}}" novalidate>
                             @csrf
                             
                             <div class="card-body card-dashboard">
@@ -42,46 +42,46 @@
                                         <button type="button" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
                                             Close
                                         </button>
-                                        <button type="button" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak >                                                                    
-                                            Save
+                                        <button type="submit" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak  >                                                                    
+                                            Reschedule
                                         </button>
                                  
                                     </div>
 
                                 </div>
-
+                                <?php $i=$payload['installment'];?>
                                 <div class="row pt-1 pl-3">
                                     <div class="col">
                                         <div class="row">
                                                 <p class="col">Payment Schedule No.</p>
-                                                <p class="col font-weight-bold black" x-show="original">12345 0000</p>
+                                                <p class="col font-weight-bold black" x-show="original">{{$i->install_id}}</p>
                                                 <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="12345 0000" data-validation-required-message="Please write the company name"  required>
-                                            </p>
+                                                    <input  type="text" value="{{$i->install_id}}" readonly="readonly" class="form-control" >
+                                                </p>
                                         </div>
                                         <div class="row">
                                                 <p class="col">Membership No.</p>
-                                                <p class="col font-weight-bold black" x-show="original">234561000</p>
+                                                <p class="col font-weight-bold black" x-show="original">{{$i->mbrship_no}}</p>
                                                 <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="234561000" data-validation-required-message="Please write the company name"  required>
+                                                <input  type="text" value="{{$i->mbrship_no}}" readonly="readonly" class="form-control" placeholder="Membership No." data-validation-required-message="Please write the company name"  required>
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Name</p>
-                                            <p class="col font-weight-bold black" x-show="original">John Doe</p>
+                                            <p class="col font-weight-bold black" x-show="original">{{$i->name}}</p>
                                             <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="John Doe" data-validation-required-message="Please write the company name"  required>
+                                                <input  type="text" value="{{$i->name}}" readonly="readonly" class="form-control" >
                                             </p>
                                         </div>
+
                                         <div class="row">
                                             <p class="col">Package</p>
-                                            <p class="col font-weight-bold black" x-show="original">Premier - Full</p>
+                                            <p class="col font-weight-bold black" x-show="original">{{$i->package}}</p>
                                             <p class="col" x-cloak x-show="edit">
-                                            <select name="id1" class="select2 form-control" data-validation-required-message="Please select a installation duration" required>
+                               
+                                            <select readonly="readonly" class="select2 form-control package" data-validation-required-message="Please select a Package" required>
                                                 <option value="" disabled>--</option>
-                                                <option value="d1">Premier - Full</option>
-                                                <option value="sibu">Sibu</option>
-                                                <option value="miri">Miri</option>
+                                                @include('includes.option_from_data',['array'=>$payload['packages'],'key'=>'package_id','value'=>'package','data'=>$i->package_id])
                                             </select>
                                             </p>
                                         </div>
@@ -89,169 +89,212 @@
                                     </div>
                                     <div class="col">
                                         <div class="row">
-                                            <p class="col">Instalment Plan</p>
-                                            <p class="col font-weight-bold black" x-show="original">12 Month</p>
+                                            <p class="col">Installment Plan</p>
+                                            <p class="col font-weight-bold black" x-show="original">{{$i->install_duration}}</p>
                                             <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="Supplier" data-validation-required-message="Please write the company name"  required>
+                                                <input  type="number" name="installment[install_duration]" value="{{$i->install_duration}}" class="form-control " placeholder="Installment Plan" data-validation-required-message="Please write the installment_plan"  required>
                                             </p>
                                         </div>
+                                        @php
+                                            $n=1;
+                                        @endphp
+                                        @foreach($payload['downpayments'] as $dp)
                                         <div class="row">
-                                            <p class="col">Down Payment 1</p>
-                                            <p class="col font-weight-bold black" >RM 200</p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Down Payment 2</p>
-                                            <p class="col font-weight-bold black">RM 1000<button class="border-0 bg-transparent" data-toggle="modal" data-target="#downpayment" x-cloak x-show="edit" ><i class="bx bx-plus-circle pl-2"></i></p>
-                                        </div>
-                                        <div class="row">
-                                            <p class="col">Membership Price</p>
-                                            <p class="col font-weight-bold black" x-show="original">RM 1000</p>
+                                            <p class="col">Down Payment {{$n}}</p>
+                                            <p class="col font-weight-bold black" x-show="original">RM {{$dp->dpymt}}</p>
                                             <p class="col" x-cloak x-show="edit">
-                                                <input  type="number" name="salutation" class="form-control" placeholder="RM 1000" data-validation-required-message="Please write the company name"  required>
+                                            <input  type="number"  readonly="readonly" value="{{$dp->dpymt}}" class="form-control " placeholder="Down Payment {{$n}}" >
+                                            </p>
+                                        </div>
+                                        @php
+                                         $n++;
+                                        @endphp
+                                        @endforeach
+                                        @while ($n<=6)
+                                        <div class="row">
+                                            <p class="col">Down Payment {{$n}}</p>
+                                            <p class="col font-weight-bold black" x-show="original">--</p>
+                                            <p class="col" x-cloak x-show="edit">
+                                            <input  type="number" name="downpayments[{{$n}}][dpymt]" class="form-control " placeholder="Down Payment {{$n}}" >
+                                            </p>
+                                            @php
+                                            $n++;
+                                            @endphp
+                                        </div>
+                                        @endwhile
+                                        
+ 
+                                        <div class="row">
+                                            <p class="col">Nett Membership Price</p>
+                                            <p class="col font-weight-bold black" x-show="original">RM {{$i->net_price}}</p>
+                                            <p class="col" x-cloak x-show="edit">
+                                                <input  type="number" name="installment[net_price]" value="{{$i->net_price}}" class="form-control" placeholder="Membership Price" data-validation-required-message="Please write the nett membership price"  required>
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="row">
                                             <p class="col">Paid (%)</p>
-                                            <p class="col font-weight-bold black" x-show="original">20%</p>
+                                        <p class="col font-weight-bold black" x-show="original">{{round($payload['paid'])}}%</p>
                                             <p class="col" x-cloak x-show="edit">
-                                                <input  type="number" name="salutation" class="form-control" placeholder="20%" data-validation-required-message="Please write the company name"  required>
+                                                <input  type="number" value="{{round($payload['paid'])}}" readonly="readonly" class="form-control" placeholder="20%" data-validation-required-message="Please enter the paid charges"  required>
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Admin Charges (%)</p>
-                                            <p class="col font-weight-bold black" x-show="original">4%</p>
+                                            <p class="col font-weight-bold black" x-show="original">{{$i->admin_charges}}%</p>
                                             <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="Supplier" data-validation-required-message="Please write the company name"  required>
+                                                <input  type="text" name="installment[admin_charges]" value="{{$i->admin_charges}}" class="form-control" placeholder="Supplier" data-validation-required-message="Please enter the admin charges"  required>
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p class="col">Remarks</p>
                                             <p class="col font-weight-bold black" x-show="original">-</p>
                                             <p class="col" x-cloak x-show="edit">
-                                                <input  type="text" name="salutation" class="form-control" placeholder="Remarks" data-validation-required-message="Please write the company name"  required>
+                                                <input  type="text" name="salutation" class="form-control" placeholder="Remarks" data-validation-required-message="Please write the remarks"  required>
                                             </p>
                                         </div>
-                                        
+                                        <div class="row">
+                                            <p class="col">Addition</p>
+                                            <p class="col font-weight-bold black" x-show="original">RM {{$i->addition}}</p>
+                                            <p class="col" x-cloak x-show="edit">
+                                                <input  type="text" name="installment[addition]" value="{{$i->addition}}" class="form-control" placeholder="Remarks" data-validation-required-message="Please write the remarks"  required>
+                                            </p>
+                                        </div>
+                                  
+                                        <div class="row">
+                                            <p class="col">Discount</p>
+                                            <p class="col font-weight-bold black" x-show="original">RM {{$i->discount}}</p>
+                                            <p class="col" x-cloak x-show="edit">
+                                                <input  type="text" name="installment[discount]" value="{{$i->discount}}" class="form-control" placeholder="Remarks" data-validation-required-message="Please write the remarks"  required>
+                                            </p>
+                                        </div>
+                                   
                                     </div>
                                 </div>
                            
                                 
                                     <div class="table table-responsive pt-3">
-                                        <table class="table tours-all">
+                                        <table class="table tours-all" id="installtable">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
                                                     <th class="text-white">No.</th>
-                                                    <th class="text-white">Invoice No.</th>
+                                                    <th class="text-white ">Invoice No.</th>
                                                     <th class="text-white">Projected Date</th>
                                                     <th class="text-white">Actual Date</th>
                                                     <th class="text-white">Invoice Date</th>
-                                                    <th class="text-white">Item Name</th>
+                                                    <th class="text-white expanded">Item Name</th>
                                                     <th class="text-white">Amount</th>
-                                                    <th class="text-white expanded">Down Payment 1</th>
+                                                   <!-- <th class="text-white expanded">Down Payment 1</th>
                                                     <th class="text-white expanded">Down Payment 2</th>
+                                                    <th class="text-white expanded">Down Payment 3</th>-->
                                                     <th class="text-white">Admin Charges</th>
                                                     <th class="text-white">Total</th>
                                                     <th class="text-white">Balance</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @php
+                                                    $dn=1;
+                                                    $net=$i->net_price+$payload['admin_charge'];
+                                                    $tn=1;
+                                                @endphp
                                                 <tr>
-                                                    <td>01</td>
+                                                
                                                     <td></td>
-                                                    <td>22 June 2020</td>
-                                                    <td>22 June 2020</td>
-                                                    <td>01 July 2020</td>
-                                                    <td>Down Payment 1</td>
-                                                    <td>RM 300</td>
-                                                    <td>RM 1000</td>
-                                                    <td>250</td>
-                                                    <td>23.4</td>
-                                                    <td>2325</td>
-                                                    <td>0</td>
+                                                     <td class="expanded"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="expanded"></td>
+                                                     <td></td>
+                                                    <!-- <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">250</td>-->
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{$net}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>02</td>
+                                                
+                                                @foreach($payload['downpayments'] as $s)
+                                                <tr class="freeze">
+                                                    <td>{{$tn++}}</td>
+                                                     <td class="expanded">{{$s->inv_no}}</td>
+                                                     <td>{{date('d M Y',strtotime($s->projected_allocated_date))}}</td>
+                                                    <td>{{date('d M Y',strtotime($s->alloc_date))}}</td>
+                                                    <td>@if($s->issue_date) {{date('d M Y',strtotime($s->issue_date))}} @endif</td>
+                                                    <td class="expanded">Downpayment {{$dn++}}</td>
+                                                     <td>RM {{$s->dpymt}}</td>
+                                                    <!-- <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">250</td>-->
                                                     <td></td>
-                                                    <td>22 June 2020</td>
-                                                    <td>22 June 2020</td>
-                                                    <td>01 July 2020</td>
-                                                    <td>Down Payment 1</td>
-                                                    <td>RM 300</td>
-                                                    <td>RM 1000</td>
-                                                    <td>250</td>
-                                                    <td>23.4</td>
-                                                    <td>2325</td>
-                                                    <td>0</td>
+                                                    <td>{{$s->dpymt}}</td>
+                                                    <td>{{$net-=$s->dpymt}}</td>
+
                                                 </tr>
-                                                <tr>
-                                                    <td>03</td>
-                                                    <td></td>
-                                                    <td>22 June 2020</td>
-                                                    <td>22 June 2020</td>
-                                                    <td>01 July 2020</td>
-                                                    <td>Down Payment 1</td>
-                                                    <td>RM 300</td>
-                                                    <td>RM 1000</td>
-                                                    <td>250</td>
-                                                    <td>23.4</td>
-                                                    <td>2325</td>
-                                                    <td>0</td>
+                                               
+                                                @endforeach
+                                                @foreach($payload['schedules'] as $s)
+
+                                                <tr class="freeze">
+                                                    <td>{{$tn++}}</td>
+                                                     <td class="expanded">{{$s->inv_no}}</td>
+                                                    <td>{{date('d M Y',strtotime($s->projected_alloc_date))}}</td>
+                                                    <td>{{date('d M Y',strtotime($s->alloc_date))}}</td>
+                                                    <td>@if($s->issue_date) {{date('d M Y',strtotime($s->issue_date))}} @endif</td>
+                                                    <td class="expanded">Installment {{$s->term}}</td>
+                                                     <td>RM {{$payload['installamt']-$payload['admin_charge_month']}}</td>
+                                                    <!-- <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">250</td>-->
+                                                    <td>{{$payload['admin_charge_month']}}</td>
+                                                    <td>{{$payload['admin_charge_month']+$payload['installamt']}}</td>
+                                                    <td>{{$net-=$payload['installamt']}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>04</td>
+                                                @endforeach
+                                                @php
+                                                    $term=$s->term+1;
+                                                @endphp
+                                                @while($term<$payload['installment']->install_duration)
+                                                <tr class="freeze">
+                                                    <td>{{$tn++}}</td>
+                                                     <td class="expanded"></td>
+                                                    <td>{{date('d M Y',strtotime($s->projected_alloc_date.'+1month'))}}</td>
                                                     <td></td>
-                                                    <td>22 June 2020</td>
-                                                    <td>22 June 2020</td>
-                                                    <td>01 July 2020</td>
-                                                    <td>Down Payment 1</td>
-                                                    <td>RM 300</td>
-                                                    <td>RM 1000</td>
-                                                    <td>250</td>
-                                                    <td>23.4</td>
-                                                    <td>2325</td>
-                                                    <td>0</td>
+                                                    <td></td>
+                                                    <td class="expanded">Installment {{$term++}}</td>
+                                                    <td>RM {{$payload['installamt']-$payload['admin_charge_month']}}</td>
+                                                    <!-- <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">250</td>-->
+                                                    <td>{{$payload['admin_charge_month']}}</td>
+                                                    <td>{{$payload['installamt']}}</td>
+                                                    <td>{{$net-=$payload['installamt']}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>05</td>
+                                                @endwhile
+                                                @php
+                                                    $payload['admin_charge_month']-=round($payload['admin_charge_month']*$payload['installment']->install_duration,2);
+                                                    $payload['admin_charge_month']+=$payload['admin_charge'];
+                                                    $payload['installamt']=$net;
+                                                    $date=$s->projected_alloc_date;
+                                                @endphp
+                                                <tr class="freeze">
+                                                    <td>{{$tn++}}</td>
+                                                     <td class="expanded"></td>
+                                                    <td>{{date('d M Y',strtotime($date.'+1month'))}}</td>
                                                     <td></td>
-                                                    <td>22 June 2020</td>
-                                                    <td>22 June 2020</td>
-                                                    <td>01 July 2020</td>
-                                                    <td>Down Payment 1</td>
-                                                    <td>RM 300</td>
-                                                    <td>RM 1000</td>
-                                                    <td>250</td>
-                                                    <td>23.4</td>
-                                                    <td>2325</td>
-                                                    <td>0</td>
+                                                    <td></td>
+                                                    <td class="expanded">Installment {{$term++}}</td>
+                                                    <td>RM {{$payload['installamt']-$payload['admin_charge_month']}}</td>
+                                                    <!-- <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">RM 1000</td>
+                                                    <td class="expanded">250</td>-->
+                                                    <td>{{$payload['admin_charge_month']}}</td>
+                                                    <td>{{$payload['installamt']}}</td>
+                                                    <td>{{$net-=$payload['installamt']}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>06</td>
-                                                    <td></td>
-                                                    <td>22 June 2020</td>
-                                                    <td>22 June 2020</td>
-                                                    <td>01 July 2020</td>
-                                                    <td>Down Payment 1</td>
-                                                    <td>RM 300</td>
-                                                    <td>RM 1000</td>
-                                                    <td>250</td>
-                                                    <td>23.4</td>
-                                                    <td>2325</td>
-                                                    <td>0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>Adjustment</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>-30.50</td>
-                                                    <td></td>
-                                                </tr>
+
                                                 <tr>
                                                     <th></th>
                                                     <th></th>
@@ -260,8 +303,8 @@
                                                     <th>Total</th>
                                                     <th></th>
                                                     <th></th>
-                                                    <th>8,000.30</th>
-                                                    <th>2,005.00</th>
+                                                    <th>{{$payload['admin_charge']}}</th>
+                                                    <th>{{$payload['installment']->net_price+$payload['admin_charge']}}</th>
                                                 </tr>
                                                 
                                             </tbody>
@@ -271,7 +314,7 @@
 
                                 
                             
-                                <button type="button" class=" btn btn-primary m-3 float-right" id="btn_add1" onclick="showContact2()">Reschedule</button>
+                                
                             </div>
                         </form>
                     </div>
@@ -358,4 +401,59 @@
 {{-- <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script> --}}
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script>
+    function csv() {
+    var filename='PaymentSchedule.csv';
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+        csv.push(row.join(","));        
+    }
+
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+}
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {type: "text/csv"});
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+    function printable() {
+        var headstr = "<html><head><title></title></head><body><table style='width:100%'>";
+        var footstr = "</table></body>";
+        var newstr = document.all.item('installtable').innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+</script>
 @endsection

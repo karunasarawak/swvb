@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-sm-4">
-          <div class="form-group controls"></div>
+          <div class="form-group controls">
             <div class="custom-control-inline">
               <div class="radio mr-1">
                 <input type="radio" name="lead_status" value="1" id="celead" @click="edit=false, original=true" onclick="chooseLead(1)" >

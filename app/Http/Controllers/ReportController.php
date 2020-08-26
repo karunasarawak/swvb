@@ -11,6 +11,8 @@ use App\Membership;
 use App\StampingFeeList;
 use App\StampingFeeBatch;
 use App\Exports\StampingFeeExport;
+use App\Exports\StampingFeeExportLHDN;
+
 use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
@@ -26,35 +28,6 @@ class ReportController extends Controller
       ];
 
       return view('pages.activitylog',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-
-    public function download()
-    {
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Stamping Fee Listing"],["name" => "Download"]
-      ];
-      
-      // https://appdividend.com/2019/09/13/laravel-6-generate-pdf-from-view-example-tutorial-from-scratch/
-      
-
-      return view('pages.stampingfeeprintdownload',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
-
-
-    public function calculator()
-    {
-
-      $pageConfigs = ['pageHeader' => true];
-
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Installment Schedule"],["name" => "Installment Schedule Calculator"]
-      ];
-
-
-      return view('pages.installmentschedule-calculator',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 
     public function amfdetails()
@@ -81,6 +54,32 @@ class ReportController extends Controller
 
 
       return view('pages.installment-amfall',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+
+    public function accstatement()
+    {
+
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "AMF Schedule"],["name" => "All"]
+      ];
+
+
+      return view('pages.acc-statement',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+
+    public function accstatementdetails()
+    {
+
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "AMF Schedule"],["name" => "All"]
+      ];
+
+
+      return view('pages.acc-statement-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 
      //Stamping Fee
@@ -226,31 +225,33 @@ class ReportController extends Controller
     {
       if($request->status_no == 1)
       {
+          $tsf = 20 * $this->countResult($request->batch_id);
           StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
-            'sfb_status'=>1, 
-            'sfb_req_at'=>$request->request_date
+              'sfb_status'=>1, 
+              'sfb_req_at'=>$request->request_date,
+              'penalty'=>$request->penalty,
+              'total_stamping_fee'=>$tsf,
             ]);
       }
       else if ($request->status_no == 2)
       {
         StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
           'sfb_status'=>2, 
-          'sfb_check_at'=>$request->check_date
+          'sfb_verify_at'=>$request->verify_date
           ]);
       }
       else if ($request->status_no == 3)
       {
         StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
           'sfb_status'=>3, 
-          'sfb_approved_at'=>$request->approved_date
+          'sfb_approved_at'=>$request->approve_date
           ]);
       }
       else if ($request->status_no == 4)
       {
         StampingFeeBatch::where('sfb_id', $request->batch_id)->update([
           'sfb_status'=>4, 
-          'sfb_sent_at'=>$request->sent_date
-          ]);
+        ]);
       }
       else
       {
@@ -262,7 +263,13 @@ class ReportController extends Controller
 
     public function exportExcel(Request $request, $batch_id)
     {
-      return Excel::download(new StampingFeeExport($request->batch_id), 'stamping.xlsx');
+      return Excel::download(new StampingFeeExport($request->batch_id), $batch_id.' Membership Agreement Listing.xlsx');
+    }
+
+    public function exportExcel_LHDN(Request $request, $batch_id, $batch_no)
+    {
+
+      return Excel::download(new StampingFeeExportLHDN($request->batch_id_lhdn), $batch_id.'_ Agreement Stamping - Digital Franking by LHDN.xlsx');
     }
 
     public static function countResult($batch_id)

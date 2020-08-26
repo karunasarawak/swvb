@@ -86,7 +86,17 @@
                                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
+
                                                     <div class="dropdown-menu dropdown-menu-right">
+                                                        <form action="{{ route('card.export', $list->cpb_id) }}" method="GET">
+                                                            <input type="hidden" value="{{ $list->cpb_id }}" name="batch_id">
+                                                            <button class="bg-transparent border-0">
+                                                                <a class="dropdown-item">
+                                                                    <i class="bx bx-download mr-1"></i>Download
+                                                                </a>
+                                                            </button>
+                                                        </form>
+
                                                         @if($list->cpb_status == 0)
                                                             <button class="bg-transparent border-0" data-toggle="modal" data-target="#sent" onclick="getBatchNo({{ $list->cpb_id }})">
                                                                 <a class="dropdown-item"><i class="bx bx-send mr-1"></i> Sent</a>
@@ -94,10 +104,6 @@
                                                         @elseif($list->cpb_status == 1)
                                                             <button class="bg-transparent border-0" data-toggle="modal" data-target="#receive" onclick="getBatchNo({{ $list->cpb_id }})">
                                                                 <a class="dropdown-item" ><i class="bx bx-envelope mr-1"></i> Receive</a>
-                                                            </button>
-                                                        @else
-                                                            <button class="bg-transparent border-0">
-                                                                <a class="dropdown-item"><i class="bx bx-trash mr-1"></i>Download</a>
                                                             </button>
                                                         @endif
                                                     </div>

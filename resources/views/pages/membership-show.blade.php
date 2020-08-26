@@ -50,32 +50,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><a href="{{ route('members.redirect') }}">100001</a></td>
-                                        <td>John Doe</td>
-                                        <td>880914-13-4565</td>
-                                        <td>0124536869</td>
-                                        <td>johndoe@gmail.com</td>
-                                        <td>15-09-2020</td>
-                                        <td>20-09-2020</td>
-                                        <td>15-09-2050</td>
-                                        <td>Pearl</td>
-                                        <td>RM 2000</td>
-                                        <td>Pending</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ route('members.redirect') }}">100005</a></td>
-                                        <td>Sharon Wang</td>
-                                        <td>950124-11-8542</td>
-                                        <td>012456546</td>
-                                        <td>sharon95@gmail.com</td>
-                                        <td>25-12-2020</td>
-                                        <td>11-04-2025</td>
-                                        <td>15-09-2050</td>
-                                        <td>Pearl</td>
-                                        <td>RM 4000</td>
-                                        <td>Pending</td>
-                                    </tr>
+                                    @foreach($membership as $mbr)
+                                        <tr>
+                                            <td><a href="{{ route('membership.details', $mbr->mbrship_id) }}">{{ $mbr->mbrship_id }}</a></td>
+                                            <td>{{ $mbr->name }}</td>
+                                            <td>{{ $mbr->nric }}</td>
+                                            <td>{{ $mbr->mobile_no }}</td>
+                                            <td>{{ $mbr->primary_email}}</td>
+                                            <td>{{ $mbr->application_date }}</td>
+                                            <td>{{ $mbr->agreement_date }}</td>
+                                            <td>{{ $mbr->mbrship_exp }}</td>
+                                            <td>{{ $mbr->package }}</td>
+                                            <td>RM {{ $mbr->package_price }}</td>
+
+                                            @if($mbr->mbrship_status == 0)
+                                                <td>Pending</td>
+                                            @elseif($mbr->mbrship_status == 1)
+                                                <td>Be Back</td>
+                                            @elseif($mbr->mbrship_status == 2)
+                                                <td>Active</td>
+                                            @elseif($mbr->mbrship_status == 3)
+                                                <td>Suspend</td>
+                                            @elseif($mbr->mbrship_status == 4)
+                                                <td>Terminate</td>
+                                            @elseif($mbr->mbrship_status == 5)
+                                                <td>Repurchase</td>
+                                            @elseif($mbr->mbrship_status == 6)
+                                                <td>Deceased</td>
+                                            @elseif($mbr->mbrship_status == 6)
+                                                <td>Write Off</td>
+                                            @endif
+                                        </tr>
+                                    @endforeach()
                                 </tbody>
                             </table>
                         </div>

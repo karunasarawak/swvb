@@ -53,6 +53,8 @@ class CreateToursTable extends Migration
         );
     }
 
+    
+
     /**
      * Reverse the migrations.
      *
@@ -63,4 +65,3 @@ class CreateToursTable extends Migration
         Schema::dropIfExists('tours');
     }
 }
-{{  }}

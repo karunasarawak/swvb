@@ -16,12 +16,15 @@ class CreateAccIctRequestsDetailsTable extends Migration
         Schema::create('acc_ict_requests_details', function (Blueprint $table) {
             $table->id('aict_req_detail_id');
             $table->integer('aict_req_id')->length(11)->nullable();
-            $table->integer('doc_id')->length(11)->nullable();
+            $table->integer('inv_id')->length(11)->nullable();
+            $table->integer('rcpt_id')->length(11)->nullable();
             $table->integer('inv_itm_type_id')->length(11)->nullable();
-            $table->tinyInteger('doc_type')->length(1)->nullable();
+            $table->tinyInteger('acc_ict_req_type')->length(1)->nullable();
             $table->decimal('unit_price')->length(8)->nullable();
             $table->tinyInteger('rounding')->length(1)->nullable();
             $table->integer('total_price')->length(50)->nullable();
+            $table->string('reason', 10)->nullable();
+            $table->string('remarks', 250)->nullable();
             $table->timestamps();
         });
     }

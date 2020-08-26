@@ -18,8 +18,8 @@ class CreateCardPrintingListTable extends Migration
             $table->integer('cpb_id')->length(11)->nullable();
             $table->integer('mbrship_no')->length(11)->nullable();
             $table->timestamps();
-           
         });
+
     }
 
     /**

@@ -55,414 +55,48 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($rr as $r)
+                                            
                                             <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">74</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>System</td>
+                                            <td><a href="{{url('/extmembership/rcibb/details/'.$r->rcibb_id)}}">{{$r->batch_no}} @if(!empty($r->sub_batch)) -{{$r->sub_batch}} @endif</a></td>
+                                                 <td>{{$accommodations[$r->ru->reservation->accom_id]->accom_name}}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
+                                                    <div class="dropdown">
+                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
+                                                    </div>
+                                                    </div>
+                                                </td>
+                                                <td><div class="dropdown">
+                                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
+                                                    <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
+                                                    </div>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>205420000</td>
-                                                <td>Yakub Sebastian</td>
-                                                <td>RM 247.30</td>
-                                                <td>Point Offset</td>
-                                                <td>03 June 2020</td>
-                                                <td>Active</td>
-                                                <td>System</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000034</td>
-                                                <td>Iola</td>
-                                                <td>Iola</td>
-                                                <td>06 November 2019</td>
-                                                <td>08:31 PM</td>
-                                                <td>Jameson Knight</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000035</td>
-                                                <td>Zorita</td>
-                                                <td>Zorita</td>
-                                                <td>11 June 2018</td>
-                                                <td>07:18 PM</td>
-                                                <td>Reed Meyer</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000036</td>
-                                                <td>Denton</td>
-                                                <td>Denton</td>
-                                                <td>13 March 2020</td>
-                                                <td>09:30 PM</td>
-                                                <td>Joseph Sanford</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000037</td>
-                                                <td>Maris</td>
-                                                <td>Maris</td>
-                                                <td>21 January 2020</td>
-                                                <td>11:09 AM</td>
-                                                <td>Daniel Matthews</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000038</td>
-                                                <td>Cecilia</td>
-                                                <td>Cecilia</td>
-                                                <td>26 November 2019</td>
-                                                <td>03:37 AM</td>
-                                                <td>Tyler Washington</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000039</td>
-                                                <td>Buckminster</td>
-                                                <td>Buckminster</td>
-                                                <td>10 March 2020</td>
-                                                <td>05:35 PM</td>
-                                                <td>Salvador Heath</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000040</td>
-                                                <td>Hadley</td>
-                                                <td>Hadley</td>
-                                                <td>28 October 2018</td>
-                                                <td>12:43 PM</td>
-                                                <td>Hamish Klein</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000041</td>
-                                                <td>Malachi</td>
-                                                <td>Malachi</td>
-                                                <td>22 January 2020</td>
-                                                <td>03:29 PM</td>
-                                                <td>Kennan Chase</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="{{url('/extmembership/rcibb/details')}}">CN10013902</a></td>
-                                                <td>1000042</td>
-                                                <td>Yael</td>
-                                                <td>Yael</td>
-                                                <td>04 September 2019</td>
-                                                <td>07:31 PM</td>
-                                                <td>Joel Allen</td>
-                                                <td>ABC place</td>
-                                                <td>
-                                                        <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> DOWNLOAD</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> PRINT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> EXPORT CSV</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> VERIFIED</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> APPROVED </a>
-                                                        </div>
-                                                        </div>
-                                                    </td>
-                                            </tr>
+                                            @endforeach
+                                           
                                         </tbody>
                                     </table>
                                 </div>

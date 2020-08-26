@@ -29,8 +29,9 @@ class CreateVouchersTable extends Migration
         });
 
         DB::table('vouchers')->insert(array(
-            ['accom_id'=>1, 'voucher_no'=> 'CV10001', 'no_occupancy'=>2, 'night'=>'2', 'cv_start_date'=>"2020-10-10", 'cv_exp_date'=>"2020-11-11", 'start_day'=>1, 'end_day'=>4, 'has_used'=>0, 'voucher_status'=>1]
-            ));
+            ['accom_id'=>1, 'voucher_no'=> 'CV10001', 'no_occupancy'=>2, 'night'=>'2', 'cv_start_date'=>"2020-10-10", 'cv_exp_date'=>"2021-01-10", 'start_day'=>1, 'end_day'=>4, 'has_used'=>0, 'voucher_status'=>1],
+            ['accom_id'=>1, 'voucher_no'=> 'CV10002', 'no_occupancy'=>2, 'night'=>'2', 'cv_start_date'=>"2020-10-01", 'cv_exp_date'=>"2021-01-01", 'start_day'=>1, 'end_day'=>4, 'has_used'=>0, 'voucher_status'=>1]
+        ));
     }
 
     /**

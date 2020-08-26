@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\CardPrinting;
 use App\CardPrintingBatch;
 use App\Membership;
+
 use Illuminate\Http\Request;
 use DB;
+use Excel;
+use App\Exports\CardPrintingExport;
 
 class CardPrintingController extends Controller
 {
@@ -204,20 +207,20 @@ class CardPrintingController extends Controller
       return redirect("cardprintinglist");
     }
 
-    public function generatePDF()
+    public function exportExcel(Request $request, $batch_id)
     {
-      $batchDetail = DB::table('card_printing_batch')->where('cpb_id',$batch_id)->get();
+      return Excel::download(new CardPrintingExport($request->batch_id), $batch_id.'_sample.xlsx');
     }
 
-    public function cpdispatch(){
+    // public function cpdispatch(){
     
-      $pageConfigs = ['pageHeader' => true];
+    //   $pageConfigs = ['pageHeader' => true];
   
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Dispatch"],["name" => "All"]
-      ];
+    //   $breadcrumbs = [
+    //     ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Dispatch"],["name" => "All"]
+    //   ];
   
-      return view('pages.dispatch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
+    //   return view('pages.dispatch',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    // }
 
 }

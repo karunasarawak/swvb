@@ -24,6 +24,7 @@ class Lead extends Model
         'created_at',
         'updated_at'
     ];
+    protected $primaryKey='lead_id';
 
     protected $dates = ['created_at', 'updated_at'];
 
@@ -102,7 +103,10 @@ class Lead extends Model
         return $this->hasMany('App\Race', 'race_id', 'ethnicity_id');
     }
 
-
+    public function Tour()
+    {
+        return $this->hasMany('App\Tour', 'lead_id', 'lead_id1');
+    }
     //  public function Religion()
     //  {
     //      return $this->hasOne('App\Religion', 'religion_id','religion');

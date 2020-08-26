@@ -469,7 +469,7 @@
                 </div>
 
             <!-- form for status of active -->
-            <form action="{{route('members.redirect')}}" method="GET" novalidate>
+            <form action="" method="GET" novalidate>
                             @csrf
                 <div class="modal-body">
                     <div class="form-group controls">

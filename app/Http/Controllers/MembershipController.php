@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Membership;
 use App\Lead;
 use App\Country;
+use App\MembershipReinstate;
 use Illuminate\Database\Seeder;
 
 class MembershipController extends Controller
@@ -21,10 +22,43 @@ class MembershipController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "All"]
     ];
 
-    $membership = Membership::all();
+    $membership = DB::table('memberships')
+                  ->join('leads','memberships.lead_id1','leads.lead_id')
+                  ->join('packages','memberships.package_id','packages.package_id')
+                  ->get();
+    // dd($membership);
 
     return view('pages.membership-show',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'membership'=>$membership]);
 
+  }
+
+  public function showMemberDetails($mbrship_id)
+  {
+    // dd($mbrship_id);
+    $pageConfigs = ['pageHeader' => true];
+      
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Membership Details"]
+    ];
+
+    $memberDetail = Db::table('memberships')->where('mbrship_id', $mbrship_id)
+                  ->join('leads','leads.lead_id','memberships.lead_id1')
+                  ->join('packages','packages.package_id','memberships.package_id')
+                  ->join('salutations As s','s.salutation_id','leads.salutation_id')
+                  ->first();
+
+    $payload = ['memberDetail'=>$memberDetail];
+    $payload['installment']=DB::table('installments')->where('mbrship_id',$mbrship_id)->first();
+    $payload['members']=DB::table('members')
+    ->join('leads','leads.lead_id','members.lead_id')
+    ->join('salutations As s','s.salutation_id','leads.salutation_id')
+    ->where('members.mbrship_id',$mbrship_id)
+    ->get();
+    $payload['salutations']=DB::table('salutations')->get();
+    
+    // dd($mbrship_id);
+
+    return view('pages.membership-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
   public function archive(){
@@ -339,18 +373,8 @@ class MembershipController extends Controller
     return redirect('membership/'.$request->tour_id.'/details');
   }
 
-  public function showMembers(){
 
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Leads"],["name" => "Membership Details"]
-    ];
-
-    return view('pages.membership-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  }
-
-  public function redirect(Request $request)
+  public function redirect(Request $request, $id)
   {
 
     $pageConfigs = ['pageHeader' => true];
@@ -361,17 +385,22 @@ class MembershipController extends Controller
 
     if($request -> Deceased == 'Transfer')
     {
-      return view('pages.membership-transfer');
+      return redirect('/membership/'.$id.'/transfer');
     }
     else if ($request -> Deceased == 'Downgrade')
     {
-      return view('pages.membership-updowngrade');
+      return redirect('/membership/'.$id.'/updowngrade');
     }
     else if ($request -> Deceased == 'Repurchase')
     {
-      return view('pages.membership-repurchase');
+      return redirect('/membership/'.$id.'/repurchase');
+    }
+    else if ($request -> Deceased == 'Reinstate')
+    {
+      return redirect('/membership/'.$id.'/reinstate');
     }
     
+
 
     return view('pages.membership-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
@@ -381,13 +410,13 @@ class MembershipController extends Controller
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Withdraw Membership"]
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Membership Withdraw"]
     ];
 
     return view('pages.membership-withdraw',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 
-  public function transfer(){
+  public function transfer($id){
 
     $pageConfigs = ['pageHeader' => true];
 
@@ -398,18 +427,46 @@ class MembershipController extends Controller
     return view('pages.membership-transfer',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 
-    public function reinstate(){
+    public function reinstate($id){
 
       $pageConfigs = ['pageHeader' => true];
     
       $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Transfer"]
+        ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Reinstate"]
       ];
+
+        $membership = Membership::where('mbrship_id',$id)->get();
+
+        $payload = [ 'membership'=>$membership[0],
+
+        ];
     
-      return view('pages.membership-reinstate',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+      return view('pages.membership-reinstate',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
       }
 
-  public function updowngrade(){
+      public function storereinstate(Request $request, $id){
+
+
+        // dd($request);
+  
+        $m = MembershipReinstate::where('membership_id', $id)
+        ->insert([
+            
+            'date'=>$request->date,
+            // 'amt_due'=>1            
+            'amt_due'=>$request->amt_due,
+            'total_amount'=>$request->total_amount,
+            'pt_offset_amt'=>$request->pt_offset_amt,
+          ]);
+      
+          return redirect('membership/'.mbrship_id.'/reinstate');
+        // //  dd($m);
+        // dd($m);
+          // MembershipReinstate::insert($reinstate);
+      }
+  
+
+  public function updowngrade($id){
 
     $pageConfigs = ['pageHeader' => true];
 
@@ -419,19 +476,56 @@ class MembershipController extends Controller
 
     return view('pages.membership-updowngrade',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
-
-  public function repurchase(){
+  public function repurchase($id){
 
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
+      ["link" => "/", "name" => "Home"],["link" => "/membership", "name" => "Membership"],["name" => "Membership Repurchase"]
     ];
 
-    return view('pages.membership-repurchase',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    $membership = DB::table('memberships')
+                  ->join('leads', 'memberships.lead_id1', 'leads.lead_id')
+                  ->join('packages', 'memberships.package_id', 'packages.package_id')
+                  ->where('memberships.mbrship_id', $id)
+                  ->get();
+
+    $allocated_terms = DB::table('installment_ent_point_schedules')
+                  ->distinct()
+                  ->join('installments','installment_ent_point_schedules.install_id','installments.install_id')
+                  ->where('installments.mbrship_id', $id)
+                  ->get('term');
+
+    $date = date("Y-m-d");
+    $current_installment_amt = DB::table('invoices')
+              ->where('type', 'Installment')
+              ->where('mbrship_id', $id)
+              ->whereDate('issue_date', '<=', $date)
+              ->sum('total');
+
+    $current_amf_amt = DB::table('invoices')
+              ->where('type', 'AMF')
+              ->where('mbrship_id', $id)
+              ->whereDate('issue_date', '<=', $date)
+              ->sum('total');
+
+    $outstanding_amt = DB::table('invoices')
+              ->where('mbrship_id', $id)
+              ->whereDate('issue_date', '<=', $date)
+              ->sum('balance');
+    
+    $payload = [ 'membership'=>$membership[0],
+    'terms'=>$allocated_terms,
+    'current_installment_amt'=>$current_installment_amt,
+    'current_amf_amt'=>$current_amf_amt,
+    'outstanding'=>$outstanding_amt
+  ];
+
+    return view('pages.membership-repurchase',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
 
-  public function editMembers(Request $request, $id){
+  public function editMembers(Request $request, $id)
+  {
 
     Membership::where('members_id', $id)->update([
       'contract1' =>$request->contract1,
@@ -506,7 +600,7 @@ class MembershipController extends Controller
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Entitlement Management"]
     ];
 
     return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
@@ -523,7 +617,7 @@ class MembershipController extends Controller
     return view('pages.ent-history',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
-  public function advanceent(){
+  public function advance(){
 
     $pageConfigs = ['pageHeader' => true];
 
@@ -531,21 +625,11 @@ class MembershipController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
     ];
 
-    return view('pages.entitlementmanagement-advanced',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    return view('pages.entitlementmanagement-advance',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
 
-  // public function offset(){
-
-  //   $pageConfigs = ['pageHeader' => true];
-
-  //   $breadcrumbs = [
-  //     ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Membership"],["name" => "Manage Entitlement"]
-  //   ];
-
-  //   return view('pages.entitlementmanagement-offset',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-  // }
-
-  public function create2ndMembership(){
+  public function create2ndMembership()
+  {
 
       $pageConfigs = ['pageHeader' => true];
       
@@ -557,7 +641,70 @@ class MembershipController extends Controller
 
       return view('pages.membership-newSecMbr',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
 
+  }
+
+  public static function getTermEnt($term, $mbrship_id, $unit)
+  {
+    $ent_allocs = DB::table('installment_ent_point_schedules')
+                  ->join('installments','installment_ent_point_schedules.install_id','installments.install_id')
+                  ->where('installments.mbrship_id', $mbrship_id)
+                  ->where('installment_ent_point_schedules.unit_type', $unit)
+                  ->where('installment_ent_point_schedules.term', $term)
+                  ->where('installment_ent_point_schedules.alloc_desc', 'term allocation')
+                  ->sum('amount_allocated');
+
+    return $ent_allocs[0];
+  }
+
+  public static function getRemainEnt($term, $mbrship_id, $unit)
+  {
+    $ent_bal = DB::table('installment_ent_point_schedules')
+                  ->join('installments','installment_ent_point_schedules.install_id','installments.install_id')
+                  ->where('installments.mbrship_id', $mbrship_id)
+                  ->where('installment_ent_point_schedules.unit_type', $unit)
+                  ->where('installment_ent_point_schedules.term', $term)
+                  ->where('installment_ent_point_schedules.alloc_desc', 'term allocation')
+                  ->sum('balance');
+
+    if ($ent_bal[0] == 0)
+    {
+      $balance = 0;
+    }
+    else
+    {
+      $balance = $ent_bal[0];
     }
 
+    return $balance;
+  }
 
+  public static function hasExtMembership($mbrship_id)
+  {
+    $today = date('Y-m-d');
+    $ext_mbrship = DB::table('external_memberships')
+                  ->where('mbrship_id', $mbrship_id)
+                  ->whereDate('expiry_date', '>', $today)
+                  ->where('enroll_status', 2)
+                  ->get();
+
+    if (count($ext_mbrship) > 0)
+    {
+      return "Yes";
+    }
+    else
+    {
+      return "No";
+    }
+  }
+
+  public function savemember(Request $request,$id,$type){
+    $l=Lead::create($request->get('lead'));
+    $member=$request->get['member'];
+    $member['mbrship_id']=$id;
+    $member['mbr_type']=$type;
+    $member['lead_id']=$l->lead_id;
+    print_r($member);
+    Member::create($member);
+    //redirect(route('membership.details',$id));
+  }
 }

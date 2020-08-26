@@ -8,6 +8,10 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
 @endsection
 
+@php
+    use App\Http\Controllers\MembershipController;
+@endphp
+
 @section('content')
 <!-- Form wizard with icon tabs section start -->
 <section class="simple-validation float-left">
@@ -33,46 +37,29 @@
                                 
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label for="location">Name of Applicant</label>
-                                            <input type="name" name="requestreceived_date" class="form-control" placeholder="1234 0000" data-validation-required-message="Please select the date of requested received" required>
-                                
+                                            <label for="applicant-name">Name of Applicant</label>
+                                            <input type="name" name="applicant_name" class="form-control" placeholder="--" data-validation-required-message="Please enter name of applicant" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Date of Application</label>
-                                                <input type="date" class="form-control" value="01 June 2020" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
+                                            <label for="request-date">Date of Request</label>
+                                                <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="application-date" name="application_date"
+                                                data-validation-required-message="Please enter date of request" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Agreement Date</label>
-                                                <p>01 June 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Package Purchased</label>
-                                                <p>01 June 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Date of Request Received</label>
-                                            <input type="date" class="form-control" value="01 June 2020" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
+                                            <label for="received-date">Date of Request Received</label>
+                                            <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="received-date" name="received_date"
+                                                data-validation-required-message="Please enter date of request received" required>
                                         </div>
                                     </div>
                                 </div>
@@ -86,8 +73,8 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label for="location">Membership Payment to Date</label>
-                                            <p>01 June 2020</p>
+                                            <label>Membership Payment to Date</label>
+                                            <p>RM {{ number_format($payload['current_installment_amt'], 2) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -95,8 +82,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Annual Maintenance Fee Payment to Date</label>
-                                                <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
+                                            <p>RM {{ number_format($payload['current_amf_amt'], 2) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -104,89 +90,43 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="controls">
-                                            <label>Outstanding Outcome</label>
-                                                <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                                    <option value="">Refund</option>
-                                                    <option value="Mr.">Mr.</option>
-                                                    <option value="Ms.">Ms.</option>
-                                                    <option value="Dr.">Dr.</option>
-                                                </select>
+                                         <div class="controls">
+                                            <label>Outstanding Amount</label>
+                                            <p>RM {{ number_format($payload['outstanding'], 2) }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Reason of Withdrawal/Cancel</label>
-                                                <input type="text" class="form-control" placeholder="RM 500" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                <div class="form-group controls">
-                                    <label class="d-block">Income Group</label>
-                                        <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                            <option value="">Below RM 5000</option>
-                                            <option value="Mr.">Mr.</option>
-                                            <option value="Ms.">Ms.</option>
-                                            <option value="Dr.">Dr.</option>
-                                        </select>
-                                </div>
                             </div>
 
                         </div>
 
                         <div class="card-body card-dashboard pt-1">
+                            <label>Entitlement Balance</label>
                             <div class="table-responsive">
                                 <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
                                                 <th class="text-white">Term</th>
-                                                <th class="text-white">Description</th>
                                                 <th class="text-white">Weekday</th>
                                                 <th class="text-white">Weekend</th>
                                                 <th class="text-white">Balance</th>
                                             </tr>
                                         </thead>
                                     <tbody>
+                                        @foreach($payload['terms'] as $t)
                                         <tr>
-                                            <td>Mr</td>
-                                            <td>Ben</td>
-                                            <td>+6012 345 6789</td>
-                                            <td>Wife</td>
-                                            <td>Secondary</td>
+                                            <td>{{ $t->term }}</td>
+                                            <td>@php echo MembershipController::getTermEnt($t->term, $payload['membership']->mbrship_id, 1) @endphp</td>
+                                            <td>@php echo MembershipController::getTermEnt($t->term, $payload['membership']->mbrship_id, 2) @endphp</td>
+                                            <td>@php echo MembershipController::getRemainEnt($t->term, $payload['membership']->mbrship_id, 1) @endphp WD @php echo MembershipController::getRemainEnt($t->term, $payload['membership']->mbrship_id, 2) @endphp WE</td>
                                         </tr>
-                                        <tr>
-                                            <td>Mrs</td>
-                                            <td>Jane</td>
-                                            <td>+6012 345 6789</td>
-                                            <td>Wife</td>
-                                            <td>Secondary</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mr</td>
-                                            <td>Ben</td>
-                                            <td>+6012 345 6789</td>
-                                            <td>Wife</td>
-                                            <td>Secondary</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mrs</td>
-                                            <td>Jane</td>
-                                            <td>+6012 345 6789</td>
-                                            <td>Wife</td>
-                                            <td>Secondary</td>
-                                        </tr>
+                                        @endforeach()
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         
-
-                            
                             <div class="row pt-1">
                                 <div class="col-12">
                                     <h6 class="h6 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Instruction</h6>
@@ -196,36 +136,40 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Current Membership Period</label>
-                                                <p>3 Years</p>
+                                            <p>{{ $payload['membership']->mbrship_term }}</p>
                                         </div>
                                     </div>
                                 </div>
                             
-                            
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
+                                </div>          
+
+                                <div class="col-sm-6">
                                     <div class="form-group controls">
-                                        <label class="d-block">Repurchase Amount</label>
-                                            <p>Rm 500 </p>
+                                        <div class="form-group controls">
+                                            <label class="d-block">Repurchase Amount</label>
+                                            <p></p>
+                                        </div>
                                     </div>
                                 </div>          
 
                                 <div class="col-sm-6">
                                     <div class="form-group controls">
-                                    
                                         <label class="d-block">Total Nett Amount</label>
-                                            <input type="text" class="form-control" placeholder="RM 500" id="name" name="name"
+                                        <input type="text" class="form-control" placeholder="RM" id="name" name="name"
                                                 data-validation-required-message="This Name field is required" required>
                                     </div>
                                 </div>          
-
-                                <div class="col-sm-6">
-                                    <div class="form-group controls">
-                                        <label class="d-block">Remarks</label>
-                                            <input type="text" class="form-control" placeholder="RM 500" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
-                                    </div>
-                                </div>          
+                            </div>
                             
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group controls">
+                                        <label for="payment-remarks" class="d-block">Remarks</label>
+                                        <input type="text" class="form-control" placeholder="--" id="payment-remarks" name="payment_remarks"
+                                                data-validation-required-message="This Name field is required" required>
+                                    </div>
+                                </div>          
                             </div>
                             
                             <div class="row pt-1">
@@ -237,18 +181,18 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label for="location">Name</label>
-                                            <input type="text" class="form-control" placeholder="RM 500" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
+                                            <label for="account-holder">Name</label>
+                                            <input type="text" class="form-control" placeholder="--" id="account-holder" name="account_holder"
+                                                data-validation-required-message="Please enter banker's name" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Bank</label>
-                                                <input type="number" class="form-control" placeholder="1234 0000" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
+                                            <label for="bank-name">Bank</label>
+                                            <input type="text" class="form-control" placeholder="--" id="bank-name" name="bank_name"
+                                                data-validation-required-message="Please enter bank name" required>
                                         </div>
                                     </div>
                                 </div>
@@ -257,21 +201,22 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Account No.</label>
-                                                <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                                    <option value="">Refund</option>
-                                                    <option value="Mr.">Mr.</option>
-                                                    <option value="Ms.">Ms.</option>
-                                                    <option value="Dr.">Dr.</option>
-                                                </select>
+                                            <label for="account-no">Account No.</label>
+                                            <input type="number" class="form-control" placeholder="--" id="account-no" name="account_no"
+                                                data-validation-required-message="Please enter account no." required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="RM 500" id="name" name="name"
+                                            <input type="text" class="form-control" placeholder="--" id="name" name="name"
                                                 data-validation-required-message="This Name field is required" required>
                                         </div>
                                     </div>
@@ -302,11 +247,11 @@
                                     <div class="col">
                                         <div class="row pt-1">
                                             <p class="col">Member Name</p>
-                                            <p class="col font-weight-bold black">John Doe</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->name }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Contact No.</p>
-                                            <p class="col font-weight-bold black">+6012 345 6789</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->mobile_no }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -319,39 +264,31 @@
                                     <div class="col">
                                         <div class="row pt-1">
                                             <p class="col">Membership No.</p>
-                                            <p class="col font-weight-bold black">23456 0000</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->mbrship_no }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Date of Application</p>
-                                            <p class="col font-weight-bold black">+6012 345 6789</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->application_date }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Date of Agreement</p>
-                                            <p class="col font-weight-bold black">01 April 2020</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->agreement_date }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Package Type</p>
-                                            <p class="col font-weight-bold black">Pearl Full</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->package }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Package Price</p>
-                                            <p class="col font-weight-bold black">10,000</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->package_price }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Entitlement</p>
-                                            <p class="col font-weight-bold black">SWD 2WE</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Payment to Date</p>
-                                            <p class="col font-weight-bold black">5,000</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->package_wd }} WD {{ $payload['membership']->package_we }} WE</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">External Membership</p>
-                                            <p class="col font-weight-bold black">Yes</p>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <p class="col">Eligible for Transfer</p>
-                                            <p class="col font-weight-bold black">No</p>
+                                            <p class="col font-weight-bold black">@php echo MembershipController::hasExtMembership($payload['membership']->mbrship_id) @endphp</p>
                                         </div>
                                     </div>
                                 </div>

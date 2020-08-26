@@ -13,7 +13,7 @@ class CreateStaffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
+        Schema::create('staffs', function (Blueprint $table) {
             $table->id('staff_id');
             $table->integer('role_id')->length(11);
             $table->text('staff_name',50);
@@ -24,7 +24,7 @@ class CreateStaffsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('staff')->insert(
+        DB::table('staffs')->insert(
             array(
                 ['staff_name' => 'Bisil Kanyong','staff_code' => 'FM' ,'role_id'=>1,'is_active'=>1],
                 ['staff_name' => 'Claudia', 'staff_code' => 'CCE', 'role_id'=>2,'is_active'=>1],
@@ -44,6 +44,6 @@ class CreateStaffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('staffs');
     }
 }

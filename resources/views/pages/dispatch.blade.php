@@ -23,7 +23,7 @@
                     
                     <div class="card-body card-dashboard">
                        
-                        <div class="table-responsive">
+                        <div class="table-responsive pt-3">
 
                             <table class="table tours-all" style="width:100%;">
                                 <thead class="bg-swvb-dark">

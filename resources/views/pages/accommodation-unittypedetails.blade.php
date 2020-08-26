@@ -318,7 +318,6 @@
                             <div class="col-sm-4">
                                 <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Season</p>
                             </div>
-                            
                         </div>
                         
                         <div class="row">
@@ -326,14 +325,13 @@
                     
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
-                                        <table class="table tours-all">
+                                        <table class="table tours-all" style="width:100%">
                                             <thead class="bg-swvb-dark">
                                                 <tr>
-                                                    <th class="text-white" style="width:50%">Season</th>
-                                                    <th class="text-white" style="width:50%">Payable WD</th>
-                                                    <th class="text-white" style="width:50%">Payable WE</th>
-                                                    <th class="text-white" style="width:50%">Reservation Type</th>
-                                                    
+                                                    <th class="text-white" >Season</th>
+                                                    <th class="text-white" >Payable WD</th>
+                                                    <th class="text-white" >Payable WE</th>
+                                                    <th class="text-white" >Reservation Type</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

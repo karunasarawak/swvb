@@ -14,6 +14,17 @@ class InventoryController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Inventory"],["name" => "All"]
         ];
     
+        return view('pages.inventory1', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
+      } 
+
+      public function indexrefer(){
+
+        $pageConfigs = ['pageHeader' => true];
+    
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Inventory"],["name" => "All"]
+        ];
+    
         return view('pages.inventory', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
       } 
       
@@ -27,4 +38,6 @@ class InventoryController extends Controller
     
         return view('pages.offset-reminder', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
       } 
+
+      
 }

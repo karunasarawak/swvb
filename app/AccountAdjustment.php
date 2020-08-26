@@ -15,9 +15,18 @@ class AccountAdjustment extends Model
         'unit_price',
         'rounding',
         'total_price',
-      
+        'reason'
     ];
 
     protected $table = 'acc_ict_requests_details';
 
+    public function invoice()
+    {
+        return $this->belongsto('App\Invoice', 'doc_id', 'inv_id');
+    }
+
+    public function receipt()
+    {
+        return $this->belongsto('App\Receipt', 'doc_id', 'receipt_id');
+    }
 }

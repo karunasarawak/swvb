@@ -19,7 +19,7 @@ class CreateReservationsTable extends Migration
             $table->integer('rsvn_type_id')->length(11)->nullable();
             $table->integer('accom_id')->length(11)->nullable();
             $table->integer('voucher_id')->length(11)->nullable();
-            $table->integer('invoice_id')->length(11)->nullable();
+            // $table->integer('invoice_id')->length(11)->nullable();
             $table->integer('rsvn_no')->length(11)->nullable();
             $table->tinyInteger('communication_channel')->length(1)->nullable();
             $table->date('check_in')->nullable();

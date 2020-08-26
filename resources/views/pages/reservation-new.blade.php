@@ -95,11 +95,11 @@
               <fieldset x-data="{ edit: false, original:true}">
                
                   <div class="card">
-                    <div class="card-header">
+                    <div class="card-header pl-0 pr-0">
                         <h4 class="card-title">Membership Information</h4>
                     </div>
                     <div class="card-content">
-                        <div class="card-body card-dashboard">
+                        <div class="card-body card-dashboard pl-0 pr-0">
                             <div class="row pt-1">
                                 <div class="col-sm-3">
                                     <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Member's Information</p>
@@ -107,7 +107,7 @@
                                 <div class="col-sm-6">
                                     <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Last Point Allocation</p>
                                 </div>
-                                <div class="col pl-4">
+                                <div class="col-sm-3">
                                     <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Status</p>
                                 </div>
                             </div>
@@ -147,19 +147,20 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="table-responsive">
-                                                <table class="table leads-all">
+                                                <table id="tbl_lpa" class="table leads-all">
                                                     <thead class="bg-swvb-dark">
                                                         <tr>
                                                             <th class="text-white">Term</th>
-                                                            <th class="text-white">Pts</th>
-                                                            <th class="text-white">Allocated</th>
+                                                            <th class="text-white">Points/Entitlement Allocated</th>
                                                             <th class="text-white">Expiry</th>
+                                                            <th class="text-white">Balance</th>
+                                                            <th class="text-white">Expired Points/Entitlement</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                       
+
                                                         <tr>
-                                                            <td colspan="4">No allocation</td>
+                                                            <td colspan="5">No allocation</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -168,7 +169,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col pl-4">
+                                <div class="col-sm-3">
                                     <div class="row">
                                         <p class="col-sm-6">Paid (%))</p>
                                         <p class="col-sm-6 font-weight-bold black">80%</p>
@@ -213,7 +214,7 @@
 
                                 </div>
                             </div>
-                    </div> 
+                    </div>
                     <h4 class="card-title">Booking Info</h4>
                     <div class="row">
                       <!-- hotel -->
@@ -368,7 +369,7 @@
                 </h6>
                 <fieldset> 
                   <!-- hotel -->
-                  <div class="card-header">
+                    <div class="card-header">
                         <h4 class="card-title">Membership Information</h4>
                     </div>
                     <div class="card-content">
@@ -427,6 +428,8 @@
                                                             <th class="text-white">Pts</th>
                                                             <th class="text-white">Allocated</th>
                                                             <th class="text-white">Expiry</th>
+                                                            <th class="text-white">Balance</th>
+                                                            <th class="text-white">Expired Points/Entitlements</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -435,24 +438,32 @@
                                                             <td>10,000</td>
                                                             <td>01.07.2020</td>
                                                             <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
                                                         </tr>
                                                         <tr>
                                                             <td>12</td>
                                                             <td>10,000</td>
                                                             <td>01.07.2020</td>
                                                             <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
                                                         </tr>
                                                         <tr>
                                                             <td>11</td>
                                                             <td>10,000</td>
                                                             <td>01.07.2020</td>
                                                             <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
                                                         </tr>
                                                         <tr>
                                                             <td>10</td>
                                                             <td>10,000</td>
                                                             <td>01.07.2020</td>
                                                             <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
                                                         </tr>
                                                         
                                                     </tbody>
@@ -614,7 +625,159 @@
                 </h6>
               <fieldset id="touchspin-fixer">
                 <!-- hotel -->
-                <h4 class="card-title">Room Detail</h4>
+                <h4 class="card-title ml-2">Room Detail</h4>
+                
+                    <!--<div class="card-header">-->
+                    <!--<h4 class="card-title">Membership Information</h4>-->
+                    <!--</div>-->
+                    <div class="card-content">
+                        <div class="card-body card-dashboard">
+                            <div class="row pt-1">
+                                <div class="col-sm-4">
+                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Member's Information</p>
+                                </div>
+                                <div class="col-sm-5">
+                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Last Point Allocation</p>
+                                </div>
+                                <div class="col ">
+                                    <p class="h7 swvb-blue m-0 font-weight-bold my-auto pb-2">Payment Status</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <p class="col">Saluation</p>
+                                        <p class="col font-weight-bold black mem_salutation">Mr</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Name</p>
+                                        <p class="col font-weight-bold black mem_name">John Doe</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Mobile Contact</p>
+                                        <p class="col font-weight-bold black mem_contact">+6012 345 6798</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Whatsapp</p>
+                                        <p class="col font-weight-bold black mem_whatsapp_no">+6012 345 6798</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Package</p>
+                                        <p class="col font-weight-bold black mem_package">Pearl Package</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Ext. Membership</p>
+                                        <p class="col font-weight-bold black">-</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Status</p>
+                                        <p class="col font-weight-bold black mem_status">Active</p>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table leads-all">
+                                                    <thead class="bg-swvb-dark">
+                                                        <tr>
+                                                            <th class="text-white">Term</th>
+                                                            <th class="text-white">Pts</th>
+                                                            <th class="text-white">Allocated</th>
+                                                            <th class="text-white">Expiry</th>
+                                                            <th class="text-white">Balance</th>
+                                                            <th class="text-white">Expired Points/Entitlements</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>13</td>
+                                                            <td>10,000</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12</td>
+                                                            <td>10,000</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11</td>
+                                                            <td>10,000</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10</td>
+                                                            <td>10,000</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>01.07.2020</td>
+                                                            <td>10000</td>
+                                                            <td>10000</td>
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="row">
+                                        <p class="col">Paid (%))</p>
+                                        <p class="col font-weight-bold black">80%</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">AMF Outstanding</p>
+                                        <p class="col font-weight-bold black">RM 50</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Installment Outstanding</p>
+                                        <p class="col font-weight-bold black">RM 50</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Other Outstanding</p>
+                                        <p class="col font-weight-bold black">RM 50</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Reservation Fee</p>
+                                        <p class="col font-weight-bold black">RM 20</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Membership Card Fee</p>
+                                        <p class="col font-weight-bold black">RM 10</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Transfer Fee</p>
+                                        <p class="col font-weight-bold black">RM 50</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Administration Fee</p>
+                                        <p class="col font-weight-bold black">RM 20</p>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <p class="col">Total Outstanding</p>
+                                        <p class="col font-weight-bold black">RM 70</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col">Over Payment</p>
+                                        <p class="col font-weight-bold black">RM 100</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>         
+                
                 <div class="row">
                     <div class="col">
                       <div class="form repeater-default">
@@ -691,6 +854,35 @@
                                       </div>
                                 </div>
                               </div>
+                              
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="income">Breakfast</label>
+                                      <div class="row ml-2">
+                                        <div class="checkbox">
+                                          <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="latecheck" value="all"
+                                            checked>
+                                          <label for="latecheck">Yes</label>
+                                        </div>
+                                        <div class="checkbox">
+                                          <input type="checkbox" class="checkbox-input tui-full-calendar-checkbox-square" id="lateout" value="all"
+                                            checked>
+                                          <label for="lateout">No</label>
+                                        </div>
+                                      </div>
+                                </div>
+                              </div>
+                              
+                               <div class=" col-sm-6 form-group">
+                                <label for="room_no">Reserve Breakfast Per Pax </label>
+                                <input type="link" class="form-control required" placeholder="--" id="income1" name="income1" data-toggle="modal" data-target="#breakfastexpenses" required>  
+                              </div>
+                              
+                               <div class=" col-sm-6 form-group">
+                                <label for="room_no"> Breakfast Pax </label>
+                                <input type="number" class="form-control required" placeholder="--" id="income1" name="income1" data-toggle="modal" data-target="#breakfastexpenses" required>  
+                              </div>
+                              
                               <div class="col-md-12">
                                 <div class="form-group">
                                   <label for="income">Remark</label>
@@ -1098,16 +1290,6 @@
           </div>
           
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-            <i class="bx bx-x d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">Close</span>
-          </button>
-          <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-            <i class="bx bx-check d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">login</span>
-          </button>
-        </div>
       </form>
     </div>
   </div>
@@ -1166,6 +1348,17 @@
 
         var pack=d['package'];
         $('.mem_package').html(pack['package']);
+
+        var lpa = d['lpa'];
+        if(lpa.length > 0){
+          $('#tbl_lpa > tbody').empty();
+          for(i=0; i<lpa.length; i++){
+          var row = $('<tr>'+
+                    '<td>'+lpa[i]['term']+'</td>'+
+                    '</tr>');
+          $('#tbl_lpa > tbody:last').append(row);
+          }
+        }        
       });
       //query lead and membership info
       

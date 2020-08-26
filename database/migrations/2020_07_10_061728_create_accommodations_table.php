@@ -21,9 +21,11 @@ class CreateAccommodationsTable extends Migration
             $table->integer('accom_cat_id')->length(11)->nullable();
             $table->integer('state_id')->length(11)->nullable();
             $table->integer('country_id')->length(11)->nullable();
-            
+            $table->integer('city_id')->length(11)->nullable();
+            $table->integer('postcode')->length(20)->nullable();
             $table->tinyInteger('club')->length(1)->nullable();
             $table->string('accom_name',60)->nullable();
+            $table->string('accom_code',20)->nullable();
             $table->string('accom_addr',255)->nullable();
             $table->decimal('admin_charges', 6, 2)->nullable();
             $table->integer('min_stay')->length(1)->nullable();
@@ -33,7 +35,7 @@ class CreateAccommodationsTable extends Migration
             $table->tinyInteger('max_lead_time_unit')->length(1)->nullable();
             $table->integer('cxl_deadline')->length(4)->nullable();
             $table->tinyInteger('cxl_deadline_unit')->length(1)->nullable();
-
+            
             $table->string('accom_remarks', 1000)->nullable();
             $table->tinyInteger('is_active')->length(1)->nullable();
             
@@ -48,6 +50,8 @@ class CreateAccommodationsTable extends Migration
             'country_id' => 1,
             'club' => 0,
             'accom_name' => 'Birch The Plaza',
+            'accom_code' => 'BPA',
+            
             'accom_addr' => 'Unit 77-15-22-12, Penang Times Square, Jalan Dato Keramat, 10150 Georgetown, Penang',
             'admin_charges' => '0',
             'min_stay' => 2,
@@ -66,6 +70,7 @@ class CreateAccommodationsTable extends Migration
             'country_id' => 1,
             'club' => 1,
             'accom_name' => 'Birch The Plaza',
+            'accom_code' => 'BPA',
             'accom_addr' => 'Unit 77-15-22-12, Penang Times Square, Jalan Dato Keramat, 10150 Georgetown, Penang',
             'admin_charges' => '0',
             'min_stay' => 2,

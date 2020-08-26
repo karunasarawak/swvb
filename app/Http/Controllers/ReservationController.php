@@ -50,8 +50,12 @@ class ReservationController extends Controller
         if($rsvntype=='hotel'){
           $payload['accommodations']=DB::table('accommodations')->get();
           $payload['travel_agents']=DB::table('travel_agents')->get();
+          $payload['reservation_types']=DB::table('reservation_types')->get();
+         
         }else{
           //$payload['facilities']=DB::table('facilities')->get();
+          $payload['accommodations']=DB::table('accommodations')->get();  
+          $payload['travel_agents']=DB::table('travel_agents')->get();
         }
         return view('pages.reservation-new',compact('pageConfigs','breadcrumbs','rsvntype','payload'));
         //return view('pages.reservation-new', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
@@ -133,14 +137,46 @@ class ReservationController extends Controller
           $md['lead2']->salutation=$s->salutation;
         }
         $md['package']=DB::table('packages')->where('package_id',$md->package_id)->first();
-        $md['installment_schedule']=DB::table('installment_schedule')->where('install_schedule_id',$md->install_schedule_id)->first();
-       // $md['entpoint']=DB::table('ent_point_schedule')->where('mbrship_id',$md->mbrship_id)->get();
+       // $md['lead_vouchers']=DB::table('lead_vouchers')->where('package_id',$md->package_id)->first();
+        //$md['entpoint']=DB::table('ent_point_schedule')->where('mbrship_id',$md->mbrship_id)->get();
+        $installment = DB::table('installments')->where('mbrship_id', $id)->first();
+        $md['lpa'] = DB::table('installment_ent_point_schedules')->where('install_id', $installment->install_id)->get();
         echo json_encode($md);
       }
+
+      public function getroom($id){
+        $uts=DB::table('unit_types')->where('accom_id',$id)->get();
+        $payload['inventories']=['<option value="">Please select the room no</option>'];
+        $payload['unit_types']=['<option value="">Please select the room type</option>'];
+        $payload['bed_types']=['<option value="">Please select the bed type</option>'];
+        foreach($uts as $ut){
+          $utd[$ut->unit_type_id]=$ut->unit_type;
+          $invs=DB::table('inventories')->where('unit_type_id',$ut->unit_type_id)->get();
+          foreach($invs as $inv){
+            $payload['inventories'][]='<option value="'.$inv->inventory_id.'">'.$inv->unit_no.'</option>';
+            $utc[$ut->unit_type_id][]='inv'.$inv->inventory_id;
+          }
+          $bed=DB::table('bed_types')->where('bed_type_id',$ut->bed_type_id)->first();
+          $bedd[$bed->bed_type_id]=$bed->bed_type;
+          $bedc[$bed->bed_type_id][]='unittype'.$ut->unit_type_id;
+        }
+        if(!empty($utd)){
+          foreach($utd as $utv=>$utl){
+            $payload['unit_types'][]='<option value="'.$utv.'" class="inv '.implode(' ',$utc[$utv]).'">'.$utl.'</option>';
+          }
+        }
+        if(!empty($bedd)){
+          foreach($bedd as $utv=>$utl){
+            $payload['bed_types'][]='<option value="'.$utv.'" class="unittype '.implode(' ',$bedc[$utv]).'">'.$utl.'</option>';
+          }
+        }
+        echo json_encode($payload);
+       
+      }
+
       public function test(){
-        print_r(DB::select('select * from accommodations '));
-      print_r(DB::select('show tables'));
-      //
-        //dd(DB::select('desc reservation_types'));
+      print_r(DB::select('select * from invoices'));
+      // print_r(DB::select('show tables'));
+      //print_r(DB::select('desc rci_bulk_bankings'));
       } 
 }

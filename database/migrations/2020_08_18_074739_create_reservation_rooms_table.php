@@ -31,40 +31,38 @@ class CreateReservationRoomsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('reservation_rooms')->insert(
-            array(
-                [ 
-                    'rsvn_id' => 1,
-                    'rsvn_type_id' => 1,
-                    'unit_type_id' => 1,
-                    'bed_type_id' => 1,
-                    'room_no' => '217',
-                    'room_no_of_pax' => 4,
-                    'room_price' => 300,
-                    'room_wd_points' => 2,
-                    'room_we' => 1,
-                    'room_remark' => 'remarks',
-                    'bf_price_per_pax' => 40,
-                    'bf_pax' => 4,
-                    'bf_price_unit' => 1,
-                ],
-                [ 
-                    'rsvn_id' => 2,
-                    'rsvn_type_id' => 2,
-                    'unit_type_id' => 1,
-                    'bed_type_id' => 1,
-                    'room_no' => '201',
-                    'room_no_of_pax' => 1,
-                    'room_price' => 300,
-                    'room_wd_points' => 2,
-                    'room_we' => 1,
-                    'room_remark' => 'remarks',
-                    'bf_price_per_pax' => 40,
-                    'bf_pax' => 4,
-                    'bf_price_unit' => 1,
-                ],
-            )
-        );
+        DB::table('reservation_rooms')->insert(array(
+            [ 
+                'rsvn_id' => 1,
+                'rsvn_type_id' => 1,
+                'unit_type_id' => 1,
+                'bed_type_id' => 1,
+                'room_no' => '217',
+                'room_no_of_pax' => 4,
+                'room_price' => 300,
+                'room_wd_points' => 2,
+                'room_we' => 1,
+                'room_remark' => 'remarks',
+                'bf_price_per_pax' => 40,
+                'bf_pax' => 4,
+                'bf_price_unit' => 1,
+            ],
+            [ 
+                'rsvn_id' => 2,
+                'rsvn_type_id' => 2,
+                'unit_type_id' => 1,
+                'bed_type_id' => 1,
+                'room_no' => '201',
+                'room_no_of_pax' => 1,
+                'room_price' => 300,
+                'room_wd_points' => 2,
+                'room_we' => 1,
+                'room_remark' => 'remarks',
+                'bf_price_per_pax' => 40,
+                'bf_pax' => 4,
+                'bf_price_unit' => 1,
+            ],
+        ));
     }
 
     /**

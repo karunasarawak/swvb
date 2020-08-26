@@ -10,14 +10,14 @@
 
 @section('content')
 <!-- Zero configuration table -->
-<section>
+<section></section>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-swvb-cyan">
                     <div class="row card-title">
                         
-                            <h4 class="col text-white">Entitlement History - 234560000<a href="{{route('leads.new')}}" class="btn btn-outline-white round">Incentives</a></h4> 
+                            <h4 class="col text-white">Entitlement History - 234560000<a href="}" class="btn btn-outline-white round">Incentives</a></h4> 
                             
                             <a href="" class="btn btn-outline-white round text-white bx bx-printer "></a>
                             <a href="" class="btn btn-outline-white round text-white ml-1 bx bx-download "></a>

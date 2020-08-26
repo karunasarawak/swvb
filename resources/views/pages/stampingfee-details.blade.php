@@ -16,8 +16,8 @@
         <div class=" card-header bg-swvb-cyan">
             <div class="card-title">
                 <div class="row">
-                    <div class="col-10"></div>
-                        <h4 class="col text-white" style="">Stamping Fee List Details</h4>
+                    <div class="col-10">
+                        <h4 class="col text-white">Stamping Fee List Details</h4>
                     </div>
                     <div class="col-2">
                         <button type="button" class="btn btn-outline-white round text-white bx bx-download float-right"></button>

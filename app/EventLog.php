@@ -8,15 +8,22 @@ class EventLog extends Model
 {
     protected $fillable = [
         'el_id',
+        'mbrship_id',
+        'lead_id',
         'el_type_id',
         'el_cat_id',
-        'lead_id',
-        'customer_type',
-        'title',
-        'last_updated_by',
-        'created_by',
-        'created_at',
-        'updated_by'
+        'el_title',
+        'el_desc',
+        'el_created_by',
+        'el_created_at',
+        'el_updated_by',
+        'el_updated_at',
+        'el_refer_to',
+        'el_refer_date',
+        'el_to_resolve_at',
+        'el_resolve_at',
+        'el_reserve',
+        'com_channel_id'
     ];
 
     public function lead()

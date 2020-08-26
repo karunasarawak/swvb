@@ -19,10 +19,27 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                            <div class="card-body card-dashboard">
+                        <ul class="nav nav-tabs pt-3" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" role="tab"
+                              aria-selected="true">
+                              <i class="bx bx-home align-middle"></i>
+                              <span class="align-middle">All</span>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" role="tab"
+                              aria-selected="false">
+                              <i class="bx bx-user align-middle"></i>
+                              <span class="align-middle">Approvals</span>
+                            </a>
+                          </li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
                                 <div class="table-responsive">
-
-                                    <table class="table tours-all">
+                                    <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
                                                 <th class="text-white">RSVN Ref No.</th>
@@ -310,6 +327,53 @@
                                     </table>
                                 </div>
                             </div>
+                            <div class="tab-pane" id="profile" aria-labelledby="profile-tab" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table tours-all" >
+                                        <thead class="bg-swvb-dark">
+                                            <tr>
+                                                <th class="text-white">Col Ref No.</th>
+                                                <th class="text-white">Request</th>
+                                                <th class="text-white">Type of Request</th>
+                                                <th class="text-white">Membership. No</th>
+                                                <th class="text-white">Submitted By</th>
+                                                <th class="text-white">Submitted Data</th>
+                                                <th class="text-white">Voucher</th>
+                                                <th class="text-white">Action</th>
+                                            </tr>
+                                        </thead>
+                                    
+                                        <tbody>
+                                            <tr>
+                                                <td>123456</td>
+                                                <td class="expanded">Approval of using expired Voucher</td>                        
+                                                <td>Voucher</td>
+                                                <td>260505550000</td>
+                                                <td>Wilson</td>
+                                                <td>01 July 2020</td>
+                                                <td>CV10201010</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            
+                                                            <button class="bg-transparent border-0 dropdown-item" >
+                                                                <i class="bx bx-task mr-1"></i> APPROVE
+                                                            </button>
+                                                            <a class="dropdown-item" href="#"><i class="bx bx-check-shield mr-1"></i> VERIFY</a>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                            
                     </div>
                 </div>
             </div>

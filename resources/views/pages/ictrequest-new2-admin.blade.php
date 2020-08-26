@@ -119,19 +119,24 @@
                                             <div class="row justify-content-between">
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="Email">Invoice Type</label>
-                                                    <input type="number" name="doc_type" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
+                                                    <select name="doc_type1" id="doc_type1" class="custom-select form-control required doc_type">
+                                                        <option value="" disabled selected>Select a invoice type</option>
+                                                        @foreach($payload['invoiceitemtype'] as $i)
+                                                            <option value="{{$i->inv_itm_type_id}}">{{$i->item}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Unit Price (RM)</label>
-                                                    <input type="number" name="unit_price" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="unit_price1" class="form-control" id="unitprice" onclick="cal()" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Rounding Adj. (RM)</label>
-                                                    <input type="number" name="rounding" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="rounding1" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Total (RM)</label>
-                                                    <input type="number" name="total_price" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="total_price1" class="form-control" id="totalprice" placeholder="Enter Password">
                                                 </div>
                                                 
                                                 <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
@@ -171,28 +176,34 @@
                                             <div class="row justify-content-between">
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="gender">Document Type</label>
-                                                    <select name="doc_type" id="doc_type" class="form-control">
+                                                    <select name="doc_type2" id="doc_type2" class="form-control doc_type" onchange="showrecinv()">
                                                     <option value="" disabled selected>Select a document type</option>
-                                                        <option value="Male">Credit Note</option>
-                                                        <option value="Female">Debit Note</option>
-                                                        <option value="Female">Voice Receipt/Refund</option>
+                                                    @foreach($payload['doc'] as $doc)
+                                                        <option value="{{$doc->doc_id}}">{{$doc->doc_type}}</option>
+                                                    @endforeach
+                                                    </select>
+                                                    
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 form-group">
+                                                    <label for="password">Original Invoice/Receipt No.</label>
+                                                    <select name="doc_type2" id="invorreceipt" class="form-control no">
+                                                    <option value="" disabled selected>Select a document no.</option>
+                                                        <option value="1">Credit Note</option>
+                                                        <option value="2">Debit Note</option>
+                                                        <option value="3">Voice Receipt/Rwebefund</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
-                                                    <label for="password">Original Invoice No.</label>
-                                                    <input type="number" name="doc_id" class="form-control" id="password" placeholder="Enter Password">
-                                                </div>
-                                                <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Unit Price (RM)</label>
-                                                    <input type="number" name="unit_price" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="unit_price2" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Rounding Adj. (RM)</label>
-                                                    <input type="number" name="rounding" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="rounding2" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 form-group">
                                                     <label for="password">Total (RM)</label>
-                                                    <input type="number" name="total_price" class="form-control" id="password" placeholder="Enter Password">
+                                                    <input type="number" name="total_price2" class="form-control" id="password" placeholder="Enter Password">
                                                 </div>
                                                 
                                                 <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
@@ -227,7 +238,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox21">
+                                                        <input type="checkbox" name="reason[]" value="gcf" class="checkbox-input" id="checkbox21">
                                                         <label for="checkbox21">Guest Certificate Fee</label>
                                                     </div>
                                                 </fieldset>
@@ -235,7 +246,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox22">
+                                                        <input type="checkbox" name="reason[]" value="raf" class="checkbox-input" id="checkbox22">
                                                         <label for="checkbox22">Reservation Admin Fee</label>
                                                     </div>
                                                 </fieldset>
@@ -243,7 +254,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox23">
+                                                        <input type="checkbox" name="reason[]" value="iaf" class="checkbox-input" id="checkbox23">
                                                         <label for="checkbox23">Internal Affiliation Fee</label>
                                                     </div>
                                                 </fieldset>
@@ -260,7 +271,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                                        <input type="checkbox" name="reason[]" value="wraf" class="checkbox-input" id="checkbox2">
                                                         <label for="checkbox2">Waiver of Reservation Admin Fee</label>
                                                     </div>
                                                 </fieldset>
@@ -268,7 +279,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox3">
+                                                        <input type="checkbox" name="reason[]" value="drf" class="checkbox-input" id="checkbox3">
                                                         <label for="checkbox3">Discount of Reactivation Fee</label>
                                                     </div>
                                                 </fieldset>
@@ -276,7 +287,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox4">
+                                                        <input type="checkbox" name="reason[]" value="cm" class="checkbox-input" id="checkbox4">
                                                         <label for="checkbox4">Cancellation of Membership</label>
                                                     </div>
                                                 </fieldset>
@@ -284,7 +295,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox5">
+                                                        <input type="checkbox" name="reason[]" value="bc" class="checkbox-input" id="checkbox5">
                                                         <label for="checkbox5">Booking Cancellation</label>
                                                     </div>
                                                 </fieldset>
@@ -292,7 +303,7 @@
                                             <li class="d-inline-block mr-5 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox6">
+                                                        <input type="checkbox" name="reason[]" value="di" class="checkbox-input" id="checkbox6">
                                                         <label for="checkbox6">Duplicate of Invoice</label>
                                                     </div>
                                                 </fieldset>
@@ -300,7 +311,7 @@
                                             <li class="d-inline-block mr-2 mb-1">
                                                 <fieldset>
                                                     <div class="checkbox">
-                                                        <input type="checkbox" class="checkbox-input" id="checkbox7">
+                                                        <input type="checkbox" name="reason[]" value="others" class="checkbox-input" id="checkbox7">
                                                         <label for="checkbox7">Others</label>
                                                     </div>
                                                 </fieldset>
@@ -350,6 +361,82 @@
     </div>
 </section>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $(document).on('change','.doc_type', function(){
+            
+            var doc_id = $(this).val();
+            var div = $(this).parent();
+
+            var op = "";
+
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('findno')!!}',
+                data:{'id':'doc_id'},
+                success:function(data){
+                    op+= '<option value="0" selected disabled>Select No.</option>';
+                    for (var i=0; i<data.length; i++){
+                        op+='<option value="' + data[i].id + '">' + data[i].no+'</option>';
+                    }
+                }
+
+                div.find('.no').html(" ");
+                div.find('.no').append(op);
+                ),
+                error:function(){
+
+                }
+            });
+        });
+       
+    });
+
+    function showrecinv() {
+    var select = document.getElementById('doc_type2');
+    var display = document.getElementById('invorreceipt');
+
+        var firstprice = document.getElementById('unitprice');
+        
+        var firsttotal = firsttotal + firstprice;
+        var firsttotal = sum.toFixed(2);
+        var lastdigit = firsttotal.substring(firsttotal.length - 1, firsttotal.length);
+
+        var front = Math.floor(firsttotal);
+        var dec = firsttotal - front;
+        var dec = dec.toFixed(2);
+
+        var decUp1 = dec * 10;
+        var decUp2 = dec * 100;
+        
+        if (lastdigit < 3){
+            var newDec1 = Math.floor(decUp1);
+            var finalDec = newDec1 / 10;
+        }else if(lastdigit > 2 && lastdigit < 6)
+        {
+            var newDec2 = Math.ceil(decUp2 / 5) * 5;
+            var finalDec = newDec2 / 100;
+        }else if(lastdigit > 5 && lastdigit < 8)
+        {
+            var newDec2 = Math.floor(decUp2 / 5) * 5;
+            var finalDec = nenwDec2 / 100;
+        }else if (lastdigit > 7)
+        {
+            var newDec1 = Math.round(decUp1);
+            var finaDec = newDec1 / 10;
+        }
+
+        var formatFinalDec = finalDec.toFixed(2);
+        var roundingVal = formatFinalDec - dec;
+        var formatRoundingVal = roundingVal.toFixed(2);
+
+        var totalVal = parseFloat(front) + parseFloat(formatFinalDec);
+        var formatTotalVal = totalVal.toFixed(2);
+
+        document.getElementById('totalprice').value = formatTotalVal;
+    }
+</script>
 <!-- Form wizard with step validation section end -->
 @endsection
 
@@ -368,4 +455,5 @@
 <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script>
 <script src="{{asset('assets/js/select_onchange.js')}}"></script>
 <script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 @endsection

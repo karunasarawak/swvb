@@ -33,7 +33,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="approval-tab-fill" data-toggle="tab" href="#tobeissued-fill" role="tab"
                                 aria-controls="tobeissued-fill" aria-selected="false">
-                                To be issued
+                                To be issued (Late penalty)
                                 </a>
                             </li>
                         

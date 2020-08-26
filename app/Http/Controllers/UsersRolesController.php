@@ -12,9 +12,11 @@ use App\PointsAdjustment;
 use App\ICTRequestPoint;
 use App\BasicPermission;
 use App\AccountAdjustment;
+use App\InvoiceItemType;
+use App\Accommodation;
+use App\DocumentType;
+use App\Invoice;
 use DB;
-
-
 
 
 class UsersRolesController extends Controller
@@ -30,6 +32,8 @@ class UsersRolesController extends Controller
           // $ict2 = ICTRequestPoint::all();        
 
           $ict = ICTRequestPoint::get();
+
+          $acc = ICTRequestAcc::get();
             // ->join('memberships', 'memberships.mbrship_id', 'ict_requests.pict_mbrship_id')
             // ->join('points_adjustments', 'points_adjustments.pict_req_id','ict_requests.pict_req_id')
            
@@ -40,7 +44,9 @@ class UsersRolesController extends Controller
             // ->get();
         
 
-        $payload = ['ict'=>$ict];
+        $payload = ['ict'=>$ict,
+                    'acc'=>$acc  
+        ];
       
         // dd($payload);
     
@@ -108,15 +114,8 @@ class UsersRolesController extends Controller
        
           $staff = DB::table('staff')->get();
 
-        
-
           $memberships = Membership::all();
-                // DB::table('memberships')
-                // ->join('leads','leads.lead_id', 'memberships.lead_id1')
-                // ->join('reservations','reservations.mbrship_id', 'memberships.mbrship_id')
-                // ->select('memberships.mbrship_no','leads.name','reservations.rsvn_no')
-                // ->get();
-
+               
           $payload = ['memberships'=>$memberships,
                       'staff'=>$staff, 
                      
@@ -200,7 +199,6 @@ class UsersRolesController extends Controller
               ];
           }
              
-
               PointsAdjustment::insert($cai); 
               PointsAdjustment::insert($evcreinstate); 
               PointsAdjustment::insert($evcexp); 
@@ -210,7 +208,7 @@ class UsersRolesController extends Controller
         return redirect('admin/newictrequestpoint');
       }
 
-      public function newictrequestacc(){
+      public function newictrequestacc(Request $request){
 
         $pageConfigs = ['pageHeader' => true];
     
@@ -218,26 +216,31 @@ class UsersRolesController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "New"]
         ];
     
-        // $staff = DB::table('staff')->get();
-
-        // $pointsadjustment = PointsAdjustments::all();
-
-        // $memberships = Membership::with('lead')
-              // ->join('reservations','reservations.mbrship_id', 'memberships.mbrship_id')
-              // ->get();
-
+        $data = Invoice::select('no', 'id')->where('doc_id', $request->id)->take(100)->get();
 
         $staff = DB::table('staff')->get();
 
+        $invoiceitemtype = InvoiceItemType::all();
+
         $memberships = Membership::all();
+
+        $acc = AccountAdjustment::all();
+
+        $doc = DocumentType::all();
 
         $payload = [
                     'staff'=>$staff, 
-                    'memberships'=>$memberships
+                    'memberships'=>$memberships,
+                    'invoiceitemtype'=>$invoiceitemtype,
+                    'acc'=>$acc,
+                    'doc'=>$doc
                 ];  
 
-        // dd($staff);
+        // dd($acc);
 
+        if ($request->ajax()){
+            return response()->json($data);
+        }
 
         return view('pages.ictrequest-new2-admin', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
       }
@@ -263,7 +266,7 @@ class UsersRolesController extends Controller
         ->join('ict_requests', 'ict_requests.pict_req_id', 'points_adjustments.pict_req_id')
         
         ->where([['ict_requests.pict_req_id', $id], ['req_type','=','1']])
-        ->select('points_adjustments.poe_year','points_adjustments.we','points_adjustments.wd','points_adjustments.expiry_date')
+        // ->select('points_adjustments.poe_year','points_adjustments.we','points_adjustments.wd','points_adjustments.expiry_date')
         ->get();
 
         $pointsadjustmenttype2 = DB::table('points_adjustments')
@@ -297,13 +300,14 @@ class UsersRolesController extends Controller
         
 
         $payload = ['pointadj1' => $pointsadjustmenttype1,
+                    
                     'pointadj2' => $pointsadjustmenttype2,
                     'pointadj3' => $pointsadjustmenttype3,
                     'pointadj4' => $pointsadjustmenttype4,
                     'pointadj5' => $pointsadjustmenttype5,
                     'ict'=> $ict[0],
                     
-        ];
+        ];{{  }}
         // dd($membership); 
     
         return view('pages.ictrequest-details-admin', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
@@ -312,51 +316,57 @@ class UsersRolesController extends Controller
       public function updatepoint(Request $request, $id){
 
 
-        $updatereq1 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','1'])->update([
+        PointsAdjustment::where([['pict_req_id','=', $id],['req_type','=','1']])->update([
                 'poe_year'=>$request->poe_year1,
-                'wd'=>$request->wd1,
-                'we'=>$request->we1,
+                'points'=>$request->points1,
                 'expiry_date'=>$request->expiry_date1,
         ]);
 
-        $updatereq2 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','2'])->update([
+        PointsAdjustment::where([['pict_req_id','=', $id],['req_type','=','2']])->update([
                 'poe_year'=>$request->poe_year2,
                 'wd'=>$request->wd2,
                 'we'=>$request->we2,
                 'expiry_date'=>$request->expiry_date2,
         ]);
 
-        $updatereq3 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','3'])->update([
-          'poe_year'=>$request->poe_year3,
+        PointsAdjustment::where([['pict_req_id','=', $id],['req_type','=','3']])->update([
+              'poe_year'=>$request->poe_year3,
+              
+              'expiry_date'=>$request->expiry_date3,
+        ]);
+
+        PointsAdjustment::where([['pict_req_id','=', $id],['req_type','=','4']])->update([
+            'poe_year'=>$request->poe_year4,
+            'wd'=>$request->wd4,
+            'we'=>$request->we4,
+            'expiry_date'=>$request->expiry_date4,
+        ]);
+
+        PointsAdjustment::where([['pict_req_id','=', $id],['req_type','=','5']])->update([
           
-          'expiry_date'=>$request->expiry_date3,
+            'wd'=>$request->wd5,
+            'we'=>$request->we5,
+            'expiry_date'=>$request->expiry_date5,
         ]);
 
-        $updatereq4 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','3'])->update([
-          'poe_year'=>$request->poe_year4,
-          'wd'=>$request->wd4,
-          'we'=>$request->we4,
-          'expiry_date'=>$request->expiry_date4,
-        ]);
+        // PointsAdjustment::insert($updatereq1);
+        // PointsAdjustment::insert($updatereq2);
+        // PointsAdjustment::insert($updatereq3);
+        // PointsAdjustment::insert($updatereq4);
+        // PointsAdjustment::insert($updatereq5);
 
-        $updatereq5 = PointsAdjustment::where(['pict_req_id','=', $id],['req_type','=','3'])->update([
-          
-          'wd'=>$request->wd5,
-          'we'=>$request->we5,
-          'expiry_date'=>$request->expiry_date5,
-        ]);
+        // $request->file->storage('public');
 
-        $request->file->storage('public');
-
-        
+        return redirect('/admin/'.$id.'/ictptdetails');
       }
 
       
       public function storeictrequestacc(Request $request){
+  
 
         $ictacc = DB::table('acc_ict_requests')->insert([
               'aict_mbrship_id'=>$request->mbrship_id,
-              'aict_requested_id'=>$request->requested_by,
+              'aict_requested_by'=>$request->requested_by,
               'aict_verifier'=>$request->verified_by,
               'aict_approval'=>$request->approved_by,
               
@@ -387,6 +397,16 @@ class UsersRolesController extends Controller
             ];
         }
 
+        foreach($request->reason as $r)
+        {
+              $check = new AccountAdjustment;
+              // $check->name = $request->name;
+              $check->reason = $r;
+              
+              $check->save();
+
+        }
+
             AccountAdjustment::insert($invoice); 
             AccountAdjustment::insert($issue); 
            
@@ -402,9 +422,16 @@ class UsersRolesController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "ICT Request"],["name" => "Account Adjustments Details"]
         ];
     
-        
+          $details = AccountAdjustment::all();
+          $acc = ICTRequestAcc::all();
 
-        return view('pages.ictrequest-details2-admin', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs]);
+          $payload= ['details' => $details,
+                      'acc'=> $acc[0]
+          ];
+
+          // dd($acc);
+
+        return view('pages.ictrequest-details2-admin', ['pageConfigs'=>$pageConfigs, 'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
       }
 
      
@@ -474,8 +501,20 @@ class UsersRolesController extends Controller
                                 'Report 4','Activate', 'Be Back','Withdraw','Cancel','Suspend', 'Terminate','Transfer',
                                 'Deceased','Upgrade/Downgrade', 'Repurchase'    
                     );
+
+              $approval = array('ICT Requests', 'Special Reservation Requests', 'Expired Voucher Usage Request', 'RCI Bulk Banking', 'II Reserved Unit',
+                          'Edit reservations level 1','Edit reservations level 2','Point/Entitlement Advancement','Refund',
+                          'Suspend','Tourism Tax'    
+              );
+
+              $notifications = array('Call', 'Tour', 'Installment Schedule', 'Advance/Borrow', 'BB Left 2 Week',
+              'Offset Reminder','Special Approval','Refund','Aging','CC Exp','Activation',
+              'Reinstate','Suspend'    
+              );
       
               $payload = ['module'=>$module,
+                          'approval'=>$approval,
+                          'notifications'=>$notifications,
                           'staff'=>$staff[0]
                           
             ];
@@ -496,31 +535,113 @@ class UsersRolesController extends Controller
                             'Deceased','UpgradeDowngrade', 'Repurchase'    
                 );
 
+          // dd($module);
+
           for ($i = 0; $i < sizeof($module); $i++){
 
             $permission = "";
         
-            $c = $module[$i] . "_C";
-            $v = $module[$i] . "_V";
-            $e = $module[$i] . "_E";
+            $c = $module[$i] . "_c";
+            $v = $module[$i] . "_v";
+            $e = $module[$i] . "_e";
             
-            if(Request::get($c)){
+            if(isset($request->$c)){
                 $permission .= "c";
             }
         
-            if(Request::get($v)){
+            if(isset($request->$v)){
                 $permission .= "v";
             }
             
-            if(Request::get($e)){
+            if(isset($request->$e)){
                 $permission .= "e";
             }
         
             BasicPermission::insert([
-                ['module' => $module[$i], 'permission' => $permission, 'staff_id' => $id]
+                ['module' => $module[$i], 'permission' => $permission, 'role_id' => $id]
             ]);
-        
-        }
+          }
+
+            $approval = array('ICTRequests', 'SpecialReservationRequests', 'ExpiredVoucherUsageRequest', 
+                          'RCIBulkBanking', 'IIReservedUnit','EditReservationsLevel1','EditReservationsLevel2','PointEntitlementAdvancement','Refund','Suspend','TourismTax'    
+              );
+
+              // dd(sizeof($approval));
+
+              // $size = sizeof($approval);
+
+              for ($i = 0; $i < sizeof($approval); $i++){
+
+                $a = "";
+            
+                $check1 = $approval[$i] . "_c1";
+                $check2 = $approval[$i] . "_c2";
+                $verify1 = $approval[$i] . "_v1";
+                $verify2 = $approval[$i] . "_v2";
+                $approval1 = $approval[$i] . "_a1";
+                $approval2 = $approval[$i] . "_a2";
+
+                if(isset($request->$check1)){
+                    $a .= "c1";
+                }
+            
+                if(isset($request->$check2)){
+                    $a .= "c2";
+                }
+                
+                if(isset($request->$verify1)){
+                    $a .= "v1";
+                }
+
+                if(isset($request->$verify2)){
+                  $a .= "v2";
+                }
+
+                if(isset($request->$approval1)){
+                  $a .= "a1";
+                }
+            
+                if(isset($request->$approval2)){
+                    $a .= "a2";
+                }
+               
+            
+                DB::table("adminpermissions")->insert([
+                    ['approval_name' => $approval[$i], 'actions' => $a, 'role_id' => $id]
+                ]);
+              }
+            
+              $notifications = array('Call', 'Tour', 'Installment Schedule', 'Advance/Borrow', 'BB Left 2 Week',
+              'Offset Reminder','Special Approval','Refund','Aging','CC Exp','Activation',
+              'Reinstate','Suspend'    
+              );
+
+              for ($i=0; $i<sizeof($notifications); $i++){
+                    $n = "";
+
+                    $insystem = $notifications[$i] . "_isn";
+                    $email = $notifications[$i] . "_e";
+                    $emailcc = $notifications[$i] . "_ec";
+
+                    if(isset($request->$insystem)){
+                        $n .= "_isn";
+                    }
+
+                    if(isset($request->$email)){
+                      $n .= "_e";
+                    }
+                    
+                    if(isset($request->$emailcc)){
+                      $n .= "_ec";
+                    }
+
+                    DB::table("notification_roles")->insert([
+                      ['item' => $notifications[$i], 'notifications'=> $n, 'role_id'=>$id]
+                    ]);
+              }
+
+              
+
             // dd($c);
             return redirect('roledetails');
       }
@@ -634,6 +755,60 @@ class UsersRolesController extends Controller
         return view('pages.selections-mrd',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
       
+      public function accommodation(){
+    
+        $pageConfigs = ['pageHeader' => true];
+    
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodations"],["name" => "All"]
+        ];
+    
+        $accmmdcai = Accommodation::where("club", 0)->get();
+        $accmmdevc = Accommodation::where("club", 1)->get();
+
+            $payload = ['accmmdcai'=>$accmmdcai,
+                        'accmmdevc'=>$accmmdevc
+            ];
+        
+        return view('pages.accommodations',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);     
+      }
+
+      public function newaccommodation(){
+    
+        $pageConfigs = ['pageHeader' => true];
+    
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodation"],["name" => "Details"]
+        ];
+    
+        $acccategory = DB::table("accommodation_categories")->get();
+
+        $accmd = DB::table("accommodations")->get();
+
+        $ta = DB::table("travel_agents")->get();
+        $s = DB::table("seasons")->get();
+        $lp = DB::table("late_penalties")->get();
+        $states = DB::table("states")->get();
+        $packages = DB::table("packages")->get();
+        $cities = DB::table("cities")->get();
+        $countries = DB::table("countries")->get();
+        
+        $payload=['acccategory'=>$acccategory,
+                  'accmd'=>$accmd[0],
+                  'ta'=>$ta,
+                  's'=>$s,
+                  'lp'=>$lp,
+                  'states'=>$states,
+                  'packages'=>$packages,
+                  'cities'=>$cities,
+                  'countries'=>$countries
+          ];
+            // dd($states);
+
+        return view('pages.accommodation-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+      }
+
+ 
       public function accommodationdetails(){
     
         $pageConfigs = ['pageHeader' => true];
@@ -642,7 +817,88 @@ class UsersRolesController extends Controller
           ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodation"],["name" => "Details"]
         ];
     
-        return view('pages.accommodation-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+        $acccategory = DB::table("accommodation_categories")->get();
+
+        $accmd = DB::table("accommodations")->get();
+
+        $ta = DB::table("travel_agents")->get();
+
+        $s = DB::table("seasons")->get();
+
+        $lp = DB::table("late_penalties")->get();
+
+
+        
+        $payload=['acccategory'=>$acccategory,
+                  'accmd'=>$accmd[0],
+                  'ta'=>$ta,
+                  's'=>$s,
+                  'lp'=>$lp
+          ];
+            // dd($accmd);
+
+        return view('pages.accommodation-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+      }
+
+      public function storeaccommodation(Request $request, $id){
+
+              $accommodation = DB::table('accommodations')->insert([
+                    'accom_name'=>$request->accom_name,
+                    'accom_code'=>$request->accom_code,
+                    'club'=>$request->club,
+                    'accom_addr'=>$request->accom_addr,
+                    'postcode'=>$request->postcode,
+                    'state_id'=>$request->state_id,
+                    'city_id'=>$request->city_id,
+                    'country_id'=>$request->country_id,
+                    'min_lead_time'=>$request->min_lead_time,
+                    'max_lead_time'=>$request->max_lead_time,
+                    'cxl_deadline'=>$request->cxl_deadline,
+                    'min_stay'=>$request->min_stay,
+                    'admin_charges'=>$request->admin_charges,
+                    'postcode'=>$request->postcode,
+                    'package_status'=>$request->package_status,
+
+              ]);
+
+              $acccategory = DB::table('accommodation_categories')->insert([
+                    'accom_cat_id'=>$request->accom_cat_id
+              ]);
+
+              $ta = DB::table('travel_agents')->insert([
+                    'ta_id'=>$request->ta_id
+              ]);
+
+              $breakfast = DB::table('reservation_breakfast_prices')->insert([
+                    'min_pax'=>$request->min_pax,
+                    'max_pax'=>$request->max_pax,
+                    'price_per_pax'=>$request->price_per_pax,
+              ]);
+
+              $penalty = DB::table('late_penalties')->insert([
+                    'check_in_start'=>$request->check_in_start,
+                    'check_out_start'=>$request->check_out_start,
+              ]);
+
+              foreach($request->group1 as $group1){
+                    $breakfast[] = [
+                          'min_pax'=>$group1['min_pax'],
+                          'max_pax'=>$group1['max_pax'],
+                          'price_per_pax'=>$group1['price_per_pax'],
+                    ];
+              }
+
+              foreach($request->group2 as $group2){
+                $season[] = [
+                      'season'=>$group1['season'],
+                      'start_date'=>$group1['start_date'],
+                      'end_date'=>$group1['end_date']
+                ];
+              }
+
+              DB::table('reservation_breakfast_prices')->insert();
+              DB::table('seasons')->insert();
+
       }
 
       public function unitdetails(){
@@ -815,17 +1071,7 @@ class UsersRolesController extends Controller
         return view('pages.points&entitlements-new',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);     
       }
 
-      public function accommodation(){
-    
-        $pageConfigs = ['pageHeader' => true];
-    
-        $breadcrumbs = [
-          ["link" => "/", "name" => "Home"],["link" => "/leads", "name" => "Accommodations"],["name" => "All"]
-        ];
-    
-        return view('pages.accommodations',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);     
-      }
-
+     
       public function packages(){
     
         $pageConfigs = ['pageHeader' => true];

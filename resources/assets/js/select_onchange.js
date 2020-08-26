@@ -30,7 +30,7 @@ function checkdigit() {
         document.getElementById("evc").style.display = "none";
     } else if (result == 2) {
 
-    } else if (result == 2) {
+
         document.getElementById("evc").style.display = "block";
         document.getElementById("cai").style.display = "none";
     } else {

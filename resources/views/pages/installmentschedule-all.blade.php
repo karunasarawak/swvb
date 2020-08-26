@@ -41,260 +41,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($installment as $item)
+                                    <tr>
+                                    <td><a href="{{ route('installment.detail', $item->install_id) }}">{{$item->install_id}}</a></td>
+                                        <td> {{$item->mbrship_no}}</td>
+                                        <td class="expanded">{{$item->name}}</td>
+                                        <td>{{$item->package}}</td>
+                                        
+                                        <td>50</td>
+                                        <td>Active</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="bg-transparent border-0" >
+                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>  
+                                    @endforeach
                                     
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td class="expanded">John Doe</td>
-                                        <td>Pearl-Full</td>
-                                        
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                       
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                       
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                       
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                       
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                        
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                        
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                       
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                        
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                        
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><a href="{{ url('/installment/details') }}">00000001</a></td>
-                                        <td>26541000</td>
-                                        <td>John Doe</td>
-                                        <td>Pearl-Full</td>
-                                       
-                                        <td>50</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                </span>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="bg-transparent border-0" >
-                                                        <a class="dropdown-item" href="" ><i class="bx bx-download mr-1"></i> Download</a>
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>  
-                                        
-                                    </tr>
+
+                                    
                                 </tbody>
                             </table>
                         </div>

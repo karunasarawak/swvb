@@ -13,6 +13,7 @@ class CreateMemberCompanyAddressesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('member_companies');
         Schema::create('member_companies', function (Blueprint $table) {
             $table->id('comp_id');
             $table->string('comp_name')->nullable();
@@ -38,6 +39,6 @@ class CreateMemberCompanyAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_company_addresses');
+        Schema::dropIfExists('member_companies');
     }
 }

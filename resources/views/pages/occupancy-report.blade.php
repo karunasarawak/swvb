@@ -29,39 +29,28 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>Date Started</label>
-                                                <select name="membershipfilter" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" required>
-                                                <option value="membershipfilter1">Sapphire - Full</option>
-                                                <option value="membershipfilter2">Active</option>
-                                                <option value="membershipfilter3">Withdrawal</option>
-                                                <option value="membershipfilter4">Suspended</option>
-                                            </select>
+                                                <input type="date" name="company_email" class="form-control"  placeholder="--" value="2020-09-08" required>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label >Date Ended</label>
-                                                <select name="membershipfilter" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" required>
-                                                <option value="membershipfilter1">12 Month</option>
-                                                <option value="membershipfilter2">Active</option>
-                                                <option value="membershipfilter3">Withdrawal</option>
-                                                <option value="membershipfilter4">Suspended</option>
-                                            </select>
+                                                <input type="date" name="company_email" class="form-control"  placeholder="--" value="2020-02-02" required>
                                         </div>
                                     </div>
                                     
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label >Hotel</label>
-                                                <select name="membershipfilter" class="select2 form-control btn btn-outline-primary round mr-1 mb-1 text-white" required>
-                                                <option value="membershipfilter1">RM 5000</option>
-                                                <option value="membershipfilter2">Active</option>
-                                                <option value="membershipfilter3">Withdrawal</option>
-                                                <option value="membershipfilter4">Suspended</option>
+                                                <select name="membershipfilter" class="select2 form-control  mr-1 mb-1 " required>
+                                                <option value="membershipfilter1">RMH</option>
+                                                <option value="membershipfilter2">DBR</option>
+                                                
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
+                                <div class="table-responsive pt-1">
                                     <table class="table">
                                         <thead class="bg-swvb-dark">
                                             <tr>
@@ -94,18 +83,18 @@
                                                 <td>23.4</td>
                                                 <td>273.4</td>
                                                 <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
+                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrive</button></td>
+                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Depart</button></td>
                                                 <td>5</td>
-                                                <td>Active</td>
+                                                <td>Arrived</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
                                                         <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
                                                         </div>
                                                     </div>
@@ -122,18 +111,18 @@
                                                 <td>23.4</td>
                                                 <td>273.4</td>
                                                 <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
+                                                <td>2020-02-02</td>
+                                                <td>2020-02-04</td>
                                                 <td>5</td>
-                                                <td>Active</td>
+                                                <td>Arrived</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
                                                         <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
                                                         </div>
                                                     </div>
@@ -150,18 +139,46 @@
                                                 <td>23.4</td>
                                                 <td>273.4</td>
                                                 <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
+                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrive</button></td>
+                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Depart</button></td>
                                                 <td>5</td>
-                                                <td>Active</td>
+                                                <td>Arrived</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                           <tr>
+                                                <td>01</td>
+                                                <td>22 June 2020</td>
+                                                <td>Down Payment 1</td>
+                                                <td>1550</td>
+                                                <td>23.4</td>
+                                                <td>273.4</td>
+                                                <td>23.4</td>
+                                                <td>23.4</td>
+                                                <td>273.4</td>
+                                                <td>23.4</td>
+                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrive</button></td>
+                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Depart</button></td>
+                                                <td>5</td>
+                                                <td>Arrived</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
                                                         <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
                                                         </div>
                                                     </div>
@@ -178,18 +195,46 @@
                                                 <td>23.4</td>
                                                 <td>273.4</td>
                                                 <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
+                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrive</button></td>
+                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Depart</button></td>
                                                 <td>5</td>
-                                                <td>Active</td>
+                                                <td>Arrived</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                           <tr>
+                                                <td>01</td>
+                                                <td>22 June 2020</td>
+                                                <td>Down Payment 1</td>
+                                                <td>1550</td>
+                                                <td>23.4</td>
+                                                <td>273.4</td>
+                                                <td>23.4</td>
+                                                <td>23.4</td>
+                                                <td>273.4</td>
+                                                <td>23.4</td>
+                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrive</button></td>
+                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Depart</button></td>
+                                                <td>5</td>
+                                                <td>Arrived</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
                                                         <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
                                                         </div>
                                                     </div>
@@ -206,102 +251,18 @@
                                                 <td>23.4</td>
                                                 <td>273.4</td>
                                                 <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
+                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrive</button></td>
+                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Depart</button></td>
                                                 <td>5</td>
-                                                <td>Active</td>
+                                                <td>Arrived</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                         </span>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                                <td>23.4</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                                <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
-                                                <td>5</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                                <td>23.4</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                                <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
-                                                <td>5</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>22 June 2020</td>
-                                                <td>Down Payment 1</td>
-                                                <td>1550</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                                <td>23.4</td>
-                                                <td>23.4</td>
-                                                <td>273.4</td>
-                                                <td>23.4</td>
-                                                <td><button type="button" class="btn btn-success mr-1 mb-1">Arrival</button></td>
-                                                <td><button type="button" class="btn btn-danger mr-1 mb-1">Departure</button></td>
-                                                <td>5</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                                        </span>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-pencil mr-1"></i> EDIT</a>
-                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> SAVE</a>
+                                                        
+                                                        <a class="dropdown-item" href="#"><i class="bx bx-save mr-1"></i> EDIT/SAVE</a>
                                                         <a class="dropdown-item" href="#"><i class="bx bx-download mr-1"></i> DOWNLOAD</a>
                                                         </div>
                                                     </div>
@@ -313,7 +274,7 @@
                                 </div>
                             </div>
 
-                        <button type="button" class="btn btn-primary m-1" id="btn_add1" onclick="showContact2()">Reschedule</button>
+                        
                 
                 </div>
             </div>
