@@ -580,6 +580,8 @@ class MembershipController extends Controller
         ->where('mbrship_id', $id)
         ->update(['mbrship_status'=>5]);
     
+    DB::table('')
+
     return redirect('membership/'.$id.'/repurchase');
   }
 

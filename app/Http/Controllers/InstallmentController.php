@@ -62,6 +62,7 @@ class InstallmentController extends Controller
         $payload['invoices']=DB::table('invoices')
         ->where('type', 'Installment')
         ->where('mbrship_id', $id)->whereDate('issue_date', '<=', date('Y-m-d'))->get();
+       
         $j=1;
          $date = date('Y-m-d');
         $current_installment_amt = DB::table('invoices')
