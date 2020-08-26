@@ -11,7 +11,7 @@
 {{-- vendor style --}}
 @section('vendor-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/pickers/pickadate/pickadate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('/css/pickers/daterange/daterangepicker.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/pickers/daterange/daterangepicker.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/pickers/daterange/daterangepicker.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
 @endsection
@@ -94,17 +94,6 @@
     }
   }
 
-  function sample()
-  {
-    var type = document.getElementById("packagetype");
-    var sample = document.getElementById("sample");
-    var en = document.getElementById("en");
-
-    en.innerHTML = sample.className;
-
-    alert(sample.className);
-  }
-
   function chooseLead(condition)
   {
     console.log(condition);
@@ -155,4 +144,149 @@
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 <script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
 {{-- <script src="{{asset  ('js/scripts/forms/validation/form-validation.js')}}"></script> --}}
+<script>
+    var price = @json($payload['prices']);
+    var interestd = @json($payload['interest_rates']);
+    function package(){
+        $('.price').val(price[$('.package').val()]);
+        $('.entitlement').val($('.package option[value="'+$('.package').val()+'"]').attr('class'));
+        
+    }
+    $('.duration').change(function(){
+        $('.interest').val(interestd[$('.duration').val()]).change();
+    });
+
+
+    $('.installment .form-control').keyup(function(){
+      calculate();
+    });
+
+    $('.installment .form-control').mouseup(function(){
+        calculate();
+    });
+
+   
+    function calculate(){
+        if($('.price').val()){
+            var price=parseFloat($('.price').val());
+            if($('.at').val()){
+              price+=parseFloat($('.at').val())
+            }
+            if($('.dt').val()){
+              price-=parseFloat($('.dt').val());
+            }
+            $('.net').val(price);
+            $('.dp').each(function(){
+                if($(this).val()){
+                    price-=$(this).val();
+                }
+            });
+            var totalprice=price*(100+parseFloat($('.interest').val()))/100;
+        
+            $('.outstanding').val(totalprice);
+        }
+        
+    }
+
+
+    function installment(){
+        var net=parseFloat($('.outstanding').val());
+        if($('.rounding').val()){
+          net+=parseFloat($('.rounding').val());
+        }
+        var total=net;
+        var interest=net*parseFloat($('.interest').val())/(100+parseFloat($('.interest').val()));
+       
+        var duration=parseFloat($('.duration :selected').html());
+        var interst_month=parseFloat(interest/duration);
+        var installment=parseFloat(net/duration);
+        var date=new Date();
+        var day=date.getDate();
+        var month=date.getMonth();
+        var year=date.getFullYear();
+        var options = { month: 'short'};
+        var mon=date.toLocaleDateString('en-US', options);
+        var fulldate=day+' '+mon+' '+year;
+        var interestsum=parseFloat(0.00)+0;
+
+        var tbody='<tr><td></td><td>'+fulldate+'</td><td>Total Outstanding(Loan)+Rounding</td><td></td><td></td><td>'+net.toFixed(2)+'</td></tr>';
+        for(var i=1;i<=duration;i++){
+            month++;
+            if(month==12){
+                month=0;
+                year+=1;
+                date.setYear(year);
+            }
+            date.setMonth(month);
+            month=date.getMonth();
+            year=date.getFullYear();
+            mon=date.toLocaleDateString('en-US', options);
+            fulldate=day+' '+mon+' '+year;
+            if(i==duration){
+                installment=net;
+                interest_month=interest-interestsum;
+            }
+            interestsum=0+parseFloat(interestsum)+parseFloat(interst_month);
+            net-=installment;
+            tbody+='<tr><td>'+i+'</td><td>'+fulldate+'</td><td>Installment '+i+'</td><td>'+interst_month.toFixed(2)+'</td><td>'+installment.toFixed(2)+'</td><td>'+net.toFixed(2)+'</td></tr>';
+        }
+        tbody+='<th></th><th></th><th>Total</th><th>'+interestsum.toFixed(2)+'</th><th>'+total.toFixed(2)+'</th><th></th>';
+        $('#installtable tbody').html(tbody);
+    }
+
+    function csv() {
+    var filename='PaymentSchedule.csv';
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+        csv.push(row.join(","));        
+    }
+
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+}
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {type: "text/csv"});
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+    function printtable() {
+        var headstr = "<html><head><title></title></head><body><table style='width:100%'>";
+        var footstr = "</table></body>";
+        var newstr = document.all.item('installtable').innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+
+</script>
 @endsection

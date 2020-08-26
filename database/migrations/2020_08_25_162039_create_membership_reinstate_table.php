@@ -20,7 +20,7 @@ class CreateMembershipReinstateTable extends Migration
             $table->date('date')->nullable();
             $table->decimal('amt_due')->length(30)->nullable();
             $table->decimal('total_amount')->length(30)->nullable();
-            $table->integer('pt_offset_amt')->length(20)->nullable();
+            $table->string('pt_offset_amt', 50)->nullable();
             $table->integer('ref_no')->length(30)->nullable();
             $table->decimal('late_payment')->length(30)->nullable();
             $table->decimal('reinstate')->length(30)->nullable();

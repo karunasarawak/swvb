@@ -425,7 +425,7 @@
                         
                             <div class="row pt-1">
                                 <div class="col">
-                                    <a href="{{ url('/membership/{lead_id}/{tour_id}/new') }}" type="button" class="btn btn-primary ">Add Contract</a>
+                                    <a href="{{ url('/membership/'.$payload['details']->lead_id.'/'.$payload['details']->tour_id.'/new') }}" type="button" class="btn btn-primary ">Add Membership</a>
                                 </div>
                             </div>
                             

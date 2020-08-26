@@ -113,47 +113,29 @@
                                     </thead>
                                     <tbody>
                                         @foreach($payload['members'] as $m)
-                                        @if($m->is_archive)
+                                        @if($m->is_archive==0)
                                             <tr x-data="{ archive: false, active: true }">
-                                                <td>{{$m->salutation}}}</td>
+                                                <td>{{$m->salutation}}</td>
                                                 <td>{{$m->name}}</td>
                                                 <td class="expanded">{{$m->mobile_no}}</td>
                                                 <td>{{$m->relationship}}</td>
                                                 <td>{{$m->mbr_type}}</td>
-                                                <td><p x-cloak x-show="archive">Archived</p><p x-show="active">Active</p></td>
-                                                <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false">Archive</button></td>
+                                                <td><p x-cloak x-show="archive">Inactive</p><p x-show="active">Active</p></td>
+                                                <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false" onclick="$.ajax('{{route('members.savememberstatus',[$m->member_id,1])}}');">Archive</button></td>
                                             </tr>
                                         @else
                                             <tr x-data="{ active: false, inactive: true }">
-                                                <td>{{$m->salutation}}}</td>
+                                                <td>{{$m->salutation}}</td>
                                                 <td>{{$m->name}}</td>
                                                 <td class="expanded">{{$m->mobile_no}}</td>
                                                 <td>{{$m->relationship}}</td>
                                                 <td>{{$m->mbr_type}}</td>
                                                 <td><p x-cloak x-show="active">Acitve</p><p x-show="inactive">Inacitve</p></td>
-                                                <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true">Active</button></td>
+                                                <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true"  onclick="$.ajax('{{route('members.savememberstatus',[$m->member_id,1])}}');">Active</button></td>
                                             </tr>
                                         @endif
                                         @endforeach
                                         
-                                        <tr x-data="{ archive: false, active: true }">
-                                            <td>Mr</td>
-                                            <td>Ben</td>
-                                            <td>+6012 345 6789</td>
-                                            <td>Wife</td>
-                                            <td>Secondary</td>
-                                            <td><p x-cloak x-show="archive">Archived</p><p x-show="active">Active</p></td>
-                                            <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="archive = true, active = false">Archive</button></td>
-                                        </tr>
-                                        <tr x-data="{ active: false, inactive: true }">
-                                            <td>Mrs</td>
-                                            <td>Jane</td>
-                                            <td>+6012 345 6789</td>
-                                            <td>Wife</td>
-                                            <td>Secondary</td>
-                                            <td><p x-cloak x-show="active">Acitve</p><p x-show="inactive">Inacitve</p></td>
-                                            <td><button class="btn btn-outline-primary round mr-1 mb-1" @click="inactive = false, active = true">Active</button></td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -1279,7 +1261,7 @@
                 <div class="modal-body">
                     <label>Salutation</label>
                     <div class="form-group">
-                        <select name="lead['salutation_id']" class="form-control"  data-validation-required-message="Please select the salutation"  required>
+                        <select name="lead[salutation_id]" class="form-control"  data-validation-required-message="Please select the salutation"  required>
                             <option value="" disable>--</option>
                             @include('includes.option_from_data',['array'=>$payload['salutations'],'key'=>'salutation_id','value'=>'salutation'])
                         </select>
@@ -1290,7 +1272,7 @@
                     </div>
                     <label>Contact</label>
                     <div class="form-group">
-                        <input type="number" name="lead['mobile_no']" placeholder="Contact" class="form-control" data-validation-required-message="Please input the contact"  required>
+                        <input type="number" name="lead[mobile_no]" placeholder="Contact" class="form-control" data-validation-required-message="Please input the contact"  required>
                     </div>
                     <label>Relationship</label>
                     <div class="form-group">

@@ -153,13 +153,13 @@ class EventLogsController extends Controller
       }
     }
 
-    redirect("/eventlogs/".$request->call_id."/details");
+    return redirect("/eventlogs/".$request->call_id."/details");
   }
 
   public function download($filename)
   {
     // dd($filename);
-    $file_path = storage_path('uploads') . "/" . $filename;
+    $file_path = public_path('uploads') . "/" . $filename;
     return Response::download($file_path);
   }
 

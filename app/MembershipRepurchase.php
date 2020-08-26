@@ -8,7 +8,6 @@ class MembershipRepurchase extends Model
 {
     //
     protected $fillable = [
-        'repurchase_id',
         'mbrship_id',
         'current_ent_wd',
         'current_ent_we',
@@ -28,18 +27,11 @@ class MembershipRepurchase extends Model
         'address'
     ];
 
-    public function memberdetail($id)
-    {
-        $md=Membership::where('mbrship_id',$id)->first();
+    protected $guarded = ['repurchase_id'];
 
-        $s=DB::table('salutations')->where('salutation_id',$md['lead']->salutation_id)->first();
-        $md['lead']->salutation=$s->salutation;
-        if(!empty($md->lead_id2)){
-          $md['lead2']=DB::table('leads')->where('lead_id',$md->lead_id2)->first();
-          $s=DB::table('salutations')->where('salutation_id',$md['lead2']->salutation_id)->first();
-          $md['lead2']->salutation=$s->salutation;
-        }
-        $md['package']=DB::table('packages')->where('package_id',$md->package_id)->first();
-        echo json_encode($md);
+    protected $table = 'repurchase';
+
+    public function Membership(){
+        return $this->belongsto('App\Membership', 'mbrship_id', 'mbrship_id');
     }
 }

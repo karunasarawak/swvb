@@ -109,7 +109,6 @@ class InstallmentController extends Controller
       }
 
       public function calculator(){
-
         $pageConfigs = ['pageHeader' => true];
     
         $breadcrumbs = [

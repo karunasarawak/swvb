@@ -7,36 +7,47 @@
       <h6 class="py-50">Basic - Primary member</h6>
     </div>
 
-    <!-- for show only -->
-
-
-    <div class="col-sm-4">
-      <div class="form-group controls">
-        <label>Lead ID</label>
-        <input type="text" name="lead_id" id="lead_id" class="form-control" placeholder="Lead ID" value="{{$payload['lead']->lead_id}}" required>
-      </div>
+      <!-- for show only -->
+    <div class="col-12" >
+        <div class="form-group controls">
+            <div>
+                <label>Type</label>
+            </div>
+            <div class="custom-control-inline">
+              <div class="radio mr-4"> 
+                  <input type="radio" name="contract_type" value="1" id="beback1"  @click="edit=true, original=false" checked required>
+                  <label for="individual1">Be Back</label>
+                </div>
+                <div class="radio mr-4">
+                  <input type="radio" name="contract_type" value="2" id="individual1"  @click="edit=false, original=true" required>
+                  <label for="individual1">Individual</label>
+                </div>
+                <div class="radio">
+                  <input type="radio" name="contract_type" value="3" id="corporate1"  @click="edit=false, original=true" required>
+                  <label for="corporate1">Corporate</label>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-sm-4">
-      <div class="form-group controls">
         {{-- <label>Lead ID 2</label> --}}
         @if($payload['lead2'] != null)
           <input type="hidden" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="{{$payload['lead2']->lead_id}}" required>
         @else
           <input type="hidden" name="lead_id2" class="form-control" placeholder="Lead ID 2" value="" required>
         @endif
-      </div>
-    </div>
 
-    <div class="col-sm-4">
-      <div class="form-group controls">
         {{-- <label>Tour ID</label> --}}
         <input type="hidden" name="tour_id" class="form-control" placeholder="Tour ID" value="{{$payload['tour']->tour_id}}" required>
+    
+    <div class="col-4">
+      <div class="form-group controls">
+        <label>Lead ID</label>
+        <input type="text" name="lead_id" id="lead_id" class="form-control" placeholder="Lead ID" value="{{$payload['lead']->lead_id}}" required>
       </div>
     </div>
-    
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Salutation</label>
         <select name="pri_salute" id="pri_salute" class="custom-select" data-validation-required-message="Please select a salutation." required>
@@ -51,14 +62,14 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Name</label>
         <input type="text" id="pri_name" name="pri_name" class="form-control" value="{{$payload['lead']->name}}" required >
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Gender</label>
         <select name="pri_gender" id="pri_gender" class="custom-select" data-validation-required-message="Please select a salutation." required readonly>
@@ -73,21 +84,21 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>NRIC</label>
         <input type="text" id="pri_nric" name="pri_nric" class="form-control" value="{{$payload['lead']->nric}}" required>
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>DOB</label>
         <input type="date" id="pri_dob" name="pri_dob" class="form-control" value="{{$payload['lead']->dob}}" required>
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Maritual Status</label>
         <select name="pri_maritual" id="pri_maritual" class="custom-select" data-validation-required-message="Please select a salutation." required>
@@ -103,7 +114,7 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Race</label>
         <select name="pri_race" id="pri_race" class="custom-select" required>
@@ -119,7 +130,7 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Religion</label>
         <select name="pri_religion" id="pri_religion" class="custom-select" required>
@@ -134,7 +145,7 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Nationality</label>
         <select name="pri_nation" id="pri_nation" class="custom-select" required>
@@ -150,7 +161,7 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Preferred Language</label>
         <select name="pri_lang" id="pri_lang" class="custom-select" required>
@@ -163,7 +174,7 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="form-group controls">
         <label>Status</label>
         <select name="pri_status" id="pri_status" class="custom-select" required>

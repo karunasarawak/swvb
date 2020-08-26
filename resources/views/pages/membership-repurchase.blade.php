@@ -10,6 +10,9 @@
 
 @php
     use App\Http\Controllers\MembershipController;
+    use App\Http\Controllers\StaffsController;
+    use App\Http\Controllers\SalesTeamController;
+    use App\Http\Controllers\Calculations;
 @endphp
 
 @section('content')
@@ -28,7 +31,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="" novalidate>
+                        <form class="form-horizontal" method="POST" action="{{route('membership.addRepurchase', $payload['membership']->mbrship_id)}}">
                             @csrf
                             <div class="row pt-1">
                                 <div class="col">
@@ -49,7 +52,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label for="request-date">Date of Request</label>
-                                                <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="application-date" name="application_date"
+                                                <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="application-date" name="request_date"
                                                 data-validation-required-message="Please enter date of request" required>
                                         </div>
                                     </div>
@@ -73,16 +76,16 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Membership Payment to Date</label>
-                                            <p>RM {{ number_format($payload['current_installment_amt'], 2) }}</p>
+                                            <label for="payment-to-date">Membership Payment to Date</label>
+                                            <input type="number" class="form-control" placeholder="RM" id="payment-to-date" name="payment_to_date" value="{{ number_format(Calculations::getInstallationToDate($payload['membership']->mbrship_id), 2) }}" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Annual Maintenance Fee Payment to Date</label>
-                                            <p>RM {{ number_format($payload['current_amf_amt'], 2) }}</p>
+                                            <label for="amf-to-date">Annual Maintenance Fee Payment to Date</label>
+                                            <input type="number" class="form-control" placeholder="RM" id="amf-to-date" name="amf_to_date" value="{{ number_format(Calculations::getAmfToDate($payload['membership']->mbrship_id), 2) }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +94,8 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                          <div class="controls">
-                                            <label>Outstanding Amount</label>
-                                            <p>RM {{ number_format($payload['outstanding'], 2) }}</p>
+                                            <label for="outst-amt">Outstanding Amount</label>
+                                            <input type="number" class="form-control" placeholder="RM" id="outst-amt" name="outst_amt" value="{{ number_format(Calculations::getTotalOutstanding($payload['membership']->mbrship_id), 2) }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -117,11 +120,20 @@
                                         @foreach($payload['terms'] as $t)
                                         <tr>
                                             <td>{{ $t->term }}</td>
-                                            <td>@php echo MembershipController::getTermEnt($t->term, $payload['membership']->mbrship_id, 1) @endphp</td>
-                                            <td>@php echo MembershipController::getTermEnt($t->term, $payload['membership']->mbrship_id, 2) @endphp</td>
-                                            <td>@php echo MembershipController::getRemainEnt($t->term, $payload['membership']->mbrship_id, 1) @endphp WD @php echo MembershipController::getRemainEnt($t->term, $payload['membership']->mbrship_id, 2) @endphp WE</td>
+                                            <td>{{ MembershipController::getTermEnt($t->term, $payload['membership']->mbrship_id, 1) }}</td>
+                                            <td>{{ MembershipController::getTermEnt($t->term, $payload['membership']->mbrship_id, 2) }}</td>
+                                            <td>{{ MembershipController::getRemainEnt($t->term, $payload['membership']->mbrship_id, 1) }} WD {{ MembershipController::getRemainEnt($t->term, $payload['membership']->mbrship_id, 2) }} WE</td>
                                         </tr>
                                         @endforeach()
+
+                                        <tr>
+                                            <td colspan="3">Total Balance</td>
+                                            <td>
+                                                {{ MembershipController::getAllRemainEnt($payload['membership']->mbrship_id, 1) }} WD {{ MembershipController::getAllRemainEnt($payload['membership']->mbrship_id, 2) }} WE
+                                                <input type="hidden" class="form-control" name="balance_wd" value="{{ MembershipController::getAllRemainEnt($payload['membership']->mbrship_id, 1) }}">
+                                                <input type="hidden" class="form-control" name="balance_we" value="{{ MembershipController::getAllRemainEnt($payload['membership']->mbrship_id, 2) }}">
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -136,7 +148,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Current Membership Period</label>
-                                            <p>{{ $payload['membership']->mbrship_term }}</p>
+                                            <input type="number" class="form-control" placeholder="RM" id="nett-repurchase" name="current_period" value="{{ $payload['membership']->mbrship_term }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -147,17 +159,17 @@
                                 <div class="col-sm-6">
                                     <div class="form-group controls">
                                         <div class="form-group controls">
-                                            <label class="d-block">Repurchase Amount</label>
-                                            <p></p>
+                                            <label for="repurchase-amount" class="d-block">Repurchase Amount</label>
+                                            <input type="number" class="form-control" placeholder="RM" id="repurchase-amount" name="repurchase_amt" value="{{ MembershipController::calculateRepurchasePrice($payload['membership']->mbrship_term, $payload['membership']->package_id, $payload['membership']->package_price) }}" readonly>                                        
                                         </div>
                                     </div>
                                 </div>          
 
                                 <div class="col-sm-6">
                                     <div class="form-group controls">
-                                        <label class="d-block">Total Nett Amount</label>
-                                        <input type="text" class="form-control" placeholder="RM" id="name" name="name"
-                                                data-validation-required-message="This Name field is required" required>
+                                        <label for="nett-repurchase" class="d-block">Total Nett Amount</label>
+                                        <input type="number" class="form-control" placeholder="RM" id="nett-repurchase" name="nett_repurchase" step="0.01" min="0"
+                                                data-validation-required-message="Please enter total nett amount" required>
                                     </div>
                                 </div>          
                             </div>
@@ -166,8 +178,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group controls">
                                         <label for="payment-remarks" class="d-block">Remarks</label>
-                                        <input type="text" class="form-control" placeholder="--" id="payment-remarks" name="payment_remarks"
-                                                data-validation-required-message="This Name field is required" required>
+                                        <input type="text" class="form-control" placeholder="--" id="payment-remarks" name="payment_remarks">
                                     </div>
                                 </div>          
                             </div>
@@ -215,15 +226,15 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="controls">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="--" id="name" name="name"
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" placeholder="--" id="address" name="address"
                                                 data-validation-required-message="This Name field is required" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <button type="button" class="btn btn-primary float-left position-relative mb-5" id="btn_add1" onclick="showContact2()">Submit</button>
+                            <button type="submit" class="btn btn-primary float-left position-relative mb-5" id="btn_add1" onclick="showContact2()">Submit</button>
                         </form>
                  </div>
             </div>
@@ -288,11 +299,10 @@
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">External Membership</p>
-                                            <p class="col font-weight-bold black">@php echo MembershipController::hasExtMembership($payload['membership']->mbrship_id) @endphp</p>
+                                            <p class="col font-weight-bold black">{{ MembershipController::hasExtMembership($payload['membership']->mbrship_id) }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                
                     </div>
                 </div>
             </div>
@@ -308,27 +318,27 @@
                                     <div class="col">
                                         <div class="row pt-1">
                                             <p class="col">Declaration No.</p>
-                                            <p class="col font-weight-bold black">1234 0000</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->declaration_no }}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">MRO</p>
-                                            <p class="col font-weight-bold black">MRO1-Chris</p>
+                                            <p class="col font-weight-bold black">@php echo StaffsController::getStaffName($payload['membership']->mro) @endphp</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">CCO</p>
-                                            <p class="col font-weight-bold black">CCO1</p>
+                                            <p class="col font-weight-bold black">@php echo StaffsController::getStaffName($payload['membership']->cco) @endphp</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Sales Personnel</p>
-                                            <p class="col font-weight-bold black">Chris</p>
+                                            <p class="col font-weight-bold black">@php echo SalesTeamController::getSalesTeamMemberName($payload['membership']->sales_personnel_id) @endphp</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Sales Manager</p>
-                                            <p class="col font-weight-bold black">Wilson</p>
+                                            <p class="col font-weight-bold black">@php echo SalesTeamController::getSalesTeamMemberName($payload['membership']->sales_manager_id) @endphp</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Sales Venue</p>
-                                            <p class="col font-weight-bold black">Kuching</p>
+                                            <p class="col font-weight-bold black">{{ $payload['membership']->venue_name }}</p>
                                         </div>
                                     </div>
                                 </div>

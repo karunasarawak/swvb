@@ -44,6 +44,11 @@ class Membership extends Model
         return $this->belongsTo('App\Lead', 'lead_id1', 'lead_id');
     }
 
+    public function tour()
+    {
+        return $this->belongsTo('App\Tour', 'lead_id1', 'lead_id1');
+    }
+
     public function address()
     {
         return $this->belongsto('App\Address', 'addr_1', 'addr_1');

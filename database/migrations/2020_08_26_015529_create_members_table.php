@@ -19,6 +19,7 @@ class CreateMembersTable extends Migration
             $table->integer('mbrship_id')->length(11);
             $table->string('mbr_type')->length(30);
             $table->string('relationship')->length(30);
+            $table->tinyInteger('is_archive')->length(1)->default(0);
             $table->timestamps();
         });
     }

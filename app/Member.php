@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Lead extends Model
+class Member extends Model
 {
     protected $fillable = [
         'lead_id',

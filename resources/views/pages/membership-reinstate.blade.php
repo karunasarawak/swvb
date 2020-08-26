@@ -60,13 +60,25 @@
                                         <div class="controls">
                                             <label>Amount Due At Reinstatement</label>
                                             <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="--" onkeyup="reinstate()" id="name" name="amt_due"
+                                                <input type="number" class="form-control" placeholder="--" onkeyup="calcPayable()" id="amt_due" name="amt_due"
                                                 data-validation-required-message="The amount of late payment penalty charge" required>
                                                 <div class="form-control-position">RM</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Amount Due At Reinstatement</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="number" id="show" class="form-control" placeholder="--" 
+                                                data-validation-required-message="The amount of late payment penalty charge" readonly>
+                                                <div class="form-control-position">RM</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
                             </div>
 
 
@@ -95,7 +107,7 @@
                                             <div class="controls">
                                                 <label>Late Payment Penalty Charge</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="number" class="form-control" placeholder="1234 0000" id="name" name="late_payment"
+                                                    <input type="number" class="form-control" placeholder="1234 0000" onkeyup="calcPayable()" id="late_payment" name="late_payment"
                                                     data-validation-required-message="This Name field is required" required>
                                                     <div class="form-control-position">RM</div>
                                                 </div>
@@ -130,7 +142,7 @@
                                             <div class="controls">
                                                 <label>Reinstatement Fee</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="number" class="form-control" placeholder="--" id="name" name="reinstate"
+                                                    <input type="number" class="form-control" placeholder="--" onkeyup="calcPayable()" id="reinstate" name="reinstate"
                                                     data-validation-required-message="This Name field is required" required>
                                                     <div class="form-control-position">RM</div>
                                                 </div>
@@ -144,8 +156,8 @@
                                         <div class="controls">
                                             <label>Total Amount Payable</label>
                                             <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="--" id="name" name="payable"
-                                                data-validation-required-message="This Name field is required" required>
+                                                <input type="number" class="form-control" placeholder="--" id="total" name="total"
+                                                data-validation-required-message="This Name field is required" readonly>
                                                 <div class="form-control-position">RM</div>
                                             </div>
                                         </div>
@@ -156,8 +168,8 @@
                                         <div class="controls">
                                             <label>Total Amount Paid</label>
                                             <div class="position-relative has-icon-left">
-                                                <input type="number" class="form-control" placeholder="--" id="name" name="total_amount"
-                                                data-validation-required-message="This Name field is required" readonly>
+                                                <input type="number" class="form-control" placeholder="--" onkeyup="calcPayable()" id="paid" name="paid"
+                                                data-validation-required-message="This Name field is required" required>
                                                 <div class="form-control-position">RM</div>
                                             </div>
                                         </div>
@@ -167,8 +179,12 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Official Receipt No.</label>
-                                                <input type="number" class="form-control" placeholder="--" id="name" name="receipt_no"
-                                                data-validation-required-message="This Name field is required" required>
+                                            <select name="receipt_id" class="select2 form-control" required>
+                                                <option>--</option>
+                                                    @foreach($payload['receipt'] as $receipt)
+                                                    <option value="{{$receipt->receipt_id}}">{{$receipt->receipt_no}}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                     </div>
                                 </div>
@@ -176,10 +192,8 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Point Offset AMF (CAI only) Details</label>
-                                           
-                                                <input type="text" class="form-control" placeholder="--" id="name" name="pt_offset_amt"
+                                                <input type="text" class="form-control" placeholder="--" id="pt_offset_amt" name="pt_offset_amt"
                                                 data-validation-required-message="This Name field is required" required>
-                                                
                                         </div>
                                     </div>
                                 </div>
@@ -301,15 +315,15 @@
                                 </div>
                                 <div class="row pt-1">
                                     <p class="col">Sales Personnel</p>
-                                    <p class="col font-weight-bold black"></p>
+                                    <p class="col font-weight-bold black">{{$payload['membership']->tour->salespersonnel['sales_name']}}</p>
                                 </div>
                                 <div class="row pt-1">
                                     <p class="col">Sales Manager</p>
-                                    <p class="col font-weight-bold black"></p>
+                                    <p class="col font-weight-bold black">{{$payload['membership']->tour->salesmanager['sales_name']}}</p>
                                 </div>
                                 <div class="row pt-1">
                                     <p class="col">Sales Venue</p>
-                                    <p class="col font-weight-bold black"></p>
+                                    <p class="col font-weight-bold black">{{$payload['membership']->tour->salesvenue['sales_venue']}}</p>
                                 </div>
                             </div>
                         </div>
@@ -321,25 +335,34 @@
     </div>
 </section>
         
-<script type="text/javascript">
-        function reinstate(){
+<script>
 
-        var amtdue = document.getElementById("amt_due");
-        var late_pymt = document.getElementById("late_payment");
-        var reinstate = document.getElementById("reeinstate");
-        var payable = document.getElementById("payable");
-        // var total = document.getElementById("total_amount");
-            
-            // alert("hi");
-            
-        var amtdue, late_pymt, reinstate, payable, total = 0;
+        function calcPayable(){
+            console.log("function called")
+            var amtdue = document.getElementById("amt_due").value;
+            console.log(amtdue);
+            var late_pymt = document.getElementById("late_payment").value;
+            var reinstate = document.getElementById("reinstate").value;
+            var paid = document.getElementById("paid").value;
+            // var total = document.getElementById("payable").value;
+            var total = 0;
+            // document.getElementById("show").value = amtdue;
+                
+            // var late_pymt, reinstate, payable, total = 0;
 
-        if(late_pymt && reinstate != ""){
-            var total = amtdue + late_pymt + reinstate + payable;
-        }
+            // if(late_pymt.value && reinstate.value != ""){
+            //     var total = amtdue + late_pymt + reinstate + paid;
+            // }
+            // else if (late_pymt.value != ""){
+            //     var total = amtdue + paid + late_pymt;
+            // }else if (reinstate.value != ""){
+            //     var total = amtdue + paid + reinstate;
+            // }else {
+                var total = +amtdue + +paid + +late_pymt + +reinstate;
+            // }
 
-        document.getElementById("total_amount").value = total;
-    }
+            document.getElementById("total").value = total;
+            }
 
 </script>
 <!-- Form wizard with step validation section end -->

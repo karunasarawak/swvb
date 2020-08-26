@@ -42,8 +42,18 @@ class Tour extends Model
         return $this->belongsTo('App\Lead', 'lead_id1', 'lead_id');
     }
 
+    public function salespersonnel()
+    {
+        return $this->belongsTo('App\SalesTeam', 'sales_personnel_id', 'sales_team_id');
+    }
+
+    public function salesmanager()
+    {
+        return $this->belongsTo('App\SalesTeam', 'sales_manager_id', 'sales_team_id');
+    }
+
     public function salesvenue()
     {
-        return $this->hasOne('App\SalesVenue', 'sales_venue_id', 'sales_venue_id');
+        return $this->belongsTo('App\SalesVenue', 'sales_venue_id', 'sales_venue_id');
     }
 }

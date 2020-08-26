@@ -13,15 +13,14 @@ class CreateRepurchaseTable extends Migration
      */
     public function up()
     {
-        
         Schema::create('repurchase', function (Blueprint $table) {
-            $table->id();
+            $table->id('repurchase_id');
             $table->integer('mbrship_id');
             $table->integer('current_ent_wd');
             $table->integer('current_ent_we');
-            $table->date('payment_to_date');
-            $table->date('amf_payment_to_date');
-            $table->date('outstanding_amt');
+            $table->decimal('payment_to_date');
+            $table->decimal('amf_payment_to_date');
+            $table->decimal('outstanding_amt');
             $table->string('applicant_name')->length(1000);
             $table->date('request_date');
             $table->date('request_received_date');
@@ -44,7 +43,6 @@ class CreateRepurchaseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_repurchase');
+        Schema::dropIfExists('repurchase');
     }
 }
-{{  }}{{  }}{{  }}

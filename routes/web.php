@@ -21,13 +21,14 @@ Route::get('/membership/new', 'MembershipController@create2ndMembership');
 Route::post('/membership/new', 'MembershipController@storeMembers')->name('members.store');//name only for posting
 Route::get('/membership/archive', 'MembershipController@archive');
 Route::post('/membership/savesecondary/{id}/{type}', 'MembershipController@savemember')->name('members.savesecondary');//name only for posting
-
+Route::get('/membership/savememberstatus','MembershipController@savememberstatus')->name('members.savememberstatus');
 Route::get('/membership/{mbrship_id}/detail', 'MembershipController@showMemberDetails')->name('membership.details');
 
 Route::get('/membership/{mbrship_id}/transfer', 'MembershipController@transfer')->name('membership.transfer');    
 Route::get('/membership/{mbrship_id}/withdraw', 'MembershipController@withdrawMembership');
 Route::get('/membership/{mbrship_id}/updowngrade', 'MembershipController@updowngrade')->name('membership.updowngrade');
 Route::get('/membership/{mbrship_id}/repurchase', 'MembershipController@repurchase');
+Route::post('/membership/{mbrship_id}/repurchase', 'MembershipController@addrepurchase')->name('membership.addRepurchase');
 Route::get('/membership/{mbrship_id}/reinstate', 'MembershipController@reinstate');
 Route::post('/membership/{mbrship_id}/reinstate', 'MembershipController@storereinstate')->name('reinstate.get');
 Route::get('/membership/{mbrship_id}/details', 'MembershipController@redirect')->name('members.redirect');
@@ -100,7 +101,7 @@ Route::get('/installment/{id}/details', 'InstallmentController@details')->name('
 Route::post('/installment/{id}/save', 'InstallmentController@save')->name('installment.save');  
 Route::get('/installment/calculator', 'InstallmentController@calculator');
 Route::get('/installment/amfall', 'InstallmentController@amfall');
-Route::get('/installment/amfdetails', '@amfdetails');
+Route::get('/installment/amfdetails', 'InstallmentController@amfdetails');
 
 Route::get('/contra', 'ContraController@index');
 Route::get('/contra/new', 'ContraController@new');
@@ -143,7 +144,9 @@ Route::patch('/cardprintinglist', 'CardPrintingController@changeStatus')->name('
 
 Route::get('/cardprintinglist/{batch_id}', 'CardPrintingController@exportExcel')->name('card.export');
 
-Route::get('/dispatch', 'CardPrintingController@cpdispatch');
+// Route::get('/dispatch', 'CardPrintingController@dispatch');
+
+Route::get('/dispatch', 'DispatchController@dispatch');
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');

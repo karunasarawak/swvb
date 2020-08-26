@@ -1,5 +1,5 @@
 <!-- body content of step 1 first member start -->
-<ieldset x-data="{ edit: true, original:false}" >  <!-- basic start -->
+<fieldset x-data="{ edit: true, original:false}" >  <!-- basic start -->
   <section id="form-repeater-wrapper">  
     <div class="row pt-1" >
       <div class="col-12">
@@ -216,10 +216,10 @@
         <div class="form-group">
           <div class="controls">
             <label>Package Type</label>
-            <select name="package_id" id="packagetype" onchange="sample();" class="custom-select form-control" data-validation-required-message="Please select a package type" required>
-              <option value=""disabled selected>Select a package type</option>
+            <select name="package_id" id="packagetype" onchange="package();" class="custom-select form-control package" data-validation-required-message="Please select a package type" required>
+              <option value="" disabled selected>Select a package type</option>
               @foreach($payload['packages'] as $package)
-                <option value="{{$package->package_id}}" id="sample" class="{{$package->package_wd}} WD {{$package->package_we}}WE">{{$package->package}}</option>
+                <option value="{{$package->package_id}}" class="{{$package->package_wd}} WD {{$package->package_we}}WE">{{$package->package}}</option>
               @endforeach
             </select>
           </div>
@@ -230,10 +230,23 @@
         <div class="form-group">
           <div class="controls">
             <label>Entitlement</label>
-            <input type="number" class="form-control" placeholder="--" readonly>
+            <input type="number" class="form-control entitlement" placeholder="--" readonly>
           </div>
         </div>
       </div>
+      
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class="controls">
+                  <label>Package Price</label>
+                  <div class="position-relative has-icon-left">
+                    <input type="number" name="price" class="form-control price" placeholder="--" data-validation-required-message="Please write the package price" required>
+                    <div class="form-control-position">RM</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+          
     </div>
     <!-- contact end -->
     <!-- payment start -->
@@ -241,209 +254,197 @@
       <div class="col-8">
         <h6 class="py-50">Payment</h6>
       </div>
-      <!-- <div class="col-4">
-        <div class="row">
-          <div class="col">
-            <span class="py-50 swvb-light-blue h6">Down-payment</span>
-            <button class="btn btn-icon rounded-circle btn-primary" type="button" data-repeater-create>
-              <i class="bx bx-plus"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="col-sm-12">
-            <label>Down-payment</label>
-        </div>
-        <div class="row justify-content-between" data-repeater-item>
-          <div class="col-12 form-group d-flex align-items-center">
-            <input type="text" class="form-control" placeholder="First Name">
-            <button class="btn btn-icon btn-danger rounded-circle" type="button" data-repeater-delete>
-              <i class="bx bx-x"></i>
-            </button>
-          </div>
-        </div>
-      </div> -->
+     
     </div>
-      <div class="row" >
-          <div class="col-sm-12">
-              <div class="form repeater-default">
-                    <div data-repeater-list="group1">
-                        <div data-repeater-item>
-                          <div class="row justify-content-between">
-
-                            <div class="col-sm-4">
-                              <label for="Email">Down Payment 1</label>
-                              <input type="number" name="poe_year1" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
-                            </div>
-
-                            <div class="col-sm-4">
-                              <div class="form-group controls">
-                                <label>Paid</label>               
-                                <div class="custom-control-inline">
-                                  <div class="radio mr-1">
-                                    <input type="radio" name="amfcc" value="1" id="ccy" @click="xcc=false, paid=true" required>
-                                    <label for="ccy">Yes</label>
-                                  </div>
-                                  <div class="radio">
-                                    <input type="radio" name="amfcc" value="0" id="ccn" @click="xcc=true, paid=false">
-                                    <label for="ccn">No</label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div class="col-md-6 form-group" x-show="paid">
-                              <label for="Email">Paid date</label>
-                              <input type="number" name="poe_year1" class="form-control" id="pt_use_yr" placeholder="Enter Use year">
-                            </div>
-
-                            <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">
-                              <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i
-                                  class="bx bx-x"></i>
-                                  Delete
-                              </button>
-                            </div>
-                          </div>
-                          <hr>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col p-0">
-                            <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>
-                                Add
-                            </button>
-                        </div>
-                    </div>
-              </div>
-          </div>
-
+        <div class="row" >
+          <!--<div class="col-sm-12">-->
+          <!--    <div class="form repeater-default">-->
+          <!--          <div data-repeater-list="group1">-->
+          <!--              <div data-repeater-item>-->
+          <!--                  <div class="row justify-content-between">-->
+          <!--                      <div class="col-md-6 form-group">-->
+          <!--                          <label for="Email">Down Payment </label>-->
+          <!--                          <input type="number" name="poe_year1" class="form-control" id="pt_use_yr" placeholder="Enter Use year">-->
+          <!--                      </div>-->
+                                
+                                
+          <!--                      <div class="col-md-2 col-sm-12 form-group d-flex align-items-center pt-2">-->
+          <!--                        <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button"> <i-->
+          <!--                            class="bx bx-x"></i>-->
+          <!--                            Delete-->
+          <!--                        </button>-->
+          <!--                      </div>-->
+          <!--                  </div>-->
+          <!--                  <hr>-->
+          <!--              </div>-->
+          <!--          </div>-->
+          <!--          <div class="form-group">-->
+          <!--              <div class="col p-0">-->
+          <!--                  <button class="btn btn-primary" data-repeater-create type="button"><i class="bx bx-plus"></i>-->
+          <!--                      Add-->
+          <!--                  </button>-->
+          <!--              </div>-->
+          <!--          </div>-->
+          <!--    </div>-->
+          <!--</div>-->
           
-
-          <div class="col-sm-4">
+         
+          
+          @for($i=1;$i>=6;$i++)
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="controls">
+                <label>Down Payment {{$i}}</label>
+                  <div class="position-relative has-icon-left">
+                    <input type="number" name="dp[{{$i}}][dpymt]" class="form-control dp" placeholder="--" >
+                    <div class="form-control-position">RM</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+           
+          <div class="col-sm-6">
             <div class="form-group">
               <div class="controls">
                 <label>Date</label>
-                <input type="date" class="form-control" placeholder="--" readonly>
+                <input type="date" name=dp[{{$i}}][projected_alloc_date] class="form-control" placeholder="Date" required>
               </div>
             </div>
           </div>
 
-          <div class="col-sm-4">
+        @endfor
+
+          <!--<div class="col-sm-4">-->
+          <!--  <div class="form-group">-->
+          <!--    <div class="controls">-->
+          <!--      <label>Installment 1</label>-->
+          <!--      <input type="number" class="form-control" placeholder="--" required>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <!--<div class="col-sm-4">-->
+          <!--  <div class="form-group">-->
+          <!--    <div class="controls">-->
+          <!--      <label>Date</label>-->
+          <!--      <input type="date" class="form-control" placeholder="--" required>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+        
+      <div class="row installment">
+          <div class="col-md-4">
+                   
             <div class="form-group">
               <div class="controls">
-                <label>Rounding</label>
-                <input type="number" class="form-control" placeholder="--" readonly>
-              </div>
-            </div>
-          </div>
-      </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <div class="controls">
-                <label>Installment Duration</label>
-                <select name="duration" class="select2 form-control" data-validation-required-message="Please select a installment duration" required>
-                  <option value="" disabled selected>Select a installament duration</option>
-                  <!-- 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72 -->
-                  <option value="6">6 Month</option>
-                  <option value="12">12 Month</option>
-                  <option value="18">18 Month</option>
-                  <option value="24">24 Month</option>
-                  <option value="30">30 Month</option>
-                  <option value="36">36 Month</option>
-                  <option value="42">42 Month</option>
-                  <option value="48">48 Month</option>
-                  <option value="54">54 Month</option>
-                  <option value="60">60 Month</option>
-                  <option value="66">66 Month</option>
-                  <option value="72">72 Month</option>
+                <label>Installation Duration</label>
+                <select name="duration" class="select2 form-control duration" data-validation-required-message="Please select a installation duration" required>
+                  <option value="" disabled selected>Select a installation duration</option>
+                  @include('includes.option_from_array',['data'=>$payload['interest'],'array'=>$payload['interest_durations']])
                 </select>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
+            
+            
             <div class="form-group">
               <div class="controls">
                 <label>Admin Charges</label>
                 <div class="position-relative has-icon-right">
-                  <input type="number" name="charges" class="form-control" placeholder="--" readonly>
-                  <div class="form-control-position">RM</div>
+                  <select name="charges" class="select2 form-control round mr-1 mb-1 interest">
+                    @include('includes.option_from_array',['array'=>$payload['interests']])
+                  </select>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-                <div class="controls">
-                  <label>Package Price</label>
-                  <div class="position-relative has-icon-left">
-                    <input type="number" name="price" class="form-control" placeholder="--" data-validation-required-message="Please write the package price" required>
-                    <div class="form-control-position">RM</div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
+            
+              <div class="form-group">
               <div class="controls">
                 <label>Addition</label>
-                <div class="position-relative has-icon-left">  
-                  <input type="number" name="add" class="form-control" placeholder="--" data-validation-required-message="Please write the addition" required>
+                <div class="position-relative has-icon-left">
+                  <input type="number" name="addition" class="form-control at" value="0" placeholder="--" required>
                   <div class="form-control-position">RM</div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
+            
+            <div class="form-group">
+              <div class="controls">
+                <label>Addition Remark</label>
+                    <input type="text" name="addremark" class="form-control" placeholder="--" data-validation-required-message="Please write the addition remark" required>
+              </div>
+            </div>
+            
             <div class="form-group">
               <div class="controls">
                 <label>Discount</label>
-                  <div class="position-relative has-icon-left">
-                    <input type="number" name="dis" class="form-control" placeholder="--" data-validation-required-message="Please write the discount" required>
+                <div class="position-relative has-icon-left">
+                  <input type="number" name="dis" class="form-control dt" value="0" placeholder="--" data-validation-required-message="Please write the discount" required>
                   <div class="form-control-position">RM</div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
+            
+            <div class="form-group">
+              <div class="controls">
+                <label>Discount Remark</label>
+                    <input type="text" name="disremark" class="form-control" placeholder="--" data-validation-required-message="Please write the discount remark" required>
+              </div>
+            </div>
+            
             <div class="form-group">
               <div class="controls">
                 <label>Nett Package Price</label>
                 <div class="position-relative has-icon-left">
-                  <input type="number" name="npt" class="form-control" placeholder="--" data-validation-required-message="Please write the nett package price" required>
+                  <input type="number" name="npt" class="form-control net" placeholder="--" data-validation-required-message="Please write the nett package price" required>
                   <div class="form-control-position">RM</div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
+            
+            <div class="form-group">
+              <div class="controls">
+                <label>Rounding</label>
+                <input type="number" class="form-control rounding" placeholder="--" required>
+              </div>
+            </div>
+            
             <div class="form-group">
               <div class="controls">
                 <label>Total Outstanding</label>
                   <div class="position-relative has-icon-left">
-                    <input type="text" name="osd" class="form-control" placeholder="--" data-validation-required-message="Please write the total outstanding" readonly>
+                    <input type="text" name="osd" class="form-control outstanding" placeholder="--" data-validation-required-message="Please write the total outstanding" required>
                     <div class="form-control-position">RM</div>
                   </div>
               </div>
             </div>
+            
+            <button type="button" class="btn btn-primary m-1" id="btn_add1" onclick="installment();" >Preview</button>
+            
           </div>
-        </div>
+          
+          <div class="col-md-8">
+              <div class="table table-responsive pt-3">
+                  <table class="table tours-all" id="installtable" style="width:100%;">
+                    <thead class="bg-swvb-dark">
+                        <tr>
+                            <th class="text-white">No.</th>
+                            <th class="text-white">Projected Date</th>
+                            <th class="text-white">Item</th>
+                            <th class="text-white">Admin Charges</th>
+                            <th class="text-white">Installment</th>
+                            <th class="text-white">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+              </div>
+          </div>
       </div>
-    </div>
+          
+    
+   
     <!-- primary address end -->
     <!--alt address start -->
     <div class="row pt-1" x-data="{ cc: false, xcc:true}">
@@ -528,9 +529,7 @@
       </div>
     </div>
 
-    <div class="row">
-        <div class="col"></div>
-    </div>
+  
 
     <!--
     AMF end
@@ -684,7 +683,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary m-1" id="btn_add1" >Preview</button>
+    
   </section>
 </fieldset>
   

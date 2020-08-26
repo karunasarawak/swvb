@@ -175,8 +175,8 @@ class ReservationController extends Controller
       }
 
       public function test(){
-      print_r(DB::select('select * from invoices'));
+      print_r(DB::select('select * from leads'));
       // print_r(DB::select('show tables'));
-      //print_r(DB::select('desc rci_bulk_bankings'));
+      //print_r(DB::select('desc member_companies'));
       } 
 }
