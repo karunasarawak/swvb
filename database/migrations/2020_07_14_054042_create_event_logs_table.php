@@ -18,7 +18,7 @@ class CreateEventLogsTable extends Migration
         
             $table->integer('mbrship_id')->length(11)->nullable();
             $table->integer('lead_id')->length(11)->nullable();
-            $table->integer('el_type_id')->length(11)->nullable();
+            
             $table->integer('el_cat_id')->length(11)->nullable();
             $table->string('el_title',50)->nullable();
             $table->string('el_remarks',255)->nullable();

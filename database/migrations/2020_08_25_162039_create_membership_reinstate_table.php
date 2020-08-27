@@ -25,6 +25,7 @@ class CreateMembershipReinstateTable extends Migration
             $table->decimal('late_payment')->length(30)->nullable();
             $table->decimal('reinstate')->length(30)->nullable();
             $table->decimal('payable')->length(30)->nullable();
+            $table->string('remark', 65)->nullable();
             $table->timestamps();
         });
     }

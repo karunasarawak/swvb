@@ -23,7 +23,9 @@ class CreateInstallmentsTable extends Migration
             $table->decimal('downpayment')->length(11)->nullable();
             $table->decimal('admin_charges')->length(11)->nullable();
             $table->decimal('addition', 10, 2)->nullable();
+            $table->string('addition_remark', 500)->nullable();
             $table->decimal('discount', 10, 2)->nullable();
+            $table->string('discount_remark', 500)->nullable();
             $table->decimal('net_price')->length(11)->nullable();
             $table->decimal('outstanding')->length(11)->nullable();
             $table->timestamps();

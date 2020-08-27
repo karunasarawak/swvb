@@ -62,7 +62,7 @@
                                                 <td>{{ $event->el_type_name }}</td>
                                                 <td>{{ $event->el_cat_name }}</td>
                                                 <td>{{ $event->el_title }}</td>
-                                                <td>{{ $event->el_created_at }}</td>
+                                                <td>{{ $event->el_created_by }}</td>
                                                 <td>{{ $event->el_updated_at }}</td>
                                                 <td>{{ $event->el_updated_by }}</td>
 

@@ -19,7 +19,8 @@ class CreateAttachmentsTable extends Migration
             $table->integer('parent_id')->length(11)->nullable();
             $table->string('doc_title',100)->nullable();
             $table->string('doc_created_by', 50)->nullable();
-            $table->string('doc_directory', 255)->nullable();
+            $table->string('doc_directory')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Membership extends Model
 {
+    protected $primaryKey='mbrship_id';
     protected $fillable = [
         'mbrship_id',
         'mbrship_no',
@@ -67,6 +68,16 @@ class Membership extends Model
     public function package()
     {
         return $this->hasOne('App\Package', 'package_id', 'package_id');
+    }
+
+    public function installment()
+    {
+        return $this->hasMany('App\Installment', 'mbrship_id', 'mbrship_id');
+    }
+
+    public function extmembership()
+    {
+        return $this->hasMany('App\ExternalMembership', 'mbrship_id', 'mbrship_id');
     }
 
 

@@ -6,24 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Installment extends Model
 {
+    protected $primaryKey='install_id';
     protected $fillable = [
         'mbrship_id',
+        'install_id',
         'package_price', //from installment
-        'package_id',
-        //'cc_id_amf',
-        //'cc_id_install',
-        //'comp_id',
-       // 'application_no',
-        'application_date',
-       // 'agreement_no',
-        'agreement_date',
-        //'membership term',
-        // 'mebrship_commence',
-         'mbrship_exp',
-         //'declaration_no',
-         //'mro', 'cco',
-         //'install_auto',
-         //'amf_auto',
-                  //put all the fields at here
+        'admin_charges',
+        'install_duration',
+        'addition',
+        'addition_remark',
+        'discount',
+        'discount_remark',
+        'net_price',
+        'downpayment',
+        'admin_charges',
+        'outstanding',
+        'monthly_installment',
+        'status',
+        'type'
     ];
+
+    protected $table = 'installments';
+
+    public function installmententptschedule()
+    {
+        return $this->hasMany('App\InstallmentEntPointSchedule', 'install_id', 'install_id');
+    }
 }

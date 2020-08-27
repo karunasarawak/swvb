@@ -86,6 +86,13 @@
 
   function switchInfo()
   {
+    if($('#exist_lead').val()){
+      var el=$('#exist_lead').val();
+    }else{
+      var el='';
+    }
+    $('#exist_lead').val($('#lead_id').val());
+    $('#lead_id').val(el);
     for(var i = 0; i < 100; i++)
     {
       var temp = document.getElementById(pri[i]).value;

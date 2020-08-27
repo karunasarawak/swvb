@@ -12,7 +12,10 @@ use App\Member;
 use App\MembershipReinstate;
 use App\MembershipRepurchase;
 use App\Receipt;
+use App\Package;
+use App\InstallmentSchedule;
 use Redirect;
+use 
 use Illuminate\Database\Seeder;
 
 class MembershipController extends Controller
@@ -46,13 +49,34 @@ class MembershipController extends Controller
     ];
 
     $memberDetail = Db::table('memberships')->where('mbrship_id', $mbrship_id)
-                  ->join('leads','leads.lead_id','memberships.lead_id1')
-                  ->join('packages','packages.package_id','memberships.package_id')
-                  ->join('salutations As s','s.salutation_id','leads.salutation_id')
+                  ->leftJoin('leads','leads.lead_id','memberships.lead_id1')
+                  ->leftJoin('packages','packages.package_id','memberships.package_id')
+                  ->leftJoin('salutations As s','s.salutation_id','leads.salutation_id')
                   ->first();
 
     $payload = ['memberDetail'=>$memberDetail];
-    $payload['installment']=DB::table('installments')->where('mbrship_id',$mbrship_id)->first();
+    // $payload['installment']=DB::table('installments')->where('mbrship_id',$mbrship_id)->where('type','payment')->orderBy('install_id','DESC')->first();
+    $payload['installment']=DB::table('installments')->where('mbrship_id',$mbrship_id)->orderBy('install_id','DESC')->first();
+    if(empty($payload['installemnt']->install_id)){
+      
+      $install = DB::table('installments')->insert([
+        'mbrship_id'=>$mbrship_id,
+        'install_duration'=>0,
+        'package_price'=>$memberDetail->package_price,
+        'addition'=>0,
+        'addition_remark'=>'',
+        'discount'=>0,
+        'discount_remark'=>'',
+        'net_price'=>$memberDetail->package_price,
+        'admin_charges'=>0,
+        'outstanding'=>$memberDetail->package_price,
+        // 'type'=>'payment'
+      ]);
+      // $payload['installment']=DB::table('installments')->where('mbrship_id',$mbrship_id)->where('type','payment')->orderBy('install_id','DESC')->first();
+      $payload['installment']=DB::table('installments')->where('mbrship_id',$mbrship_id)->orderBy('install_id','DESC')->first();
+    }
+
+
     $payload['members']=DB::table('members')
     ->join('leads','leads.lead_id','members.lead_id')
     ->join('salutations As s','s.salutation_id','leads.salutation_id')
@@ -201,7 +225,6 @@ class MembershipController extends Controller
         ]);
     $pri_addr_id1 = DB::getPDO()->lastInsertId();
 
-
     //PM - Alternative Addresses
     $addr2 = DB::table('addresses')->insert([
             'leads_id'=>$lead_id,
@@ -214,7 +237,6 @@ class MembershipController extends Controller
             'is_primary'=>0
         ]);
     $pri_addr_id2 = DB::getPDO()->lastInsertId();
-
 
     //Coporate Info
     if($request->contract_type == 2)
@@ -234,33 +256,38 @@ class MembershipController extends Controller
           'comp_fax'=>$request->company_fax]);
       $company_id = DB::getPDO()->lastInsertId();
     }
-
+    $interest=DB::table('installment_interests')->where('ii_id',$request->duration)->first();
      //Installment Schedule
     $install = DB::table('installments')->insert([
         'mbrship_id'=>0,
-        'install_duration'=>$request->duration,
+        'install_duration'=>$interest->instal_duration,
         'package_price'=>$request->price,
         'addition'=>$request->add,
         'addition_remark'=>$request->addremark,
         'discount'=>$request->dis,
-        'discount_rmark'=>$request->disremark,
+        'discount_remark'=>$request->disremark,
         'net_price'=>$request->npt,
         //'downpayment'=>$request->dpp,
         'admin_charges'=>$request->charges,
         'outstanding'=>$request->osd,
-        'monthly_installment'=>$request->intallment,
-        'status'=>1
+        //'status'=>1,
+        'type'=>'payment'
     ]);
     $install_id = DB::getPDO()->lastInsertId();
+    $net=$request->npt;
 
     $dpa=0;
+    if(!empty($request->get('dp'))){
     foreach($request->get('dp') as $dp){
       if(!empty(array_filter($dp))){
         $dp['install_id']=$install_id;
         $dpa+=$dp['dpymt'];
+        $net-= $dp['dpymt'];
         $install = DB::table('downpayments')->insert($dp);
       }
     }
+  }
+  InstallmentSchedule::schedule($install_id,$net,$request->charges,$interest->instal_duration,date('Y-m-d'),$request->mintallment,0);
 
     //AMF Credit Card
     if($request->amfcc == 1)
@@ -285,8 +312,12 @@ class MembershipController extends Controller
         $inst_cc_id = DB::getPDO()->lastInsertId();
         $inst_auto = 1;
     }
-   
+    $p=DB::table('packages')->where('package_id',$request->package_id)->first();
+    $term=$p->package_term;
     //Create Primary Membership
+    if($request->pri_status==null){
+      $request->pri_status=1;
+    }
     $create1 = DB:: table('memberships')->insert([
       'lead_id1'=>$lead_id,
       'lead_id2'=>null,
@@ -304,6 +335,8 @@ class MembershipController extends Controller
       'package_id'=>$request->package_id,
       'mbrship_no'=>$request->mbr_no,
       //'install_schedule_id'=>$install_id,
+      'mbrship_term'=>$term,
+      'mbrship_exp'=> date('Y-m-d',strtotime($request->agree_date.'+'.$term.'years')),
       'overpayment'=>$request->opm,
       'cc_id_amf'=>$amf_cc_id,
       'cc_id_install'=>$inst_cc_id,
@@ -406,7 +439,7 @@ class MembershipController extends Controller
         ->update(['mbrship_id'=>$mbr_id,'downpayment'=>$dpa]);
         
     //dd($request->all());
-    return redirect('membership/'.$request->tour_id.'/details');
+    return redirect('membership/'.$mbr_id.'/detail');
   }
 
 
@@ -475,16 +508,19 @@ class MembershipController extends Controller
 
         $receipt = Receipt::all();
 
+        // $int = DB::table('installment_ent_point_schedules')->get();
+
         $date = date("Y-m-d");
         $payment_to_date = DB::table('invoices')
                   ->where('type', 'Installment')
                   ->where('mbrship_id', $id)
                   ->whereDate('issue_date', '<=', $date)
-                  ->sum('total');        
+                  ->sum('total');      
 
         $payload = [ 'membership'=>$membership[0],
                 'receipt'=>$receipt,
-                'payment_to_date'=>$payment_to_date
+                'payment_to_date'=>$payment_to_date,
+                // 'ent'=>$ent
         ];
     
       return view('pages.membership-reinstate',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
@@ -493,23 +529,72 @@ class MembershipController extends Controller
       public function storereinstate(Request $request, $id){
 
 
-        // dd($request);
-  
         $m = MembershipReinstate::insert([
             'membership_id'=>$id,
             'date'=>$request->date,
             // 'amt_due'=>1            
             'amt_due'=>$request->amt_due,
-            'total_amount'=>$request->total_amount,
+            'ref_no'=>$request->ref_no,
+            'total_amount'=>$request->total,
             'pt_offset_amt'=>$request->pt_offset_amt,
+            'reinstate'=>$request->reinstate,
+            'late_payment'=>$request->late_payment,
+            'payable'=>$request->paid,
+            'receipt_id'=>$request->receipt_id,
+            'remark'=>$request->remark
           ]);
       
-          return redirect('membership/'.$id.'/details');
+          return redirect('membership/'.$id.'/reinstate/details');
         // //  dd($m);
         // dd($m);
           // MembershipReinstate::insert($reinstate);
       }
+
+
+      public function reinstatedetails($id){
+
+        $pageConfigs = ['pageHeader' => true];
+      
+        $breadcrumbs = [
+          ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Reinstate"]
+        ];
   
+          // $membership = Membership::where('mbrship_id',$id)->get();
+  
+          // $receipt = Receipt::all();
+          $reinstate = MembershipReinstate::all();
+
+          $membership = Membership::where('mbrship_id',$id)->get();
+          // $int = DB::table('installment_ent_point_schedules')->get();
+  
+          // $date = date("Y-m-d");
+          // $payment_to_date = DB::table('invoices')
+          //           ->where('type', 'Installment')
+          //           ->where('mbrship_id', $id)
+          //           ->whereDate('issue_date', '<=', $date)
+          //           ->sum('total');      
+  
+          $payload = [ 'reinstate'=>$reinstate[0],
+                        'membership'=>$membership[0]
+                  // 'membership'=>$membership[0],
+                  // 'receipt'=>$receipt,
+                  // 'payment_to_date'=>$payment_to_date,
+                  // 'ent'=>$ent
+          ];
+
+          // dd($reinstate);
+      
+        return view('pages.membership-reinstate-print',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
+        }
+  
+
+        public function downloadreinstate($id){
+
+              $show = MembershipReinstate::find($id);
+              $pdf = PDF::loadView('pdf', compact('show'));
+
+              return $pdf->download('reinstate.pdf');
+        }
 
   public function updowngrade($id){
 
@@ -519,8 +604,28 @@ class MembershipController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
     ];
 
-    return view('pages.membership-updowngrade',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+      $p = Package::all();
+
+      $membership = Membership::where('mbrship_id',$id)->get();        
+
+      $payload = ['package'=>$p,
+                  'membership'=>$membership[0]
+      ];
+
+    return view('pages.membership-updowngrade',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 'payload'=>$payload]);
   }
+
+  // public function updowngrade($id){
+
+  //   $pageConfigs = ['pageHeader' => true];
+
+  //   $breadcrumbs = [
+  //     ["link" => "/", "name" => "Home"],["link" => "/tours", "name" => "Membership"],["name" => "Membership Up/Downgrade"]
+  //   ];
+
+  //   return view('pages.membership-updowngrade',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  // }
+
   public function repurchase($id){
 
     $pageConfigs = ['pageHeader' => true];
@@ -580,7 +685,19 @@ class MembershipController extends Controller
         ->where('mbrship_id', $id)
         ->update(['mbrship_status'=>5]);
     
-    DB::table('')
+    $membership = DB::table('memberships')
+                  ->where('mbrship_id', $id)
+                  ->get();
+
+    $packages = DB::table('packages')
+                ->where('package_id', $membership[0]->package_id)
+                ->get();
+
+    $new_packages_qty = $packages[0]->no_of_package + 1;
+
+    DB::table('packages')
+        ->where('package_id', $membership[0]->package_id)
+        ->update(['no_of_package'=>$new_packages_qty]);
 
     return redirect('membership/'.$id.'/repurchase');
   }
@@ -731,275 +848,6 @@ class MembershipController extends Controller
 
     if ($ent_bal == 0)
     {
-      $balance = 0;
-    }
-    else
-    {
-      $balance = $ent_bal;
-    }
-
-    return $balance;
-  }
-
-  public static function getAllRemainEnt($mbrship_id, $unit)
-  {
-    $today = date("Y-m-d");
-    $ent_bal = DB::table('installment_ent_point_schedules')
-                  ->join('installments','installment_ent_point_schedules.install_id','installments.install_id')
-                  ->where('installments.mbrship_id', $mbrship_id)
-                  ->where('installment_ent_point_schedules.unit_type', $unit)
-                  ->where('installment_ent_point_schedules.alloc_desc', 'term allocation')
-                  ->whereDate('exp_date', '>', $today)
-                  ->sum('balance');
-
-    if ($ent_bal == 0)
-    {
-      $balance = 0;
-    }
-    else
-    {
-      $balance = $ent_bal;
-    }
-
-    return $balance;
-  }
-
-  public static function hasExtMembership($mbrship_id)
-  {
-    $today = date('Y-m-d');
-    $ext_mbrship = DB::table('external_memberships')
-                  ->where('mbrship_id', $mbrship_id)
-                  ->whereDate('expiry_date', '>', $today)
-                  ->where('enroll_status', 2)
-                  ->get();
-
-    if (count($ext_mbrship) > 0)
-    {
-      return "Yes";
-    }
-    else
-    {
-      return "No";
-    }
-  }
-
-  public static function calculateRepurchasePrice($term, $package_id, $purchased_price)
-  {
-    $repurchase_price_settings = DB::table('repurchase_price')
-                                ->where('package_id', $package_id)
-                                ->where('term', $term)
-                                ->get();
-    
-    if (count($repurchase_price_settings) < 1)
-    {
-      $repurchase_price_settings = DB::table('repurchase_price')
-                                  ->where('package_id', $package_id)
-                                  ->orderBy('term', 'desc')
-                                  ->first();
-    }
-
-    if ($repurchase_price_settings->unit == "%")
-    {
-      $repurchase_price = $purchased_price * $repurchase_price_settings->value / 100;
-    }
-    else
-    {
-      $repurchase_price = $repurchase_price_settings->value;
-    }
-
-    return $repurchase_price;
-  }
-
-  public static function getAllRemainEnt($mbrship_id, $unit)
-  {
-    $today = date("Y-m-d");
-    $ent_bal = DB::table('installment_ent_point_schedules')
-                  ->join('installments','installment_ent_point_schedules.install_id','installments.install_id')
-                  ->where('installments.mbrship_id', $mbrship_id)
-                  ->where('installment_ent_point_schedules.unit_type', $unit)
-                  ->where('installment_ent_point_schedules.alloc_desc', 'term allocation')
-                  ->whereDate('exp_date', '>', $today)
-                  ->sum('balance');
-
-    if ($ent_bal == 0)
-    {
-      $balance = 0;
-    }
-    else
-    {
-      $balance = $ent_bal;
-    }
-
-    return $balance;
-  }
-
-  public static function hasExtMembership($mbrship_id)
-  {
-    $today = date('Y-m-d');
-    $ext_mbrship = DB::table('external_memberships')
-                  ->where('mbrship_id', $mbrship_id)
-                  ->whereDate('expiry_date', '>', $today)
-                  ->where('enroll_status', 2)
-                  ->get();
-
-    if (count($ext_mbrship) > 0)
-    {
-      return "Yes";
-    }
-    else
-    {
-      return "No";
-    }
-  }
-
-  public static function calculateRepurchasePrice($term, $package_id, $purchased_price)
-  {
-    $repurchase_price_settings = DB::table('repurchase_price')
-                                ->where('package_id', $package_id)
-                                ->where('term', $term)
-                                ->get();
-    
-    if (count($repurchase_price_settings) < 1)
-    {
-      $repurchase_price_settings = DB::table('repurchase_price')
-                                  ->where('package_id', $package_id)
-                                  ->orderBy('term', 'desc')
-                                  ->first();
-    }
-
-    if ($repurchase_price_settings->unit == "%")
-    {
-      $repurchase_price = $purchased_price * $repurchase_price_settings->value / 100;
-    }
-    else
-    {
-      $repurchase_price = $repurchase_price_settings->value;
-    }
-
-    return $repurchase_price;
-  }
-
-  public function savemember(Request $request,$id,$type){
-    $l=Lead::create($request->get('lead'));
-    $member=$request->get('member');
-    $member['mbrship_id']=$id;
-    $member['mbr_type']=$type;
-    $member['lead_id']=$l->lead_id;
-    $m=Member::create($member);
-    DB::table('memberships')->where('mbrship_id',$m->member_id)->update(['lead_id2'=>$l->lead_id]);
-    Member::where('mbrship_id',$id)->where('member_id','<>',$m->member_id)->update(['is_archive'=>1]);
-    return redirect(route('membership.details',$id));
-  }
-
-  public function savememberstatus($id,$is_archive){
-    $m=Member::where('member_id');
-    $md=$m->first();
-    $m->update(['is_archive'=>$is_archive]);
-    if($is_archive==0){
-      DB::table('memberships')->where('mbrship_id',$m->member_id)->update(['lead_id2'=>$md->lead_id]);
-      Member::where('member_id','<>',$id)->where('mbrship_id',$md->mbrship_id)->update(['is_archive'=>1]);
-    }else if($is_archive==1){
-      DB::table('memberships')->where('mbrship_id',$m->member_id)->update(['lead_id2'=>null]);
-      $balance = 0;
-    }
-    else
-    {
-      $balance = $ent_bal;
-    }
-
-    return $balance;
-  }
-
-  public static function getAllRemainEnt($mbrship_id, $unit)
-  {
-    $today = date("Y-m-d");
-    $ent_bal = DB::table('installment_ent_point_schedules')
-                  ->join('installments','installment_ent_point_schedules.install_id','installments.install_id')
-                  ->where('installments.mbrship_id', $mbrship_id)
-                  ->where('installment_ent_point_schedules.unit_type', $unit)
-                  ->where('installment_ent_point_schedules.alloc_desc', 'term allocation')
-                  ->whereDate('exp_date', '>', $today)
-                  ->sum('balance');
-
-    if ($ent_bal == 0)
-    {
-      $balance = 0;
-    }
-    else
-    {
-      $balance = $ent_bal;
-    }
-
-    return $balance;
-  }
-
-  public static function hasExtMembership($mbrship_id)
-  {
-    $today = date('Y-m-d');
-    $ext_mbrship = DB::table('external_memberships')
-                  ->where('mbrship_id', $mbrship_id)
-                  ->whereDate('expiry_date', '>', $today)
-                  ->where('enroll_status', 2)
-                  ->get();
-
-    if (count($ext_mbrship) > 0)
-    {
-      return "Yes";
-    }
-    else
-    {
-      return "No";
-    }
-  }
-
-  public static function calculateRepurchasePrice($term, $package_id, $purchased_price)
-  {
-    $repurchase_price_settings = DB::table('repurchase_price')
-                                ->where('package_id', $package_id)
-                                ->where('term', $term)
-                                ->get();
-    
-    if (count($repurchase_price_settings) < 1)
-    {
-      $repurchase_price_settings = DB::table('repurchase_price')
-                                  ->where('package_id', $package_id)
-                                  ->orderBy('term', 'desc')
-                                  ->first();
-    }
-
-    if ($repurchase_price_settings->unit == "%")
-    {
-      $repurchase_price = $purchased_price * $repurchase_price_settings->value / 100;
-    }
-    else
-    {
-      $repurchase_price = $repurchase_price_settings->value;
-    }
-
-    return $repurchase_price;
-  }
-
-  public function savemember(Request $request,$id,$type){
-    $l=Lead::create($request->get('lead'));
-    $member=$request->get('member');
-    $member['mbrship_id']=$id;
-    $member['mbr_type']=$type;
-    $member['lead_id']=$l->lead_id;
-    $m=Member::create($member);
-    DB::table('memberships')->where('mbrship_id',$m->member_id)->update(['lead_id2'=>$l->lead_id]);
-    Member::where('mbrship_id',$id)->where('member_id','<>',$m->member_id)->update(['is_archive'=>1]);
-    return redirect(route('membership.details',$id));
-  }
-
-  public function savememberstatus($id,$is_archive){
-    $m=Member::where('member_id');
-    $md=$m->first();
-    $m->update(['is_archive'=>$is_archive]);
-    if($is_archive==0){
-      DB::table('memberships')->where('mbrship_id',$m->member_id)->update(['lead_id2'=>$md->lead_id]);
-      Member::where('member_id','<>',$id)->where('mbrship_id',$md->mbrship_id)->update(['is_archive'=>1]);
-    }else{
-      DB::table('memberships')->where('mbrship_id',$m->member_id)->update(['lead_id2'=>null]);
       $balance = 0;
     }
     else

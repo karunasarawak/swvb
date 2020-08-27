@@ -30,7 +30,10 @@ Route::get('/membership/{mbrship_id}/updowngrade', 'MembershipController@updowng
 Route::get('/membership/{mbrship_id}/repurchase', 'MembershipController@repurchase');
 Route::post('/membership/{mbrship_id}/repurchase', 'MembershipController@addrepurchase')->name('membership.addRepurchase');
 Route::get('/membership/{mbrship_id}/reinstate', 'MembershipController@reinstate');
+Route::get('/membership/{mbrship_id}/reinstate/details', 'MembershipController@reinstatedetails');
 Route::post('/membership/{mbrship_id}/reinstate', 'MembershipController@storereinstate')->name('reinstate.get');
+Route::get('/membership/{mbrship_id}/reinstate/download', 'MembershipController@downloadreinstate')->name('reinstate.print');
+
 Route::get('/membership/{mbrship_id}/details', 'MembershipController@redirect')->name('members.redirect');
 
 // Route::get('/membership/pthistory', 'MembershipController@pthistory');
@@ -98,8 +101,11 @@ Route::get('/creditnote/{inv_id}/details', 'CreditNotesController@viewCreditNote
 Route::get('/installment', 'InstallmentController@index');  
 Route::get('/installment/new', 'InstallmentController@newRefund');
 Route::get('/installment/{id}/details', 'InstallmentController@details')->name('installment.detail');  
+Route::get('/installment/{id}/rescheduledetails', 'InstallmentController@showreschedule')->name('installment.rescheduledetail'); 
 Route::post('/installment/{id}/save', 'InstallmentController@save')->name('installment.save');  
 Route::get('/installment/calculator', 'InstallmentController@calculator');
+Route::get('/installment/{id}/approve', 'InstallmentController@approve');
+Route::get('/installment/{id}/reject', 'InstallmentController@reject');
 Route::get('/installment/amfall', 'InstallmentController@amfall');
 Route::get('/installment/amfdetails', 'InstallmentController@amfdetails');
 
@@ -130,6 +136,8 @@ Route::get('/eventlogs/{event_id}/details', 'EventLogsController@eventDetails')-
 Route::patch('/eventlogs', 'EventLogsController@eventUpdate')->name('event.update');
 Route::post('/eventlogs', 'EventLogsController@eventCreate')->name('event.create');
 
+Route::post('/eventlogs/{event_id}/{lead_id}', 'EventLogsController@communicationCreate')->name('event.newCom');
+
 Route::post('/eventlogs/{event_id}', 'EventLogsController@upload')->name('event.upload');
 Route::get('/eventlogs/{filename}', 'EventLogsController@download')->name('event.download');
 
@@ -148,6 +156,11 @@ Route::get('/cardprintinglist/{batch_id}', 'CardPrintingController@exportExcel')
 
 Route::get('/dispatch', 'DispatchController@index');
 Route::post('/dispatch', 'DispatchController@uploadCSV')->name('dispatch.upload');
+Route::post('/dispatch/{dispatch_id}', 'DispatchController@uploadAttachments')->name('dispatch.uploadAttach');
+Route::get('/eventlogs/{filename}', 'DispatchController@downloadAttachments')->name('dispatch.downloadAttach');
+Route::get('/eventlogs/{filename}/{dispatch_id}', 'DispatchController@downloadSample')->name('dispatch.downloadSample');
+
+Route::patch('/eventlogs/{dispatch_id}/{dispatch_no}/{dispatch_no2}', 'DispatchController@deleteDispatch')->name('dispatch.delete');
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/details', 'ReservationController@hoteldetails')->name('rsvn.details');

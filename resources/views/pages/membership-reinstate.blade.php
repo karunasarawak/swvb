@@ -9,7 +9,7 @@
 @endsection
 
 @php
-    use App\Http\Controlllers\Calculations;
+    use App\Http\Controllers\Calculations;
 @endphp
 
 @section('content')
@@ -42,7 +42,7 @@
                                             <input type="number" name="ref_no" class="form-control" placeholder="1234 0000" data-validation-required-message="Please select the date of requested received" required>
                                         </div>
                                     </div>
-                                </div>
+                              </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
@@ -86,9 +86,9 @@
                             </div>
 
 
-                            <div class="row">
-                                <div x-data="{ edit: false, original:true}">
-                                    <div class="col-sm-12">
+                            <div class="row" x-data="{ edit: false, original:true}">
+                                
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="location">Late Payment Penalty Charge</label>
@@ -106,22 +106,24 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12" x-cloak x-show="edit">
+                                    <div class="col-sm-6" x-cloak x-show="edit">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label>Late Payment Penalty Charge</label>
                                                 <div class="position-relative has-icon-left">
-                                                    <input type="number" class="form-control" placeholder="1234 0000" onkeyup="calcPayable()" id="late_payment" name="late_payment"
+                                                    <input type="number" class="form-control" placeholder="--" onkeyup="calcPayable()" id="late_payment" name="late_payment"
                                                     data-validation-required-message="This Name field is required" required>
                                                     <div class="form-control-position">RM</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
+                            </div>
                                
-                                <div x-data="{ e:false, o:true}">
-                                    <div class="col-sm-12">
+                            <div class="row" x-data="{ e:false, o:true}">
+                                
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label for="location">Reinstatement Fee</label>
@@ -141,7 +143,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12" x-cloak x-show="e">
+                                    <div class="col-sm-6" x-cloak x-show="e">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label>Reinstatement Fee</label>
@@ -153,8 +155,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
+                            </div>
 
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
@@ -167,18 +171,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <label>Total Amount Payable</label>
-                                            <div class="position-relative has-icon-left">
-                                                <input type="hidden" class="form-control" placeholder="--" id="total" name="total"
-                                                data-validation-required-message="This Name field is required" >
-                                                <div class="form-control-position">RM</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="controls">
@@ -213,19 +206,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>Remarks</label>
                                             <fieldset class="form-group">
-                                                <textarea class="form-control" id="basicTextarea" rows="3" placeholder="Textarea"></textarea>
+                                                <textarea class="form-control" name="remark" id="basicTextarea" rows="3" placeholder="Textarea"></textarea>
                                             </fieldset>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         
-                            <button type="submit" class="btn btn-primary float-left position-relative mb-5" id="btn_add1" >Submit</button>
+                            <button type="submit" class="btn btn-primary float-left position-relative mb-5 hide" onclick="showbuttons()" id="btn_add1" >Submit</button>
+                            <button type="submit" class="btn btn-primary float-left position-relative mb-5 hide"  id="print" >Print</button>
+                            <button type="submit" class="btn btn-primary float-left position-relative mb-5 hide"  id="upload" >Upload</button>
+                            <button type="submit" class="btn btn-primary float-left position-relative mb-5 hide"  id="proceed" >Proceed</button>
                         </form>
                     </div>
                 </div>
@@ -287,11 +283,11 @@
                                 </div>
                                 <div class="row pt-1">
                                     <p class="col">Entitlement</p>
-                                    <p class="col font-weight-bold black">SWD 2WE</p>
+                                    <p class="col font-weight-bold black"></p>
                                 </div>
                                 <div class="row pt-1">
                                     <p class="col">Payment to Date</p>
-                                    <p class="col font-weight-bold black">5,000</p>
+                                    <p class="col font-weight-bold black">{{ number_format(Calculations::getInstallationToDate($payload['membership']->mbrship_id), 2) }}</p>
                                 </div>
                                 <div class="row pt-1">
                                     <p class="col">External Membership</p>
@@ -352,7 +348,10 @@
 </section>
         
 <script>
-
+        document.getElementById("print").style.display = "none";
+        document.getElementById("upload").style.display = "none";
+        document.getElementById("proceed").style.display = "none";
+        
         function calcPayable(){
             console.log("function called")
             var amtdue = document.getElementById("amt_due").value;
@@ -362,27 +361,26 @@
             var paid = document.getElementById("paid").value;
             // var total = document.getElementById("payable").value;
             var total = 0;
-            // document.getElementById("show").value = amtdue;
-                
-            // var late_pymt, reinstate, payable, total = 0;
-
-            // if(late_pymt.value && reinstate.value != ""){
-            //     var total = amtdue + late_pymt + reinstate + paid;
-            // }
-            // else if (late_pymt.value != ""){
-            //     var total = amtdue + paid + late_pymt;
-            // }else if (reinstate.value != ""){
-            //     var total = amtdue + paid + reinstate;
-            // }else {
+           
                 var total = +amtdue + +paid + +late_pymt + +reinstate;
             // }
 
             document.getElementById("total").value = total;
-            }
+         }
+
+         function showbuttons()
+         {
+                document.getElementById("print").style.display = "block";
+                document.getElementById("upload").style.display = "block" ;
+                document.getElementById("proceed").style.display = "block" ;
+                
+         }
 
 </script>
 <!-- Form wizard with step validation section end -->
 @endsection
+
+
 {{-- vendor scripts --}}
 @section('vendor-scripts')
 {{-- <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>

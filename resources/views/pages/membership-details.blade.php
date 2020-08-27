@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header bg-swvb-cyan">  
                     <div class="row">
-                        <h4 class="col card-title text-white">Membership Details - {{ $payload['memberDetail']->mbrship_no }}</h4>
+                        <h4 class="col card-title text-white">Membership Details - {{-- $payload['memberDetail']->mbrship_no --}}</h4>
                         <p class="col h7 swvb-blue m-0 font-weight-bold my-auto pb-2">
                             <button class="btn btn-primary" x-show="edit" x-cloak >                                                                    
                                 Save
@@ -824,7 +824,9 @@
                                 </div>
                                 <div class="row pt-1">
                                     <div class="col">
+                                       
                                         <a href="{{ route('installment.detail',$payload['installment']->install_id) }}" type="button" class="w-100 btn btn-primary ">Installment Schedule</a>
+                                     
                                     </div>
                                 </div>
                                 <div class="row pt-1">

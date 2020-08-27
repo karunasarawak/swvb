@@ -14,16 +14,18 @@
                 <label>Type</label>
             </div>
             <div class="custom-control-inline">
+              <!--
               <div class="radio mr-4"> 
                   <input type="radio" name="contract_type" value="1" id="beback1"  @click="edit=true, original=false" checked required>
                   <label for="individual1">Be Back</label>
                 </div>
+              -->
                 <div class="radio mr-4">
-                  <input type="radio" name="contract_type" value="2" id="individual1"  @click="edit=false, original=true" required>
+                  <input type="radio" name="contract_type" value="0" id="individual1"  @click="edit=false, original=true" required>
                   <label for="individual1">Individual</label>
                 </div>
                 <div class="radio">
-                  <input type="radio" name="contract_type" value="3" id="corporate1"  @click="edit=false, original=true" required>
+                  <input type="radio" name="contract_type" value="1" id="corporate1"  @click="edit=false, original=true" required>
                   <label for="corporate1">Corporate</label>
                 </div>
             </div>

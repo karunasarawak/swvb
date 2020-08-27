@@ -10,7 +10,9 @@
 
 @php 
     use App\Http\Controllers\EventLogsController;
+    use App\Http\Controllers\Calculations;
 @endphp
+
 
 @section('content')
 <!-- Zero configuration table -->
@@ -86,7 +88,7 @@
                                     <p class="col-sm-6">Entitlement</p>
                                     <p class="col-sm-6 font-weight-bold black">{{ $eventDetail->package_wd }}WD {{ $eventDetail->package_we }}WE</p>
                                 </div>
-
+                                
                             </div>
 
                             <div class="col-sm-6">
@@ -104,41 +106,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>13</td>
-                                                        <td>10,000</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>3WD 1WE</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12</td>
-                                                        <td>10,000</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>3WD 1WE</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>11</td>
-                                                        <td>10,000</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>3WD 1WE</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10</td>
-                                                        <td>10,000</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>3WD 1WE</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>9</td>
-                                                        <td>10,000</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>01.07.2020</td>
-                                                        <td>3WD 1WE</td>
-                                                    </tr>
+                                                    @foreach($pointAllocate as $point)
+                                                        <tr>
+                                                            <td>{{ $point->term }}</td>
+                                                            <td>{{ $point->amount_allocated }}</td>
+                                                            <td>{{ $point->alloc_date }}</td>
+                                                            <td>{{ $point->exp_date }}</td>
+                                                            <td>{{ $point->balance }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -149,43 +125,43 @@
                             <div class="col-sm-3 pl-4">
                                 <div class="row">
                                     <p class="col-sm-7">Paid (%)</p>
-                                    <p class="col font-weight-bold black">80%</p>
+                                    <p class="col font-weight-bold black"></p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">AMF Outstanding</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM @php echo Calculations::getOutstandingAmf($eventDetail->mbrship_id) @endphp</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Installment Outstanding</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM @php echo Calculations::getOutstandingInstallation($eventDetail->mbrship_id)@endphp</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Other Outstanding</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM </p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Reservation Fee</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM </p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Membership Card Fee</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM </p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Transfer Fee</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM </p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Administration Fee</p>
-                                    <p class="col font-weight-bold black">RM 50</p>
+                                    <p class="col font-weight-bold black">RM </p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Total Outstanding</p>
-                                    <p class="col font-weight-bold black">RM 70</p>
+                                    <p class="col font-weight-bold black">RM @php echo Calculations::getTotalOutstanding($eventDetail->mbrship_id)@endphp</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-7">Over Payment</p>
-                                    <p class="col font-weight-bold black">RM 100</p>
+                                    <p class="col font-weight-bold black">RM </p>
                                 </div>
                             </div>
                         </div>
@@ -303,12 +279,12 @@
                                                 <tr>
                                                     <th class="text-white">Ref No.</th>
                                                     <th class="text-white">Date</th>
-                                                    <th class="text-white">Time</th>
+                                                    <th class="text-white">Start Time</th>
+                                                    <th class="text-white">End Time</th>
                                                     <th class="text-white">Call Length</th>
                                                     <th class="text-white">Outcome</th>
                                                     <th class="text-white">Communication Channel</th>
                                                     <th class="text-white">Status</th>
-                                                    <th class="text-white">Deadline to Resolve</th>
                                                     <th class="text-white">Remarks</th>
                                                     <th class="text-white">Action</th>
                                                 </tr>
@@ -319,6 +295,7 @@
                                                         <td>{{ $com->cl_id }}</td>
                                                         <td>{{ $com->init_date }}</td>
                                                         <td>{{Carbon\Carbon::createFromFormat('H:i:s', $com->start_time)->format('h:i A')}}</td>
+                                                        <td>{{Carbon\Carbon::createFromFormat('H:i:s', $com->end_time)->format('h:i A')}}</td>
                                                         <td>{{ $com->call_length }} minutes</td>
                                                         <td>{{ $com->outcome }}</td>
                                                         <td>{{ $com->com_channel }}</td>
@@ -329,7 +306,6 @@
                                                             <td>Resolved</td>
                                                         @endif
 
-                                                        <td></td>
                                                         <td>{{ $com->remarks }}</td>
                                                         <td>
                                                             <div class="dropdown">
@@ -342,7 +318,7 @@
                                                                         <a class="dropdown-item"><i class="bx bx bx-upload mr-1"></i>Upload Attachments</a>
                                                                     </button>
                                                                     <button class="bg-transparent border-0" data-toggle="modal" data-target="#attach{{ $loop->iteration }}">
-                                                                        <a class="dropdown-item"><i class="bx bx-upload mr-1"></i>Show Attachments</a>
+                                                                        <a class="dropdown-item"><i class="bx bx-pencil mr-1"></i>Show Attachments</a>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -352,8 +328,8 @@
                                                         
                                                         <div class="modal fade text-left" id="attach{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header bg-swvb-cyan">
+                                                                <div class="modal-content" style="width:200%;">
+                                                                    <div class="modal-header bg-swvb-blue">
                                                                         <h4 class="modal-title text-white" id="myModalLabel33">Attachments</h4>
                                                                         <button type="button" class="close" data-dismiss="modal" a ria-label="Close">
                                                                             <i class="bx bx-x"></i>
@@ -361,22 +337,57 @@
                                                                     </div>
 
                                                                     
-                                                                    <div class="modal-body">
+                                                                    <div class="modal-body" style="overflow:hidden;">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3">
+                                                                                <div class="form-group controls">
+                                                                                    <p class="font-weight-bold black">Title</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <div class="form-group controls">
+                                                                                    <p class="font-weight-bold black">Document</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-2">
+                                                                                <div class="form-group controls">
+                                                                                    <p class="font-weight-bold black">Uploaded By</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <div class="form-group controls">
+                                                                                    <p class="font-weight-bold black">Remarks</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
                                                                         <div class="row">
                                                                             @foreach($attach as $a)
-                                                                                <div class="col-sm-4">
+                                                                                <div class="col-sm-3">
                                                                                     <div class="form-group controls">
-                                                                                        <p class="font-weight-bold black">{{ $a->doc_title }}</p>
+                                                                                        <p>{{ $a->doc_title }}</p>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-sm-6">
+                                                                                <div class="col-sm-3">
                                                                                     <div class="form-group controls">
                                                                                         <p>{{ $a->doc_directory }}</p>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-2">
+                                                                                    <div class="form-group controls">
+                                                                                        <p>{{ $a->doc_created_by }}</p>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3">
+                                                                                    <div class="form-group controls">
+                                                                                        <p>{{ $a->remarks }}</p>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-1">
                                                                                     <button class="bg-transparent border-0">
-                                                                                        <a class="dropdown-item" href="{{ route('event.download', $a->doc_directory) }}"><i class="bx bx-upload"></i></a>
+                                                                                        <a class="dropdown-item" href="{{ route('event.download', $a->doc_directory) }}"><i class="bx bx-download"></i></a>
                                                                                     </button>
                                                                                 </div>
                                                                             @endforeach
@@ -409,51 +420,89 @@
 <div class="modal fade text-left" id="newcl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-swvb-cyan">
+            <div class="modal-header bg-swvb-blue">
                 <h4 class="modal-title text-white" id="myModalLabel33">New Communication Log</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="#">
+            <form action="{{ route('event.newCom', ['event_id'=>$eventDetail->el_id, 'lead_id'=>$eventDetail->lead_id] ) }}" method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Date</label>
-                            <input type="date" name="nric" class="form-control" value="11 July 2020" required>
+                            <input type="date" name="date" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group controls">
-                            <label>Time</label>
-                            <input type="time" name="nric" class="form-control" placeholder="1:00 PM" required>
+                            <label>Start Time</label>
+                            <input type="time" name="start_time" class="form-control"  required>
                         </div>
                     </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group controls">
+                            <label>End Time</label>
+                            <input type="time" name="end_time" class="form-control"  required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group controls">
+                            <label>Outcome</label>
+                            <div class="form-group">
+                                <select name="outcome" class="select2 form-control" required>
+                                    <option value="Proceed to Tour">Proceed to Tour</option>
+                                    <option value="Not to Proceed">Not to Proceed</option>
+                                    <option value="No Pickup">No Pickup</option>
+                                    <option value="Number not in Service">Number not in Service</option>
+                                    <option value="Wrong Recipient">Wrong Recipient</option>
+                                    <option value="Voice Mail">Voice Mail</option>
+                                    <option value="Rejected Call">Rejected Call</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    
 
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Communication Channel</label>
-                            <select name="pri_postal1" class="select2 form-control" required>
-                                <option>--</option>
-                                <option value="98000">SMS</option>
-                                <option value="sibu">Sibu</option>
-                                <option value="miri">Miri</option>
-                            </select>
+                            <select name="com_channel" class="custom-select" required>
+                                <option value="">--</option>
+                                @foreach($com_channel as $com)
+                                    <option value="{{ $com->com_channel_id }}">{{ $com->com_channel }}</option>
+                                @endforeach
+                            </select> 
                         </div>
                     </div>
                     
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Status</label>
-                            <input type="text" name="nric" class="form-control" required>
+                            <select name="status" class="custom-select" required>
+                                <option value="">--</option>
+                                <option value="0">Unresovled</option>
+                                <option value="1">Resolved</option>
+                            </select> 
                         </div>
                     </div>
 
-                    <div class="col-sm-12">
+                    {{-- <div class="col-sm-12">
                         <div class="form-group controls">
                             <label>Deadline to Resolved</label>
-                            <input type="date" name="nric" class="form-control" required>
+                            <input type="date" name="date_to_resolve" class="form-control"  required>
+                        </div>
+                    </div> --}}
+
+                    <div class="col-sm-12">
+                        <div class="form-group controls">
+                            <label>Remarks</label>
+                            <input type="text" name="remarks" class="form-control" row="3" required>
                         </div>
                     </div>
                 </div>
@@ -462,7 +511,7 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Cancel</span>
                     </button>
-                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <button type="submit" class="btn btn-light-secondary">
                         <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Save</span>
                     </button>
@@ -475,50 +524,71 @@
 <!--Upload Attachment Modal-->
 <div class="modal fade text-left" id="upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-swvb-cyan">
+        <div class="modal-content" style="width:160%;">
+            <div class="modal-header bg-swvb-blue">
                 <h4 class="modal-title text-white" id="myModalLabel33">Upload Attachments</h4>
                 <button type="button" class="close" data-dismiss="modal" a ria-label="Close">
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{ route('event.upload', ['event_id'=> 1]) }}" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <div class="col-sm-12">
-                        <div class="form-group controls">
-                            <label>Title</label>
-                            <input type="text" name="title" class="form-control" palceholder="--" required>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group controls">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control" placeholder="--" required>
+                            </div>
                         </div>
                     </div>
-
+                
                     <div class="col-sm-12">
                         <div class="form-group controls">
                             {{-- <label>Call Log ID</label> --}}
                             <input type="hidden" name="call_id" class="form-control" id="call_id" required>
                         </div>
+                    </div>
 
-                        <div class="form-group controls">
+                    <div class="row">
+                        <div class="col-sm-6 form-group controls">
                             <label>Uploads</label>
                             <div class="custom-file">
-                                <input type="file" name="file1" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" name="file1" class="custom-file-input" id="inputGroupFile01" required>
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                             </div>
                         </div>
-                        <div class="form-group controls">
+                        <div class="col-sm-6 form-group controls">
+                            <label>Remarks</label>
+                            <input type="text" name="remark1" class="form-control" placeholder="--">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group controls">
                             <div class="custom-file">
                                 <input type="file" name="file2" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                             </div>
                         </div>
-                        <div class="form-group controls">
+                        <div class="col-sm-6 form-group controls">
+                            <input type="text" name="remark2" class="form-control" placeholder="--">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group controls">
                             <div class="custom-file">
                                 <input type="file" name="file3" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                             </div>
                         </div>
+                        <div class="col-sm-6 form-group controls">
+                            <input type="text" name="remark3" class="form-control" placeholder="--">
+                        </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 use DB;
 use App\EventLog;
+use Carbon\Carbon;
 
 class EventLogsController extends Controller
 {
@@ -67,15 +68,26 @@ class EventLogsController extends Controller
                 ->leftJoin('departments','departments.dept_id','event_logs.el_assign_to')
                 ->leftJoin('staffs','staffs.staff_id','event_logs.el_assign_to')
                 ->get();
+    // dd($eventDetail);
 
     $comLog = DB::table('call_logs')->where('el_id',$event_id)
               ->join('com_channels','com_channels.com_channel_id','call_logs.com_channel_id')
+              ->orderby('call_logs.el_id')
               ->get();
+
+    $mbrship_id = DB::table('event_logs')->where('event_logs.el_id',$event_id)->pluck('mbrship_id');
+    
+    $pointAllocate = DB::table('installments')->where('installments.mbrship_id',$mbrship_id)
+                  ->join('installment_ent_point_schedules AS point','point.install_id','installments.install_id')
+                  ->orderBy('point.ieps_id','desc')
+                  ->take(5)->get();
+
+    // dd($pointAllocate);
 
     $com_channel = DB::table('com_channels')->get();
 
     return view('pages.eventlogs-details',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs, 
-                'eventDetail'=>$eventDetail[0], 'comLog'=>$comLog]);
+                'eventDetail'=>$eventDetail[0], 'comLog'=>$comLog, 'com_channel'=>$com_channel, 'pointAllocate'=>$pointAllocate]);
   }
 
   public function eventUpdate(Request $request)
@@ -90,7 +102,7 @@ class EventLogsController extends Controller
     
   }
 
-  public function eventCreate(Request $request)
+public function eventCreate(Request $request)
   {
     $currentDate = date('Y-m-d');
 
@@ -123,6 +135,27 @@ class EventLogsController extends Controller
     return redirect('/eventlogs');
   }
 
+  public function communicationCreate(Request $request, $event_id, $lead_id)
+  {
+    $start = Carbon::parse($request->start_time);
+    $end = Carbon::parse($request->end_time);
+    $call_length = $end->diffInMinutes($start);
+
+    DB::table('call_logs')->insert([
+      'el_id'=>$event_id,
+      'lead_id'=>$lead_id,
+      'call_length'=>$call_length,
+      'start_time'=>$start,
+      'end_time'=>$end,
+      'outcome'=>$request->outcome,
+      'remarks'=>$request->remarks,
+      'com_channel_id'=>$request->com_channel,
+      'cl_status'=>$request->status
+    ]);
+
+    return redirect('/eventlogs/'.$event_id."/details");
+  }
+
   public function upload(Request $request, $event_id)
   {
     $destination_path = storage_path('uploads');
@@ -142,12 +175,15 @@ class EventLogsController extends Controller
 
         $uploaded_file->move(public_path('uploads'), $fileName);
 
+        $remarks = "remark".$i;
+
         DB::table('attachments')->insert([
           'attachment_type_id'=>1,
           'parent_id'=>$request->call_id,
           'doc_title'=>$request->title,
           'doc_created_by'=>null,
           'doc_directory'=>$fileName,
+          'remarks'=>$request->$remarks
         ]);
 
       }

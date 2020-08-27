@@ -38,13 +38,13 @@
                                     </div>
                                     <div class="col">
                                         
-                                        <button type="button" class="btn btn-primary m-1 ml-3 float-right" id="btn_add1" x-show="original" @click="edit=true, original=false">Edit Info</button>
-                                        <button type="button" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak @click="edit=false, original=true">                                                                    
-                                            Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary m-1 float-right" x-show="edit" x-cloak  >                                                                    
-                                            Reschedule
-                                        </button>
+                                       
+                                    <a href="{{url('installment/'.$payload['installment']->install_id.'/reject')}}" class="btn btn-primary m-1 float-right">                                                                    
+                                            Reject
+                                        </a>
+                                        <a href="{{url('installment/'.$payload['installment']->install_id.'/approve')}}" type="submit" class="btn btn-primary m-1 float-right">                                                                    
+                                            Approve
+                                        </a>
                                  
                                     </div>
 
@@ -198,11 +198,20 @@
                                                     $dn=1;
                                                     $charge=0;
                                                     $tn=1;
-                                                    $net=($i->net_price-$payload['total_dp'])*($i->admin_charges/100);
-                                                    $net+=$i->net_price;
+                                                    //$net=($i->net_price-$payload['total_dp'])*($i->admin_charges/100);
+                                                   // $net+=$i->net_price;
+                                                   
+                                                  
+                                                @endphp
+                                                
+                                               
+                                                @if(!empty($payload['schedules']))
+                                                @foreach($payload['schedules'] as $s)
+                                                @if($tn==1)
+                                                @php
+                                                    $net=$payload['installment']->outstanding;
                                                 @endphp
                                                 <tr>
-                                                
                                                     <td></td>
                                                      <td class="expanded"></td>
                                                     <td></td>
@@ -217,30 +226,7 @@
                                                     <td></td>
                                                     <td>{{$net}}</td>
                                                 </tr>
-                                                @if(!empty($payload['downpayments']))
-                                                @foreach($payload['downpayments'] as $s)
-                                                <tr class="freeze">
-                                                    <td>{{$tn++}}</td>
-                                                     <td class="expanded">{{$s->inv_no}}</td>
-                                                     <td>{{date('d M Y',strtotime($s->projected_allocated_date))}}</td>
-                                                    <td>{{date('d M Y',strtotime($s->alloc_date))}}</td>
-                                                    <td>@if($s->issue_date) {{date('d M Y',strtotime($s->issue_date))}} @endif</td>
-                                                    <td class="expanded">Downpayment {{$dn++}}</td>
-                                                     <td>RM {{$s->dpymt}}</td>
-                                                    <!-- <td class="expanded">RM 1000</td>
-                                                    <td class="expanded">RM 1000</td>
-                                                    <td class="expanded">250</td>-->
-                                                    <td></td>
-                                                    <td>{{$s->dpymt}}</td>
-                                                    <td>{{$net-=$s->dpymt}}</td>
-
-                                                </tr>
-                                               
-                                                @endforeach
                                                 @endif
-                                                @if(!empty($payload['schedules']))
-                                                @foreach($payload['schedules'] as $s)
-                                                
                                                 <tr class="freeze">
                                                     <td>{{$tn++}}</td>
                                                      <td class="expanded">{{$s->inv_no}}</td>
@@ -248,12 +234,12 @@
                                                     <td>{{date('d M Y',strtotime($s->alloc_date))}}</td>
                                                     <td>@if($s->issue_date) {{date('d M Y',strtotime($s->issue_date))}} @endif</td>
                                                     <td class="expanded">Installment {{$s->term}}</td>
-                                                     <td>RM {{$s->net}}</td>
+                                                     <td>RM {{number_format($s->net,2)}}</td>
                                                     <!-- <td class="expanded">RM 1000</td>
                                                     <td class="expanded">RM 1000</td>
                                                     <td class="expanded">250</td>-->
-                                                    <td>{{$s->bank_charge}}</td>
-                                                    <td>{{$s->net+$s->bank_charge}}</td>
+                                                    <td>{{number_format($s->bank_charge,2)}}</td>
+                                                    <td>{{number_format($s->net+$s->bank_charge,2)}}</td>
                                                     <td>{{number_format($net-=($s->net+$s->bank_charge),2)}}</td>
                                                     <?php
                                                         $charge+=$s->bank_charge;
@@ -271,8 +257,8 @@
                                                     <th>Total</th>
                                                     <th></th>
                                                     <th></th>
-                                                    <th>{{$charge}}</th>
-                                                    <th>{{$payload['installment']->net_price+$charge}}</th>
+                                                    <th>{{number_format($charge,2)}}</th>
+                                                    <th>{{number_format($payload['installment']->net_price+$charge,2)}}</th>
                                                     <th></th>
                                                 </tr>
                                                 

@@ -15,6 +15,10 @@ class MembershipReinstate extends Model
             'amt_due',
             'total_amount',
             'pt_offset_amt',
+            'receipt_id',
+            'late_payment',
+            'payable',
+            'reinstate'
             
     ];
 
@@ -22,5 +26,9 @@ class MembershipReinstate extends Model
 
     public function Membership(){
         return $this->belongsto('App\Membership', 'membership_id', 'mbrship_id');
+    }
+
+    public function receipt(){
+        return $this->hasOne('App\Receipt', 'receipt_id', 'receipt_id');
     }
 }

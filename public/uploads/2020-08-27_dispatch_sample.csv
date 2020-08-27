@@ -1,0 +1,4 @@
+﻿Consignment Note,Mode(Courier Agent),Dispatch Item,Dispatch Date,Item Status,Remarks
+1234567,Gdex,1st Reminder,2020-01-01,Delivered,aa
+abcdef,CityLink,2nd Reminder,2020-02-02,Undelivered,bb
+345345,PosLaju,Suspension Letter,2020-03-03,Refund,cc

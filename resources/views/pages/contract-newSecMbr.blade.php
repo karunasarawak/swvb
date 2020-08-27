@@ -37,10 +37,10 @@
              <div class="form-group controls" x-cloak x-show="original">
                <label>Existing Lead</label>
                <select class="form-control"  id="exist_lead" name="exist_lead">
-                 @if(!empty($payload['allLead'] ))
-                  @foreach($payload['allLead'] as $al)
-                   <option value="{{ $al->lead_id }}" selected>{{ $al->lead_id }} - {{ $al->name }}</option>
-                   @endforeach
+                <option value="{{ $payload['lead']->lead_id }}" selected>{{ $payload['lead']->lead_id }} - {{ $payload['lead']->name }}</option>
+                @if(!empty($payload['lead2']->id) && $payload['lead2']->salutation_id == $salute->salutation_id)
+                <option value="{{ $payload['lead2']->lead_id }}" selected>{{ $payload['lead2']->lead_id }} - {{ $payload['lead2']->name }}</option>
+                
                  @else 
                    <option value="">--</option>
                  @endif

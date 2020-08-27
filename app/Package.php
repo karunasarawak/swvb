@@ -23,4 +23,6 @@ class Package extends Model
             'usage_year',
             'package_status',
     ];
+
+    protected $table = 'packages';
 }

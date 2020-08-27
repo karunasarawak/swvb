@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group"></div>
+                                    <div class="form-group">
                                         <div class="controls">
                                             <label for="amf-to-date">Annual Maintenance Fee Payment to Date</label>
                                             <input type="number" class="form-control" placeholder="RM" id="amf-to-date" name="amf_to_date" value="{{ number_format(Calculations::getAmfToDate($payload['membership']->mbrship_id), 2) }}" readonly>

@@ -40,10 +40,10 @@
                                         <div class="controls">
                                             <label>New Package</label>
                                             <select name="salutation1" class="custom-select" data-validation-required-message="Please select a salutation." required>
-                                                <option value="">Sapphire - Full</option>
-                                                <option value="Mr.">Mr.</option>
-                                                <option value="Ms.">Ms.</option>
-                                                <option value="Dr.">Dr.</option>
+                                            <option value="" disabled selected>Please select a new package</option>
+                                                @foreach($payload['package'] as $p)
+                                                <option value="{{$p->package_id}}">{{$p->package}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -228,27 +228,27 @@
                                     <div class="col">
                                         <div class="row pt-1">
                                             <p class="col">Membership No.</p>
-                                            <p class="col font-weight-bold black">23456 0000</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->mbrship_id}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Date of Application</p>
-                                            <p class="col font-weight-bold black">+6012 345 6789</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->application_date}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Date of Agreement</p>
-                                            <p class="col font-weight-bold black">01 April 2020</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->agreement_date}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Package Type</p>
-                                            <p class="col font-weight-bold black">Pearl Full</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->package['package']}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Package Price</p>
-                                            <p class="col font-weight-bold black">10,000</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->package['package_price']}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Entitlement</p>
-                                            <p class="col font-weight-bold black">SWD 2WE</p>
+                                            <p class="col font-weight-bold black"></p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Payment to Date</p>
@@ -278,27 +278,27 @@
                                     <div class="col">
                                         <div class="row pt-1">
                                             <p class="col">Declaration No.</p>
-                                            <p class="col font-weight-bold black">1234 0000</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->declaration_no}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">MRO</p>
-                                            <p class="col font-weight-bold black">MRO1-Chris</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->mro}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">CCO</p>
-                                            <p class="col font-weight-bold black">CCO1</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->cco}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Sales Personnel</p>
-                                            <p class="col font-weight-bold black">Chris</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->tour->salespersonnel['sales_name']}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Sales Manager</p>
-                                            <p class="col font-weight-bold black">Wilson</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->tour->salesmanager['sales_name']}}</p>
                                         </div>
                                         <div class="row pt-1">
                                             <p class="col">Sales Venue</p>
-                                            <p class="col font-weight-bold black">Kuching</p>
+                                            <p class="col font-weight-bold black">{{$payload['membership']->tour->salesvenue['sales_venue']}}</p>
                                         </div>
                                     </div>
                                 </div>
